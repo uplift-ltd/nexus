@@ -23,6 +23,7 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/money",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "yarn build"
   }
 }

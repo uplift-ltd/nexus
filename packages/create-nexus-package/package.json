@@ -23,7 +23,8 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/create-nexus-package",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "execa": "^4.0.3"

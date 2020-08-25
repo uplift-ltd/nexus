@@ -23,7 +23,8 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/formik",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@uplift-ltd/sentry": "^0.2.0",

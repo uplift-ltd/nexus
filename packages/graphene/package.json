@@ -23,7 +23,8 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/graphene",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "atob": "^2.1.2",

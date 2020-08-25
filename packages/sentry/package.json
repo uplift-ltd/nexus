@@ -23,7 +23,8 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/sentry",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@sentry/browser": "^5.20.1"

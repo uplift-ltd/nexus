@@ -4,9 +4,9 @@
   "description": "Helpers for dealing with sass.",
   "LICENSE": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./src/main.css",
   "files": [
-    "./dest/",
+    "./src/",
     "README.md"
   ],
   "publishConfig": {
