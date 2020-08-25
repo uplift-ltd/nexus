@@ -7,6 +7,7 @@
   "bin": "dest/init.js",
   "main": "dest/init.js",
   "files": [
+    "./dest/",
     "./src/",
     "README.md"
   ],
@@ -27,6 +28,10 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "execa": "^4.0.3"
+    "execa": "^4.0.3",
+    "mkdirp": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/mkdirp": "^1.0.1"
   }
 }
