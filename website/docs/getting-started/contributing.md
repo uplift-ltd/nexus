@@ -18,7 +18,7 @@ We use [lerna](https://github.com/lerna/lerna) to manage packages.
 
 You can either install lerna globally or run commands through yarn.
 
-    yarn run lerna version major|minor|patch
+    yarn lerna version major|minor|patch
 
 That will create new version as needed and push the tags to GitHub.
 
