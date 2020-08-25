@@ -1,0 +1,38 @@
+{
+  "name": "@uplift-ltd/sentry",
+  "version": "0.1.0",
+  "description": "Helpers for dealing with sentry.",
+  "license": "MIT",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/sentry"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sentry"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/sentry",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@sentry/browser": "^5.20.1"
+  },
+  "peerDependencies": {
+    "sentry-expo": "^2.1.2"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.63.9",
+    "sentry-expo": "^2.1.2"
+  }
+}

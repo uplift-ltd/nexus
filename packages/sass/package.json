@@ -1,0 +1,25 @@
+{
+  "name": "@uplift-ltd/sass",
+  "version": "0.1.0",
+  "description": "Helpers for dealing with sass.",
+  "license": "MIT",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/sass"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sass"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/sass",
+  "scripts": {}
+}

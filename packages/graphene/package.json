@@ -1,0 +1,32 @@
+{
+  "name": "@uplift-ltd/graphene",
+  "version": "0.1.0",
+  "description": "Helpers for dealing with django graphene.",
+  "license": "MIT",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/graphene"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:graphene"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/graphene",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1"
+  }
+}

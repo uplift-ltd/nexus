@@ -1,0 +1,28 @@
+{
+  "name": "@uplift-ltd/ts-helpers",
+  "version": "0.1.0",
+  "description": "Helpers for dealing with typescript.",
+  "license": "MIT",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/ts-helpers"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:ts-helpers"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/ts-helpers",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  }
+}

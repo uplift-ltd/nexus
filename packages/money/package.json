@@ -1,0 +1,28 @@
+{
+  "name": "@uplift-ltd/money",
+  "version": "0.1.0",
+  "description": "Helpers for dealing with django money.",
+  "license": "MIT",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/money"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:money"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/money",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  }
+}

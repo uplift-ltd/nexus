@@ -1,0 +1,29 @@
+{
+  "name": "@uplift-ltd/scripts",
+  "version": "0.1.0",
+  "description": "Scripts",
+  "license": "MIT",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "main": "./dest/index.js",
+  "bin": {
+    "src-clean": "./src/src-clean.sh",
+    "gql-clean": "./src/src-clean.sh"
+  },
+  "files": [
+    "./src/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:scripts"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/scripts",
+  "scripts": {}
+}
