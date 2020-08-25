@@ -45,7 +45,7 @@ export function initFiles() {
 
   const srcDir = path.join(pkgDir, "src");
 
-  mkdirp.sync("srcDir");
+  mkdirp.sync(srcDir);
 
   fs.writeFileSync(path.join(srcDir, "index.ts"), indexTemplate);
   fs.writeFileSync(path.join(srcDir, "todo.ts"), todoTemplate);
