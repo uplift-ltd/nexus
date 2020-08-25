@@ -1,10 +1,9 @@
 {
   "name": "@uplift-ltd/scripts",
   "version": "0.1.0",
-  "description": "Scripts",
+  "description": "Common scripts for doing stuff.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
   "bin": {
     "src-clean": "./src/src-clean.sh",
     "gql-clean": "./src/src-clean.sh"
