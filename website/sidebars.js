@@ -1,6 +1,6 @@
 module.exports = {
   sidebar: {
-    "Getting Started": ["getting-started/installation"],
+    "Getting Started": ["getting-started/installation", "getting-started/contributing"],
     Packages: [
       "packages/formik",
       "packages/graphene",

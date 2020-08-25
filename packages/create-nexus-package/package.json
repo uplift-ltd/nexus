@@ -1,0 +1,31 @@
+{
+  "name": "@uplift-ltd/create-nexus-package",
+  "version": "0.0.0",
+  "description": "Create a new nexus package.",
+  "LICENSE": "UNLICENSED",
+  "author": "Marius Craciunoiu <marius@uplift.ltd>",
+  "bin": "dest/init.js",
+  "main": "dest/init.js",
+  "files": [
+    "./src/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/create-nexus-package"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:create-nexus-package"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/create-nexus-package",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "execa": "^4.0.3"
+  }
+}

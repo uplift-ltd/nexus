@@ -3,7 +3,7 @@
   "name": "@uplift-ltd/nexus",
   "version": "0.1.0",
   "description": "Uplift's front end core library.",
-  "license": "MIT",
+  "LICENSE": "UNLICENSED",
   "homepage": "https://nexus.uplift.sh/",
   "publishConfig": {
     "registry":"https://npm.pkg.github.com/"
