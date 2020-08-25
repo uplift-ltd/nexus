@@ -7,8 +7,8 @@
   "bin": "dest/init.js",
   "main": "dest/init.js",
   "files": [
-    "./dest/",
-    "./src/",
+    "src/",
+    "dest/",
     "README.md"
   ],
   "publishConfig": {

@@ -9,7 +9,7 @@
     "gql-clean": "./src/src-clean.sh"
   },
   "files": [
-    "./src/",
+    "src/",
     "README.md"
   ],
   "publishConfig": {

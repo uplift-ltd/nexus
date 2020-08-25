@@ -6,7 +6,7 @@
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./dest/index.js",
   "files": [
-    "./dest/",
+    "dest/",
     "README.md"
   ],
   "publishConfig": {

@@ -6,7 +6,7 @@
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./src/main.css",
   "files": [
-    "./src/",
+    "src/",
     "README.md"
   ],
   "publishConfig": {
