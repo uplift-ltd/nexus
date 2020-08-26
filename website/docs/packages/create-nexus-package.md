@@ -1,6 +1,6 @@
-# @uplift-ltd/create-nexus-package
-
-Use this module to create new nexus packages.
+---
+title: create-nexus-package
+---
 
 ### Adding a new package
 

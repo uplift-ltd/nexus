@@ -1,3 +1,4 @@
-package.json
+dest/
+
 package-lock.json
 schema.json

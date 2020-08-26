@@ -1,6 +1,6 @@
 module.exports = {
   title: "Nexus",
-  tagline: "by Uplift Agency",
+  tagline: "by Uplift.ltd",
   url: "https://nexus.uplift.sh",
   baseUrl: "/",
   onBrokenLinks: "throw",

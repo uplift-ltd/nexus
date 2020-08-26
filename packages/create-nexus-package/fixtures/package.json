@@ -1,0 +1,32 @@
+{
+  "name": "@uplift-ltd/<%= PACKAGE_NAME %>",
+  "version": "0.1.0",
+  "description": "PACKAGE_NAME",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/<%= PACKAGE_NAME %>"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:<%= PACKAGE_NAME %>"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/<%= PACKAGE_NAME %>",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {}
+}

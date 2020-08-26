@@ -6,7 +6,7 @@
   "LICENSE": "UNLICENSED",
   "homepage": "https://nexus.uplift.sh/",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
@@ -15,6 +15,9 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
+    "prettier:check": "prettier --list-different \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
+    "prettier:write": "prettier --write \"packages/*/src/**/*.{jsyarn,jsx,ts,tsx,json,md,css,scss}\"",
+    "update-docs": "cd website && yarn update-docs",
     "deploy": "lerna publish from-package --yes"
   },
   "workspaces": [

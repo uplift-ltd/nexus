@@ -1,10 +1,10 @@
 ---
-title: Sass
+title: sass
 ---
 
 ## Installation
 
-3 yarn add @uplift-ltd/sass
+    yarn add @uplift-ltd/sass
 
 ## API
 

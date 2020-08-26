@@ -7,7 +7,7 @@
   "bin": "dest/init.js",
   "main": "dest/init.js",
   "files": [
-    "src/",
+    "fixtures/",
     "dest/",
     "README.md"
   ],
@@ -25,13 +25,18 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/create-nexus-package",
   "scripts": {
     "build": "tsc",
+    "test": "tsc --build tsconfig.fixtures.json",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
+    "ejs": "^3.1.5",
     "execa": "^4.0.3",
+    "lodash": "^4.17.20",
     "mkdirp": "^1.0.4"
   },
   "devDependencies": {
+    "@types/ejs": "^3.0.4",
+    "@types/lodash": "^4.14.160",
     "@types/mkdirp": "^1.0.1"
   }
 }

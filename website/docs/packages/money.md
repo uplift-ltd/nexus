@@ -1,31 +1,61 @@
 ---
-title: Money
+title: money
 ---
 
 ## Installation
 
-    yarn add @uplift-ltd/money
+    yarn add @uplift-ltd/graphene
 
 ## API
 
-### formatCurrency
+### fromGlobalId
 
-Format an amount.
+Get the raw database ID from a global id.
 
 ```js
-import { formatCurrency } from "@uplift-ltd/money";
+import { fromGlobalId } from "@uplift-ltd/graphene";
 
-formatCurrency(123.45, "USD"); // => $123.45
-formatCurrency("12345.67", "USD"); // => $12,345.67
-formatCurrency(null, "USD"); // => $0
+const globalId = "VXNlcjox";
+const dbId = fromGlobalId(globalId);
+
+console.log(globalId); // => VXNlcjox
+console.log(dbId); // => 1
 ```
 
-### parseAmount
+### toGlobalId
 
-Parse a money string into a number.
+Encode a model name and database id to a global id.
 
 ```js
-import { parseAmount } from "@uplift-ltd/money";
+import { toGlobalId } from "@uplift-ltd/graphene";
 
-parseAmount("123.45 USD"); // => 123.45
+const globalId = toGlobalId("User", 1);
+
+console.log(globalId); // => VXNlcjox
+```
+
+### parseGlobalId
+
+Parse both the model name and the database id from the global id.
+
+```js
+import { parseGlobalId } from "@uplift-ltd/graphene";
+
+const { name, id } = parseGlobalId("VXNlcjox");
+
+console.log(name); // => User
+console.log(id); // => 1
+```
+
+### mapNodes
+
+Return an array of nodes from a relay-style connection.
+
+```js
+import { mapNodes } from "@uplift-ltd/graphene";
+
+const connection = { edges: [{ node: { id: 1 } }] };
+const nodes = mapNodes(connection);
+
+console.log(nodes); // => [{ id: 1}]
 ```

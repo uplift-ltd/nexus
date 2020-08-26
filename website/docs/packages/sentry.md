@@ -1,5 +1,5 @@
 ---
-title: Sentry
+title: sentry
 ---
 
 ## Installation

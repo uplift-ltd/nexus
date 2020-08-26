@@ -46,22 +46,28 @@ You can either install lerna globally or run commands through yarn.
 
     yarn lerna version major|minor|patch
 
+To select the bumps for each package:
+
+    yarn lerna version
+
 That will create new version as needed and push the tags to GitHub.
 
-Go to [create a new release on GitHub](https://github.com/uplift-ltd/uplift-nexus/releases/new).
+Go to [create a new release on GitHub](https://github.com/uplift-ltd/nexus/releases/new).
 
 Select the tag created by lerna.
 
 Enter a title (usually same as the tag name).
 
-Create the release. Go to the [Actions tab](https://github.com/uplift-ltd/uplift-nexus/actions) to
-check progress.
+Create the release. Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check
+progress.
 
 **Note:** If you publish multiple packages you should wait until the first one finishes publishing
 as it will publish all the changed packages. After the first one is done you can create GitHub
 releases for the other packages (or not, I'm not your mom).
 
 ### Adding a new package
+
+See the documentation for `create-nexus-package`. To summarize:
 
 Create a new folder and `cd` to it.
 

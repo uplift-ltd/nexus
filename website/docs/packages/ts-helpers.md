@@ -1,5 +1,5 @@
 ---
-title: TypeScript Helpers
+title: ts-helpers
 ---
 
 ## Installation

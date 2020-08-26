@@ -1,5 +1,5 @@
 ---
-title: Formik
+title: formik
 ---
 
 ## Installation
