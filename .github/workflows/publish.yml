@@ -59,6 +59,8 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
 
+      - run: yarn prettier:check
+
       - run: yarn test
 
   build:
