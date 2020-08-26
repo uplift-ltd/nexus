@@ -5,8 +5,8 @@ module.exports = {
     Packages: [
       "packages/create-nexus-package",
       "packages/formik",
-      "packages/sass",
       "packages/graphene",
+      "packages/sass",
       "packages/scripts",
       "packages/money",
       "packages/sentry",

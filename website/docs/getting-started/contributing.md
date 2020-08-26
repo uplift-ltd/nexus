@@ -20,7 +20,7 @@ You can either install lerna globally or run commands through yarn.
 
     yarn lerna version major|minor|patch
 
-That will create new version as needed and push the tags to GitHub.
+That will create new versions as needed and push the tags to GitHub.
 
 Go to [create a new release on GitHub](https://github.com/uplift-ltd/nexus/releases/new).
 

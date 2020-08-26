@@ -2,6 +2,8 @@
 title: create-nexus-package
 ---
 
+Use this module to create new nexus packages.
+
 ### Adding a new package
 
 Create a new folder and `cd` to it.
