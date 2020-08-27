@@ -4,7 +4,7 @@ const path = require("path");
 const _ = require("lodash");
 
 (async () => {
-  const readmePaths = await globby(path.resolve(__dirname, "../../packages/*/README.md"));
+  const readmePaths = (await globby(path.resolve(__dirname, "../../packages/*/README.md"))).sort();
   const packageJsonPaths = readmePaths.map((readmePath) =>
     readmePath.replace("README.md", "package.json")
   );
