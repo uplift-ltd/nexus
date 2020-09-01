@@ -1,0 +1,40 @@
+{
+  "name": "@uplift-ltd/apollo",
+  "version": "0.1.0",
+  "description": "PACKAGE_NAME",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "./dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/apollo"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:apollo"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/apollo",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@uplift-ltd/sentry": "^0.2.2"
+  },
+  "peerDependencies": {
+    "@apollo/client": "^3.0.0",
+    "graphql": "^15.0.0"
+  },
+  "devDependencies": {
+    "@apollo/client": "^3.1.4",
+    "graphql": "^15.3.0"
+  }
+}
