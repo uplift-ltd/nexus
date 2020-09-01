@@ -1,4 +1,4 @@
-import { captureException } from "@sentry/browser";
+import Sentry from "@uplift-ltd/sentry";
 import { useFormik, FormikConfig } from "formik";
 import { FormikStatus } from "./status";
 
@@ -15,7 +15,7 @@ export function useEnhancedFormik<FormikValues>(options: FormikConfig<FormikValu
       try {
         await options.onSubmit(values, formikHelpers);
       } catch (err) {
-        captureException(err);
+        Sentry.captureException(err);
         formikHelpers.setStatus({ formError: err });
       }
     },
