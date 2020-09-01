@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/ts-helpers",
   "version": "0.2.3",
   "description": "Helpers for dealing with typescript.",
-  "LICENSE": "UNLICENSED",
+  "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./dest/index.js",
   "files": [

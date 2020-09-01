@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/formik",
   "version": "0.2.5",
   "description": "Helpers for dealing with formik.",
-  "LICENSE": "UNLICENSED",
+  "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./dest/index.js",
   "files": [
@@ -27,13 +27,14 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^0.2.3",
-    "formik": "^2.1.5"
+    "@uplift-ltd/sentry": "^0.2.3"
   },
   "peerDependencies": {
+    "formik": "^2.0.0",
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "formik": "^2.1.5",
     "react": "^16.13.1"
   }
 }

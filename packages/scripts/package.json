@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/scripts",
   "version": "0.2.2",
   "description": "Common scripts for doing stuff.",
-  "LICENSE": "UNLICENSED",
+  "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "bin": {
     "src-clean": "./src/src-clean.sh",

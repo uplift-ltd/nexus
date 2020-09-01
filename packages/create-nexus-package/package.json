@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/create-nexus-package",
   "version": "0.1.10",
   "description": "Create a new nexus package.",
-  "LICENSE": "UNLICENSED",
+  "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "bin": "dest/init.js",
   "main": "dest/init.js",

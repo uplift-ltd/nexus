@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/sass",
   "version": "0.2.3",
   "description": "Helpers for dealing with sass.",
-  "LICENSE": "UNLICENSED",
+  "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./src/main.css",
   "files": [
