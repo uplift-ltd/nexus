@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/apollo",
   "version": "0.1.1",
-  "description": "PACKAGE_NAME",
+  "description": "Apollo helpers.",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./dest/index.js",
