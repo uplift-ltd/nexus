@@ -13,8 +13,8 @@ export function EnhancedFormik<Values extends FormikValues = FormikValues, Extra
   return (
     <Formik
       initialStatus={{
-        formSuccess: false,
-        formError: false,
+        formSuccess: null,
+        formError: null,
         allowResubmit: true,
         ...initialStatus,
       }}

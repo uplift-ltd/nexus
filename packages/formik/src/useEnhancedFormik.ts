@@ -7,8 +7,8 @@ export function useEnhancedFormik<FormikValues>(options: FormikConfigWithOverrid
   return useFormik<FormikValues>({
     ...options,
     initialStatus: {
-      formSuccess: false,
-      formError: false,
+      formSuccess: null,
+      formError: null,
       allowResubmit: true,
       ...options.initialStatus,
     } as FormikStatus,

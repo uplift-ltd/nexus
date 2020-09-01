@@ -1,8 +1,8 @@
 import { FormikHelpers } from "formik";
 
 export interface FormikStatus {
-  formSuccess: boolean | string;
-  formError: boolean | string | Error;
+  formSuccess?: string | null;
+  formError?: string | Error | null;
   allowResubmit: boolean;
 }
 
