@@ -27,8 +27,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^0.2.2",
-    "formik": "^2.1.5"
+    "@uplift-ltd/sentry": "^0.2.2"
   },
   "peerDependencies": {
     "formik": "^2.0.0",
