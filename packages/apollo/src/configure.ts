@@ -22,9 +22,9 @@ interface ExtraHeaders {
   cookie?: string;
 }
 
-interface ConfigureClientOptions extends ApolloClientOptions<unknown> {
-  initialState: NormalizedCacheObject;
-  cache: ApolloCache<unknown>;
+interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
+  initialState?: NormalizedCacheObject;
+  cache?: ApolloCache<unknown>;
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
@@ -33,7 +33,7 @@ interface ConfigureClientOptions extends ApolloClientOptions<unknown> {
 }
 
 export const configureClient = ({
-  initialState,
+  initialState = {},
   cache = new InMemoryCache(),
   cookie,
   getToken,
