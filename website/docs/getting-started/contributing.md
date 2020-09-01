@@ -26,7 +26,7 @@ Go to [create a new release on GitHub](https://github.com/uplift-ltd/nexus/relea
 
 Select the tag created by lerna.
 
-Enter a title (usually same as the tag name).
+Leave the title blank, this will make the release title the tag name.
 
 Create the release. Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check
 progress.

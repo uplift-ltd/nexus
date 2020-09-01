@@ -6,7 +6,7 @@
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./dest/index.js",
   "files": [
-    "./dest/",
+    "dest/",
     "README.md"
   ],
   "publishConfig": {
