@@ -44,3 +44,26 @@ Create a new folder and `cd` to it.
 Initialize a new package using the @uplit-ltd/create-nexus-package initializer.
 
     npm init @uplift-ltd/nexus-package
+
+## Working with local packages
+
+There's some weirdness with `yarn link`. The most reliable way seems to be to use `npm link`. Also
+if the package depends on `react` you may have to alias that to the app `react` to avoid duplicate
+react versions (and hooks failing).
+
+    cd packages/formik
+
+    npm link
+
+    npm link ../../../myapp/node_modules/react
+
+    cd myapp
+
+    npm link @uplift-ltd/formik
+
+Don't forget to run `yarn build` after every change.
+
+You might have to wipe `node_modules/.cache` in your app if you ran into duplicate react issue.
+
+See [react docs](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) for
+more details.
