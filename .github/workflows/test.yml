@@ -70,7 +70,9 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: dependencies
+    needs:
+      - dependencies
+      - build
     steps:
       - uses: actions/checkout@v2
 
