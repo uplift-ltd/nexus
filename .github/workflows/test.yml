@@ -93,6 +93,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build
+          path: packages
 
       - run: yarn prettier:check
 
