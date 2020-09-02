@@ -26,7 +26,7 @@ Then add the following to your `~/.npmrc` file.
 
 1. Create a GitHub Personal Access Token with `read:packages` permission.
 2. Add it as `NPM_TOKEN` secret.
-3. Add the GitHub Packages repository to setup-node action:
+3. Add the GitHub Packages registry to setup-node action:
 
 ```yml
 uses: actions/setup-node@v1
