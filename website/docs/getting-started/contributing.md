@@ -22,14 +22,14 @@ You can either install lerna globally or run commands through yarn.
 
 That will create new versions as needed and push the tags to GitHub.
 
-Go to [create a new release on GitHub](https://github.com/uplift-ltd/nexus/releases/new).
+Next, create a GitHub release:
 
-Select the tag created by lerna.
+1. Go to [tags](https://github.com/uplift-ltd/nexus/tags) in GitHub and find one for your release.
+2. Click on the triple dots on the right and select `Create Release`.
+3. Enter a description of what changed.
+4. Press `Publish Release`
 
-Leave the title blank, this will make the release title the tag name.
-
-Create the release. Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check
-progress.
+Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check progress.
 
 **Note:** If you publish multiple packages you should wait until the first one finishes publishing
 as it will publish all the changed packages. After the first one is done you can create GitHub

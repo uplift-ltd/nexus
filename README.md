@@ -26,6 +26,29 @@ Then add the following to your `~/.npmrc` file.
     //npm.pkg.github.com/:_authToken=GITHUB_TOKEN
     @uplift-ltd:registry=https://npm.pkg.github.com
 
+## Setting up CI to install from other repo
+
+1. Create a GitHub Personal Access Token with `read:packages` permission.
+2. Add it as `NPM_TOKEN` secret.
+3. Add the GitHub Packages repository to setup-node action:
+
+```yml
+uses: actions/setup-node@v1
+with:
+  node-version: "12.x"
+  registry-url: "https://npm.pkg.github.com/"
+  scope: "@uplift-ltd"
+```
+
+4. Add `NODE_AUTH_TOKEN` to the yarn install step.
+
+```yml
+name: Install dependencies
+run: yarn install --non-interactive --frozen-lockfile
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
 ## Contributing
 
 ### What are the files in each package?
@@ -46,20 +69,16 @@ You can either install lerna globally or run commands through yarn.
 
     yarn lerna version major|minor|patch
 
-To select the bumps for each package:
-
-    yarn lerna version
-
 That will create new versions as needed and push the tags to GitHub.
 
-Go to [create a new release on GitHub](https://github.com/uplift-ltd/nexus/releases/new).
+Next, create a GitHub release:
 
-Select the tag created by lerna.
+1. Go to [tags](https://github.com/uplift-ltd/nexus/tags) in GitHub and find one for your release.
+2. Click on the triple dots on the right and select `Create Release`.
+3. Enter a description of what changed.
+4. Press `Publish Release`
 
-Enter a title (usually same as the tag name).
-
-Create the release. Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check
-progress.
+Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check progress.
 
 **Note:** If you publish multiple packages you should wait until the first one finishes publishing
 as it will publish all the changed packages. After the first one is done you can create GitHub
