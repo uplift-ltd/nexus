@@ -3,7 +3,7 @@ import { FormikHelpers } from "formik";
 export interface FormikStatus {
   formSuccess?: string | null;
   formError?: string | Error | null;
-  allowResubmit: boolean;
+  allowResubmit?: boolean;
 }
 
 export const getSetFormSuccess = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
