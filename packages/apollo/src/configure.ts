@@ -13,6 +13,7 @@ import { onError } from "@apollo/client/link/error";
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import Sentry from "@uplift-ltd/sentry";
 import { GRAPHQL_AUTH_URL, IS_SSR } from "./constants";
+import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let globalApolloClient: ApolloClient<any>;
@@ -28,6 +29,8 @@ interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cac
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
+  onNetworkError?: (err: Error) => void;
+  onGraphqlErrors?: (errors: readonly GraphQLError[]) => void;
   onNotAuthorized?: () => void;
   onForbidden?: () => void;
 }
@@ -38,6 +41,8 @@ export const configureClient = ({
   cookie,
   getToken,
   removeToken,
+  onNetworkError,
+  onGraphqlErrors,
   onNotAuthorized,
   onForbidden,
   ...otherOptions
@@ -54,6 +59,7 @@ export const configureClient = ({
       }
       Sentry.captureException(networkError);
       console.warn(`[Network error]: ${networkError}`);
+      onNetworkError && onNetworkError(networkError);
 
       // If we get a 401, we log out the user
       if ((networkError as ServerError).statusCode === 401) {
@@ -65,6 +71,9 @@ export const configureClient = ({
     }
 
     if (graphQLErrors) {
+      if (graphQLErrors.length > 0 && onGraphqlErrors) {
+        onGraphqlErrors(graphQLErrors);
+      }
       graphQLErrors.forEach((graphqlError) => {
         // This is not supposed to be a string, but it is sometimes?
         // Maybe it's a graphene thang? Anyway, we'll handle it.
