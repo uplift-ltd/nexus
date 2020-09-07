@@ -14,12 +14,7 @@ See
 
 In short you have to
 [create a personal access token](https://docs.github.com/en/packages/publishing-and-managing-packages/about-github-packages#about-tokens)
-with the following permissions:
-
-- `read:packages`
-- `write:packages`
-- `delete:packages`
-- `repo`
+with the `read:packages` permission.
 
 Then add the following to your `~/.npmrc` file.
 
