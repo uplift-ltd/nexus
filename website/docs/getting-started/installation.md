@@ -8,9 +8,8 @@ Before installing, make sure to authenticate with GitHub Package Registry or usi
 See
 "[Configuring npm for use with GitHub Package Registry](https://help.github.com/en/articles/configuring-npm-for-use-with-github-package-registry#authenticating-to-github-package-registry)."
 
-In short you have to
-[create a personal access token](https://docs.github.com/en/packages/publishing-and-managing-packages/about-github-packages#about-tokens)
-with the `read:packages` permission.
+In short you have to [create a personal access token](https://github.com/settings/tokens/new) with
+the `read:packages` permission.
 
 Then add the following to your `~/.npmrc` file.
 
