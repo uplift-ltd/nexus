@@ -1,11 +1,11 @@
 ---
 title: Installation
+slug: /
 ---
 
 ## Setting Up GitHub Packages
 
-Before installing, make sure to authenticate with GitHub Package Registry using
-`npm login --registry=https://npm.pkg.github.com` or using a `.npmrc` file. See
+Before installing, make sure to authenticate with GitHub Package Registry using a `.npmrc` file. See
 "[Configuring npm for use with GitHub Package Registry](https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#authenticating-to-github-packages)."
 
 In short you have to [create a personal access token](https://github.com/settings/tokens/new) with
