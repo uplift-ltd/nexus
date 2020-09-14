@@ -19,6 +19,20 @@ useEnhancedQuery<MyQuery, MyQueryVariables>(MY_QUERY, { variables }, { auth: fal
 
 See [Apollo useQuery docs](https://www.apollographql.com/docs/react/api/react/hooks/#usequery).
 
+### useEnhancedLazyQuery
+
+Same as Apollo useLazyQuery except it accepted a third parameter for setting the auth/unauth
+endpoints for you. Defaults to auth endpoint.
+
+```ts
+import { useEnhancedLazyQuery } from "@uplift-ltd/apollo";
+
+useEnhancedLazyQuery<MyQuery, MyQueryVariables>(MY_QUERY, { variables }, { auth: false });
+```
+
+See
+[Apollo useLazyQuery docs](https://www.apollographql.com/docs/react/api/react/hooks/#uselazyquery).
+
 ### useEnhancedMutation
 
 Same as Apollo useMutation except it accepted a third parameter for setting the auth/unauth
