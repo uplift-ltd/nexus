@@ -1,4 +1,4 @@
-export { useEnhancedMutation, useEnhancedQuery } from "./hooks";
+export { useEnhancedMutation, useEnhancedLazyQuery, useEnhancedQuery } from "./hooks";
 
 export { configureClient, initClient } from "./configure";
 
