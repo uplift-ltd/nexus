@@ -1,0 +1,32 @@
+{
+  "name": "@uplift-ltd/use-after-delay",
+  "version": "0.1.0",
+  "description": "use-after-delay",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/use-after-delay"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-after-delay"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/use-after-delay",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {}
+}
