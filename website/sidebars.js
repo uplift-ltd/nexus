@@ -12,6 +12,7 @@ module.exports = {
       "packages/scripts",
       "packages/sentry",
       "packages/ts-helpers",
+      "packages/use-after-delay",
     ],
   },
 };
