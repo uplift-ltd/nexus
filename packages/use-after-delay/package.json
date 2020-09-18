@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/use-after-delay",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "use-after-delay",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -25,8 +25,5 @@
     "build": "tsc",
     "check-types": "tsc",
     "test": "jest --passWithNoTests"
-  },
-  "dependencies": {},
-  "peerDependencies": {},
-  "devDependencies": {}
+  }
 }
