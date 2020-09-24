@@ -23,9 +23,11 @@ interface ExtraHeaders {
   cookie?: string;
 }
 
-interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
+export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
   initialState?: NormalizedCacheObject;
   cache?: ApolloCache<unknown>;
+  fetch?: BatchHttpLink.Options["fetch"];
+  fetchOptions?: BatchHttpLink.Options["fetchOptions"];
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
@@ -35,9 +37,13 @@ interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cac
   onForbidden?: () => void;
 }
 
+const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
+
 export const configureClient = ({
   initialState = {},
   cache = new InMemoryCache(),
+  fetch = defaultFetch,
+  fetchOptions,
   cookie,
   getToken,
   removeToken,
@@ -117,6 +123,7 @@ export const configureClient = ({
         uri: GRAPHQL_AUTH_URL,
         credentials: "same-origin",
         fetch,
+        fetchOptions,
       }),
     ]),
     cache,
