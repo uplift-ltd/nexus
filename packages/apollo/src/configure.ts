@@ -23,7 +23,7 @@ interface ExtraHeaders {
   cookie?: string;
 }
 
-interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
+export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
   initialState?: NormalizedCacheObject;
   cache?: ApolloCache<unknown>;
   fetch?: BatchHttpLink.Options["fetch"];
