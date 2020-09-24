@@ -5,6 +5,7 @@
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./dest/index.js",
+  "browser": "./dest/browser.js",
   "files": [
     "dest/",
     "README.md"
@@ -27,7 +28,8 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@sentry/browser": "^5.20.1"
+    "@sentry/browser": "^5.24.2",
+    "@sentry/node": "^5.24.2"
   },
   "peerDependencies": {
     "sentry-expo": "^2.1.2"
