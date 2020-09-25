@@ -31,7 +31,7 @@
     "@sentry/browser": "^5.24.2",
     "@sentry/node": "^5.24.2"
   },
-  "peerDependencies": {
+  "optionalDependencies": {
     "sentry-expo": "^2.1.2"
   },
   "devDependencies": {
