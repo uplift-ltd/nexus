@@ -1,10 +1,11 @@
 {
   "name": "@uplift-ltd/sentry",
-  "version": "0.2.5",
+  "version": "0.3.0-alpha.0",
   "description": "Helpers for dealing with sentry.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./dest/index.js",
+  "browser": "./dest/browser.js",
   "files": [
     "dest/",
     "README.md"
@@ -27,9 +28,10 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@sentry/browser": "^5.20.1"
+    "@sentry/browser": "^5.24.2",
+    "@sentry/node": "^5.24.2"
   },
-  "peerDependencies": {
+  "optionalDependencies": {
     "sentry-expo": "^2.1.2"
   },
   "devDependencies": {
