@@ -27,14 +27,11 @@ export const DEFAULT_PROXY_PATHS = [
 ];
 
 export const setupProxy = (
-  callback = ({ target, proxyPaths }: ProxyOptions) => ({ target, proxyPaths })
+  { target = DEFAULT_TARGET, proxyPaths = DEFAULT_PROXY_PATHS }: Partial<ProxyOptions> = {
+    target: DEFAULT_TARGET,
+    proxyPaths: DEFAULT_PROXY_PATHS,
+  }
 ) => {
-  const { target = DEFAULT_TARGET, proxyPaths = DEFAULT_PROXY_PATHS } =
-    callback({
-      target: DEFAULT_TARGET,
-      proxyPaths: DEFAULT_PROXY_PATHS,
-    }) || {};
-
   return (app: Express) =>
     app.use(
       createProxyMiddleware(proxyPaths, {

@@ -1,1 +1,1 @@
-export { setupProxy as default } from "./setupProxy";
+export { setupProxy } from "./setupProxy";

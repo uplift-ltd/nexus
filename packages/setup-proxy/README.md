@@ -12,14 +12,17 @@ Create a file in src/setupProxy.js that invokes this function with a callback th
 ### Default Values
 
 ```js
-module.exports = require("@uplift-ltd/setup-proxy")();
+const { setupProxy } = require("@uplift-ltd/setup-proxy");
+module.exports = setupProxy();
 ```
 
 ### Custom Values
 
 ```js
-module.exports = require("@uplift-ltd/setupProxy")(({ target, proxyPaths }) => ({
-  target: process.env.REACT_APP_PROXY_TARGET || "http://localhost:5000",
-  proxyPaths: proxyPaths.filter((proxyPath) => proxyPath.indexOf("logout") !== -1),
-}));
+const { setupProxy, DEFAULT_TARGET, DEFAULT_PROXY_PATHS } = require("@uplift-ltd/setup-proxy");
+
+module.exports = setupProxy({
+  target: "http://localhost:5000",
+  proxyPaths: DEFAULT_PROXY_PATHS.filter((proxyPath) => proxyPath.indexOf("logout") !== -1),
+});
 ```
