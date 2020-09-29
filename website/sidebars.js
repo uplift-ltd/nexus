@@ -11,6 +11,7 @@ module.exports = {
       "packages/sass",
       "packages/scripts",
       "packages/sentry",
+      "packages/setup-proxy",
       "packages/ts-helpers",
       "packages/use-after-delay",
     ],
