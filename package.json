@@ -31,6 +31,10 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,css,scss}": [
       "prettier --write"
+    ],
+    "*.md": [
+      "yarn update-docs",
+      "git add ./website"
     ]
   },
   "devDependencies": {
