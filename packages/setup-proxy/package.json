@@ -1,0 +1,36 @@
+{
+  "name": "@uplift-ltd/setup-proxy",
+  "version": "0.1.0",
+  "description": "setup-proxy",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/setup-proxy"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:setup-proxy"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/setup-proxy",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "express": "^4.17.1"
+  }
+}
