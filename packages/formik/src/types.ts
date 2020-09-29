@@ -15,6 +15,7 @@ export type FormikConfigWithOverrides<Values> = FormikConfigWithoutOverrides<Val
   FormikConfigOverrides<Values>;
 
 export type EnhancedFieldInputProps<T> = FieldInputProps<T> & {
+  // FocusEvent<any> mirrors Formik's events for onBlur, onChange
   onFocus: (e: React.FocusEvent<any>) => void;
 };
 

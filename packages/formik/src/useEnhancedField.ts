@@ -17,6 +17,7 @@ export function useEnhancedField<FieldValue>({
   return [
     {
       ...field,
+      // the field typeof any mirrors the event Formik uses for onBlur/onChange
       onFocus: (e: React.FocusEvent<any>) => {
         if (hideErrorsOnFocus) {
           formik.setTouched(false, false);

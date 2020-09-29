@@ -7,10 +7,13 @@ export type EnhancedFieldAttributes<T> = FieldAttributes<T> & {
   hideErrorsOnFocus?: boolean;
 };
 
+// using any to mirror Formik's usage, passing a different type here gets
+// overridden by their types at the next level :/
 export type EnhancedFieldProps<T = any> = Omit<FieldProps<T>, "field"> & {
   field: EnhancedFieldInputProps<T>;
 };
 
+// using any to mirror Formik's usage :/
 export function EnhancedField<T = any>({
   children,
   hideErrorsOnFocus,
