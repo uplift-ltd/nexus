@@ -6,7 +6,8 @@
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "bin": {
     "src-clean": "./src/src-clean.sh",
-    "gql-clean": "./src/gql-clean.sh"
+    "gql-clean": "./src/gql-clean.sh",
+    "global-types-clean": "./src/global-types-clean.js"
   },
   "files": [
     "src/",
