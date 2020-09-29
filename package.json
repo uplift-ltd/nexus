@@ -33,7 +33,7 @@
       "prettier --write"
     ],
     "*.md": [
-      "update-docs"
+      "yarn update-docs"
     ]
   },
   "devDependencies": {
