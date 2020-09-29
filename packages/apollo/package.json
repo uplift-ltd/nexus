@@ -7,7 +7,8 @@
   "main": "./dest/index.js",
   "files": [
     "dest/",
-    "README.md"
+    "README.md",
+    "setup-proxy.js"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
