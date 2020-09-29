@@ -2,7 +2,7 @@ import Sentry from "@uplift-ltd/sentry";
 import React from "react";
 import { Formik, FormikValues } from "formik";
 import { getSetFormSuccess, getSetFormError } from "./status";
-import { FormikConfigWithOverrides } from "./types";
+import { FormikConfigWithOverrides, isFunction } from "./types";
 
 export function EnhancedFormik<Values extends FormikValues = FormikValues, ExtraProps = {}>({
   children,
@@ -33,7 +33,7 @@ export function EnhancedFormik<Values extends FormikValues = FormikValues, Extra
       {...otherProps}
     >
       {(formik) => {
-        if (typeof children === "function") {
+        if (isFunction(children)) {
           return children({
             ...formik,
             setFormSuccess: getSetFormSuccess(formik.setStatus),
