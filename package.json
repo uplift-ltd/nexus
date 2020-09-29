@@ -33,7 +33,8 @@
       "prettier --write"
     ],
     "*.md": [
-      "yarn update-docs"
+      "yarn update-docs",
+      "git add ./website"
     ]
   },
   "devDependencies": {
