@@ -8,13 +8,15 @@ title: formik
 
 ## API
 
+### EnhancedFormik / useEnhancedFormik
+
 These wrappers do a few things:
 
 - handle reporting errors to Sentry
 - adds `initialStatus` for form errors
 - adds `setFormSuccess` and `setFormError` helpers
 
-### Formik
+#### EnhancedFormik
 
 ```tsx
 import { EnhancedFormik } from "@uplift-ltd/formik";
@@ -26,7 +28,7 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 />;
 ```
 
-### useEnhancedFormik
+#### useEnhancedFormik
 
 ```ts
 import { useEnhancedFormik } from "@uplift-ltd/formik";
@@ -46,4 +48,64 @@ const formik = useEnhancedFormik<FormValues>({
     });
   },
 });
+```
+
+### EnhancedField / useEnhancedField
+
+Enhancement that allows you to hide field errors when the input gains focus. It does this by setting
+`meta.touched` to `false`.
+
+#### EnhancedField
+
+```ts
+import { EnhancedField } from "@uplift-ltd/formik";
+
+const MyField = ({ label, ...props }) => {
+  console.log(Object.keys(field));
+  // ['onBlur', 'onChange', 'onFocus', 'value', ...]
+  //                        ^ our enhancement to track focus and clear touched status
+
+  return (
+    <EnhancedField hideErrorsOnFocus>
+      {({ field, meta }) => {
+        console.log(Object.keys(field));
+        // ['onBlur', 'onChange', 'onFocus', 'value', ...]
+        //                        ^ our enhancement to track focus and clear touched status
+
+        return (
+          <label>
+            {label}
+            <input {...field} />
+            {meta.touched && meta.error && <p>{meta.error}</p>}
+          </label>
+        );
+      }}
+    </EnhancedField>
+  );
+};
+```
+
+#### useEnhancedField
+
+```ts
+import { useEnhancedField } from "@uplift-ltd/formik";
+
+const MyField = ({ label, ...props }) => {
+  const [field, meta] = useEnhancedField<string>({
+    hideErrorsOnFocus: true,
+    ...props,
+  });
+
+  console.log(Object.keys(field));
+  // ['onBlur', 'onChange', 'onFocus', 'value', ...]
+  //                        ^ our enhancement to track focus and clear touched status
+
+  return (
+    <label>
+      {label}
+      <input {...field} {...props} />
+      {meta.touched && meta.error && <p>{meta.error}</p>}
+    </label>
+  );
+};
 ```

@@ -1,4 +1,4 @@
-import { FormikConfig, FormikHelpers, FormikProps } from "formik";
+import { FormikConfig, FormikHelpers, FieldInputProps, FormikProps } from "formik";
 import { StatusHelpers } from "./status";
 
 type FormikConfigWithoutOverrides<Values> = Omit<FormikConfig<Values>, "children" | "onSubmit">;
@@ -13,3 +13,10 @@ interface FormikConfigOverrides<Values> {
 
 export type FormikConfigWithOverrides<Values> = FormikConfigWithoutOverrides<Values> &
   FormikConfigOverrides<Values>;
+
+export type EnhancedFieldInputProps<T> = FieldInputProps<T> & {
+  // FocusEvent<any> mirrors Formik's events for onBlur, onChange
+  onFocus: (e: React.FocusEvent<any>) => void;
+};
+
+export const isFunction = (obj: any): obj is Function => typeof obj === "function";
