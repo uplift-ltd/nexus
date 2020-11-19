@@ -65,8 +65,18 @@ export const configureClient = ({
         // https://github.com/apollographql/apollo-link/issues/855
         return Observable.of({ data: { currentUser: null } });
       }
+      // pluck errors out of the result and send to sentry
+      // typing says result is an object but since we use batch http link it's actually an array
+      const serverError = networkError as ServerError;
+      const errors =
+        serverError.result.errors ||
+        serverError.result?.map((result: Record<string, any>) => result.errors);
       Sentry.captureException(networkError, {
-        extra: { operationName: operation.operationName, query: operation.query },
+        extra: {
+          operationName: operation.operationName,
+          query: operation.query,
+          errors,
+        },
       });
       console.warn(`[Network error]: ${networkError}`);
       onNetworkError && onNetworkError(networkError, operation);
