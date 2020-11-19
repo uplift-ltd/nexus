@@ -25,6 +25,7 @@ export function useEnhancedQuery<TData, TVariables = OperationVariables>(
     ...options,
     context: {
       uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
+      ...options.context,
     },
   });
 }
@@ -38,6 +39,7 @@ export function useEnhancedLazyQuery<TData, TVariables = OperationVariables>(
     ...options,
     context: {
       uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
+      ...options.context,
     },
   });
 }
@@ -51,6 +53,7 @@ export function useEnhancedMutation<TData, TVariables = OperationVariables>(
     ...options,
     context: {
       uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
+      ...options.context,
     },
   });
 }

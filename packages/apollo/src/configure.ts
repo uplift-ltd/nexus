@@ -1,12 +1,14 @@
 import {
+  ApolloCache,
   ApolloClient,
+  ApolloClientOptions,
+  ApolloError,
   ApolloLink,
+  InMemoryCache,
   NormalizedCacheObject,
   Observable,
-  ApolloCache,
+  Operation,
   ServerError,
-  ApolloClientOptions,
-  InMemoryCache,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
@@ -31,10 +33,10 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
-  onNetworkError?: (err: Error) => void;
-  onGraphqlErrors?: (errors: readonly GraphQLError[]) => void;
-  onNotAuthorized?: () => void;
-  onForbidden?: () => void;
+  onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
+  onGraphqlErrors?: (errors: readonly GraphQLError[], operation: Operation) => void;
+  onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
+  onForbidden?: (err: ApolloError["networkError"], operation: Operation) => void;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
@@ -63,22 +65,24 @@ export const configureClient = ({
         // https://github.com/apollographql/apollo-link/issues/855
         return Observable.of({ data: { currentUser: null } });
       }
-      Sentry.captureException(networkError);
+      Sentry.captureException(networkError, {
+        extra: { operationName: operation.operationName, query: operation.query },
+      });
       console.warn(`[Network error]: ${networkError}`);
-      onNetworkError && onNetworkError(networkError);
+      onNetworkError && onNetworkError(networkError, operation);
 
       // If we get a 401, we log out the user
       if ((networkError as ServerError).statusCode === 401) {
         removeToken && removeToken();
-        onNotAuthorized && onNotAuthorized();
+        onNotAuthorized && onNotAuthorized(networkError, operation);
       } else if ((networkError as ServerError).statusCode === 403) {
-        onForbidden && onForbidden();
+        onForbidden && onForbidden(networkError, operation);
       }
     }
 
     if (graphQLErrors) {
       if (graphQLErrors.length > 0 && onGraphqlErrors) {
-        onGraphqlErrors(graphQLErrors);
+        onGraphqlErrors(graphQLErrors, operation);
       }
       graphQLErrors.forEach((graphqlError) => {
         // This is not supposed to be a string, but it is sometimes?
