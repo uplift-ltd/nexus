@@ -65,7 +65,9 @@ export const configureClient = ({
         // https://github.com/apollographql/apollo-link/issues/855
         return Observable.of({ data: { currentUser: null } });
       }
-      Sentry.captureException(networkError);
+      Sentry.captureException(networkError, {
+        extra: { operationName: operation.operationName, query: operation.query },
+      });
       console.warn(`[Network error]: ${networkError}`);
       onNetworkError && onNetworkError(networkError, operation);
 
