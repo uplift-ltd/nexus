@@ -69,8 +69,8 @@ export const configureClient = ({
       // typing says result is an object but since we use batch http link it's actually an array
       const serverError = networkError as ServerError;
       const errors =
-        serverError.result.errors ||
-        serverError.result?.map((result: Record<string, any>) => result.errors);
+        serverError?.result.errors ||
+        serverError?.result?.map((result: Record<string, any>) => result.errors);
       Sentry.captureException(networkError, {
         extra: {
           operationName: operation.operationName,
