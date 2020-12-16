@@ -57,3 +57,16 @@ const nodes = mapNodes(connection);
 
 console.log(nodes); // => [{ id: 1}]
 ```
+
+### useEnumValues
+
+Fetch key and descriptions for an enum from the gql server. Providing a type for the enum will give
+correct data on the response type.
+
+```ts
+import { useEnumValues } from "@uplift-ltd/graphene";
+
+const colors = useEnumValues<MyColors>("MyColors");
+
+console.log(colors); // => { BLUE: "Brand Blue", RED: "Danger Red" }
+```
