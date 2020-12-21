@@ -30,6 +30,9 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   cache?: ApolloCache<unknown>;
   fetch?: BatchHttpLink.Options["fetch"];
   fetchOptions?: BatchHttpLink.Options["fetchOptions"];
+  batchInterval?: BatchHttpLink.Options["batchInterval"];
+  batchKey?: BatchHttpLink.Options["batchKey"];
+  batchMax?: BatchHttpLink.Options["batchMax"];
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
@@ -46,6 +49,9 @@ export const configureClient = ({
   cache = new InMemoryCache(),
   fetch = defaultFetch,
   fetchOptions,
+  batchInterval,
+  batchKey,
+  batchMax,
   cookie,
   getToken,
   removeToken,
@@ -138,6 +144,9 @@ export const configureClient = ({
         credentials: "same-origin",
         fetch,
         fetchOptions,
+        batchInterval,
+        batchKey,
+        batchMax,
       }),
     ]),
     cache,
