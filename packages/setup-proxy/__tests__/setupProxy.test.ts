@@ -1,5 +1,5 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { setupProxy, DEFAULT_TARGET, DEFAULT_PROXY_PATHS, ProxyOptions } from "../src/setupProxy";
+import { setupProxy, DEFAULT_TARGET, DEFAULT_PROXY_PATHS } from "../src/setupProxy";
 
 jest.mock("http-proxy-middleware", () => ({ createProxyMiddleware: jest.fn() }));
 

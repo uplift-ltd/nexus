@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { notEmpty } from "../src/notEmpty";
 
 describe("notEmpty", () => {

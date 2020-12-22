@@ -1,2 +1,4 @@
 /lib/
 /website/
+packages/*/dest/*
+packages/create-nexus-package/fixtures/*

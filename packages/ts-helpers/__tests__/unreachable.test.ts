@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { UnreachableCaseError, assertUnreachable } from "../src/unreachable";
 
 describe("UnreachableCaseError", () => {

@@ -1,4 +1,4 @@
-import { Field, FieldAttributes, FieldProps, FieldInputProps } from "formik";
+import { Field, FieldAttributes, FieldProps } from "formik";
 import React from "react";
 
 import { isFunction, EnhancedFieldInputProps } from "./types";

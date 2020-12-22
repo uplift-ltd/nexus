@@ -19,4 +19,5 @@ export type EnhancedFieldInputProps<T> = FieldInputProps<T> & {
   onFocus: (e: React.FocusEvent<any>) => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const isFunction = (obj: any): obj is Function => typeof obj === "function";

@@ -1,4 +1,4 @@
-import Sentry from "../src/";
+import Sentry from "../src";
 
 describe("Sentry", () => {
   it("should have captureException and captureMessage", () => {
