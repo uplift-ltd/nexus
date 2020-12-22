@@ -77,6 +77,7 @@ export const configureClient = ({
       const serverError = networkError as ServerError;
       const errors =
         serverError.result?.errors ||
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map((result: Record<string, any>) => result.errors);
       Sentry.captureException(networkError, {
         extra: {

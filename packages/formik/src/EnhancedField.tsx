@@ -9,11 +9,13 @@ export type EnhancedFieldAttributes<T> = FieldAttributes<T> & {
 
 // using any to mirror Formik's usage, passing a different type here gets
 // overridden by their types at the next level :/
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type EnhancedFieldProps<T = any> = Omit<FieldProps<T>, "field"> & {
   field: EnhancedFieldInputProps<T>;
 };
 
 // using any to mirror Formik's usage :/
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function EnhancedField<T = any>({
   children,
   hideErrorsOnFocus,

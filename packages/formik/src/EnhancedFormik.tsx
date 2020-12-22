@@ -4,6 +4,7 @@ import { Formik, FormikValues } from "formik";
 import { getSetFormSuccess, getSetFormError } from "./status";
 import { FormikConfigWithOverrides, isFunction } from "./types";
 
+// Formik uses {} type so we disable the eslint rule
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function EnhancedFormik<Values extends FormikValues = FormikValues, ExtraProps = {}>({
   children,
