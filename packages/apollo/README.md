@@ -60,3 +60,23 @@ const client = initClient({
   cache,
 });
 ```
+
+### getQueryName
+
+Get the query or mutation name.
+
+```ts
+import { getQueryName } from "@uplift-ltd/apollo";
+
+const CURRENT_USER_QUERY = gql`
+  query CurrentUser {
+    me {
+      id
+    }
+  }
+`;
+
+const CurrentUserQueryName = getQueryName(CURRENT_USER_QUERY);
+
+expect(CurrentUserQueryName).toEqual("CurrentUser");
+```
