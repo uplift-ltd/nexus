@@ -28,7 +28,8 @@ module.exports = {
     "import/order": "error",
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
-    "jsx-a11y/label-has-for": "off",
+    "import/extensions": 0,
+    "jsx-a11y/label-has-for": 0,
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

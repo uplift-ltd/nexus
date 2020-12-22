@@ -25,5 +25,11 @@
     "build": "tsc",
     "check-types": "tsc",
     "test": "jest --passWithNoTests"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "react": "^16.13.1"
   }
 }
