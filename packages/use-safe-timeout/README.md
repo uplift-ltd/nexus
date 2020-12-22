@@ -14,8 +14,8 @@ Returns a function to cancel the timeout
 import { useSafeTimeout } from "@uplift-ltd/use-safe-timeout";
 
 function MyComponent() {
-  const safeTimeout = useSafeTimeout();
-  const cancelTimeout = loggit(
+  const setSafeTimeout = useSafeTimeout();
+  const cancelTimeout = setSafeTimeout(
     () => console.log("I get called in 5s if component stays mounted!"),
     5000
   );
