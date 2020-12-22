@@ -18,6 +18,7 @@ export function useEnhancedField<FieldValue>({
     {
       ...field,
       // the field typeof any mirrors the event Formik uses for onBlur/onChange
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onFocus: (e: React.FocusEvent<any>) => {
         if (hideErrorsOnFocus) {
           formik.setTouched(false, false);
