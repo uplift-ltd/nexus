@@ -1,0 +1,35 @@
+{
+  "name": "@uplift-ltd/use-safe-timeout",
+  "version": "0.1.0",
+  "description": "Hook to set a timeout and clear it on unmount.",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/use-safe-timeout"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-safe-timeout"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/use-safe-timeout",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "react": "^16.13.1"
+  }
+}
