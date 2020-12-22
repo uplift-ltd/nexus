@@ -7,7 +7,12 @@
   "bin": {
     "src-clean": "./src/src-clean.sh",
     "gql-clean": "./src/gql-clean.sh",
-    "global-types-clean": "./src/global-types-clean.js"
+    "global-types-clean": "./src/global-types-clean.js",
+    "cache-clear": "./src/cache-clear.sh",
+    "cache-clear-npm": "./src/cache-clear-npm.sh",
+    "cache-clear-eslint": "./src/cache-clear-eslint.sh",
+    "cache-clear-rn": "./src/cache-clear-rn.sh",
+    "cache-clear-expo": "./src/cache-clear-expo.sh"
   },
   "files": [
     "src/",
