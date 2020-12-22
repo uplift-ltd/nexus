@@ -14,6 +14,7 @@ module.exports = {
       "packages/setup-proxy",
       "packages/ts-helpers",
       "packages/use-after-delay",
+      "packages/use-on-page-scroll",
       "packages/use-safe-timeout",
     ],
   },

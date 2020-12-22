@@ -1,0 +1,35 @@
+{
+  "name": "@uplift-ltd/use-on-page-scroll",
+  "version": "0.1.0",
+  "description": "use-on-page-scroll",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/use-on-page-scroll"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-on-page-scroll"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/use-on-page-scroll",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest --passWithNoTests"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "react": "^16.13.1"
+  }
+}
