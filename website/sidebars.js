@@ -14,6 +14,7 @@ module.exports = {
       "packages/setup-proxy",
       "packages/ts-helpers",
       "packages/use-after-delay",
+      "packages/use-safe-timeout",
     ],
   },
 };
