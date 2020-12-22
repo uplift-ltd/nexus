@@ -48,6 +48,19 @@ useEnhancedMutation<MyMutation, MyMutationVariables>(MY_MUTATION, { variables },
 
 [Apollo useMutation docs](https://www.apollographql.com/docs/react/api/react/hooks/#usemutation).
 
+### useEnumValues
+
+Fetch key and descriptions for an enum from the gql server. Providing a type for the enum will give
+correct data on the response type.
+
+```ts
+import { useEnumValues } from "@uplift-ltd/graphene";
+
+const colors = useEnumValues<MyColors>("MyColors");
+
+console.log(colors); // => { BLUE: "Brand Blue", RED: "Danger Red" }
+```
+
 ### initClient
 
 Configure Apollo client.
