@@ -1,4 +1,4 @@
-import { useEnhancedQuery } from "@uplift-ltd/apollo";
+import { useEnhancedQuery } from ".";
 import gql from "graphql-tag";
 
 import {

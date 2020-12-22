@@ -10,7 +10,7 @@ import {
   QueryTuple,
 } from "@apollo/client";
 import { DocumentNode } from "graphql";
-import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants";
+import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "../constants";
 
 interface ExtraOptions {
   auth?: boolean;
@@ -57,3 +57,5 @@ export function useEnhancedMutation<TData, TVariables = OperationVariables>(
     },
   });
 }
+
+export { useEnumValues } from "./useEnumValues";
