@@ -23,6 +23,7 @@ module.exports = {
     "class-methods-use-this": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
+    "react/jsx-props-no-spreading": 0,
     "react/jsx-wrap-multilines": 0,
     "react/prefer-stateless-function": 0,
     "import/order": "error",
@@ -41,12 +42,29 @@ module.exports = {
     "@typescript-eslint/member-delimiter-style": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-member-accessibility": ["error", { accessibility: "no-public" }],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-expect-error": false,
+        "ts-ignore": true,
+        "ts-nocheck": true,
+        "ts-check": false,
+      },
+    ],
   },
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
       rules: {
         "react/prop-types": 0,
+      },
+    },
+    {
+      files: ["*.test.ts", "*.test.tsx"],
+      rules: {
+        "@typescript-eslint/no-explicit-any": 0,
       },
     },
   ],

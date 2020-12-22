@@ -31,11 +31,13 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
-    "graphql": "^15.0.0"
+    "graphql": "^15.0.0",
+    "react": "^16.0.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.1.4",
     "graphql": "^15.3.0",
-    "graphql-tag": "^2.11.0"
+    "graphql-tag": "^2.11.0",
+    "react": "^16.13.1"
   }
 }

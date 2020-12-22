@@ -1,5 +1,5 @@
-import { useEnhancedQuery } from ".";
 import gql from "graphql-tag";
+import { useEnhancedQuery } from "./hooks";
 
 import {
   EnumData,

@@ -14,8 +14,8 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import Sentry from "@uplift-ltd/sentry";
-import { GRAPHQL_AUTH_URL, IS_SSR } from "./constants";
 import { GraphQLError } from "graphql";
+import { GRAPHQL_AUTH_URL, IS_SSR } from "./constants";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let globalApolloClient: ApolloClient<any>;
@@ -63,6 +63,7 @@ export const configureClient = ({
 }: ConfigureClientOptions) => {
   cache.restore(initialState);
 
+  // eslint-disable-next-line consistent-return
   const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
     if (networkError) {
       if (operation.operationName === "CurrentUser") {

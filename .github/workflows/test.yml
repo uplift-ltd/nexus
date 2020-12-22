@@ -98,6 +98,8 @@ jobs:
 
       - run: yarn prettier:check
 
+      - run: yarn eslint:check
+
       - run: yarn test
 
   docs:

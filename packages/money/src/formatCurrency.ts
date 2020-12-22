@@ -27,7 +27,7 @@ function parseNumberAndCurrency(amount: Amount, currencyCode: string) {
 
 export function formatCurrency(
   amount: Amount,
-  currencyCode: string = "USD",
+  currencyCode = "USD",
   options: NumberFormatOptions | null = null,
   optionsCallback?: (number: number, currency: string) => NumberFormatOptions
 ) {
@@ -48,7 +48,7 @@ export function formatCurrency(
   return formatter.format(number);
 }
 
-export function formatCurrencyZero(amount: Amount, currencyCode: string = "USD") {
+export function formatCurrencyZero(amount: Amount, currencyCode = "USD") {
   return formatCurrency(amount, currencyCode, null, (number) => {
     if (number === 0) {
       return { minimumFractionDigits: 0 };
@@ -57,7 +57,7 @@ export function formatCurrencyZero(amount: Amount, currencyCode: string = "USD")
   });
 }
 
-export function formatCurrencyInteger(amount: Amount, currencyCode: string = "USD") {
+export function formatCurrencyInteger(amount: Amount, currencyCode = "USD") {
   return formatCurrency(amount, currencyCode, null, (number) => {
     if (Number.isInteger(number)) {
       return { minimumFractionDigits: 0 };

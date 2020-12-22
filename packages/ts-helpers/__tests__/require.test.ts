@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { RequireAtLeastOne, RequireOnlyOne } from "../src/require";
 
 // TODO: since jest uses babel for typescript these don't do anything outside of editor
