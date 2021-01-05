@@ -22,7 +22,7 @@ export function EnhancedFormik<Values extends FormikValues = FormikValues, Extra
       }}
       onSubmit={async (values, formikHelpers) => {
         try {
-          await onSubmit(values, {
+          return await onSubmit(values, {
             ...formikHelpers,
             setFormSuccess: getSetFormSuccess(formikHelpers.setStatus),
             setFormError: getSetFormError(formikHelpers.setStatus),
