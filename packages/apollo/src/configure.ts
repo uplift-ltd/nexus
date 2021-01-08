@@ -72,6 +72,9 @@ export const configureClient = ({
         // https://github.com/apollographql/apollo-link/issues/855
         return Observable.of({ data: { currentUser: null } });
       }
+
+      console.warn(`[Network error]: ${networkError}`);
+
       // pluck errors out of the result and send to sentry
       // typing says result is an object but since we use batch http link it's actually an array
       const serverError = networkError as ServerError;
@@ -79,6 +82,7 @@ export const configureClient = ({
         serverError.result?.errors ||
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map((result: Record<string, any>) => result.errors);
+
       Sentry.captureException(networkError, {
         extra: {
           operationName: operation.operationName,
@@ -86,7 +90,7 @@ export const configureClient = ({
           errors,
         },
       });
-      console.warn(`[Network error]: ${networkError}`);
+
       onNetworkError && onNetworkError(networkError, operation);
 
       // If we get a 401, we log out the user
@@ -99,16 +103,6 @@ export const configureClient = ({
     }
 
     if (graphQLErrors) {
-      if (graphQLErrors.length > 0 && onGraphqlErrors) {
-        onGraphqlErrors(graphQLErrors, operation);
-      }
-      Sentry.captureMessage("GraphQL Errors", {
-        extra: {
-          operationName: operation.operationName,
-          query: operation.query,
-          errors: graphQLErrors,
-        },
-      });
       graphQLErrors.forEach((graphqlError) => {
         // This is not supposed to be a string, but it is sometimes?
         // Maybe it's a graphene thang? Anyway, we'll handle it.
@@ -123,6 +117,18 @@ export const configureClient = ({
           );
         }
       });
+
+      Sentry.captureMessage("GraphQL Errors", {
+        extra: {
+          operationName: operation.operationName,
+          query: operation.query,
+          errors: graphQLErrors,
+        },
+      });
+
+      if (graphQLErrors.length > 0 && onGraphqlErrors) {
+        onGraphqlErrors(graphQLErrors, operation);
+      }
     }
   });
 
