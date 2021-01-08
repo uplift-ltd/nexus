@@ -54,7 +54,7 @@ Fetch key and descriptions for an enum from the gql server. Providing a type for
 correct data on the response type.
 
 ```ts
-import { useEnumValues } from "@uplift-ltd/graphene";
+import { useEnumValues } from "@uplift-ltd/apollo";
 
 const colors = useEnumValues<MyColors>("MyColors");
 
