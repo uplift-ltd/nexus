@@ -102,6 +102,13 @@ export const configureClient = ({
       if (graphQLErrors.length > 0 && onGraphqlErrors) {
         onGraphqlErrors(graphQLErrors, operation);
       }
+      Sentry.captureMessage("GraphQL Errors", {
+        extra: {
+          operationName: operation.operationName,
+          query: operation.query,
+          errors: graphQLErrors,
+        },
+      });
       graphQLErrors.forEach((graphqlError) => {
         // This is not supposed to be a string, but it is sometimes?
         // Maybe it's a graphene thang? Anyway, we'll handle it.
