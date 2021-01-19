@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { useMemo } from "react";
 import { useEnhancedQuery } from "./hooks";
 
 import {
@@ -28,15 +29,19 @@ export const useEnumValues = <T>(enumName: string): EnumDataMap<T> => {
     variables: { enumName },
   });
 
-  if (loading || error || !data?.enumData?.enumValues) {
-    return {} as EnumDataMap<T>;
-  }
+  const dataMap = useMemo(() => {
+    if (loading || error || !data?.enumData?.enumValues) {
+      return {} as EnumDataMap<T>;
+    }
 
-  return data.enumData.enumValues.reduce(
-    (acc: EnumDataMap<T>, e: EnumValue) => ({
-      ...acc,
-      [e.name]: e.description,
-    }),
-    {} as EnumDataMap<T>
-  );
+    return data.enumData.enumValues.reduce(
+      (acc: EnumDataMap<T>, e: EnumValue) => ({
+        ...acc,
+        [e.name]: e.description,
+      }),
+      {} as EnumDataMap<T>
+    );
+  }, [data, loading, error]);
+
+  return dataMap;
 };
