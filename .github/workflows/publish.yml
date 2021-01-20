@@ -100,7 +100,7 @@ jobs:
 
       - name: Bump versions (latest)
         if: github.event.inputs.distTag == 'latest'
-        run: yarn lerna version --yes --conventional-commits
+        run: yarn lerna version --yes --conventional-commits --conventional-graduate
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
