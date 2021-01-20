@@ -49,6 +49,9 @@ env:
 We use [conventional commits](https://www.conventionalcommits.org/) to manage version updates. The
 title of your PR needs to have a valid prefix.
 
+Note that changing the PR title won't re-run the job so you have to re-run the workflow jobs
+yourself.
+
 Quick reference:
 
     fix: Correct typo.
