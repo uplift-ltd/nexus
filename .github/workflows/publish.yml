@@ -112,7 +112,7 @@ jobs:
 
       - name: Publish package (latest)
         if: github.event.inputs.distTag == 'latest'
-        run: yarn lerna publish from-git --yes
+        run: yarn lerna publish from-package --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -124,6 +124,6 @@ jobs:
 
       - name: Publish package (prerelease)
         if: github.event.inputs.distTag == 'prerelease'
-        run: yarn lerna publish from-git --yes --dist-tag prerelease
+        run: yarn lerna publish from-package --yes --dist-tag prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
