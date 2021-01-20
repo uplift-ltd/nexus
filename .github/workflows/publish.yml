@@ -97,6 +97,11 @@ jobs:
           name: build
           path: packages/
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "Uplift"
+          git config --global user.email "uplift-ltd@users.noreply.github.com"
+
       - name: Bump versions (latest)
         if: github.event.inputs.distTag == 'latest'
         run: yarn lerna version --yes --conventional-commits --conventional-graduate
