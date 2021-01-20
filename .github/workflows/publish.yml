@@ -103,7 +103,7 @@ jobs:
           git config --global user.email "uplift-ltd@users.noreply.github.com"
 
       - name: Bump versions (latest)
-        if: github.event.inputs.distTag == 'latest'
+        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         run:
           yarn lerna version --yes --conventional-commits --conventional-graduate --create-release
           github
@@ -111,7 +111,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish package (latest)
-        if: github.event.inputs.distTag == 'latest'
+        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         run: yarn lerna publish from-package --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
