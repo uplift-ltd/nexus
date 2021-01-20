@@ -44,6 +44,25 @@ env:
 
 ## Contributing
 
+### Semantic Versioning
+
+We use [conventional commits](https://www.conventionalcommits.org/) to manage version updates. The
+title of your PR needs to have a valid prefix.
+
+Note that changing the PR title won't re-run the job so you have to re-run the workflow jobs
+yourself.
+
+Quick reference:
+
+    fix: Correct typo.
+    feat: Add support for Node 12.
+    feat(apollo): Add useEnhancedQuery hook.
+    refactor!: Drop support for Node 6.
+    feat!: Breaking change feature.
+
+Note that since PR titles only have a single line, you have to use the ! syntax for breaking
+changes.
+
 ### What are the files in each package?
 
 ```
@@ -56,26 +75,7 @@ tsconfig.json     <== if the package supports typescript it needs to configure i
 
 ### Publishing a new version
 
-We use [lerna](https://github.com/lerna/lerna) to manage packages.
-
-You can either install lerna globally or run commands through yarn.
-
-    yarn lerna version major|minor|patch
-
-That will create new versions as needed and push the tags to GitHub.
-
-Next, create a GitHub release:
-
-1. Go to [tags](https://github.com/uplift-ltd/nexus/tags) in GitHub and find one for your release.
-2. Click on the triple dots on the right and select `Create Release`.
-3. Enter a description of what changed.
-4. Press `Publish Release`
-
-Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check progress.
-
-**Note:** If you publish multiple packages you should wait until the first one finishes publishing
-as it will publish all the changed packages. After the first one is done you can create GitHub
-releases for the other packages (or not, I'm not your mom).
+[Run the publish workflow](https://github.com/uplift-ltd/nexus/actions?query=workflow%3Apublish).
 
 ### Adding a new package
 
@@ -96,14 +96,21 @@ if the package depends on `react` you may have to alias that to the app `react` 
 react versions (and hooks failing).
 
     cd packages/formik
-
     npm link
-
+    cd ../..
     npm link ../../../myapp/node_modules/react
-
     cd myapp
-
     npm link @uplift-ltd/formik
+
+Additionally you may need to alias `@apollo/client` _and_ its own `react` version to the app.
+
+    cd packages/apollo
+    npm link
+    cd ../..
+    npm link ../myapp/node_modules/react
+    npm link ../myapp/node_modules/@apollo/client
+    cd node_modules/@apollo/client
+    npm link ../../../myapp/node_modules/react
 
 Don't forget to run `yarn build` after every change.
 

@@ -1,8 +1,12 @@
 name: publish
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      distTag:
+        description: "latest or prerelease"
+        required: true
+        default: "latest"
 
 jobs:
   dependencies:
@@ -66,44 +70,9 @@ jobs:
           name: build
           path: "./packages/*/dest/*"
 
-  test:
-    runs-on: ubuntu-latest
-    needs:
-      - dependencies
-      - build
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-          registry-url: "https://npm.pkg.github.com/"
-          scope: "@uplift-ltd"
-
-      - name: Restore dependencies
-        uses: actions/cache@main
-        env:
-          cache-name: npm-cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: packages/
-
-      - run: yarn prettier:check
-
-      - run: yarn eslint:check
-
-      - run: yarn test
-
   publish:
     runs-on: ubuntu-latest
     needs:
-      - test
       - build
     steps:
       - uses: actions/checkout@v2
@@ -128,7 +97,31 @@ jobs:
           name: build
           path: packages/
 
-      - name: Publish package
-        run: yarn deploy
+      - name: Configure Git
+        run: |
+          git config --global user.name "Uplift"
+          git config --global user.email "uplift-ltd@users.noreply.github.com"
+
+      - name: Bump versions (latest)
+        if: github.event.inputs.distTag == 'latest'
+        run: yarn lerna version --yes --conventional-commits --conventional-graduate
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package (latest)
+        if: github.event.inputs.distTag == 'latest'
+        run: yarn lerna publish from-git --yes
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump versions (prerelease)
+        if: github.event.inputs.distTag == 'prerelease'
+        run: yarn lerna version --yes --conventional-commits --conventional-prerelease
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package (prerelease)
+        if: github.event.inputs.distTag == 'prerelease'
+        run: yarn lerna publish from-git --yes --dist-tag prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

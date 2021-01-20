@@ -19,8 +19,7 @@
     "prettier:write": "prettier --write \"packages/*/src/**/*.{jsyarn,jsx,ts,tsx,json,md,css,scss}\"",
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
     "eslint:fix": "eslint packages --ext .js,.jsx,.ts,.tsx --cache --fix",
-    "update-docs": "cd website && yarn update-docs",
-    "deploy": "lerna publish from-package --yes"
+    "update-docs": "cd website && yarn update-docs"
   },
   "workspaces": [
     "packages/*"
