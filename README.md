@@ -77,6 +77,14 @@ tsconfig.json     <== if the package supports typescript it needs to configure i
 
 [Run the publish workflow](https://github.com/uplift-ltd/nexus/actions?query=workflow%3Apublish).
 
+Select the branch you want to publish from and enter `latest` or `prerelease` as the `distTag`.
+
+For production release use `master` branch and `latest`.
+
+For prereleases use any branch and the `prerelease` dist tag.
+
+The versioning is based on conventional commit history (see the Contributing section).
+
 ### Adding a new package
 
 See the documentation for `create-nexus-package`. To summarize:
