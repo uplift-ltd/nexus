@@ -1,0 +1,36 @@
+{
+  "name": "@uplift-ltd/helpers",
+  "version": "0.1.0",
+  "description": "helpers",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/helpers"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:helpers"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/helpers",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "expo-secure-store": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22"
+  }
+}
