@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/push-notifications",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "description": "push-notifications",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -27,7 +27,7 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^0.3.3"
+    "@uplift-ltd/sentry": "^0.3.4-alpha.0"
   },
   "peerDependencies": {
     "expo": "^40.0.0",
