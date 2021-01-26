@@ -9,3 +9,4 @@ export * from "./registerForPushNotifications";
 export * from "./useNotificationHandler";
 export * from "./useNotificationListener";
 export * from "./useNotificationPermission";
+export * from "./usePushNotifications";
