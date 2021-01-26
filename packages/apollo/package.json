@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/apollo",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Apollo helpers.",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -27,7 +27,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^0.4.0"
+    "@uplift-ltd/sentry": "^0.4.1"
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
