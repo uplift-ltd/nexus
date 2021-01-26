@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       distTag:
-        description: "latest or prerelease"
+        description: "distTag (latest or prerelease)"
         required: true
         default: "latest"
+      graduate:
+        description: "graduate (true or false)"
+        required: true
+        default: "false"
 
 jobs:
   dependencies:
@@ -104,9 +108,12 @@ jobs:
 
       - name: Bump versions (latest)
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
-        run:
-          yarn lerna version --yes --conventional-commits --conventional-graduate --create-release
-          github
+        run: |
+          if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
+            yarn lerna version --yes --conventional-graduate
+          else
+            yarn lerna version --yes
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -119,7 +126,7 @@ jobs:
 
       - name: Bump versions (prerelease)
         if: github.event.inputs.distTag == 'prerelease'
-        run: yarn lerna version --yes --conventional-commits --conventional-prerelease
+        run: yarn lerna version --yes --conventional-prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
