@@ -13,7 +13,7 @@ export const NotificationContext = React.createContext<UsePushNotificationsResul
   },
   notificationReceivedListener: React.createRef<Subscription | undefined>(),
   notificationResponseReceivedListener: React.createRef<Subscription | undefined>(),
-  registerForNotifications: () => Promise.resolve({ token: null, status: null }),
+  registerPushNotifications: () => Promise.resolve({ token: null, status: null }),
 });
 
 type NotificationProviderProps = UsePushNotificationsOptions;
@@ -23,33 +23,35 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
   handler,
   onReceived,
   onResponseReceived,
-  onRegisterForNotifications,
+  onRegisterPushNotifications,
+  registerForPushNotifications,
 }) => {
   const {
     permissionStatus,
     setPermissionStatus,
-    registerForNotifications,
+    registerPushNotifications,
     notificationReceivedListener,
     notificationResponseReceivedListener,
   } = usePushNotifications({
     handler,
     onReceived,
     onResponseReceived,
-    onRegisterForNotifications,
+    onRegisterPushNotifications,
+    registerForPushNotifications,
   });
 
   const value = useMemo(() => {
     return {
       permissionStatus,
       setPermissionStatus,
-      registerForNotifications,
+      registerPushNotifications,
       notificationReceivedListener,
       notificationResponseReceivedListener,
     };
   }, [
     permissionStatus,
     setPermissionStatus,
-    registerForNotifications,
+    registerPushNotifications,
     notificationReceivedListener,
     notificationResponseReceivedListener,
   ]);

@@ -33,6 +33,13 @@ FCM is required for sending push notifications to Android devices. See
 
 This module can used either with context or hooks.
 
+_Note:_ When reading the docs below, pay attention to the difference between these:
+
+- `registerForPushNotifications` -> this is a function you can pass in to customize getting the
+  token
+- `registerPushNotifications` -> this is a function you get back to trigger getting the token
+- `onRegisterPushNotifications` -> this is a callback when `registerPushFunction` resolves
+
 ### NotificationProvider
 
 Takes in functions to handle:
@@ -60,7 +67,7 @@ const handleNotificationResponseReceived: NotificationReceivedListener = (respon
 function Root() {
   const [registerDevice] = useMutation(REGISTER_DEVICE);
 
-  const handleRegisterForNotifications = useCallback(async (token) => {
+  const handleRegisterPushNotifications = useCallback(async (token) => {
     try {
       await registerDevice({ variables: { token, deviceId: Constants.installationId } });
     } catch (err) {
@@ -72,7 +79,7 @@ function Root() {
     <NotificationProvider
       onReceived={handleNotificationReceived}
       onResponseReceived={handleNotificationResponseReceived}
-      onRegisterForNotifications={handleRegisterForNotifications}
+      onRegisterPushNotifications={handleRegisterPushNotifications}
     >
       <App />
     </NotificationProvider>
@@ -104,10 +111,10 @@ to notify. On iOS if the user denies you cannot ask for permission again. You ca
 alert copy, defaults are shown below.
 
 _NOTE_: On iOS if the user denies the status is always undetermined, you may want to store if the
-user denied and hide the component. You can do this using `onRegisterForNotifications` on
-`NotificationProvider` or `onRegisterForNotifications` on `NotificationAlertPrompt`. In the future
-we will handle this here. Note that `onRegisterForNotifications` should be a stable function (should
-not change on render).
+user denied and hide the component. You can do this using `onRegisterPushNotifications` on
+`NotificationProvider` or `onRegisterPushNotifications` on `NotificationAlertPrompt`. In the future
+we will handle this here. Note that `onRegisterPushNotifications` should be a stable function
+(should not change on render).
 
 ```tsx
 import { NotificationProvider, NotificationAlertPrompt } from "@uplift-ltd/push-notifications";
@@ -129,10 +136,11 @@ function Root() {
 ### NotificationRenderPrompt
 
 If permission is undetermined, it renders the children. The children is a function that gets passed
-in `permissionStatus` and `registerForNotifications`.
+in `permissionStatus` and `registerPushNotifications`.
 
 _NOTE_: On iOS if the user denies the status is always undetermined, you may want to store if the
-user denied and hide the component. You can check the result of `registerForNotifications` for this.
+user denied and hide the component. You can check the result of `registerPushNotifications` for
+this.
 
 ```tsx
 import {
@@ -145,11 +153,11 @@ function Root() {
   return (
     <NotificationProvider {...seePropsAbove}>
       <NotificationRenderPrompt>
-        {({ permissionStatus, registerForNotifications }) => {
+        {({ permissionStatus, registerPushNotifications }) => {
           if (permissionStatus !== PermissionStatus.UNDETERMINED) {
             return null;
           }
-          return <Button onPress={registerForNotifications}>Notify Me!</Button>;
+          return <Button onPress={registerPushNotifications}>Notify Me!</Button>;
         }}
       </NotificationRenderPrompt>
     </NotificationProvider>
@@ -173,10 +181,10 @@ const handleNotificationResponseReceived: NotificationReceivedListener = (respon
 };
 
 function Root() {
-  const { permissionStatus, registerForNotifications } = usePushNotifications({
+  const { permissionStatus, registerPushNotifications } = usePushNotifications({
     onReceived: handleNotificationReceived,
     onResponseReceived: handleNotificationResponseReceived,
-    onRegisterForNotifications: ({ token }) => {
+    onRegisterPushNotifications: async ({ token }) => {
       if (token) {
         const { data } = await registerDevice({
           variables: { token, deviceId: Constants.installationId, userId },
@@ -193,16 +201,19 @@ function Root() {
   const [registerDevice] = useMutation(REGISTER_DEVICE);
 
   useEffect(() => {
-    try {
-      if (permissionStatus === PermissionStatus.UNDETERMINED) {
-        const { token } = await registerForNotifications();
-        if (!token) {
-          Alert.alert("If you change your mind you can go to app settings.");
+    const run = async () => {
+      try {
+        if (permissionStatus === PermissionStatus.UNDETERMINED) {
+          const { token } = await registerPushNotifications();
+          if (!token) {
+            Alert.alert("If you change your mind you can go to app settings.");
+          }
         }
+      } catch (err) {
+        Sentry.captureExeception(err);
       }
-    } catch (err) {
-      Sentry.captureExeception(err);
-    }
+    };
+    run();
   }, [userId]);
 }
 ```

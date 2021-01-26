@@ -9,9 +9,13 @@ const DEFAULT_HANDLER: Notifications.NotificationHandler = {
   }),
 };
 
-export function useNotificationHandler(
-  handler: Notifications.NotificationHandler = DEFAULT_HANDLER
-) {
+export type UseNotificationHandlerOptions = {
+  handler?: Notifications.NotificationHandler;
+};
+
+export function useNotificationHandler({
+  handler = DEFAULT_HANDLER,
+}: UseNotificationHandlerOptions = {}) {
   useEffect(() => {
     Notifications.setNotificationHandler(handler);
   }, [handler]);

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { Subscription } from "./types";
 
 export type NotificationReceivedListener = (event: Notifications.Notification) => void;
+
 export type NotificationResponseReceivedListener = (
   event: Notifications.NotificationResponse
 ) => void;
@@ -12,10 +13,15 @@ export interface UseNotificationListenerOptions {
   onResponseReceived?: NotificationResponseReceivedListener;
 }
 
+export interface UseNotificationListenerResult {
+  notificationReceivedListener: React.MutableRefObject<Subscription | undefined>;
+  notificationResponseReceivedListener: React.MutableRefObject<Subscription | undefined>;
+}
+
 export function useNotificationListener({
   onReceived,
   onResponseReceived,
-}: UseNotificationListenerOptions) {
+}: UseNotificationListenerOptions): UseNotificationListenerResult {
   const notificationReceivedListener = useRef<Subscription>();
   const notificationResponseReceivedListener = useRef<Subscription>();
 

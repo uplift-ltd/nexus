@@ -2,7 +2,26 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 
-export async function registerForPushNotifications() {
+export interface RegisterForPushNotificationsOptions {
+  channelId?: string;
+  channel?: Notifications.NotificationChannelInput;
+}
+
+export type RegisterForPushNotificationsResult = string | null;
+
+export type RegisterForPushNotifications = (
+  options?: RegisterForPushNotificationsOptions
+) => Promise<RegisterForPushNotificationsResult>;
+
+export const registerForPushNotifications: RegisterForPushNotifications = async ({
+  channelId = "default",
+  channel = {
+    name: channelId,
+    importance: Notifications.AndroidImportance.MAX,
+    vibrationPattern: [0, 250, 250, 250],
+    lightColor: "#FF231F7C",
+  },
+} = {}) => {
   let token = null;
 
   if (Constants.isDevice) {
@@ -23,13 +42,8 @@ export async function registerForPushNotifications() {
   }
 
   if (Platform.OS === "android") {
-    Notifications.setNotificationChannelAsync("default", {
-      name: "default",
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#FF231F7C",
-    });
+    await Notifications.setNotificationChannelAsync(channelId, channel);
   }
 
   return token;
-}
+};

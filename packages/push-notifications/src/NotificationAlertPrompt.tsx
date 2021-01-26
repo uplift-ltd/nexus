@@ -3,14 +3,14 @@ import { PermissionStatus } from "expo-permissions";
 import React, { useContext, useEffect } from "react";
 import { Alert } from "react-native";
 import { NotificationContext } from "./NotificationContext";
-import { RegisterForNotificationsResult } from "./useNotificationPermission";
+import { RegisterPushNotificationsResult } from "./useNotificationPermission";
 
 interface NotificationAlertPromptProps {
   title?: string;
   message?: string;
   acceptLabel?: string;
   cancelLabel?: string;
-  onRegisterResult?: (result: RegisterForNotificationsResult) => void;
+  onRegisterResult?: (result: RegisterPushNotificationsResult) => void;
 }
 
 export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = ({
@@ -20,7 +20,7 @@ export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = (
   cancelLabel = "Not Now",
   onRegisterResult,
 }) => {
-  const { permissionStatus, registerForNotifications } = useContext(NotificationContext);
+  const { permissionStatus, registerPushNotifications } = useContext(NotificationContext);
 
   useEffect(() => {
     if (permissionStatus === PermissionStatus.UNDETERMINED) {
@@ -30,7 +30,7 @@ export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = (
           text: acceptLabel,
           onPress: async () => {
             try {
-              const result = await registerForNotifications();
+              const result = await registerPushNotifications();
               onRegisterResult?.(result);
             } catch (err) {
               Sentry.captureException(err);
@@ -45,7 +45,7 @@ export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = (
     acceptLabel,
     cancelLabel,
     permissionStatus,
-    registerForNotifications,
+    registerPushNotifications,
     onRegisterResult,
   ]);
 

@@ -3,22 +3,35 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import { PermissionStatus } from "expo-permissions";
 import { useEffect, useState, useCallback } from "react";
-import { registerForPushNotifications } from "./registerForPushNotifications";
+import {
+  registerForPushNotifications as defaultRegisterForPushNotifications,
+  RegisterForPushNotifications,
+} from "./registerForPushNotifications";
 
-export type RegisterForNotificationsResult = {
+export type RegisterPushNotificationsResult = {
   token: string | null;
   status: PermissionStatus | null;
 };
 
-export type RegisterForNotifications = () => Promise<RegisterForNotificationsResult>;
+export type RegisterPushNotifications = () => Promise<RegisterPushNotificationsResult>;
+
+export type OnRegisterPushNotifications = (result: RegisterPushNotificationsResult) => void;
 
 export interface UseNotificationPermissionOptions {
-  onRegisterForNotifications?: (result: RegisterForNotificationsResult) => void;
+  registerForPushNotifications?: RegisterForPushNotifications;
+  onRegisterPushNotifications?: OnRegisterPushNotifications;
+}
+
+export interface UseNotificationPermissionResult {
+  permissionStatus: PermissionStatus | null;
+  setPermissionStatus: (status: PermissionStatus) => void;
+  registerPushNotifications: RegisterPushNotifications;
 }
 
 export function useNotificationPermission({
-  onRegisterForNotifications,
-}: UseNotificationPermissionOptions) {
+  registerForPushNotifications = defaultRegisterForPushNotifications,
+  onRegisterPushNotifications,
+}: UseNotificationPermissionOptions): UseNotificationPermissionResult {
   const [permissionStatus, setPermissionStatus] = useState<PermissionStatus | null>(null);
 
   const updatePermissionStatus = useCallback(async () => {
@@ -38,14 +51,14 @@ export function useNotificationPermission({
     }
   }, [updatePermissionStatus]);
 
-  const registerForNotifications: RegisterForNotifications = useCallback(async () => {
+  const registerPushNotifications: RegisterPushNotifications = useCallback(async () => {
     const token = await registerForPushNotifications();
     const status = await updatePermissionStatus();
-    if (onRegisterForNotifications) {
-      await onRegisterForNotifications({ token, status });
+    if (onRegisterPushNotifications) {
+      await onRegisterPushNotifications({ token, status });
     }
     return { token, status };
-  }, [onRegisterForNotifications, updatePermissionStatus]);
+  }, [registerForPushNotifications, onRegisterPushNotifications, updatePermissionStatus]);
 
-  return { permissionStatus, setPermissionStatus, registerForNotifications };
+  return { permissionStatus, setPermissionStatus, registerPushNotifications };
 }

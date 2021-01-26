@@ -6,18 +6,18 @@ import { UsePushNotificationsResult } from "./usePushNotifications";
 export interface NotificationRenderPromptProps {
   children: ({
     permissionStatus,
-    registerForNotifications,
+    registerPushNotifications,
   }: {
     permissionStatus: PermissionStatus;
-    registerForNotifications: UsePushNotificationsResult["registerForNotifications"];
+    registerPushNotifications: UsePushNotificationsResult["registerPushNotifications"];
   }) => React.ReactNode;
 }
 
 export const NotificationRenderPrompt: React.FC<NotificationRenderPromptProps> = ({ children }) => {
-  const { permissionStatus, registerForNotifications } = useContext(NotificationContext);
+  const { permissionStatus, registerPushNotifications } = useContext(NotificationContext);
 
   if (permissionStatus === PermissionStatus.UNDETERMINED) {
-    return <>{children({ permissionStatus, registerForNotifications })}</>;
+    return <>{children({ permissionStatus, registerPushNotifications })}</>;
   }
 
   return null;

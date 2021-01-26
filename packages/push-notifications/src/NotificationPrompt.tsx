@@ -2,9 +2,9 @@ import { useContext, useEffect } from "react";
 import { NotificationContext } from "./NotificationContext";
 
 export const NotificationPrompt: React.FC = () => {
-  const { registerForNotifications } = useContext(NotificationContext);
+  const { registerPushNotifications } = useContext(NotificationContext);
   useEffect(() => {
-    registerForNotifications();
-  }, [registerForNotifications]);
+    registerPushNotifications();
+  }, [registerPushNotifications]);
   return null;
 };
