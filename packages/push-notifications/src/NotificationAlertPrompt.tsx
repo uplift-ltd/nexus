@@ -1,0 +1,53 @@
+import Sentry from "@uplift-ltd/sentry";
+import { PermissionStatus } from "expo-permissions";
+import React, { useContext, useEffect } from "react";
+import { Alert } from "react-native";
+import { NotificationContext } from "./NotificationContext";
+import { RegisterForNotificationsResult } from "./useNotificationPermission";
+
+interface NotificationAlertPromptProps {
+  title?: string;
+  message?: string;
+  acceptLabel?: string;
+  cancelLabel?: string;
+  onRegisterResult?: (result: RegisterForNotificationsResult) => void;
+}
+
+export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = ({
+  title = "Please Allow Notifications",
+  message = "This application uses notifications to keep you up to date on new activity.",
+  acceptLabel = "Enable",
+  cancelLabel = "Not Now",
+  onRegisterResult,
+}) => {
+  const { permissionStatus, registerForNotifications } = useContext(NotificationContext);
+
+  useEffect(() => {
+    if (permissionStatus === PermissionStatus.UNDETERMINED) {
+      Alert.alert(title, message, [
+        { text: cancelLabel, style: "cancel" },
+        {
+          text: acceptLabel,
+          onPress: async () => {
+            try {
+              const result = await registerForNotifications();
+              onRegisterResult?.(result);
+            } catch (err) {
+              Sentry.captureException(err);
+            }
+          },
+        },
+      ]);
+    }
+  }, [
+    title,
+    message,
+    acceptLabel,
+    cancelLabel,
+    permissionStatus,
+    registerForNotifications,
+    onRegisterResult,
+  ]);
+
+  return null;
+};

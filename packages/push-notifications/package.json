@@ -1,0 +1,48 @@
+{
+  "name": "@uplift-ltd/push-notifications",
+  "version": "0.1.0",
+  "description": "push-notifications",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/push-notifications"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:push-notifications"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/push-notifications",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@uplift-ltd/sentry": "^0.3.3"
+  },
+  "peerDependencies": {
+    "expo": "^40.0.0",
+    "expo-constants": "~9.3.3",
+    "expo-notifications": "~0.8.2",
+    "expo-permissions": "~10.0.0",
+    "react": "^16.0.0 | ^17.0.0",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "expo": "^40.0.0",
+    "expo-constants": "~9.3.3",
+    "expo-notifications": "~0.8.2",
+    "expo-permissions": "~10.0.0",
+    "react": "^17.0.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
+  }
+}
