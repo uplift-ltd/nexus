@@ -1,4 +1,6 @@
-# @uplift-ltd/push-notifications
+---
+title: push-notifications
+---
 
 ## Installation
 

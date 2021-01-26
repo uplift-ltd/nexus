@@ -8,6 +8,7 @@ module.exports = {
       "packages/formik",
       "packages/graphene",
       "packages/money",
+      "packages/push-notifications",
       "packages/sass",
       "packages/scripts",
       "packages/sentry",
