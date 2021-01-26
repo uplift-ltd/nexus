@@ -34,7 +34,7 @@
     "expo-constants": "~9.3.3",
     "expo-notifications": "~0.8.2",
     "expo-permissions": "~10.0.0",
-    "react": "^16.0.0 | ^17.0.0",
+    "react": "^16.0.0",
     "react-native": "*"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "expo-constants": "~9.3.3",
     "expo-notifications": "~0.8.2",
     "expo-permissions": "~10.0.0",
-    "react": "^17.0.1",
+    "react": "^16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
   }
 }
