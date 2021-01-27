@@ -111,6 +111,7 @@ jobs:
         run: |
           # we create a new branch because lerna automatically pushes on the version command and master is a protected branch
           git checkout -b publish-release
+          git push -u origin publish-release
 
           if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
             yarn lerna version --yes --create-release github --conventional-graduate
