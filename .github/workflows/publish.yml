@@ -139,6 +139,8 @@ jobs:
           token: ${{ secrets.PUBLISH_TOKEN }}
           branch: publish-release-automerge
           labels: automerge
+          title: "chore(release): publish"
+          body: "Automatically merging changes from lerna version into protected branch `master`."
 
       - name: Bump versions (prerelease)
         if: github.event.inputs.distTag == 'prerelease'
