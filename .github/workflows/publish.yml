@@ -122,6 +122,9 @@ jobs:
           # now we merge the changes into master because that's what create-pull-request uses to determine changes against origin master
           git checkout master
           git merge publish-release
+
+          # delete the other branch so future runs work
+          git push origin --delete publish-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
