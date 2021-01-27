@@ -101,28 +101,43 @@ jobs:
           name: build
           path: packages/
 
-      - name: Configure Git
+      - name: Configure git
         run: |
-          git config --global user.name "Uplift"
-          git config --global user.email "uplift-ltd@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Bump versions (latest)
+      - name: Lerna version
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         run: |
+          # we create a new branch because lerna automatically pushes on the version command and master is a protected branch
+          git checkout -b publish-release
+
           if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
-            yarn lerna version --yes --conventional-graduate
+            yarn lerna version --yes --create-release github --conventional-graduate
           else
-            yarn lerna version --yes
+            yarn lerna version --yes --create-release github
           fi
+
+          # now we merge the changes into master because that's what create-pull-request uses to determine changes against origin master
+          git checkout master
+          git merge publish-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish package (latest)
+      - name: Lerna publish
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         run: yarn lerna publish from-package --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
+          branch: publish-release-automerge
+          labels: automerge
 
       - name: Bump versions (prerelease)
         if: github.event.inputs.distTag == 'prerelease'
