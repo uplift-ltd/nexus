@@ -31,7 +31,7 @@ export interface UseNotificationPermissionResult {
 export function useNotificationPermission({
   registerForPushNotifications = defaultRegisterForPushNotifications,
   onRegisterPushNotifications,
-}: UseNotificationPermissionOptions): UseNotificationPermissionResult {
+}: UseNotificationPermissionOptions = {}): UseNotificationPermissionResult {
   const [permissionStatus, setPermissionStatus] = useState<PermissionStatus | null>(null);
 
   const updatePermissionStatus = useCallback(async () => {
