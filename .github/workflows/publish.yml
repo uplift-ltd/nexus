@@ -118,13 +118,13 @@ jobs:
           (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master') ||
           github.event.inputs.distTag == 'prerelease'
         run: |
-          if [ "github.event.inputs.distTag" == "latest" ]; then
+          if [ "${{ github.event.inputs.distTag }}" == "latest" ]; then
             if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
               yarn lerna version --yes --create-release github --conventional-graduate
             else
               yarn lerna version --yes --create-release github
             fi
-          elif [ "github.event.inputs.distTag" == "prerelease" ]; then
+          elif [ "${{ github.event.inputs.distTag }}" == "prerelease" ]; then
             yarn lerna version --yes --conventional-prerelease
           fi
         env:
