@@ -106,25 +106,27 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Lerna version
+      - name: Protected branch setup
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         run: |
           # we create a new branch because lerna automatically pushes on the version command and master is a protected branch
           git checkout -B publish-release
           git push -f -u origin publish-release
 
-          if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
-            yarn lerna version --yes --create-release github --conventional-graduate
-          else
-            yarn lerna version --yes --create-release github
+      - name: Lerna version
+        if:
+          (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master') ||
+          github.event.inputs.distTag == 'prerelease'
+        run: |
+          if [ "github.event.inputs.distTag == 'latest'" ]; then
+            if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
+              yarn lerna version --yes --create-release github --conventional-graduate
+            else
+              yarn lerna version --yes --create-release github
+            fi
+          elif [ "github.event.inputs.distTag == 'prerelease'" ]; then
+            yarn lerna version --yes --conventional-prerelease
           fi
-
-          # now we merge the changes into master because that's what create-pull-request uses to determine changes against origin master
-          git checkout master
-          git merge publish-release
-
-          # delete the other branch so future runs work
-          git push origin --delete publish-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -135,6 +137,22 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Publish package (prerelease)
+        if: github.event.inputs.distTag == 'prerelease'
+        run: yarn lerna publish from-package --yes --dist-tag prerelease
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Protected branch prepare for PR
+        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
+        run: |
+          # now we merge the changes into master because that's what create-pull-request uses to determine changes against origin master
+          git checkout master
+          git merge publish-release
+
+          # delete the other branch so future runs work
+          git push origin --delete publish-release
+
       - name: Create Pull Request
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         uses: peter-evans/create-pull-request@v3
@@ -144,15 +162,3 @@ jobs:
           labels: automerge
           title: "chore(release): publish"
           body: "Automatically merging changes from lerna version into protected branch `master`."
-
-      - name: Bump versions (prerelease)
-        if: github.event.inputs.distTag == 'prerelease'
-        run: yarn lerna version --yes --conventional-prerelease
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish package (prerelease)
-        if: github.event.inputs.distTag == 'prerelease'
-        run: yarn lerna publish from-package --yes --dist-tag prerelease
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
