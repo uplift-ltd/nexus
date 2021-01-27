@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.3 (2021-01-27)
+
+
+### Bug Fixes
+
+* publish variable interpolation ([92ee27e](https://github.com/uplift-ltd/nexus/commit/92ee27e2b1a473d14e95120fd9835f90e2b4b0d0))
+
+
+
+
+
 ## 0.6.2 (2021-01-27)
 
 
