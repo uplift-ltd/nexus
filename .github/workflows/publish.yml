@@ -107,7 +107,7 @@ jobs:
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Protected branch setup
-        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         run: |
           # we create a new branch because lerna automatically pushes on the version command and master is a protected branch
           git checkout -B publish-release
@@ -144,7 +144,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Protected branch prepare for PR
-        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         run: |
           # now we merge the changes into master because that's what create-pull-request uses to determine changes against origin master
           git checkout master
@@ -154,7 +154,7 @@ jobs:
           git push origin --delete publish-release
 
       - name: Create Pull Request
-        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.PUBLISH_TOKEN }}
