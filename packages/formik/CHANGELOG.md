@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.7.2 (2021-01-27)
+
+
+### Bug Fixes
+
+* push branch before lerna ([4495c31](https://github.com/uplift-ltd/nexus/commit/4495c311019edad65242fddfcbec3763a86f528c))
+
+
+
+
+
 ## 0.7.1 (2021-01-26)
 
 
