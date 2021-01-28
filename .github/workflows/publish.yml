@@ -80,6 +80,8 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
 
       - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v1
@@ -105,13 +107,6 @@ jobs:
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-
-      - name: Protected branch setup
-        if: github.ref == 'refs/heads/master'
-        run: |
-          # we create a new branch because lerna automatically pushes on the version command and master is a protected branch
-          git checkout -B publish-release
-          git push -f -u origin publish-release
 
       - name: Lerna version
         if:
@@ -142,23 +137,3 @@ jobs:
         run: yarn lerna publish from-package --yes --dist-tag prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Protected branch prepare for PR
-        if: github.ref == 'refs/heads/master'
-        run: |
-          # now we merge the changes into master because that's what create-pull-request uses to determine changes against origin master
-          git checkout master
-          git merge publish-release
-
-          # delete the other branch so future runs work
-          git push origin --delete publish-release
-
-      - name: Create Pull Request
-        if: github.ref == 'refs/heads/master'
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.PUBLISH_TOKEN }}
-          branch: publish-release-automerge
-          labels: automerge
-          title: "chore(release): publish"
-          body: "Automatically merging changes from lerna version into protected branch `master`."
