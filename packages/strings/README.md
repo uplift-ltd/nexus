@@ -29,16 +29,6 @@ const getCarsLabel = pluralize("car", "cars");
 getCarsLabel(5); // => "5 cars"
 ```
 
-### env
-
-Helper to retrieve values from process.env with an optional default value
-
-```ts
-import { env } from "@uplift-ltd/strings";
-
-env("REACT_APP_SPECIAL_VALUE", "JUST_IN_CASE"); // => "JUST_IN_CASE"
-```
-
 ### formatPhoneNumber
 
 formatPhoneNumber takes in a phone number of unknown format returns a US standard formatting

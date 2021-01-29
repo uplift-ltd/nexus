@@ -4730,10 +4730,10 @@ expo-device@*:
     fbjs "1.0.0"
     ua-parser-js "^0.7.19"
 
-expo-secure-store@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-10.0.0.tgz#44ee52c97d81382bf1bbfa92a3c45ca5cc63acbc"
-  integrity sha512-ZK58XVgLbi9oqA6u9ylirZ8RNs8htkc04R1XdIZ7Tg/6jeBT41MxCY0tggsv3pBqiWiHA5VGt0Z0TrFWh+5JLQ==
+expo-secure-store@~9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/expo-secure-store/-/expo-secure-store-9.3.0.tgz#b716d5d115cc50a34037d1afef84fe4b8ea0745c"
+  integrity sha512-dNhKcoUUn+1kmEfFVxSU7h+YsqODqlExZQJcQgxgeiuCeeDvJWkE10t3jjrO6aNfrdM5i/X2l3oh401EDslWsQ==
 
 express@^4.17.1:
   version "4.17.1"
