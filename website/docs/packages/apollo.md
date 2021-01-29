@@ -10,8 +10,12 @@ title: apollo
 
 ### useEnhancedQuery
 
-Same as Apollo useQuery except it accepted a third parameter for setting the auth/unauth endpoints
-for you. Defaults to auth endpoint.
+Same API as Apollo useQuery except:
+
+- It accepts a third parameter for setting the auth/unauth endpoints for you. Defaults to auth
+  endpoint.
+- It returns `initialLoading`, `refetching`, and `fetchingMore` (pass in
+  `notifyOnNetworkStatusChange: true`)
 
 ```ts
 import { useEnhancedQuery } from "@uplift-ltd/apollo";
@@ -20,6 +24,10 @@ useEnhancedQuery<MyQuery, MyQueryVariables>(MY_QUERY, { variables }, { auth: fal
 ```
 
 See [Apollo useQuery docs](https://www.apollographql.com/docs/react/api/react/hooks/#usequery).
+
+```ts
+const { data, initialLoading, refetching, fetchingMore } = useEnhancedQuery(MY_QUERY, { notifyOnNetworkStatusChange: true};
+```
 
 ### useEnhancedLazyQuery
 

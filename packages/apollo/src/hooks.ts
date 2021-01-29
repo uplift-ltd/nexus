@@ -4,6 +4,7 @@ import {
   useMutation,
   MutationHookOptions,
   MutationTuple,
+  NetworkStatus,
   OperationVariables,
   QueryHookOptions,
   QueryResult,
@@ -16,18 +17,31 @@ interface ExtraOptions {
   auth?: boolean;
 }
 
+type EnhancedQueryResult<TData, TVariables> = QueryResult<TData, TVariables> & {
+  initialLoading: boolean;
+  refetching: boolean;
+  fetchingMore: boolean;
+};
+
 export function useEnhancedQuery<TData, TVariables = OperationVariables>(
   query: DocumentNode,
   options: QueryHookOptions<TData, TVariables> = {},
   extraOptions: ExtraOptions = { auth: true }
-): QueryResult<TData, TVariables> {
-  return useQuery(query, {
+): EnhancedQueryResult<TData, TVariables> {
+  const result = useQuery(query, {
     ...options,
     context: {
       uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
       ...options.context,
     },
   });
+
+  return {
+    ...result,
+    initialLoading: result.networkStatus === NetworkStatus.loading,
+    refetching: result.networkStatus === NetworkStatus.refetch,
+    fetchingMore: result.networkStatus === NetworkStatus.fetchMore,
+  };
 }
 
 export function useEnhancedLazyQuery<TData, TVariables = OperationVariables>(
