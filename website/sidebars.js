@@ -4,6 +4,7 @@ module.exports = {
     "Getting Started": ["getting-started/installation", "getting-started/contributing"],
     Packages: [
       "packages/apollo",
+      "packages/constants",
       "packages/create-nexus-package",
       "packages/formik",
       "packages/graphene",
