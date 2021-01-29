@@ -8,7 +8,7 @@ import {
   safeJoinWithComma,
   safeJoinWithEnDash,
   safeJoinWithEmDash,
-} from "./";
+} from ".";
 
 test("capitalize", () => {
   expect(capitalize("uplift")).toBe("Uplift");
