@@ -15,8 +15,8 @@
   "scripts": {
     "build": "lerna run --stream build",
     "test": "lerna run --stream test",
-    "prettier:check": "prettier --list-different \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
-    "prettier:write": "prettier --write \"packages/*/src/**/*.{jsyarn,jsx,ts,tsx,json,md,css,scss}\"",
+    "prettier:check": "prettier --list-different \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
+    "prettier:write": "prettier --write \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
     "eslint:fix": "eslint packages --ext .js,.jsx,.ts,.tsx --cache --fix",
     "update-docs": "cd website && yarn update-docs"

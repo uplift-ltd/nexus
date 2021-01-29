@@ -27,6 +27,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@uplift-ltd/constants": "^0.1.0",
     "@uplift-ltd/sentry": "^0.4.3"
   },
   "peerDependencies": {
