@@ -1,20 +1,27 @@
 import Sentry from "@uplift-ltd/sentry";
 import { useFormik } from "formik";
 import { getApplyErrorsToFields } from "./errors";
-import { FormikStatus, getSetFormSuccess, getSetFormError } from "./status";
+import { DEFAULT_INITIAL_STATUS, FormikStatus, getSetFormSuccess, getSetFormError } from "./status";
 import { FormikConfigWithOverrides } from "./types";
 
-export function useEnhancedFormik<FormikValues>(options: FormikConfigWithOverrides<FormikValues>) {
+export function useEnhancedFormik<FormikValues>({
+  resetStatusOnSubmit,
+  ...options
+}: FormikConfigWithOverrides<FormikValues>) {
   return useFormik<FormikValues>({
     ...options,
     initialStatus: {
-      formSuccess: null,
-      formError: null,
-      allowResubmit: true,
+      ...DEFAULT_INITIAL_STATUS,
       ...options.initialStatus,
     } as FormikStatus,
     onSubmit: async (values, formikHelpers) => {
       try {
+        if (resetStatusOnSubmit) {
+          formikHelpers.setStatus({
+            ...DEFAULT_INITIAL_STATUS,
+            ...options.initialStatus,
+          });
+        }
         await options.onSubmit(values, {
           ...formikHelpers,
           applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),

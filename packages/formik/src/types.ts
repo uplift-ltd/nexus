@@ -2,9 +2,13 @@ import { FormikConfig, FormikHelpers, FieldInputProps, FormikProps } from "formi
 import { ErrorHelpers } from "./errors";
 import { StatusHelpers } from "./status";
 
+export interface EnhancedFormikExtraProps {
+  resetStatusOnSubmit?: boolean;
+}
+
 type FormikConfigWithoutOverrides<Values> = Omit<FormikConfig<Values>, "children" | "onSubmit">;
 
-interface FormikConfigOverrides<Values> {
+interface FormikConfigOverrides<Values> extends EnhancedFormikExtraProps {
   children?: ((props: FormikProps<Values> & StatusHelpers) => React.ReactNode) | React.ReactNode;
   onSubmit: (
     values: Values,

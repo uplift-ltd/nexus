@@ -6,6 +6,12 @@ export interface FormikStatus {
   allowResubmit?: boolean;
 }
 
+export const DEFAULT_INITIAL_STATUS: FormikStatus = {
+  formSuccess: null,
+  formError: null,
+  allowResubmit: true,
+};
+
 export const getSetFormSuccess = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
   formSuccess: FormikStatus["formSuccess"]
 ) => setStatus({ formSuccess });

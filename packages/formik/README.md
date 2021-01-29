@@ -21,6 +21,7 @@ These wrappers do a few things:
 import { EnhancedFormik } from "@uplift-ltd/formik";
 
 <EnhancedFormik<FormValues>
+  resetStatusOnSubmit
   onSubmit={() => {
     throw new Error("I get submitted to sentry and set to status.formError");
   }}
@@ -39,6 +40,7 @@ const formik = useEnhancedFormik<FormValues>({
   validationSchema: yup.object().shape({
     message: yup.string().required("You must supply a message."),
   }),
+  resetStatusOnSubmit: true,
   onSubmit: async (values) => {
     await someMutation({
       variables: {
