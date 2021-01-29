@@ -74,6 +74,26 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 />;
 ```
 
+#### applyErrorsToFields
+
+```tsx
+import { EnhancedFormik } from "@uplift-ltd/formik";
+
+<EnhancedFormik<FormValues>
+  onSubmit={async (values, { applyErrorsToFields }) => {
+    const { data } = await someMutation();
+    if (!data?.someMutation?.success) {
+      if (data?.someMutation?.errors?.length) {
+        // data.someMutation.errors should be of shape { field: string; messages: string[] }
+        // this is the common shape returned by uplift_core via graphene for field-level errors
+        applyErrorsToFields(data.someMutation.errors);
+        // Now formik fields will show the errors for the correct fields (assuming FE and BE field names match)
+      }
+    }
+  }}
+/>;
+```
+
 ### EnhancedField / useEnhancedField
 
 Enhancement that allows you to hide field errors when the input gains focus. It does this by setting
