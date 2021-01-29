@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/use-on-page-scroll",
-  "version": "0.1.1",
+  "version": "0.2.3",
   "description": "use-on-page-scroll",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -23,7 +23,7 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/use-on-page-scroll",
   "scripts": {
     "build": "tsc",
-    "check-types": "tsc",
+    "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {

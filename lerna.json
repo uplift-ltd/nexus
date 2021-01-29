@@ -6,6 +6,16 @@
   "command": {
     "publish": {
       "registry": "https://npm.pkg.github.com"
+    },
+    "version": {
+      "message": "chore(release): publish",
+      "conventionalCommits": true
+    },
+    "run": {
+      "stream": true
+    },
+    "exec": {
+      "stream": true
     }
   }
 }

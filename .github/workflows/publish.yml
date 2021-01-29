@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       distTag:
-        description: "latest or prerelease"
+        description: "distTag (latest or prerelease)"
         required: true
         default: "latest"
+      graduate:
+        description: "graduate (true or false)"
+        required: true
+        default: "false"
 
 jobs:
   dependencies:
@@ -76,6 +80,8 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
 
       - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v1
@@ -97,28 +103,32 @@ jobs:
           name: build
           path: packages/
 
-      - name: Configure Git
+      - name: Configure git
         run: |
-          git config --global user.name "Uplift"
-          git config --global user.email "uplift-ltd@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Bump versions (latest)
-        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
-        run:
-          yarn lerna version --yes --conventional-commits --conventional-graduate --create-release
-          github
+      - name: Lerna version
+        if:
+          (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master') ||
+          github.event.inputs.distTag == 'prerelease'
+        run: |
+          if [ "${{ github.event.inputs.distTag }}" == "latest" ]; then
+            if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
+              yarn lerna version --yes --create-release github --conventional-graduate
+            else
+              yarn lerna version --yes --create-release github
+            fi
+          elif [ "${{ github.event.inputs.distTag }}" == "prerelease" ]; then
+            yarn lerna version --yes --conventional-prerelease
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish package (latest)
+      - name: Lerna publish
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         run: yarn lerna publish from-package --yes
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Bump versions (prerelease)
-        if: github.event.inputs.distTag == 'prerelease'
-        run: yarn lerna version --yes --conventional-commits --conventional-prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

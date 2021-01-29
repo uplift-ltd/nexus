@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/use-after-delay",
-  "version": "0.2.2",
+  "version": "0.3.3",
   "description": "use-after-delay",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -23,7 +23,7 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/use-after-delay",
   "scripts": {
     "build": "tsc",
-    "check-types": "tsc",
+    "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
