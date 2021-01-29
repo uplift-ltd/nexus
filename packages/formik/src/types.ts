@@ -1,4 +1,5 @@
 import { FormikConfig, FormikHelpers, FieldInputProps, FormikProps } from "formik";
+import { ErrorHelpers } from "./errors";
 import { StatusHelpers } from "./status";
 
 type FormikConfigWithoutOverrides<Values> = Omit<FormikConfig<Values>, "children" | "onSubmit">;
@@ -7,7 +8,7 @@ interface FormikConfigOverrides<Values> {
   children?: ((props: FormikProps<Values> & StatusHelpers) => React.ReactNode) | React.ReactNode;
   onSubmit: (
     values: Values,
-    formikHelpers: FormikHelpers<Values> & StatusHelpers
+    formikHelpers: FormikHelpers<Values> & StatusHelpers & ErrorHelpers
     // Promise<any> mirrors Formik's definition for onSubmit
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) => void | Promise<any>;

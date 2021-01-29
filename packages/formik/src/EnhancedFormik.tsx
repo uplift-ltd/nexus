@@ -4,6 +4,8 @@ import { Formik, FormikValues } from "formik";
 import { getSetFormSuccess, getSetFormError } from "./status";
 import { FormikConfigWithOverrides, isFunction } from "./types";
 
+import { getApplyErrorsToFields } from "./errors";
+
 // Formik uses {} type so we disable the eslint rule
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function EnhancedFormik<Values extends FormikValues = FormikValues, ExtraProps = {}>({
@@ -24,6 +26,7 @@ export function EnhancedFormik<Values extends FormikValues = FormikValues, Extra
         try {
           await onSubmit(values, {
             ...formikHelpers,
+            applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
             setFormSuccess: getSetFormSuccess(formikHelpers.setStatus),
             setFormError: getSetFormError(formikHelpers.setStatus),
           });

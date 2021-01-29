@@ -15,6 +15,7 @@ These wrappers do a few things:
 - handle reporting errors to Sentry
 - adds `initialStatus` for form errors
 - adds `setFormSuccess` and `setFormError` helpers
+- adds `applyErrorsToFields` helper
 
 #### EnhancedFormik
 
