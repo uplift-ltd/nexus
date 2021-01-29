@@ -15,6 +15,7 @@ These wrappers do a few things:
 - handle reporting errors to Sentry
 - adds `initialStatus` for form errors
 - adds `setFormSuccess` and `setFormError` helpers
+- adds `applyErrorsToFields` helper
 
 #### EnhancedFormik
 
@@ -48,6 +49,49 @@ const formik = useEnhancedFormik<FormValues>({
     });
   },
 });
+```
+
+#### setFormSuccess / setFormError
+
+```tsx
+import { EnhancedFormik } from "@uplift-ltd/formik";
+
+<EnhancedFormik<FormValues>
+  onSubmit={async (values, { setFormSuccess, setFormError }) => {
+    try {
+      const { data } = await someMutation();
+      if (!data?.someMutation?.success) {
+        throw new Error(
+          data?.someMutation?.message || "Failed to do _blank_. Please try again later."
+        );
+      }
+      setFormSuccesss("You did it!");
+    } catch (err) {
+      Sentry.captureExpection(err);
+      setFormError(err.message);
+    }
+  }}
+/>;
+```
+
+#### applyErrorsToFields
+
+```tsx
+import { EnhancedFormik } from "@uplift-ltd/formik";
+
+<EnhancedFormik<FormValues>
+  onSubmit={async (values, { applyErrorsToFields }) => {
+    const { data } = await someMutation();
+    if (!data?.someMutation?.success) {
+      if (data?.someMutation?.errors?.length) {
+        // data.someMutation.errors should be of shape { field: string; messages: string[] }
+        // this is the common shape returned by uplift_core via graphene for field-level errors
+        applyErrorsToFields(data.someMutation.errors);
+        // Now formik fields will show the errors for the correct fields (assuming FE and BE field names match)
+      }
+    }
+  }}
+/>;
 ```
 
 ### EnhancedField / useEnhancedField
