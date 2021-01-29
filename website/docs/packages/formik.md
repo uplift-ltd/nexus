@@ -103,7 +103,7 @@ Enhancement that allows you to hide field errors when the input gains focus. It 
 
 #### EnhancedField
 
-```ts
+```tsx
 import { EnhancedField } from "@uplift-ltd/formik";
 
 const MyField = ({ label, ...props }) => {
@@ -133,7 +133,7 @@ const MyField = ({ label, ...props }) => {
 
 #### useEnhancedField
 
-```ts
+```tsx
 import { useEnhancedField } from "@uplift-ltd/formik";
 
 const MyField = ({ label, ...props }) => {
@@ -153,5 +153,18 @@ const MyField = ({ label, ...props }) => {
       {meta.touched && meta.error && <p>{meta.error}</p>}
     </label>
   );
+};
+```
+
+#### useEnhancedFormikContext
+
+```tsx
+import { useEnhancedFormikContext } from "@uplift-ltd/formik";
+
+const MyField = ({ label, ...props }) => {
+  const { setFormStatus, setFormError, applyErrorsToFields } = useEnhancedFormikContext<
+    FormValues
+  >();
+  return <button onClick={() => setFormError("NEIN!")}>No</button>;
 };
 ```
