@@ -27,16 +27,19 @@
     "test": "jest"
   },
   "dependencies": {
+    "@uplift-ltd/constants": "^0.1.0",
     "@uplift-ltd/sentry": "^0.4.3"
   },
   "peerDependencies": {
     "@apollo/client": "^3.0.0",
+    "expo-secure-store": "~9.3.0",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.11.0",
     "react": "^16.0.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.3.7",
+    "expo-secure-store": "~9.3.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "react": "^16.13.1"

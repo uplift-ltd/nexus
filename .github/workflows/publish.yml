@@ -36,7 +36,9 @@ jobs:
           cache-name: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          key:
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
+            hashFiles('packages/*/package.json') }}
 
       # Always run this, so it throws if the package and lockfile don't match
       - name: Install dependencies
@@ -65,7 +67,9 @@ jobs:
           cache-name: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          key:
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
+            hashFiles('packages/*/package.json') }}
 
       - run: yarn build
 
@@ -96,7 +100,9 @@ jobs:
           cache-name: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          key:
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
+            hashFiles('packages/*/package.json') }}
 
       - uses: actions/download-artifact@v2
         with:
