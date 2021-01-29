@@ -51,6 +51,29 @@ const formik = useEnhancedFormik<FormValues>({
 });
 ```
 
+#### setFormSuccess / setFormError
+
+```tsx
+import { EnhancedFormik } from "@uplift-ltd/formik";
+
+<EnhancedFormik<FormValues>
+  onSubmit={async (values, { setFormSuccess, setFormError }) => {
+    try {
+      const { data } = await someMutation();
+      if (!data?.someMutation?.success) {
+        throw new Error(
+          data?.someMutation?.message || "Failed to do _blank_. Please try again later."
+        );
+      }
+      setFormSuccesss("You did it!");
+    } catch (err) {
+      Sentry.captureExpection(err);
+      setFormError(err.message);
+    }
+  }}
+/>;
+```
+
 ### EnhancedField / useEnhancedField
 
 Enhancement that allows you to hide field errors when the input gains focus. It does this by setting
