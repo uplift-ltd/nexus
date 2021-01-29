@@ -2,7 +2,7 @@ import { safeJoinWithComma } from "@uplift-ltd/strings";
 
 import { FormikHelpers } from "formik";
 
-interface GrapheneFieldError {
+export interface GrapheneFieldError {
   field: string;
   messages: string[];
 }
