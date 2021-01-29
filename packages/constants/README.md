@@ -8,7 +8,13 @@ This package provides some common constants, as well as a helper to get env vari
 
 ## Provided Constants
 
-- GQL_TOKEN
+Apollo / GraphQL:
+
+- GRAPHQL_TOKEN
+- GRAPHQL_HOST
+- GRAPHQL_BATCHING
+- GRAPHQL_AUTH_ENDPOINT
+- GRAPHQL_UNAUTH_ENDPOINT
 
 ## API
 
