@@ -1,7 +1,7 @@
 {
-  "name": "@uplift-ltd/helpers",
+  "name": "@uplift-ltd/strings",
   "version": "0.1.0",
-  "description": "helpers",
+  "description": "strings",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./dest/index.js",
@@ -15,22 +15,18 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uplift-ltd/nexus.git",
-    "directory": "packages/helpers"
+    "directory": "packages/strings"
   },
   "bugs": {
-    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:helpers"
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:strings"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/helpers",
+  "homepage": "https://nexus.uplift.sh/docs/packages/strings",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc",
     "test": "jest"
   },
-  "dependencies": {
-    "expo-secure-store": "^10.0.0"
-  },
+  "dependencies": {},
   "peerDependencies": {},
-  "devDependencies": {
-    "@types/node": "^14.14.22"
-  }
+  "devDependencies": {}
 }

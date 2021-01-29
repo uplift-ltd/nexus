@@ -1,10 +1,6 @@
 // trim :: String -> String`
 export const trim = (x: string) => x.trim();
 
-// safeJoin is a HOF to build fns to nicely join strings.
-// the returned fn takes in variadic arguments, and returns all truthy components with the delimeter.
-//
-
 const isStringOrNumber = (variableToCheck: unknown): variableToCheck is string | number => {
   return (
     (typeof variableToCheck === "string" && variableToCheck.length > 0) ||
@@ -12,6 +8,9 @@ const isStringOrNumber = (variableToCheck: unknown): variableToCheck is string |
   );
 };
 
+// safeJoin is a HOF to build fns to nicely join strings.
+// the returned fn takes in variadic arguments, and returns all truthy components with the delimeter.
+//
 // safeJoin :: String -> [a] -> String
 export const safeJoin = (delimiter: string) => (...xs: unknown[]) =>
   xs
