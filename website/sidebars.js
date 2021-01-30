@@ -10,6 +10,7 @@ module.exports = {
       "packages/graphene",
       "packages/money",
       "packages/push-notifications",
+      "packages/react-native-debug",
       "packages/react-native-updates",
       "packages/sass",
       "packages/scripts",

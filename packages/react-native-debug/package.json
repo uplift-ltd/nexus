@@ -26,14 +26,15 @@
     "check-types": "tsc --noEmit",
     "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@uplift-ltd/apollo": "^0.8.3",
+    "@uplift-ltd/constants": "^0.1.0",
+    "@uplift-ltd/push-notifications": "^0.2.3"
+  },
   "peerDependencies": {
     "@react-navigation/core": "^5.0.0",
     "@react-navigation/native": "^5.0.0",
     "@react-navigation/stack": "^5.0.0",
-    "@uplift-ltd/apollo": "^0.8.3",
-    "@uplift-ltd/constants": "^0.1.0",
-    "@uplift-ltd/push-notifications": "^0.2.3",
     "expo-constants": "~9.3.3",
     "expo-linking": "~2.0.1",
     "expo-updates": "~0.4.1",
