@@ -1,7 +1,9 @@
+const path = require("path");
+
 module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "./tsconfig.json",
+    project: path.resolve(__dirname, "tsconfig.json"),
   },
   env: {
     browser: true,
@@ -26,7 +28,12 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "react/jsx-wrap-multilines": 0,
     "react/prefer-stateless-function": 0,
-    "import/order": "error",
+    "import/order": [
+      "error",
+      {
+        alphabetize: { order: "asc" },
+      },
+    ],
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "import/extensions": 0,
@@ -69,8 +76,13 @@ module.exports = {
     },
   ],
   settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+    },
     "import/resolver": {
-      typescript: {},
+      typescript: {
+        project: [path.resolve(__dirname, "tsconfig.json")],
+      },
     },
   },
 };

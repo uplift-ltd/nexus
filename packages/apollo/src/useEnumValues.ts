@@ -1,12 +1,11 @@
 import gql from "graphql-tag";
 import { useMemo } from "react";
-import { useEnhancedQuery } from "./hooks";
-
 import {
   EnumData,
   EnumDataVariables,
   EnumData_enumData_enumValues as EnumValue,
 } from "./__generated__/EnumData";
+import { useEnhancedQuery } from "./hooks";
 
 const ENUM_QUERY = gql`
   query EnumData($enumName: String!) {

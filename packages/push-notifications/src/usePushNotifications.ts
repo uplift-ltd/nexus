@@ -1,5 +1,6 @@
 import { PermissionStatus } from "expo-permissions";
 import { RefObject } from "react";
+import { Subscription } from "./types";
 import { useNotificationHandler, UseNotificationHandlerOptions } from "./useNotificationHandler";
 import { useNotificationListener, UseNotificationListenerOptions } from "./useNotificationListener";
 import {
@@ -7,7 +8,6 @@ import {
   UseNotificationPermissionOptions,
   RegisterPushNotifications,
 } from "./useNotificationPermission";
-import { Subscription } from "./types";
 
 export type UsePushNotificationsOptions = UseNotificationHandlerOptions &
   UseNotificationListenerOptions &
