@@ -18,7 +18,11 @@ import { DebugNavigator } from "@uplift-ltd/react-native-debug";
 function Root() {
   return (
     <RootStackNavigator.Navigator>
-      <RootStackNavigator.Screen name={DEV_ZONE} component={DebugNavigator} />
+      <RootStackNavigator.Screen
+        name={DEV_ZONE}
+        component={DebugNavigator}
+        initialParams={{ headerShown: false, verifyScreen: "Verify" }}
+      />
     </RootStackNavigator.Navigator>
   );
 }
