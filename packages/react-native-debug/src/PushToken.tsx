@@ -19,7 +19,7 @@ export const PushToken: React.FC = () => {
   return (
     <>
       <Input value={title} placeholder="title" onChangeText={setTitle} />
-      <Input value={body} placeholder="body" onChangeText={setTitle} />
+      <Input value={body} placeholder="body" onChangeText={setBody} />
       <Input value={data} placeholder="data" onChangeText={setData} />
       <Button
         onPress={async () => {
