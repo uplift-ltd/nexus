@@ -6,6 +6,7 @@ import { useEffect, useState, useCallback } from "react";
 import {
   registerForPushNotifications as defaultRegisterForPushNotifications,
   RegisterForPushNotifications,
+  RegisterForPushNotificationsResult,
 } from "./registerForPushNotifications";
 
 export type RegisterPushNotificationsResult = {
@@ -52,10 +53,17 @@ export function useNotificationPermission({
   }, [updatePermissionStatus]);
 
   const registerPushNotifications: RegisterPushNotifications = useCallback(async () => {
-    const token = await registerForPushNotifications();
-    const status = await updatePermissionStatus();
-    if (onRegisterPushNotifications) {
-      await onRegisterPushNotifications({ token, status });
+    let token: RegisterForPushNotificationsResult;
+    let status: PermissionStatus | null;
+    try {
+      token = await registerForPushNotifications();
+      status = await updatePermissionStatus();
+      if (onRegisterPushNotifications) {
+        await onRegisterPushNotifications({ token, status });
+      }
+    } catch (err) {
+      Sentry.captureException(err);
+      throw err;
     }
     return { token, status };
   }, [registerForPushNotifications, onRegisterPushNotifications, updatePermissionStatus]);
