@@ -1,6 +1,7 @@
 import { GRAPHQL_TOKEN } from "./constants";
 
 export const getToken = () => localStorage.getItem(GRAPHQL_TOKEN);
+
 export const getAssertToken = () => {
   const token = getToken();
 
@@ -10,4 +11,7 @@ export const getAssertToken = () => {
 
   return token;
 };
+
+export const setToken = (token: string) => localStorage.setItem(GRAPHQL_TOKEN, token);
+
 export const removeToken = () => localStorage.removeItem(GRAPHQL_TOKEN);
