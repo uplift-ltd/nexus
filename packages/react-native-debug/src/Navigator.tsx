@@ -1,49 +1,40 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import {
-  DEBUG_HOME_SCREEN,
-  DEBUG_INFO_SCREEN,
-  DEBUG_MAGIC_LOGIN_SCREEN,
-  DEBUG_PUSH_TOKEN_SCREEN,
-} from "./screens";
 import { Home } from "./Home";
 import { Info } from "./Info";
 import { MagicLogin } from "./MagicLogin";
 import { PushToken } from "./PushToken";
+import { DebugScreens } from "./screens";
+import { DebugNavigatorParamList } from "./types";
 
-export const DebugStackNavigator = createStackNavigator();
+export const DebugStackNavigator = createStackNavigator<DebugNavigatorParamList>();
 
-interface DebugNavigatorProps {
-  headerShown?: boolean;
-}
+type DebugNavigatorProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG>;
 
-export const DebugNavigator: React.FC<DebugNavigatorProps> = ({
-  children,
-  headerShown = false,
-}) => {
+export const DebugNavigator: React.FC<DebugNavigatorProps> = ({ route }) => {
   return (
-    <DebugStackNavigator.Navigator screenOptions={{ headerShown }}>
+    <DebugStackNavigator.Navigator screenOptions={{ headerShown: route.params.headerShown }}>
       <DebugStackNavigator.Screen
-        name={DEBUG_HOME_SCREEN}
+        name={DebugScreens.DEBUG_HOME}
         component={Home}
-        options={{ title: "Debug Home" }}
+        options={{ title: "Debug" }}
       />
       <DebugStackNavigator.Screen
-        name={DEBUG_INFO_SCREEN}
+        name={DebugScreens.DEBUG_INFO}
         component={Info}
-        options={{ title: "Debug Info" }}
+        options={{ title: "Info" }}
       />
       <DebugStackNavigator.Screen
-        name={DEBUG_MAGIC_LOGIN_SCREEN}
+        name={DebugScreens.DEBUG_MAGIC_LOGIN}
         component={MagicLogin}
-        options={{ title: "Debug Magic Login" }}
+        options={{ title: "Magic Login" }}
+        initialParams={{}}
       />
       <DebugStackNavigator.Screen
-        name={DEBUG_PUSH_TOKEN_SCREEN}
+        name={DebugScreens.DEBUG_PUSH_TOKEN}
         component={PushToken}
-        options={{ title: "Debug Push Token" }}
+        options={{ title: "Push Token" }}
       />
-      {children}
     </DebugStackNavigator.Navigator>
   );
 };

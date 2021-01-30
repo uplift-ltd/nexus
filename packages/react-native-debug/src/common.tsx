@@ -21,7 +21,7 @@ export const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
     activeOpacity={value ? 0.6 : 1}
   >
     <Text style={styles.infoText}>
-      <Text style={styles.infoLabel}>{label}</Text>
+      <Text style={styles.infoLabel}>{label}: </Text>
       <Text style={styles.infoValue}>{value || "N/A"}</Text>
     </Text>
   </TouchableOpacity>
@@ -44,7 +44,7 @@ export const Input: React.FC<TextInputProps> = ({ style, ...props }) => (
 
 const styles = StyleSheet.create({
   infoItem: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     paddingHorizontal: 20,
   },
   infoText: {},
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
+    paddingHorizontal: 10,
     marginVertical: 10,
     marginHorizontal: 20,
     borderColor: "gray",

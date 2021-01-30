@@ -1,4 +1,7 @@
-export const DEBUG_HOME_SCREEN = "DebugHomeScreen";
-export const DEBUG_INFO_SCREEN = "DebugInfoScreen";
-export const DEBUG_MAGIC_LOGIN_SCREEN = "DebugMagicLogin";
-export const DEBUG_PUSH_TOKEN_SCREEN = "DebugPushToken";
+export enum DebugScreens {
+  DEBUG = "Debug",
+  DEBUG_HOME = "DebugHome",
+  DEBUG_INFO = "DebugInfo",
+  DEBUG_MAGIC_LOGIN = "DebugMagicLogin",
+  DEBUG_PUSH_TOKEN = "DebugPushToken",
+}

@@ -1,13 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
 import { setToken } from "@uplift-ltd/apollo";
+import Clipboard from "expo-clipboard";
+import { reloadAsync } from "expo-updates";
 import React from "react";
-import { Clipboard, Text, Alert } from "react-native";
+import { Alert, Text, StyleSheet } from "react-native";
 import { Button } from "./common";
+import { DebugScreens } from "./screens";
+import { DebugNavigatorParamList } from "./types";
 
 const getClipboardValue = async () => {
   let value = "";
   try {
-    value = await Clipboard.getString();
+    value = await Clipboard.getStringAsync();
     if (!value) {
       throw new Error("Failed to get value");
     }
@@ -18,54 +23,50 @@ const getClipboardValue = async () => {
   return value;
 };
 
-const getMagicLinkValues = (link: string) => {
-  const pathWithParams = link?.split("/").pop();
-  const params = pathWithParams?.split("?").pop()?.split("&");
-  const [, ktoken] = params ? params[0].split("=") : [];
-  const [, email] = params ? params[1].split("=") : [];
-  return { email, ktoken };
+const getQueryParams = (link: string) => {
+  const result: Record<string, string> = {};
+  const params = link?.split("?").pop()?.split("&");
+  params?.forEach((param) => {
+    const [key, value] = param.split("=");
+    result[key] = value;
+  });
+  return result;
 };
 
-const defaultOnToken: MagicLoginProps["onToken"] = ({ token }) => {
-  setToken(token);
-};
+type MagicLoginProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
 
-interface MagicLoginProps {
-  onMagicLink?: ({ email, ktoken }: { email: string; ktoken: string }) => void;
-  onToken?: ({ token }: { token: string }) => void;
-}
-
-export const MagicLogin: React.FC<MagicLoginProps> = ({
-  onMagicLink,
-  onToken = defaultOnToken,
-} = {}) => {
+export const MagicLogin: React.FC<MagicLoginProps> = ({ route }) => {
   const navigation = useNavigation();
-
-  // TODO: make apollo call directly and reload the app?
-  const defaultOnMagicLink: MagicLoginProps["onMagicLink"] = ({ email, ktoken }) => {
-    navigation.navigate("Login", { email, ktoken });
-  };
 
   return (
     <>
-      <Text>Copy the magic link or token to your clipboard then press one of the buttons!</Text>
+      <Text style={styles.text}>
+        Copy the magic link or token to your clipboard then press one of the buttons!
+      </Text>
       <Button
         onPress={async () => {
           const clipboardValue = await getClipboardValue();
-          const { email, ktoken } = getMagicLinkValues(clipboardValue);
-          (onMagicLink || defaultOnMagicLink)({ email, ktoken });
+          const queryParams = getQueryParams(clipboardValue);
+          navigation.navigate(route.params?.verifyScreen || "Verify", queryParams);
         }}
       >
-        Login Magic Link
+        Verify Magic Link
       </Button>
       <Button
         onPress={async () => {
           const clipboardValue = await getClipboardValue();
-          onToken({ token: clipboardValue });
+          setToken(clipboardValue);
         }}
       >
-        Login Magic Link
+        Set Token
       </Button>
+      <Button onPress={reloadAsync}>Reload</Button>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    padding: 20,
+  },
+});

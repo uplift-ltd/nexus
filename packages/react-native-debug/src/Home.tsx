@@ -1,17 +1,19 @@
-import React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
+import React from "react";
 import { Button } from "./common";
-import { DEBUG_INFO_SCREEN, DEBUG_MAGIC_LOGIN_SCREEN, DEBUG_PUSH_TOKEN_SCREEN } from "./screens";
+import { DebugScreens } from "./screens";
+import { DebugNavigatorParamList } from "./types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type HomeProps = StackScreenProps<any, any>;
+type HomeProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
 
 export const Home: React.FC<HomeProps> = ({ navigation }) => {
   return (
     <>
-      <Button onPress={() => navigation.navigate(DEBUG_INFO_SCREEN)}>Info</Button>
-      <Button onPress={() => navigation.navigate(DEBUG_MAGIC_LOGIN_SCREEN)}>Magic Login</Button>
-      <Button onPress={() => navigation.navigate(DEBUG_PUSH_TOKEN_SCREEN)}>
+      <Button onPress={() => navigation.navigate(DebugScreens.DEBUG_INFO)}>Info</Button>
+      <Button onPress={() => navigation.navigate(DebugScreens.DEBUG_MAGIC_LOGIN)}>
+        Magic Login
+      </Button>
+      <Button onPress={() => navigation.navigate(DebugScreens.DEBUG_PUSH_TOKEN)}>
         Push Notifications
       </Button>
     </>

@@ -1,12 +1,17 @@
+import { StackScreenProps } from "@react-navigation/stack";
 import { GITHUB_SHA, GRAPHQL_HOST } from "@uplift-ltd/constants";
 import Constants from "expo-constants";
 import { makeUrl } from "expo-linking";
 import { releaseChannel, reloadAsync } from "expo-updates";
 import React from "react";
-import { Alert, Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Button, InfoItem } from "./common";
+import { DebugScreens } from "./screens";
+import { DebugNavigatorParamList } from "./types";
 
-export const Info: React.FC = () => {
+type InfoProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
+
+export const Info: React.FC<InfoProps> = () => {
   return (
     <>
       <InfoItem label="Commit" value={GITHUB_SHA} />
@@ -23,24 +28,15 @@ export const Info: React.FC = () => {
       <InfoItem label="Slug" value={Constants.manifest.slug} />
       <InfoItem label="Linking Prefix" value={makeUrl("/")} />
       <InfoItem
-        label="Expo / Native Version (Build Version)"
-        value={`${Constants.expoVersion} / ${Constants.nativeAppVersion} (${Constants.nativeBuildVersion})`}
+        label="Versions"
+        value={`${Constants.nativeAppVersion} (${Constants.nativeBuildVersion}) - ${Constants.expoVersion}`}
       />
       <InfoItem label="Installation ID" value={Constants.installationId} />
       {Constants.deviceId !== Constants.installationId && (
         <InfoItem label="Installation ID" value={Constants.deviceId} />
       )}
       <InfoItem label="Session ID" value={Constants.sessionId} />
-      <Button
-        style={styles.reload}
-        onPress={async () => {
-          try {
-            await reloadAsync();
-          } catch (err) {
-            Alert.alert(err.message);
-          }
-        }}
-      >
+      <Button style={styles.reload} onPress={reloadAsync}>
         Reload
       </Button>
     </>
