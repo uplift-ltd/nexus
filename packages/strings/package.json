@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/strings",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "strings",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -25,8 +25,5 @@
     "build": "tsc",
     "check-types": "tsc --noEmit",
     "test": "jest"
-  },
-  "dependencies": {},
-  "peerDependencies": {},
-  "devDependencies": {}
+  }
 }
