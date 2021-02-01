@@ -23,7 +23,7 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/strings",
   "scripts": {
     "build": "tsc",
-    "check-types": "tsc",
+    "check-types": "tsc --noEmit",
     "test": "jest"
   },
   "dependencies": {},
