@@ -2,7 +2,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { GITHUB_SHA, GRAPHQL_HOST } from "@uplift-ltd/constants";
 import Constants from "expo-constants";
 import { makeUrl } from "expo-linking";
-import { releaseChannel, reloadAsync } from "expo-updates";
+import { fetchUpdateAsync, releaseChannel, reloadAsync, updateId } from "expo-updates";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { Button, InfoItem } from "./common";
@@ -35,9 +35,15 @@ export const Info: React.FC<InfoProps> = () => {
       {Constants.deviceId !== Constants.installationId && (
         <InfoItem label="Installation ID" value={Constants.deviceId} />
       )}
-      <InfoItem label="Session ID" value={Constants.sessionId} />
-      <Button style={styles.reload} onPress={reloadAsync}>
-        Reload
+      <InfoItem label="Update ID" value={updateId} />
+      <Button
+        style={styles.reload}
+        onPress={async () => {
+          await fetchUpdateAsync();
+          await reloadAsync();
+        }}
+      >
+        Update & Reload
       </Button>
     </>
   );
