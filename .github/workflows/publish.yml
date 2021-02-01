@@ -85,6 +85,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: "0"
           token: ${{ secrets.PUBLISH_TOKEN }}
 
       - name: Use Node.js with GitHub Packages

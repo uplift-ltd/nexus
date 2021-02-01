@@ -8,4 +8,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* add react-native-debug ([#69](https://github.com/uplift-ltd/nexus/issues/69)) ([00e7f9b](https://github.com/uplift-ltd/nexus/commit/00e7f9bcbb978be76b79c90be1df4100801f7b7b))
+* add react-native-updates package ([#71](https://github.com/uplift-ltd/nexus/issues/71))
+  ([c3dbdc8](https://github.com/uplift-ltd/nexus/commit/c3dbdc870e6dc6a613658e20ecd156f113f47848))
+
+
+
+
