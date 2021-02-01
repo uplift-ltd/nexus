@@ -1,5 +1,5 @@
-import { createProxyMiddleware } from "http-proxy-middleware";
 import { Express } from "express";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 type ProxyTarget = string;
 type ProxyPaths = string[];

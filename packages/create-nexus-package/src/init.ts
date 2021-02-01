@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import path from "path";
 import fs from "fs";
-import mkdirp from "mkdirp";
+import path from "path";
+import ejs from "ejs";
 import globby from "globby";
 import zip from "lodash/zip";
-import ejs from "ejs";
+import mkdirp from "mkdirp";
 
 export async function initFiles() {
   const pkgPath = path.resolve("package.json");

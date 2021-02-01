@@ -10,9 +10,9 @@ import {
   Operation,
   ServerError,
 } from "@apollo/client";
+import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import Sentry from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
 import { GRAPHQL_AUTH_URL, IS_SSR } from "./constants";
