@@ -1,23 +1,26 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 0.3.0 (2021-02-01)
 
+### Bug Fixes
+
+- make useNotificationPermission param optional
+  ([#59](https://github.com/uplift-ltd/nexus/issues/59))
+  ([2dacb97](https://github.com/uplift-ltd/nexus/commit/2dacb9799d3e3a63ce9dc0221e8109ef3d0cb5a9))
 
 ### Features
 
-* add react-native-debug ([#69](https://github.com/uplift-ltd/nexus/issues/69)) ([00e7f9b](https://github.com/uplift-ltd/nexus/commit/00e7f9bcbb978be76b79c90be1df4100801f7b7b))
-
-
-
-
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+- add constants and strings and token helpers ([#54](https://github.com/uplift-ltd/nexus/issues/54))
+  ([abe0816](https://github.com/uplift-ltd/nexus/commit/abe08162dec2552c083680fde4ce80bf9d4b6675))
+- add push notifications ([#56](https://github.com/uplift-ltd/nexus/issues/56))
+  ([d656d57](https://github.com/uplift-ltd/nexus/commit/d656d57fa545c77c9c28aab77e57ea43a2bacc60))
+- add push token listener ([#74](https://github.com/uplift-ltd/nexus/issues/74))
+  ([0faec89](https://github.com/uplift-ltd/nexus/commit/0faec8941e6aa4171c95284ba9590faf0a0a9aaa))
+- capture registerPushNotifications errors ([#68](https://github.com/uplift-ltd/nexus/issues/68))
+  ([14dbe1a](https://github.com/uplift-ltd/nexus/commit/14dbe1a8de0c6b809fb39c783f4a8462578b0033))
 
 ## 0.2.3 (2021-01-27)
 

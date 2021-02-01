@@ -1,23 +1,23 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 # 0.8.0 (2021-02-01)
 
-
 ### Features
 
-* add react-native-debug ([#69](https://github.com/uplift-ltd/nexus/issues/69)) ([00e7f9b](https://github.com/uplift-ltd/nexus/commit/00e7f9bcbb978be76b79c90be1df4100801f7b7b))
-
-
-
-
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+- add constants and strings and token helpers ([#54](https://github.com/uplift-ltd/nexus/issues/54))
+  ([abe0816](https://github.com/uplift-ltd/nexus/commit/abe08162dec2552c083680fde4ce80bf9d4b6675))
+- add enhanced formik context ([#66](https://github.com/uplift-ltd/nexus/issues/66))
+  ([68ae49d](https://github.com/uplift-ltd/nexus/commit/68ae49de012675479bf376577a0c32d471587c33))
+- add helper for applying errors to formik fields
+  ([#63](https://github.com/uplift-ltd/nexus/issues/63))
+  ([634cfdc](https://github.com/uplift-ltd/nexus/commit/634cfdc162b11311c154bb48eee3b0da6d901b30))
+- add push notifications ([#56](https://github.com/uplift-ltd/nexus/issues/56))
+  ([d656d57](https://github.com/uplift-ltd/nexus/commit/d656d57fa545c77c9c28aab77e57ea43a2bacc60))
+- add resetStatusOnSubmit formik prop ([#67](https://github.com/uplift-ltd/nexus/issues/67))
+  ([9be1c88](https://github.com/uplift-ltd/nexus/commit/9be1c8872fee6482460aff53c14f4d641ec19d32))
 
 ## 0.7.3 (2021-01-27)
 
