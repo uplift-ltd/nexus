@@ -2,6 +2,7 @@ import * as SecureStore from "expo-secure-store";
 import { GRAPHQL_TOKEN } from "./constants";
 
 export const getToken = () => SecureStore.getItemAsync(GRAPHQL_TOKEN);
+
 export const getAssertToken = async () => {
   const token = await getToken();
 
@@ -11,4 +12,7 @@ export const getAssertToken = async () => {
 
   return token;
 };
+
+export const setToken = (token: string) => SecureStore.setItemAsync(GRAPHQL_TOKEN, token);
+
 export const removeToken = () => SecureStore.deleteItemAsync(GRAPHQL_TOKEN);
