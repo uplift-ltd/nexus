@@ -2,3 +2,4 @@ dest/
 
 package-lock.json
 schema.json
+CHANGELOG.md
