@@ -1,0 +1,38 @@
+{
+  "name": "@uplift-ltd/react-native-updates",
+  "version": "0.1.0",
+  "description": "react-native-updates",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/react-native-updates"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:react-native-updates"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/react-native-updates",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "expo-updates": "~0.4.1",
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "expo-updates": "~0.4.1",
+    "react": "^16.13.1"
+  }
+}
