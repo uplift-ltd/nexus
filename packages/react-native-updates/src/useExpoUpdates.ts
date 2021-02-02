@@ -1,7 +1,7 @@
 import * as Updates from "expo-updates";
 import { useEffect, useState } from "react";
 
-export async function useExpoUpdates() {
+export function useExpoUpdates() {
   const [canUpdate, setCanUpdate] = useState<boolean | null>(null);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [updateReady, setUpdateReady] = useState(false);
