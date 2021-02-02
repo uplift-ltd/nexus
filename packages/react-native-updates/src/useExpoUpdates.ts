@@ -8,6 +8,9 @@ export function useExpoUpdates() {
 
   useEffect(() => {
     const run = async () => {
+      if (__DEV__) {
+        return;
+      }
       const update = await Updates.checkForUpdateAsync();
       setCanUpdate(update.isAvailable);
     };
