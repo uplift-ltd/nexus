@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-updates@0.2.1...@uplift-ltd/react-native-updates@0.2.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* update warning in dev mode ([#80](https://github.com/uplift-ltd/nexus/issues/80)) ([40150b6](https://github.com/uplift-ltd/nexus/commit/40150b6b0a41d211630be2438900bdc3d3eb8d4e))
+
+
+
+
+
 ## [0.2.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-updates@0.2.0...@uplift-ltd/react-native-updates@0.2.1) (2021-02-02)
 
 
