@@ -35,7 +35,6 @@
     "sentry-expo": "^2.1.2"
   },
   "devDependencies": {
-    "@types/react-native": "^0.63.9",
     "sentry-expo": "^2.1.2"
   }
 }

@@ -30,8 +30,5 @@
     "expo-updates": "~0.4.1",
     "react": "^16.0.0"
   },
-  "devDependencies": {
-    "expo-updates": "~0.4.1",
-    "react": "^16.13.1"
-  }
+  "devDependencies": {}
 }
