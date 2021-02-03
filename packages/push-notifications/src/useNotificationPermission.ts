@@ -68,10 +68,5 @@ export function useNotificationPermission({
     return { token, status };
   }, [registerForPushNotifications, onRegisterPushNotifications, updatePermissionStatus]);
 
-  useEffect(() => {
-    const subscription = Notifications.addPushTokenListener(registerPushNotifications);
-    return () => subscription.remove();
-  }, [registerPushNotifications]);
-
   return { permissionStatus, setPermissionStatus, registerPushNotifications };
 }
