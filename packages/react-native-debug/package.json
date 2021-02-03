@@ -27,9 +27,9 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@uplift-ltd/apollo": "^0.9.0",
-    "@uplift-ltd/constants": "^0.2.0",
-    "@uplift-ltd/push-notifications": "^0.3.0"
+    "@uplift-ltd/apollo": "^1.0.0",
+    "@uplift-ltd/constants": "^1.0.0",
+    "@uplift-ltd/push-notifications": "^1.0.0"
   },
   "peerDependencies": {
     "@react-navigation/core": "^5.0.0",
