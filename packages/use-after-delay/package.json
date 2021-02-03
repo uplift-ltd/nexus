@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/use-after-delay",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "use-after-delay",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -28,6 +28,5 @@
   },
   "peerDependencies": {
     "react": "^16.0.0"
-  },
-  "devDependencies": {}
+  }
 }

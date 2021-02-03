@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@0.3.0...@uplift-ltd/setup-proxy@1.0.1) (2021-02-03)
+
+
+### Bug Fixes
+
+* changelogs ([#75](https://github.com/uplift-ltd/nexus/issues/75)) ([12a84a4](https://github.com/uplift-ltd/nexus/commit/12a84a443f74257efe930d0dcf96b61635643dcd))
+
+
+
 # 0.3.0 (2021-02-01)
 
 
@@ -59,7 +68,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * add push notifications ([#56](https://github.com/uplift-ltd/nexus/issues/56))
   ([d656d57](https://github.com/uplift-ltd/nexus/commit/d656d57fa545c77c9c28aab77e57ea43a2bacc60))
-
-
-
-

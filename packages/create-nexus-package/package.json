@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/create-nexus-package",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create a new nexus package.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
