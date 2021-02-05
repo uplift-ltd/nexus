@@ -16,6 +16,7 @@ export const Info: React.FC<InfoProps> = () => {
     <>
       <InfoItem label="Commit" value={GITHUB_SHA} />
       <InfoItem label="GQL Host" value={GRAPHQL_HOST} />
+      <InfoItem label="Experience Id" value={Constants.manifest.id} />
       <InfoItem
         label="Identifier"
         value={
