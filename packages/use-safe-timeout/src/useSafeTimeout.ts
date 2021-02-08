@@ -12,7 +12,7 @@ export function useSafeTimeout() {
     };
   }, []);
 
-  const startTimeout = (callback: () => void, ms: number) => {
+  const startTimeout = (callback: () => void, ms = 0) => {
     const timeoutId = setTimeout(callback, ms);
 
     timeoutIds.current = [...timeoutIds.current, timeoutId];
