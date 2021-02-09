@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.0.1...@uplift-ltd/ts-helpers@1.1.0) (2021-02-09)
+
+
+### Features
+
+* add unpromise type ([#90](https://github.com/uplift-ltd/nexus/issues/90)) ([46d4f08](https://github.com/uplift-ltd/nexus/commit/46d4f08741436f2f9a2a378a1cdcf29795d7dca1))
+
+
+
 ### [1.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@0.4.0...@uplift-ltd/ts-helpers@1.0.1) (2021-02-03)
 
 
