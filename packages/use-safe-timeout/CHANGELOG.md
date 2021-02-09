@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-safe-timeout@1.0.1...@uplift-ltd/use-safe-timeout@1.0.2) (2021-02-09)
+
+
+### Bug Fixes
+
+* useCallback for useSafeTimeout ([#87](https://github.com/uplift-ltd/nexus/issues/87)) ([9ee698d](https://github.com/uplift-ltd/nexus/commit/9ee698da59580de5e3de30b1da2f694f4a8520bc))
+
+
+
 ### [1.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-safe-timeout@0.3.0...@uplift-ltd/use-safe-timeout@1.0.1) (2021-02-03)
 
 
