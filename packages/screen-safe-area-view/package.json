@@ -1,0 +1,35 @@
+{
+  "name": "@uplift-ltd/screen-safe-area-view",
+  "version": "1.0.0",
+  "description": "screen-safe-area-view",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/screen-safe-area-view"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:screen-safe-area-view"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/screen-safe-area-view",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-native-safe-area-context": "^3.1.9"
+  },
+  "devDependencies": {}
+}

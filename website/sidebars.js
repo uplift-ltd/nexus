@@ -13,6 +13,7 @@ module.exports = {
       "packages/react-native-debug",
       "packages/react-native-updates",
       "packages/sass",
+      "packages/screen-safe-area-view",
       "packages/scripts",
       "packages/sentry",
       "packages/setup-proxy",
