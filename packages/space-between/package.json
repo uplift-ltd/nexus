@@ -1,0 +1,35 @@
+{
+  "name": "@uplift-ltd/space-between",
+  "version": "1.0.0",
+  "description": "space-between",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./dest/index.js",
+  "files": [
+    "dest/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/space-between"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:space-between"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/space-between",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "classnames": "^2.2.6",
+    "react": "^16.0.0"
+  },
+  "devDependencies": {}
+}
