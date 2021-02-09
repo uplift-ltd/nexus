@@ -4,6 +4,7 @@ import { SCREEN_EDGES } from "./constants";
 
 export type ScreenSafeAreaViewProps = NativeSafeAreaViewProps;
 
-export const ScreenSafeAreaView: React.FC<ScreenSafeAreaViewProps> = ({ edges, ...props }) => (
-  <SafeAreaView edges={edges || SCREEN_EDGES} {...props} />
-);
+export const ScreenSafeAreaView: React.FC<ScreenSafeAreaViewProps> = ({
+  edges = SCREEN_EDGES,
+  ...props
+}) => <SafeAreaView edges={edges} {...props} />;
