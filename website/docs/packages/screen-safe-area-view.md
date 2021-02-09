@@ -1,10 +1,10 @@
 ---
-title: screen-safe-area-view
+title: screen-views
 ---
 
 ## Installation
 
-    yarn add @uplift-ltd/screen-safe-area-view
+    yarn add @uplift-ltd/screen-views
 
 ## API
 
@@ -14,7 +14,7 @@ Like `SafeAreaView` from `react-native-safe-area-context` but without the `top` 
 react-navigation screens.
 
 ```tsx
-import { ScreenSafeAreaView } from "@uplift-ltd/screen-safe-area-view";
+import { ScreenSafeAreaView } from "@uplift-ltd/screen-views";
 
 function MyScreen() {
   return (

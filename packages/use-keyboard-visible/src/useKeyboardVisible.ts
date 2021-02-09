@@ -19,7 +19,7 @@ interface UseKeyboardVisibleOptions {
 export function useKeyboardVisible({
   showEvent = KeyboardShowEvents.keyboardWillShow,
   hideEvent = KeyboardHideEvents.keyboardDidHide,
-}: UseKeyboardVisibleOptions) {
+}: UseKeyboardVisibleOptions = {}) {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 {
-  "name": "@uplift-ltd/screen-safe-area-view",
+  "name": "@uplift-ltd/screen-views",
   "version": "1.0.0",
-  "description": "screen-safe-area-view",
+  "description": "screen-views",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./dest/index.js",
@@ -15,20 +15,24 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uplift-ltd/nexus.git",
-    "directory": "packages/screen-safe-area-view"
+    "directory": "packages/screen-views"
   },
   "bugs": {
-    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:screen-safe-area-view"
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:screen-views"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/screen-safe-area-view",
+  "homepage": "https://nexus.uplift.sh/docs/packages/screen-views",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@uplift-ltd/use-keyboard-visible": "^1.0.0"
+  },
   "peerDependencies": {
+    "@react-navigation/stack": "^5.0.0",
     "react": "^16.0.0",
+    "react-native": "*",
     "react-native-safe-area-context": "^3.1.9"
   },
   "devDependencies": {}
