@@ -19,6 +19,7 @@ module.exports = {
       "packages/strings",
       "packages/ts-helpers",
       "packages/use-after-delay",
+      "packages/use-keyboard-visible",
       "packages/use-on-page-scroll",
       "packages/use-safe-timeout",
     ],
