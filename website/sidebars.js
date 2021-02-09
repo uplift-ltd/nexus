@@ -13,6 +13,7 @@ module.exports = {
       "packages/react-native-debug",
       "packages/react-native-updates",
       "packages/sass",
+      "packages/save-on-navigate-back",
       "packages/react-native-screen-views",
       "packages/scripts",
       "packages/sentry",
