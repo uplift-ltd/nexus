@@ -88,3 +88,23 @@ type ABProps = RequireOnlyOne<Props, 'a' | 'b'>
 <Component a b c /> /* throws */
 <Component c /> /* throws */
 ```
+
+### Unpromise
+
+Returns the result type of a promise.
+
+```ts
+type Result = Unpromise<Promise<boolean>>; // => boolean
+```
+
+Can be combined with `ReturnType` to get the result of a function that returns a promise.
+
+```ts
+type TheTypeWeWant = { a: boolean };
+
+type PromiseReturningFunction = () => Promise<TheTypeWeWant>;
+
+type TheTypeWeHave = Unpromise<ReturnType<PromiseReturningFunction>>;
+
+// TheTypeWeHave is now TheTypeWeWant
+```
