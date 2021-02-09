@@ -6,6 +6,7 @@ module.exports = {
       "packages/apollo",
       "packages/constants",
       "packages/create-nexus-package",
+      "packages/error-boundary",
       "packages/formik",
       "packages/graphene",
       "packages/money",
