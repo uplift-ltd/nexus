@@ -11,14 +11,14 @@ export enum KeyboardHideEvents {
   keyboardDidHide = "keyboardDidHide",
 }
 
-interface UseKeyboardVisibleOptions {
+export interface UseKeyboardVisibleOptions {
   showEvent?: KeyboardShowEvents;
   hideEvent?: KeyboardHideEvents;
 }
 
 export function useKeyboardVisible({
   showEvent = KeyboardShowEvents.keyboardWillShow,
-  hideEvent = KeyboardHideEvents.keyboardDidHide,
+  hideEvent = KeyboardHideEvents.keyboardWillHide,
 }: UseKeyboardVisibleOptions = {}) {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
