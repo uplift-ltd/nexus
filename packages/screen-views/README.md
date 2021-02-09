@@ -46,7 +46,7 @@ function MyScreen() {
 
 ### ScreenKeyboardAvoidingView
 
-Keyboard avoiding view that takes into account the hide of the react-navigation stack header.
+Keyboard avoiding view that takes into account the height of the react-navigation stack header.
 Defaults to `flex: 1` for convenience. Uses `padding` on iOS and `height` on Android.
 
 **Note:** The value of `useHeaderHeight` from `@react-navigation/stack` must be correct. That means
