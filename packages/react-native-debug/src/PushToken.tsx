@@ -42,11 +42,6 @@ export const PushToken: React.FC<PushTokenProps> = () => {
 
   return (
     <>
-      <Input
-        value={pushToken}
-        placeholder="pushToken"
-        onChangeText={makeChangeHandler("pushToken")}
-      />
       <Input value={title} placeholder="title" onChangeText={makeChangeHandler("title")} />
       <Input value={body} placeholder="body" onChangeText={makeChangeHandler("body")} />
       <Input value={data} placeholder="data" onChangeText={makeChangeHandler("data")} />
