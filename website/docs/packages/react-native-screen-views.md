@@ -1,10 +1,10 @@
 ---
-title: screen-views
+title: react-native-screen-views
 ---
 
 ## Installation
 
-    yarn add @uplift-ltd/screen-views
+    yarn add @uplift-ltd/react-native-screen-views
 
 ## API
 
@@ -14,7 +14,7 @@ Like `SafeAreaView` from `react-native-safe-area-context` but without the `top` 
 react-navigation screens.
 
 ```tsx
-import { ScreenSafeAreaView } from "@uplift-ltd/screen-views";
+import { ScreenSafeAreaView } from "@uplift-ltd/react-native-screen-views";
 
 function MyScreen() {
   return (
@@ -31,7 +31,7 @@ Like `ScreenSafeAreaView` but can provide different edges when keyboard is open.
 and `right`.
 
 ```tsx
-import { KeyboardScreenSafeAreaView } from "@uplift-ltd/screen-views";
+import { KeyboardScreenSafeAreaView } from "@uplift-ltd/react-native-screen-views";
 
 function MyScreen() {
   return (
@@ -55,7 +55,7 @@ Defaults to `flex: 1` for convenience. Uses `padding` on iOS and `height` on And
 the header height must be set according to react-navigation docs.
 
 ```tsx
-import { ScreenKeyboardAvoidingView } from "@uplift-ltd/screen-views";
+import { ScreenKeyboardAvoidingView } from "@uplift-ltd/react-native-screen-views";
 
 function MyScreen() {
   return (

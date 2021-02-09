@@ -1,7 +1,7 @@
 {
-  "name": "@uplift-ltd/screen-views",
+  "name": "@uplift-ltd/react-native-screen-views",
   "version": "1.0.0",
-  "description": "screen-views",
+  "description": "react-native-screen-views",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./dest/index.js",
@@ -15,12 +15,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uplift-ltd/nexus.git",
-    "directory": "packages/screen-views"
+    "directory": "packages/react-native-screen-views"
   },
   "bugs": {
-    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:screen-views"
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:react-native-screen-views"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/screen-views",
+  "homepage": "https://nexus.uplift.sh/docs/packages/react-native-screen-views",
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
