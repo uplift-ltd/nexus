@@ -17,8 +17,8 @@ export interface UseKeyboardVisibleOptions {
 }
 
 export function useKeyboardVisible({
-  showEvent = KeyboardShowEvents.keyboardWillShow,
-  hideEvent = KeyboardHideEvents.keyboardWillHide,
+  showEvent = KeyboardShowEvents.keyboardDidShow,
+  hideEvent = KeyboardHideEvents.keyboardDidHide,
 }: UseKeyboardVisibleOptions = {}) {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
