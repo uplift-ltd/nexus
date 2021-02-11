@@ -1,3 +1,5 @@
+import { notEmpty } from "@uplift-ltd/ts-helpers";
+
 // trim :: String -> String`
 export const trim = (x: string) => x.trim();
 
@@ -97,4 +99,33 @@ export const formatPhoneNumber = (phoneNumber: string): string => {
   ];
 
   return trim(`${countryCode} (${areaCode}) ${nextThree}-${lastFour}`);
+};
+
+type UrlTokensMap = Record<string, string | number | null | undefined>;
+const replaceAll = (str: string, needle: string, replace: string) =>
+  str.replace(new RegExp(needle, "g"), replace);
+
+export const replaceTokens = (urlTemplate: string, tokens: UrlTokensMap) => {
+  return Object.entries(tokens).reduce((url, [key, value]) => {
+    if (!notEmpty(value)) return url;
+
+    return replaceAll(url, `:${key}`, value.toString());
+  }, urlTemplate);
+};
+
+export const makeUrl = (
+  url: string,
+  tokens?: UrlTokensMap | null,
+  params?: UrlTokensMap | null
+): string => {
+  const baseUrl = tokens ? replaceTokens(url, tokens) : url;
+  const filteredParams = params
+    ? Object.fromEntries(
+        Object.entries(params)
+          .filter(([key, value]) => notEmpty<string | number>(value))
+          .map(([key, value]) => [key.toString(), (value as string | number).toString()])
+      )
+    : {};
+  const qs = new URLSearchParams(filteredParams).toString();
+  return [baseUrl, qs].filter(Boolean).join("?");
 };

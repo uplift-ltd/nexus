@@ -8,6 +8,7 @@ import {
   safeJoinWithComma,
   safeJoinWithEnDash,
   safeJoinWithEmDash,
+  makeUrl,
 } from "../src";
 
 test("capitalize", () => {
@@ -45,4 +46,24 @@ test("safeJoins", () => {
   expect(safeJoinWithEmDash(...input)).toBe("Hello — World — 123");
 
   expect(safeJoin(":")(...input)).toBe("Hello:World:123");
+});
+
+test("makeUrls", () => {
+  const TEST_URL = "/test-url/:tokenId";
+  const MULTIPLE_TOKEN_TEST_URL = "/test-url/:tokenId/:userId";
+
+  expect(makeUrl(TEST_URL, { tokenId: "654" })).toBe("/test-url/654");
+  expect(makeUrl(TEST_URL, { tokenId: 123 })).toBe("/test-url/123");
+  expect(makeUrl(TEST_URL, { tokenId: 123 }, { msg: "Hello" })).toBe("/test-url/123?msg=Hello");
+
+  expect(makeUrl(MULTIPLE_TOKEN_TEST_URL, { tokenId: 987, userId: "ABC123" })).toBe(
+    "/test-url/987/ABC123"
+  );
+  expect(
+    makeUrl(
+      MULTIPLE_TOKEN_TEST_URL,
+      { tokenId: 987, userId: "ABC123" },
+      { msg: "Hello", null: null, undefined }
+    )
+  ).toBe("/test-url/987/ABC123?msg=Hello");
 });

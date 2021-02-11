@@ -25,5 +25,8 @@
     "build": "tsc",
     "check-types": "tsc --noEmit",
     "test": "jest"
+  },
+  "dependencies": {
+    "@uplift-ltd/ts-helpers": "^1.0.0"
   }
 }
