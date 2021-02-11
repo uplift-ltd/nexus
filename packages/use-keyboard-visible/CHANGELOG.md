@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-keyboard-visible@1.1.1...@uplift-ltd/use-keyboard-visible@1.1.2) (2021-02-11)
+
+
+### Bug Fixes
+
+* change default keyboard events to be Android friendly ([#97](https://github.com/uplift-ltd/nexus/issues/97)) ([6504326](https://github.com/uplift-ltd/nexus/commit/65043269ba00bbe52036f30a45c22f40b022cd89))
+
+
+
 ### [1.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-keyboard-visible@1.1.0...@uplift-ltd/use-keyboard-visible@1.1.1) (2021-02-09)
 
 
