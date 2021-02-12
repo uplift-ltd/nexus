@@ -81,3 +81,19 @@ safeJoinWithComma("hello", "", false, "world"); // "hello, world"
 safeJoinWithEnDash("hello", "", false, "world"); // "hello–world"
 safeJoinWithEmDash("hello", "", false, "world"); // "hello – world"
 ```
+
+### makeUrl
+
+makeUrl is used to easily replace Url Tokens and optionally, append querystring params. Any
+null/undefined tokens or params are filtered out and will not make it into the final url string
+
+```ts
+import { makeUrl } from "@uplift-ltd/strings";
+
+const USER_PROFILE_URL = "/user/:userId";
+const USER_SERVICE_DETAILS_URL = "/user/:userId/:serviceId";
+
+makeUrl(USER_PROFILE_URL, { userId: 654654 }); // => "/user/654654"
+makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }); // => "/user/654654/github"
+makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }, { tab: "repos" }); // => "/user/654654/github?tab=repos"
+```
