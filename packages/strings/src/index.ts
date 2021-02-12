@@ -102,6 +102,7 @@ export const formatPhoneNumber = (phoneNumber: string): string => {
 };
 
 type UrlTokensMap = Record<string, string | number | null | undefined>;
+
 const replaceAll = (str: string, needle: string, replace: string) =>
   str.replace(new RegExp(needle, "g"), replace);
 
