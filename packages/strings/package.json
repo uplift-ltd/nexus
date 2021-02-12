@@ -27,6 +27,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@uplift-ltd/ts-helpers": "^1.0.0"
+    "@uplift-ltd/ts-helpers": "^1.1.0"
   }
 }
