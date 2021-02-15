@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.0.1...@uplift-ltd/constants@1.1.0) (2021-02-15)
+
+
+### Features
+
+* add run number to versions ([#99](https://github.com/uplift-ltd/nexus/issues/99)) ([af24396](https://github.com/uplift-ltd/nexus/commit/af24396bc3755f1d7e1fbcc9c94dd758396e48b8))
+
+
+
 ### [1.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@0.2.0...@uplift-ltd/constants@1.0.1) (2021-02-03)
 
 
