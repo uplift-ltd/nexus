@@ -1,5 +1,5 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import { GITHUB_SHA, GRAPHQL_HOST } from "@uplift-ltd/constants";
+import { GITHUB_SHA, GITHUB_RUN_NUMBER, GRAPHQL_HOST } from "@uplift-ltd/constants";
 import Constants from "expo-constants";
 import { makeUrl } from "expo-linking";
 import { fetchUpdateAsync, releaseChannel, reloadAsync, updateId } from "expo-updates";
@@ -15,6 +15,10 @@ export const Info: React.FC<InfoProps> = () => {
   return (
     <>
       <InfoItem label="Commit" value={GITHUB_SHA} />
+      <InfoItem
+        label="Versions"
+        value={`${Constants.nativeAppVersion} (${Constants.nativeBuildVersion}) - #${GITHUB_RUN_NUMBER} - Expo ${Constants.expoVersion}`}
+      />
       <InfoItem label="GQL Host" value={GRAPHQL_HOST} />
       <InfoItem label="Experience Id" value={Constants.manifest.id} />
       <InfoItem
@@ -28,10 +32,6 @@ export const Info: React.FC<InfoProps> = () => {
       <InfoItem label="Release Channel" value={releaseChannel} />
       <InfoItem label="Slug" value={Constants.manifest.slug} />
       <InfoItem label="Linking Prefix" value={makeUrl("/")} />
-      <InfoItem
-        label="Versions"
-        value={`${Constants.nativeAppVersion} (${Constants.nativeBuildVersion}) - ${Constants.expoVersion}`}
-      />
       <InfoItem label="Installation ID" value={Constants.installationId} />
       {Constants.deviceId !== Constants.installationId && (
         <InfoItem label="Installation ID" value={Constants.deviceId} />
