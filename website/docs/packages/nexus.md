@@ -4,16 +4,24 @@ title: nexus
 
 ## Installation
 
-    yarn add @uplift-ltd/nexus
+    yarn global add @uplift-ltd/nexus
+
+    npx @uplift-ltd/nexus
 
 ## API
 
-### myFunction
+### build-library
 
-My description.
+Builds `cjs` and `esm` folders using typescript.
 
-```ts
-import { myFunction } from "@uplift-ltd/nexus";
+```
+nexus build-library
+```
 
-myFunction("example");
+### clean-library
+
+Removes the `cjs` and `esm` folders (if they are not checked into git).
+
+```
+nexus clean-library
 ```
