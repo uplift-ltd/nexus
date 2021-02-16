@@ -27,7 +27,7 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/nexus",
   "scripts": {
-    "build": "run-s build:cjs build:esm",
+    "build": "yarn build:cjs && yarn build:esm",
     "build:esm": "tsc",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "check-types": "tsc --noEmit",
