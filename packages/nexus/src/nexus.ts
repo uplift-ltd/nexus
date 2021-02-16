@@ -9,7 +9,7 @@ import execa from "execa";
 
 const program = new Command();
 
-program.version("1.0.0");
+program.version(process.env.NEXUS_PACKAGE_VERSION || "1.0.0");
 
 program
   .command("build-library")

@@ -71,7 +71,10 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
             hashFiles('packages/*/package.json') }}
 
-      - run: yarn build
+      - name: build
+        run: |
+          export NEXUS_PACKAGE_VERSION=$(node -p -e "require('./packages/nexus/package.json').version")
+          yarn build
 
       - uses: actions/upload-artifact@v2
         with:

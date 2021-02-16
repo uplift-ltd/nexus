@@ -36,6 +36,9 @@
     "*.{js,jsx,ts,tsx,json,md,css,scss}": [
       "prettier --write"
     ],
+    "packages/nexus/src/**/*.{js,jsx,ts,tsx,json}": [
+      "yarn build:nexus"
+    ],
     "*.md": [
       "yarn update-docs",
       "git add ./website"
