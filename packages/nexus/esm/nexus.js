@@ -42,7 +42,7 @@ import { Command } from "commander";
 // @ts-ignore
 import execa from "execa";
 var program = new Command();
-program.version("1.1.0-alpha.1" || "1.0.0");
+program.version("1.1.0-alpha.2");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")

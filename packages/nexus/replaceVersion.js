@@ -5,8 +5,8 @@ const { version } = require("./package.json");
 
 const options = {
   files: ["./cjs/nexus.js", "./esm/nexus.js"],
-  from: "process.env.NEXUS_PACKAGE_VERSION",
-  to: JSON.stringify(version),
+  from: /program\.version\((.+)\)/,
+  to: `program.version(${JSON.stringify(version)})`,
 };
 
 (async () => {
