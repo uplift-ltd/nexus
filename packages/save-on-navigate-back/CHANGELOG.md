@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.2.0...@uplift-ltd/save-on-navigate-back@1.3.0-alpha.0) (2021-02-16)
+
+
+### Features
+
+* publish commonjs and es modules ([34d6871](https://github.com/uplift-ltd/nexus/commit/34d6871f720efebf2d48773ae1e17c8dc6fd652d))
+
+
+
 ## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.1.0...@uplift-ltd/save-on-navigate-back@1.2.0) (2021-02-12)
 
 
