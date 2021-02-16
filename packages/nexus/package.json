@@ -31,7 +31,7 @@
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
     "build:version": "node replaceVersion.js",
-    "version": "yarn build:version",
+    "version": "yarn build:version && git add cjs esm",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
