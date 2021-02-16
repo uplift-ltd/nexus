@@ -92,7 +92,7 @@ program.command("clean-library").action(function (script, options) { return __aw
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, execa("rm", ["-rf", "esm", "cjs"])];
+                return [4 /*yield*/, execa("git", ["clean", "-dfx", "cjs", "esm"])];
             case 1:
                 clean = _a.sent();
                 if (clean.all) {

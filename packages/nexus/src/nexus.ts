@@ -44,7 +44,7 @@ program
 
 program.command("clean-library").action(async (script, options) => {
   try {
-    const clean = await execa("rm", ["-rf", "esm", "cjs"]);
+    const clean = await execa("git", ["clean", "-dfx", "cjs", "esm"]);
     if (clean.all) {
       console.info(clean.all);
     } else {
