@@ -15,7 +15,7 @@
   "scripts": {
     "build": "run-s build:clean build:nexus build:packages",
     "build:clean": "git clean -dfx packages/*/cjs/ packages/*/esm/",
-    "build:nexus": "lerna run --scope @uplift-ltd/nexus build",
+    "build:nexus": "lerna run --scope @uplift-ltd/nexus build && :",
     "build:packages": "lerna run --ignore @uplift-ltd/nexus build",
     "test": "lerna run test",
     "prettier:check": "prettier --list-different \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
@@ -37,7 +37,8 @@
       "prettier --write"
     ],
     "packages/nexus/src/**/*.{js,jsx,ts,tsx,json}": [
-      "yarn build:nexus"
+      "yarn build:nexus",
+      "git add packages/nexus/cjs/ packages/nexus/esm/"
     ],
     "*.md": [
       "yarn update-docs",
