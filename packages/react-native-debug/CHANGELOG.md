@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@1.2.0...@uplift-ltd/react-native-debug@1.3.0) (2021-02-16)
+
+
+### Features
+
+* publish commonjs and add nexus cli ([#100](https://github.com/uplift-ltd/nexus/issues/100)) ([535c7bd](https://github.com/uplift-ltd/nexus/commit/535c7bd0ad8224b9dde814f18f9d5082366061e1))
+
+
+
 ## [1.3.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@1.2.0...@uplift-ltd/react-native-debug@1.3.0-alpha.0) (2021-02-16)
 
 
