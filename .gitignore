@@ -21,5 +21,9 @@ yarn-error.log*
 /website/i18n
 
 dest/
+cjs/
+esm/
+!packages/nexus/cjs/
+!packages/nexus/esm/
 .vercel
 .eslintcache

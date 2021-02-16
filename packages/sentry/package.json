@@ -4,10 +4,12 @@
   "description": "Helpers for dealing with sentry.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
-  "browser": "./dest/browser.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "browser": "./cjs/browser.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -23,18 +25,18 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/sentry",
   "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "prepublishOnly": "yarn build"
+    "build": "nexus build-library",
+    "test": "jest"
+  },
+  "optionalDependencies": {
+    "sentry-expo": "^2.1.2"
   },
   "dependencies": {
     "@sentry/browser": "^5.24.2",
     "@sentry/node": "^5.24.2"
   },
-  "optionalDependencies": {
-    "sentry-expo": "^2.1.2"
-  },
   "devDependencies": {
+    "@uplift-ltd/nexus": "^1.0.0",
     "sentry-expo": "^2.1.2"
   }
 }

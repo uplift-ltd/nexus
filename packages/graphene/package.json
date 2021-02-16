@@ -4,9 +4,11 @@
   "description": "Helpers for dealing with django graphene.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,11 +24,11 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/graphene",
   "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "prepublishOnly": "yarn build"
+    "build": "nexus build-library",
+    "test": "jest"
   },
   "devDependencies": {
+    "@uplift-ltd/nexus": "^1.0.0",
     "atob": "^2.1.2",
     "btoa": "^1.2.1"
   }

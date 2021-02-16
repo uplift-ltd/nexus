@@ -4,11 +4,12 @@
   "description": "Create a new nexus package.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "bin": "dest/init.js",
-  "main": "dest/init.js",
+  "bin": "cjs/init.js",
+  "main": "cjs/init.js",
   "files": [
     "fixtures/",
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -24,9 +25,8 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/create-nexus-package",
   "scripts": {
-    "build": "tsc",
-    "test": "tsc --build tsconfig.fixtures.json",
-    "prepublishOnly": "yarn build"
+    "build": "nexus build-library",
+    "test": "tsc -p tsconfig.fixtures.json"
   },
   "dependencies": {
     "ejs": "^3.1.5",
@@ -37,6 +37,7 @@
   "devDependencies": {
     "@types/ejs": "^3.0.4",
     "@types/lodash": "^4.14.160",
-    "@types/mkdirp": "^1.0.1"
+    "@types/mkdirp": "^1.0.1",
+    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

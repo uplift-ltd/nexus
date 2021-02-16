@@ -9,6 +9,7 @@ module.exports = {
       "packages/formik",
       "packages/graphene",
       "packages/money",
+      "packages/nexus",
       "packages/push-notifications",
       "packages/react-native-debug",
       "packages/react-native-screen-views",

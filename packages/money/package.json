@@ -4,9 +4,11 @@
   "description": "Helpers for dealing with django money.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,8 +24,10 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/money",
   "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "prepublishOnly": "yarn build"
+    "build": "nexus build-library",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

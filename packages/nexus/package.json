@@ -1,0 +1,42 @@
+{
+  "name": "@uplift-ltd/nexus",
+  "version": "1.0.0",
+  "description": "nexus",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/nexus.js",
+  "module": "./esm/nexus.js",
+  "bin": {
+    "nexus": "./cjs/nexus.js"
+  },
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/nexus"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:nexus"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/nexus",
+  "scripts": {
+    "build": "run-s build:cjs build:esm",
+    "build:esm": "tsc",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "commander": "^7.1.0",
+    "execa": "^5.0.0",
+    "typescript": "^4.1.5"
+  },
+  "devDependencies": {}
+}
