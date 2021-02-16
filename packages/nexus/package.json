@@ -28,8 +28,8 @@
   "homepage": "https://nexus.uplift.sh/docs/packages/nexus",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm",
-    "build:esm": "tsc",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc --outDir ./esm --module es2020",
+    "build:cjs": "tsc --outDir ./cjs --module commonjs",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
