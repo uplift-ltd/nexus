@@ -76,7 +76,9 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build
-          path: "./packages/*/(cjs|esm)/*"
+          path: |
+            ./packages/*/cjs/*
+            ./packages/*/esm/*
 
   publish:
     runs-on: ubuntu-latest
