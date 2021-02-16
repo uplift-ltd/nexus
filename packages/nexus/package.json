@@ -27,10 +27,11 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/nexus",
   "scripts": {
-    "build": "run-s build:cjs build:esm version",
+    "build": "run-s build:cjs build:esm build:version",
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
-    "version": "node replaceVersion.js && git add ./cjs && git add ./esm",
+    "build:version": "node replaceVersion.js",
+    "postversion": "yarn build:version && git add ./cjs && git add ./esm && git commit --amend --no-edit",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
