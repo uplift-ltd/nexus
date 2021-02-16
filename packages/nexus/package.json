@@ -31,7 +31,7 @@
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
     "build:version": "node replaceVersion.js",
-    "postversion": "yarn build:version && git add ./cjs && git add ./esm && git commit --amend --no-edit",
+    "version": "yarn build:version && git add ./cjs ./esm && git commit -m \"chore: update nexus commander version\"",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
