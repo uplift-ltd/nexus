@@ -1,12 +1,14 @@
 {
   "name": "@uplift-ltd/save-on-navigate-back",
-  "version": "1.2.0",
+  "version": "1.3.0-alpha.0",
   "description": "save-on-navigate-back",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,17 +24,17 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/save-on-navigate-back",
   "scripts": {
-    "build": "tsc",
+    "build": "nexus build-library",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
-  },
-  "dependencies": {
-    "@uplift-ltd/formik": "^1.1.0"
   },
   "peerDependencies": {
     "@react-navigation/core": "^5.0.0",
     "@react-navigation/native": "^5.0.0",
     "@react-navigation/stack": "^5.0.0",
     "react": "^16.0.0"
+  },
+  "dependencies": {
+    "@uplift-ltd/formik": "^1.2.0-alpha.0"
   }
 }

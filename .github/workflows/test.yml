@@ -67,10 +67,20 @@ jobs:
 
       - run: yarn build
 
+      - name: Check no changes to nexus build
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git status --porcelain
+            echo "Found changes from build. If these are in packages/nexus/(cjs|esm)/ please check them in."
+            exit 1
+          fi
+
       - uses: actions/upload-artifact@v2
         with:
           name: build
-          path: "./packages/*/dest/*"
+          path: |
+            ./packages/*/cjs/*
+            ./packages/*/esm/*
 
   test:
     runs-on: ubuntu-latest

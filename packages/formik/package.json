@@ -1,12 +1,14 @@
 {
   "name": "@uplift-ltd/formik",
-  "version": "1.1.0",
+  "version": "1.2.0-alpha.0",
   "description": "Helpers for dealing with formik.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,17 +24,16 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/formik",
   "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "prepublishOnly": "yarn build"
-  },
-  "dependencies": {
-    "@uplift-ltd/sentry": "^1.0.1",
-    "@uplift-ltd/strings": "^1.1.0"
+    "build": "nexus build-library",
+    "test": "jest"
   },
   "peerDependencies": {
     "formik": "^2.0.0",
     "react": "^16.0.0"
+  },
+  "dependencies": {
+    "@uplift-ltd/sentry": "^1.1.0-alpha.0",
+    "@uplift-ltd/strings": "^1.2.0-alpha.0"
   },
   "devDependencies": {
     "formik": "^2.1.5"

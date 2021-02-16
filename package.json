@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@uplift-ltd/nexus",
+  "name": "@uplift-ltd/nexus-workspace",
   "version": "0.1.0",
   "description": "Uplift's front end core library.",
   "license": "UNLICENSED",
@@ -13,8 +13,11 @@
     "url": "git+https://github.com/uplift-ltd/nexus.git"
   },
   "scripts": {
-    "build": "lerna run --stream build",
-    "test": "lerna run --stream test",
+    "build": "run-s build:clean build:nexus build:packages",
+    "build:clean": "git clean -dfx packages/*/cjs/ packages/*/esm/",
+    "build:nexus": "lerna run --scope @uplift-ltd/nexus build && :",
+    "build:packages": "lerna run --ignore @uplift-ltd/nexus build",
+    "test": "lerna run test",
     "prettier:check": "prettier --list-different \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "prettier:write": "prettier --write \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
@@ -32,6 +35,10 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,css,scss}": [
       "prettier --write"
+    ],
+    "packages/nexus/src/**/*.{js,jsx,ts,tsx,json}": [
+      "yarn build:nexus",
+      "git add packages/nexus/cjs/ packages/nexus/esm/"
     ],
     "*.md": [
       "yarn update-docs",
@@ -88,6 +95,6 @@
     "react-native-gesture-handler": "~1.8.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.0",
-    "typescript": "^3.9.7"
+    "typescript": "^4.1.5"
   }
 }

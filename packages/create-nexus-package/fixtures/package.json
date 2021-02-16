@@ -4,9 +4,11 @@
   "description": "<%= PACKAGE_NAME %>",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,11 +24,11 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/<%= PACKAGE_NAME %>",
   "scripts": {
-    "build": "tsc",
+    "build": "nexus build-library",
     "check-types": "tsc --noEmit",
     "test": "jest"
   },
-  "dependencies": {},
   "peerDependencies": {},
+  "dependencies": {},
   "devDependencies": {}
 }

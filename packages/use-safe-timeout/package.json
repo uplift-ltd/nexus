@@ -1,12 +1,14 @@
 {
   "name": "@uplift-ltd/use-safe-timeout",
-  "version": "1.0.2",
+  "version": "1.1.0-alpha.0",
   "description": "Hook to set a timeout and clear it on unmount.",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,7 +24,7 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/use-safe-timeout",
   "scripts": {
-    "build": "tsc",
+    "build": "nexus build-library",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },

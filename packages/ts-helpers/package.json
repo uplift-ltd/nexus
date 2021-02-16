@@ -1,12 +1,14 @@
 {
   "name": "@uplift-ltd/ts-helpers",
-  "version": "1.1.0",
+  "version": "1.2.0-alpha.0",
   "description": "Helpers for dealing with typescript.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./dest/index.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
   "files": [
-    "dest/",
+    "cjs/",
+    "esm/",
     "README.md"
   ],
   "publishConfig": {
@@ -22,8 +24,7 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/ts-helpers",
   "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "prepublishOnly": "yarn build"
+    "build": "nexus build-library",
+    "test": "jest"
   }
 }

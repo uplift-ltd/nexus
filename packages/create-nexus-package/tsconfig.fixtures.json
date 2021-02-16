@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dest",
     "noEmit": true
   },
   "include": ["fixtures/**/*"]
