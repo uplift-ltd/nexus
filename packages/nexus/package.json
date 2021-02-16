@@ -30,7 +30,7 @@
     "build": "run-s build:cjs build:esm version",
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
-    "version": "node replaceVersion.js",
+    "version": "node replaceVersion.js && git add ./cjs && git add ./esm",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
