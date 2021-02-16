@@ -36,9 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { Command } from "commander";
+// On CI only, we get this: Error: @uplift-ltd/nexus: src/nexus.ts(4,19): error TS7016: Could not find a declaration file for module 'execa'. '/home/runner/work/nexus/nexus/node_modules/execa/index.js' implicitly has an 'any' type.
+// Seems like TypeScript is looking at the root node_modules/execa instead of the one here.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import execa from "execa";
 var program = new Command();
-program.version("1.0.0");
+program.version(process.env.NEXUS_PACKAGE_VERSION || "1.0.0");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")
