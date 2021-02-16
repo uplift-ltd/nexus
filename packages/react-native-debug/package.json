@@ -43,8 +43,5 @@
     "@uplift-ltd/apollo": "^1.0.2",
     "@uplift-ltd/constants": "^1.1.0",
     "@uplift-ltd/push-notifications": "^1.0.1"
-  },
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

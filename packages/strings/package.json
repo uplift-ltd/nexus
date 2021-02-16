@@ -30,8 +30,5 @@
   },
   "dependencies": {
     "@uplift-ltd/ts-helpers": "^1.1.0"
-  },
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

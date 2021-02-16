@@ -36,8 +36,5 @@
   },
   "dependencies": {
     "@uplift-ltd/use-keyboard-visible": "^1.1.2"
-  },
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

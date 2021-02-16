@@ -37,8 +37,5 @@
   },
   "dependencies": {
     "@uplift-ltd/sentry": "^1.0.1"
-  },
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

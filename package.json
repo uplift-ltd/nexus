@@ -13,8 +13,9 @@
     "url": "git+https://github.com/uplift-ltd/nexus.git"
   },
   "scripts": {
-    "build": "lerna run --stream build",
-    "test": "lerna run --stream test",
+    "build": "lerna run --scope @uplift-ltd/nexus build && lerna run --ignore @uplift-ltd/nexus build",
+    "build:clean": "git clean -dfx packages/*/cjs/ packages/*/esm/",
+    "test": "lerna run test",
     "prettier:check": "prettier --list-different \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "prettier:write": "prettier --write \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",

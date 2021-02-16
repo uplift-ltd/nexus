@@ -31,8 +31,5 @@
   "peerDependencies": {
     "classnames": "^2.2.6",
     "react": "^16.0.0"
-  },
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
   }
 }

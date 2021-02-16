@@ -28,7 +28,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0",
     "atob": "^2.1.2",
     "btoa": "^1.2.1"
   }

@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.3.7",
-    "@uplift-ltd/nexus": "^1.0.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0"
   }

@@ -30,7 +30,5 @@
   },
   "peerDependencies": {},
   "dependencies": {},
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
-  }
+  "devDependencies": {}
 }

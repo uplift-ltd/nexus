@@ -37,7 +37,6 @@
   "devDependencies": {
     "@types/ejs": "^3.0.4",
     "@types/lodash": "^4.14.160",
-    "@types/mkdirp": "^1.0.1",
-    "@uplift-ltd/nexus": "^1.0.0"
+    "@types/mkdirp": "^1.0.1"
   }
 }

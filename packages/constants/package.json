@@ -27,8 +27,5 @@
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
-  },
-  "devDependencies": {
-    "@uplift-ltd/nexus": "^1.0.0"
   }
 }
