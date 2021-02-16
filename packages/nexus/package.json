@@ -27,9 +27,10 @@
   },
   "homepage": "https://nexus.uplift.sh/docs/packages/nexus",
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm",
+    "build": "run-s build:cjs build:esm version",
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
+    "version": "node replaceVersion.js",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },
@@ -37,5 +38,8 @@
     "commander": "^7.1.0",
     "execa": "^5.0.0",
     "typescript": "^4.1.5"
+  },
+  "devDependencies": {
+    "replace-in-file": "^6.2.0"
   }
 }
