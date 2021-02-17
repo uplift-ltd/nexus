@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.1.0...@uplift-ltd/graphene@1.2.0) (2021-02-17)
+
+
+### Features
+
+* add cursor helpers ([#103](https://github.com/uplift-ltd/nexus/issues/103)) ([844be7b](https://github.com/uplift-ltd/nexus/commit/844be7bb8f5a213e52dd582fe8d19dda61858386))
+
+
+
 ## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.0.1...@uplift-ltd/graphene@1.1.0) (2021-02-16)
 
 
