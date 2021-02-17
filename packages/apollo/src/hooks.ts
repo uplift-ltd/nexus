@@ -38,7 +38,9 @@ export function useEnhancedQuery<TData, TVariables = OperationVariables>(
 
   return {
     ...result,
-    initialLoading: result.networkStatus === NetworkStatus.loading,
+    initialLoading:
+      result.networkStatus === NetworkStatus.loading ||
+      result.networkStatus === NetworkStatus.setVariables,
     refetching: result.networkStatus === NetworkStatus.refetch,
     fetchingMore: result.networkStatus === NetworkStatus.fetchMore,
   };
