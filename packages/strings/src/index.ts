@@ -101,7 +101,7 @@ export const formatPhoneNumber = (phoneNumber: string): string => {
   return trim(`${countryCode} (${areaCode}) ${nextThree}-${lastFour}`);
 };
 
-type UrlTokensMap = Record<string, string | number | null | undefined>;
+export type UrlTokensMap = Record<string, string | number | null | undefined>;
 
 const replaceAll = (str: string, needle: string, replace: string) =>
   str.replace(new RegExp(needle, "g"), replace);

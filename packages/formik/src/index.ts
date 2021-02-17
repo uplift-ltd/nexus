@@ -1,4 +1,4 @@
-export type { FormikStatus } from "./status";
+export type { FormikStatus, StatusHelpers } from "./status";
 export { EnhancedField } from "./EnhancedField";
 export type { EnhancedFieldAttributes, EnhancedFieldProps } from "./EnhancedField";
 export { EnhancedFormik } from "./EnhancedFormik";
