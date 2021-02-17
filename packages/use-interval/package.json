@@ -1,0 +1,34 @@
+{
+  "name": "@uplift-ltd/use-interval",
+  "version": "1.0.0",
+  "description": "use-interval",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/use-interval"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-interval"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/use-interval",
+  "scripts": {
+    "build": "nexus build-library",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  }
+}
