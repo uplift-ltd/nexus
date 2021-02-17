@@ -47,6 +47,32 @@ console.log(name); // => User
 console.log(id); // => 1
 ```
 
+### bumpGlobalId
+
+Increment the global id. Requires the parsed ID to be an integer.
+
+```js
+import { bumpGlobalId } from "@uplift-ltd/graphene";
+
+const user1 = "VXNlcjox"; // => User:1
+
+const user2 = bumpGlobalId(globalId); // => VXNlcjoy => User:2
+
+const user5 = bumpGlobalId(globalId, 4); // => VXNlcjo1 => User:5
+```
+
+### bumpOrInitCursor
+
+Increment a cursor or initialize to `arrayconnection:1` (`YXJyYXljb25uZWN0aW9uOjE=`).
+
+```js
+import { bumpOrInitCusor } from "@uplift-ltd/graphene";
+
+bumpOrInitCursor(null); // => YXJyYXljb25uZWN0aW9uOjE= => arrayconnection:1
+
+bumpOrInitCursor("YXJyYXljb25uZWN0aW9uOjE="); // => YXJyYXljb25uZWN0aW9uOjI= => arrayconnection:2
+```
+
 ### mapNodes
 
 Return an array of nodes from a relay-style connection.
