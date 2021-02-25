@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.2.1...@uplift-ltd/strings@1.2.2) (2021-02-25)
+
+
+### Bug Fixes
+
+* capitalize crashing on empty string ([#108](https://github.com/uplift-ltd/nexus/issues/108)) ([0f105bd](https://github.com/uplift-ltd/nexus/commit/0f105bd805ba081243cdf05b91106bf670331841))
+
+
+
 ### [1.2.2-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.2.1...@uplift-ltd/strings@1.2.2-alpha.0) (2021-02-25)
 
 **Note:** Version bump only for package @uplift-ltd/strings
