@@ -12,6 +12,7 @@ import {
 } from "../src";
 
 test("capitalize", () => {
+  expect(capitalize("")).toBe("");
   expect(capitalize("uplift")).toBe("Uplift");
   expect(capitalize("UPLIFT")).toBe("UPLIFT");
   expect(capitalize("Uplift")).toBe("Uplift");

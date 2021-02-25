@@ -39,7 +39,7 @@ export const safeJoinWithEnDash = safeJoin("–");
 export const safeJoinWithEmDash = safeJoin(" — ");
 
 // capitalize :: String -> String'
-export const capitalize = (str: string) => `${str[0].toUpperCase()}${str.substring(1)}`;
+export const capitalize = (str: string) => (str ? `${str[0].toUpperCase()}${str.slice(1)}` : str);
 
 // pluralize :: String -> String -> Number -> String
 export const pluralize = (singular: string, plural: string) => (count: number) =>
