@@ -160,11 +160,9 @@ const MyField = ({ label, ...props }) => {
 import { useEnhancedFormikContext } from "@uplift-ltd/formik";
 
 const MyField = ({ label, ...props }) => {
-  const {
-    setFormStatus,
-    setFormError,
-    applyErrorsToFields,
-  } = useEnhancedFormikContext<FormValues>();
+  const { setFormStatus, setFormError, applyErrorsToFields } = useEnhancedFormikContext<
+    FormValues
+  >();
   return <button onClick={() => setFormError("NEIN!")}>No</button>;
 };
 ```
