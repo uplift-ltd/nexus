@@ -8,6 +8,7 @@ import {
   safeJoinWithComma,
   safeJoinWithEnDash,
   safeJoinWithEmDash,
+  safeJsonParse,
   makeUrl,
 } from "../src";
 
@@ -38,6 +39,34 @@ test("pluralize", () => {
   expect(getCarsLabel(2)).toBe("2 cars");
 });
 
+test("safeJsonParse", () => {
+  const testUser = { firstName: "John", lastName: "Smith" };
+
+  // parse some valid items
+  expect(safeJsonParse("[]")).toEqual([]);
+  expect(safeJsonParse("true")).toBe(true);
+
+  // test default fallback for invalid json
+  expect(safeJsonParse("")).toBeUndefined();
+  expect(safeJsonParse(JSON.stringify(testUser).slice(0, 5))).toBeUndefined();
+
+  // test explicit fallback value for invalid JSON
+  expect(safeJsonParse("", {})).toEqual({});
+  expect(safeJsonParse(JSON.stringify(testUser).slice(0, 5), testUser)).toBe(testUser);
+
+  // test valid parsing
+  expect(safeJsonParse(JSON.stringify(testUser))).toEqual(testUser);
+  expect(safeJsonParse("[1,2,3,4]", [])).toEqual([1, 2, 3, 4]);
+
+  // test reviver
+  const lowerCaseStringValues = (_key, value) =>
+    typeof value === "string" ? value.toLowerCase() : value;
+  expect(safeJsonParse(JSON.stringify(testUser), {}, lowerCaseStringValues)).toEqual({
+    firstName: "john",
+    lastName: "smith",
+  });
+});
+
 test("safeJoins", () => {
   const input = [false, null, "   Hello ", undefined, " World", null, "", 123];
 
@@ -60,6 +89,7 @@ test("makeUrls", () => {
   expect(makeUrl(MULTIPLE_TOKEN_TEST_URL, { tokenId: 987, userId: "ABC123" })).toBe(
     "/test-url/987/ABC123"
   );
+
   expect(
     makeUrl(
       MULTIPLE_TOKEN_TEST_URL,
