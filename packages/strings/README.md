@@ -56,6 +56,29 @@ formatUsCurrency(123.12); // => "$123.12"
 formatUsCurrency(123.12, true); // => "$123"
 ```
 
+### safeJsonParse
+
+safeJsonParse takes in a string (hopefully serialized JSON!) and attempts to parse it. If parsing
+fails, it will return the optional fallback or undefined.
+
+```ts
+import { safeJsonParse } from "@uplift-ltd/strings";
+
+safeJsonParse('{"firstName": "John"}'); // => Object { firstName: "John" }
+// invalid JSON string
+safeJsonParse('{"firstName}'); // undefined
+// invalid JSON string with fallback
+safeJsonParse("", []); // => []
+
+// also accepts the std JSON.parse reviver callback. NOTE: reviver is not applied to the fallback
+safeJsonParse('{"firstName": "John"}', {}, (key, value) => {
+  typeof value === "string" ? value.toLowerCase() : value;
+}); // => { firstName: "john" }
+safeJsonParse('{"firs', {}, (key, value) => {
+  typeof value === "string" ? value.toLowerCase() : value;
+}); // => {}
+```
+
 ### safeJoin (and friends)
 
 safeJoin is a higher-order function to make joining functions that will clean up it's input. Given

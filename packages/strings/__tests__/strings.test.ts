@@ -57,6 +57,14 @@ test("safeJsonParse", () => {
   // test valid parsing
   expect(safeJsonParse(JSON.stringify(testUser))).toEqual(testUser);
   expect(safeJsonParse("[1,2,3,4]", [])).toEqual([1, 2, 3, 4]);
+
+  // test reviver
+  const lowerCaseStringValues = (_key, value) =>
+    typeof value === "string" ? value.toLowerCase() : value;
+  expect(safeJsonParse(JSON.stringify(testUser), {}, lowerCaseStringValues)).toEqual({
+    firstName: "john",
+    lastName: "smith",
+  });
 });
 
 test("safeJoins", () => {
