@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.2.2...@uplift-ltd/strings@1.3.0) (2021-03-05)
+
+
+### Features
+
+* Add safeJsonParse ([#111](https://github.com/uplift-ltd/nexus/issues/111)) ([ae4770d](https://github.com/uplift-ltd/nexus/commit/ae4770d9456268f13627d0f9383b05d2d19937d3))
+
+
+
 ### [1.2.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.2.1...@uplift-ltd/strings@1.2.2) (2021-02-25)
 
 
