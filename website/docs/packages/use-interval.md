@@ -17,8 +17,8 @@ A hook for setting intervals based on
 import { useInterval } from "@uplift-ltd/use-interval";
 
 function MyComponent() {
-  useInterval(1000, () => {
+  useInterval(() => {
     console.log("hii");
-  });
+  }, 1000);
 }
 ```
