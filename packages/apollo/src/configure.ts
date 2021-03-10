@@ -13,9 +13,10 @@ import {
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { IS_SSR } from "@uplift-ltd/constants";
 import Sentry from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
-import { GRAPHQL_AUTH_URL, IS_SSR } from "./constants";
+import { GRAPHQL_AUTH_URL } from "./constants";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let globalApolloClient: ApolloClient<any>;
