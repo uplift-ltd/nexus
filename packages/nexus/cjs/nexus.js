@@ -90,6 +90,7 @@ program
             case 3:
                 err_1 = _a.sent();
                 console.error(err_1);
+                process.exitCode = 1;
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
@@ -114,6 +115,7 @@ program.command("clean-library").action(function (script, options) { return __aw
             case 2:
                 err_2 = _a.sent();
                 console.error(err_2);
+                process.exitCode = 1;
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

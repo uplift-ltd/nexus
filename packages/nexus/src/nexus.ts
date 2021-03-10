@@ -43,6 +43,7 @@ program
       }
     } catch (err) {
       console.error(err);
+      process.exitCode = 1;
     }
   });
 
@@ -56,6 +57,7 @@ program.command("clean-library").action(async (script, options) => {
     }
   } catch (err) {
     console.error(err);
+    process.exitCode = 1;
   }
 });
 
