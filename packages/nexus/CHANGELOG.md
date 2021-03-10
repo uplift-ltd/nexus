@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.1.0...@uplift-ltd/nexus@1.1.1) (2021-03-10)
+
+
+### Bug Fixes
+
+* build exit code ([#116](https://github.com/uplift-ltd/nexus/issues/116)) ([79f6c37](https://github.com/uplift-ltd/nexus/commit/79f6c37e2dbcb3974085511cb3051d9a5d0538f6))
+
+
+
 ## 1.1.0 (2021-02-16)
 
 

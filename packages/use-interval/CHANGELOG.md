@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@1.1.1...@uplift-ltd/use-interval@2.0.0) (2021-03-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* reverse useInterval params (#115)
+
+### Code Refactoring
+
+* reverse useInterval params ([#115](https://github.com/uplift-ltd/nexus/issues/115)) ([cff42f7](https://github.com/uplift-ltd/nexus/commit/cff42f78d860d90d419c60f8d2f3c706440cd164))
+
+
+
 ### [1.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@1.1.0...@uplift-ltd/use-interval@1.1.1) (2021-02-17)
 
 
