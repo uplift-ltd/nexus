@@ -9,3 +9,8 @@ export const GRAPHQL_UNAUTH_ENDPOINT = GRAPHQL_BATCHING ? "/batch/graphql/" : "/
 // GitHub Actions
 export const GITHUB_SHA = process.env.GITHUB_SHA || "";
 export const GITHUB_RUN_NUMBER = process.env.GITHUB_RUN_NUMBER || "";
+
+// Environment
+export const IS_SSR = typeof window === "undefined";
+export const IS_REACT_NATIVE =
+  typeof navigator !== "undefined" && navigator.product === "ReactNative";
