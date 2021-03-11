@@ -2,97 +2,91 @@ import { IS_SSR } from "@uplift-ltd/constants";
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useUID } from "react-uid";
 
-type ConcurrentIntervalId = string;
+type SyncedIntervalId = string;
 
-export type ConcurrentIntervalCallback = () => void;
-type ConcurrentIntervalCallbacks = Record<ConcurrentIntervalId, ConcurrentIntervalCallback>;
-export type RemoveConcurrentIntervalCallback = () => void;
+export type SyncedIntervalCallback = () => void;
+type SyncedIntervalCallbacks = Record<SyncedIntervalId, SyncedIntervalCallback>;
+export type RemoveSyncedIntervalCallback = () => void;
 
-export type ConcurrentIntervalDelay = number | null;
-type ConcurrentIntervalDelays = Record<ConcurrentIntervalId, ConcurrentIntervalDelay>;
-export type RemoveConcurrentIntervalDelay = () => void;
+export type SyncedIntervalDelay = number | null;
+type SyncedIntervalDelays = Record<SyncedIntervalId, SyncedIntervalDelay>;
+export type RemoveSyncedIntervalDelay = () => void;
 
-export type ConcurrentIntervalChannel = string;
+export type SyncedIntervalChannel = string;
 
-type ConcurrentIntervalChannelCallbacks = {
-  callbacks: ConcurrentIntervalCallbacks;
-  callbacksOrder: ConcurrentIntervalId[];
+type SyncedIntervalChannelCallbacks = {
+  callbacks: SyncedIntervalCallbacks;
+  callbacksOrder: SyncedIntervalId[];
 };
-type ConcurrentIntervalChannelDelays = {
-  delays: ConcurrentIntervalDelays;
-  delaysOrder: ConcurrentIntervalId[];
+type SyncedIntervalChannelDelays = {
+  delays: SyncedIntervalDelays;
+  delaysOrder: SyncedIntervalId[];
 };
 
-type ConcurrentIntervalCallbacksState = Record<
-  ConcurrentIntervalChannel,
-  ConcurrentIntervalChannelCallbacks
->;
-type ConcurrentIntervalDelaysState = Record<
-  ConcurrentIntervalChannel,
-  ConcurrentIntervalChannelDelays
->;
+type SyncedIntervalCallbacksState = Record<SyncedIntervalChannel, SyncedIntervalChannelCallbacks>;
+type SyncedIntervalDelaysState = Record<SyncedIntervalChannel, SyncedIntervalChannelDelays>;
 
-const noopRemoveCallback: RemoveConcurrentIntervalCallback = () => {
+const noopRemoveCallback: RemoveSyncedIntervalCallback = () => {
   // do nothing
 };
 
-const noopRemoveDelay: RemoveConcurrentIntervalDelay = () => {
+const noopRemoveDelay: RemoveSyncedIntervalDelay = () => {
   // do nothing
 };
 
-const newIntervalChannelCallbacks = (): ConcurrentIntervalChannelCallbacks => ({
+const newIntervalChannelCallbacks = (): SyncedIntervalChannelCallbacks => ({
   callbacks: {},
   callbacksOrder: [],
 });
 
 const newIntervalChannelDelays = (
-  defaultDelay: ConcurrentIntervalDelay
-): ConcurrentIntervalChannelDelays => ({
+  defaultDelay: SyncedIntervalDelay
+): SyncedIntervalChannelDelays => ({
   delays: { default: defaultDelay },
   delaysOrder: ["default"],
 });
 
 interface IntervalContextType {
   setCallback: (
-    callback: ConcurrentIntervalCallback,
-    id: ConcurrentIntervalId,
-    channel?: ConcurrentIntervalChannel
-  ) => RemoveConcurrentIntervalCallback;
+    callback: SyncedIntervalCallback,
+    id: SyncedIntervalId,
+    channel?: SyncedIntervalChannel
+  ) => RemoveSyncedIntervalCallback;
   setDelay: (
-    delay: ConcurrentIntervalDelay,
-    id: ConcurrentIntervalId,
-    channel?: ConcurrentIntervalChannel
-  ) => RemoveConcurrentIntervalDelay;
+    delay: SyncedIntervalDelay,
+    id: SyncedIntervalId,
+    channel?: SyncedIntervalChannel
+  ) => RemoveSyncedIntervalDelay;
 }
 
-const ConcurrentIntervalContext = React.createContext<IntervalContextType>({
+const SyncedIntervalContext = React.createContext<IntervalContextType>({
   setCallback: () => {
     return () => {
-      throw new Error("ConcurrentIntervalProvider not initialized.");
+      throw new Error("SyncedIntervalProvider not initialized.");
     };
   },
   setDelay: () => {
-    throw new Error("ConcurrentIntervalProvider not initialized.");
+    throw new Error("SyncedIntervalProvider not initialized.");
   },
 });
 
-interface ConcurrentIntervalProviderProps {
+interface SyncedIntervalProviderProps {
   defaultDelay?: number | null;
 }
 
-export const ConcurrentIntervalProvider: React.FC<ConcurrentIntervalProviderProps> = ({
+export const SyncedIntervalProvider: React.FC<SyncedIntervalProviderProps> = ({
   children,
   defaultDelay = null,
 }) => {
-  const callbacksState = useRef<ConcurrentIntervalCallbacksState>({});
-  const [delaysState, setDelaysState] = useState<ConcurrentIntervalDelaysState>({});
+  const callbacksState = useRef<SyncedIntervalCallbacksState>({});
+  const [delaysState, setDelaysState] = useState<SyncedIntervalDelaysState>({});
 
   const setCallback = useCallback(
     (
-      callback: ConcurrentIntervalCallback,
-      id: ConcurrentIntervalId,
-      channel: ConcurrentIntervalChannel = "default"
-    ): RemoveConcurrentIntervalCallback => {
+      callback: SyncedIntervalCallback,
+      id: SyncedIntervalId,
+      channel: SyncedIntervalChannel = "default"
+    ): RemoveSyncedIntervalCallback => {
       if (IS_SSR) {
         return noopRemoveCallback;
       }
@@ -113,10 +107,10 @@ export const ConcurrentIntervalProvider: React.FC<ConcurrentIntervalProviderProp
 
   const setDelay = useCallback(
     (
-      delay: ConcurrentIntervalDelay,
-      id: ConcurrentIntervalId,
-      channel: ConcurrentIntervalChannel = "default"
-    ): RemoveConcurrentIntervalDelay => {
+      delay: SyncedIntervalDelay,
+      id: SyncedIntervalId,
+      channel: SyncedIntervalChannel = "default"
+    ): RemoveSyncedIntervalDelay => {
       if (IS_SSR) {
         return noopRemoveDelay;
       }
@@ -158,7 +152,7 @@ export const ConcurrentIntervalProvider: React.FC<ConcurrentIntervalProviderProp
 
   useEffect(() => {
     const intervalIds: number[] = [];
-    const channels: ConcurrentIntervalChannel[] = Object.keys(delaysState);
+    const channels: SyncedIntervalChannel[] = Object.keys(delaysState);
     channels.forEach((channel) => {
       const { delays, delaysOrder } = delaysState[channel];
       const lastDelayOrder = delaysOrder[delaysOrder.length - 1];
@@ -181,17 +175,17 @@ export const ConcurrentIntervalProvider: React.FC<ConcurrentIntervalProviderProp
   }, [delaysState]);
 
   return (
-    <ConcurrentIntervalContext.Provider value={{ setCallback, setDelay }}>
+    <SyncedIntervalContext.Provider value={{ setCallback, setDelay }}>
       {children}
-    </ConcurrentIntervalContext.Provider>
+    </SyncedIntervalContext.Provider>
   );
 };
 
-export const useConcurrentIntervalCallback = (
-  callback: ConcurrentIntervalCallback,
-  channel: ConcurrentIntervalChannel = "default"
+export const useSyncedIntervalCallback = (
+  callback: SyncedIntervalCallback,
+  channel: SyncedIntervalChannel = "default"
 ) => {
-  const { setCallback } = useContext(ConcurrentIntervalContext);
+  const { setCallback } = useContext(SyncedIntervalContext);
   const id = useUID();
 
   useEffect(() => {
@@ -200,11 +194,11 @@ export const useConcurrentIntervalCallback = (
   }, [callback, id, channel, setCallback]);
 };
 
-export const useConcurrentIntervalDelay = (
-  delay: ConcurrentIntervalDelay,
-  channel: ConcurrentIntervalChannel = "default"
+export const useSyncedIntervalDelay = (
+  delay: SyncedIntervalDelay,
+  channel: SyncedIntervalChannel = "default"
 ) => {
-  const { setDelay } = useContext(ConcurrentIntervalContext);
+  const { setDelay } = useContext(SyncedIntervalContext);
   const id = useUID();
 
   useEffect(() => {
@@ -213,12 +207,12 @@ export const useConcurrentIntervalDelay = (
   }, [delay, id, channel, setDelay]);
 };
 
-export const useConcurrentInterval = (
-  callback: ConcurrentIntervalCallback,
-  delay: ConcurrentIntervalDelay,
-  channel: ConcurrentIntervalChannel = "default"
+export const useSyncedInterval = (
+  callback: SyncedIntervalCallback,
+  delay: SyncedIntervalDelay,
+  channel: SyncedIntervalChannel = "default"
 ) => {
-  const { setCallback, setDelay } = useContext(ConcurrentIntervalContext);
+  const { setCallback, setDelay } = useContext(SyncedIntervalContext);
   const id = useUID();
 
   useEffect(() => {

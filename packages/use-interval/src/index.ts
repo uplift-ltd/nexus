@@ -1,14 +1,14 @@
 export {
-  ConcurrentIntervalProvider,
-  useConcurrentInterval,
-  useConcurrentIntervalCallback,
-  useConcurrentIntervalDelay,
-} from "./useConcurrentInterval";
+  SyncedIntervalProvider,
+  useSyncedInterval,
+  useSyncedIntervalCallback,
+  useSyncedIntervalDelay,
+} from "./useSyncedInterval";
 export type {
-  ConcurrentIntervalCallback,
-  ConcurrentIntervalDelay,
-  ConcurrentIntervalChannel,
-  RemoveConcurrentIntervalCallback,
-  RemoveConcurrentIntervalDelay,
-} from "./useConcurrentInterval";
+  SyncedIntervalCallback,
+  SyncedIntervalDelay,
+  SyncedIntervalChannel,
+  RemoveSyncedIntervalCallback,
+  RemoveSyncedIntervalDelay,
+} from "./useSyncedInterval";
 export { useInterval } from "./useInterval";

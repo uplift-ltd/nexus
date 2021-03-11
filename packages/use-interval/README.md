@@ -21,25 +21,25 @@ function MyComponent() {
 }
 ```
 
-### useConcurrentInterval
+### useSyncedInterval
 
 A hook for setting synced intervals. Use this if you have intervals in different parts of the app
 that should execute at the same time.
 
 ```tsx
-import { ConcurrentIntervalProvider, useConcurrentInterval } from "@uplift-ltd/use-interval";
+import { SyncedIntervalProvider, useSyncedInterval } from "@uplift-ltd/use-interval";
 
 function Root() {
   return (
-    <ConcurrentIntervalProvider defaultDelay={10000}>
+    <SyncedIntervalProvider defaultDelay={10000}>
       <SomeComponent />
       <OtherComponent />
-    </ConcurrentIntervalProvider>
+    </SyncedIntervalProvider>
   );
 }
 
 function SomeComponent() {
-  useConcurrentInterval(
+  useSyncedInterval(
     () => {
       console.log("Ping!");
     },
@@ -50,7 +50,7 @@ function SomeComponent() {
 }
 
 function OtherComponent() {
-  useConcurrentInterval(
+  useSyncedInterval(
     () => {
       console.log("Pong!");
     },
@@ -71,31 +71,31 @@ callbacks.
 The callbacks leverage a `ref` under the hood, so you technically don't have to use `useCallback`
 for the callback, but it is recommended. Changing the delay will cause a re-render.
 
-### useConcurrentIntervalCallback
+### useSyncedIntervalCallback
 
-Same as `useConcurrentInterval` but without specifying a delay. It will use the last delay specified
-of the `defaultDelay` passed to `ConcurrentIntervalProvider`.
+Same as `useSyncedInterval` but without specifying a delay. It will use the last delay specified of
+the `defaultDelay` passed to `SyncedIntervalProvider`.
 
 ```tsx
-import { useConcurrentIntervalCallback } from "@uplift-ltd/use-interval";
+import { useSyncedIntervalCallback } from "@uplift-ltd/use-interval";
 
 function OtherComponent() {
-  useConcurrentIntervalCallback(() => {
+  useSyncedIntervalCallback(() => {
     console.log("Pong!");
   }, "optionalChannel");
   return null;
 }
 ```
 
-### useConcurrentIntervalDelay
+### useSyncedIntervalDelay
 
-Same as `useConcurrentIntervalCallback` but only specifying the delay instead.
+Same as `useSyncedIntervalCallback` but only specifying the delay instead.
 
 ```tsx
-import { useConcurrentIntervalCallback } from "@uplift-ltd/use-interval";
+import { useSyncedIntervalCallback } from "@uplift-ltd/use-interval";
 
 function OtherComponent() {
-  useConcurrentIntervalCallback(3000, "optionalChannel");
+  useSyncedIntervalCallback(3000, "optionalChannel");
   return null;
 }
 ```
