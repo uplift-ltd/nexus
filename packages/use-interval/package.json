@@ -32,7 +32,7 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.2.0",
+    "@uplift-ltd/constants": "^1.2.1",
     "react-uid": "^2.3.1"
   }
 }
