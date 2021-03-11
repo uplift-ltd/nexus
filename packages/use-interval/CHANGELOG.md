@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.0.0...@uplift-ltd/use-interval@2.1.0) (2021-03-11)
+
+
+### Features
+
+* add synced interval hook ([#117](https://github.com/uplift-ltd/nexus/issues/117)) ([50aae17](https://github.com/uplift-ltd/nexus/commit/50aae17d1852d0180a755192265f810f90b9a570))
+
+
+
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@1.1.1...@uplift-ltd/use-interval@2.0.0) (2021-03-10)
 
 
