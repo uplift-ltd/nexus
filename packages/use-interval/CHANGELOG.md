@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.1.0...@uplift-ltd/use-interval@2.1.1) (2021-03-11)
+
+
+### Bug Fixes
+
+* interval constants version ([#118](https://github.com/uplift-ltd/nexus/issues/118)) ([ac1cf1b](https://github.com/uplift-ltd/nexus/commit/ac1cf1bfc9d843cf9ab50de434f1b1dc94eb03f2))
+
+
+
 ## [2.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.0.0...@uplift-ltd/use-interval@2.1.0) (2021-03-11)
 
 
