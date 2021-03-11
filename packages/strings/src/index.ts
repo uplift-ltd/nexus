@@ -26,6 +26,9 @@ export const safeJoin = (delimiter: string) => (...xs: unknown[]) =>
     })
     .join(delimiter);
 
+// fn to join all arguments with an empty string
+export const safeJoinTogether = safeJoin("");
+
 // fn to join all arguments with a single space
 export const safeJoinWithSpace = safeJoin(" ");
 

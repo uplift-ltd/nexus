@@ -89,6 +89,7 @@ component and join with the given delimiter. There are some pre-built safeJoin f
 ```ts
 import {
   safeJoin,
+  safeJoinTogether,
   safeJoinWithSpace,
   safeJoinWithComma,
   safeJoinWithEnDash,
@@ -97,6 +98,7 @@ import {
 
 safeJoin(":"); // => function that accepts variadic args to be joined
 safeJoin(":")("hello", "world"); // => "hello:world"
+safeJoinTogether("hello", "", false, "world"); // "helloworld"
 safeJoinWithSpace("hello", "", false, "world"); // "hello world"
 safeJoinWithComma("hello", "", false, "world"); // "hello, world"
 safeJoinWithEnDash("hello", "", false, "world"); // "hello–world"
