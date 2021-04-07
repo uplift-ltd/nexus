@@ -52,3 +52,13 @@ type RootStackParamList = {
   [Routes.AddToCalendar]: AddToCalendarNavigatorParamList[AddToCalendarScreens.ADD_TO_CALENDAR];
 };
 ```
+
+Add the calendar permissions for Android in `app.config.*.ts`:
+
+```ts
+{
+  android: {
+    permissions: ["READ_CALENDAR", "WRITE_CALENDAR"];
+  }
+}
+```
