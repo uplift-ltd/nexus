@@ -28,7 +28,7 @@ export const DebugNavigator: React.FC<DebugNavigatorProps> = ({ route }) => {
         name={DebugScreens.DEBUG_MAGIC_LOGIN}
         component={MagicLogin}
         options={{ title: "Magic Login" }}
-        initialParams={{}}
+        initialParams={{ verifyScreen: route.params.verifyScreen }}
       />
       <DebugStackNavigator.Screen
         name={DebugScreens.DEBUG_PUSH_TOKEN}
