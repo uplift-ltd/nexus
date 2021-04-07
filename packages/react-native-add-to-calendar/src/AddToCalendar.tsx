@@ -1,0 +1,192 @@
+import { MaterialIcons } from "@expo/vector-icons";
+import Sentry from "@uplift-ltd/sentry";
+import * as Calendar from "expo-calendar";
+
+import React, { useEffect, useState } from "react";
+import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+// expo-calendar doesn't export this
+type OptionalKeys<T> = {
+  [P in keyof T]?: T[P] | null;
+};
+
+type OptionalKeysEvent = OptionalKeys<Calendar.Event>;
+
+export interface AddToCalendarProps {
+  event: OptionalKeysEvent;
+  onEventAdded?: (calendar: Calendar.Calendar, event: OptionalKeysEvent) => void;
+  onRequestClose: () => void;
+}
+
+export const AddToCalendar: React.FC<AddToCalendarProps> = ({
+  event,
+  onEventAdded,
+  onRequestClose,
+}) => {
+  const [calendars, setCalendars] = useState<Calendar.Calendar[]>([]);
+  const [selectedCalendar, setSelectedCalendar] = useState<Calendar.Calendar | null>(null);
+
+  const writeableCalendars = calendars.filter((calendar) => calendar.allowsModifications);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { status } = await Calendar.requestCalendarPermissionsAsync();
+        if (status === "granted") {
+          const cals = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+          setCalendars(cals);
+        } else {
+          throw new Error("We need access to your calendars to add the event.");
+        }
+      } catch (err) {
+        Sentry.captureException(err);
+        Alert.alert(err.message);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    const primaryCalendar = calendars.filter((cal) => cal.isPrimary)[0];
+    const firstModifiableCalendar = calendars.filter((cal) => cal.allowsModifications)[0];
+
+    setSelectedCalendar(primaryCalendar ?? firstModifiableCalendar ?? null);
+  }, [calendars]);
+
+  const dates = [event.startDate, event.endDate]
+    .filter((d) => d)
+    .map((d) => new Date(d as string | Date));
+
+  return (
+    <View style={styles.root}>
+      <ScrollView style={styles.body} contentContainerStyle={styles.bodyContentContainer}>
+        <View style={styles.eventMeta}>
+          <Text style={styles.eventTitle}>{event.title}</Text>
+          <Text style={styles.eventDates}>
+            {dates.map((date) => date?.toLocaleString()).join(" – ")}
+          </Text>
+          {!!event.location && <Text style={styles.eventLocation}>{event.location}</Text>}
+          {!!event.url && <Text style={styles.eventUrl}>{event.location}</Text>}
+          {!!event.notes && <Text style={styles.eventNotes}>{event.notes}</Text>}
+        </View>
+        <View style={styles.calendars}>
+          {writeableCalendars.map((calendar, i) => (
+            <View
+              key={calendar.id}
+              style={[styles.calendar, i === writeableCalendars.length - 1 && styles.calendarLast]}
+            >
+              <TouchableOpacity
+                style={styles.calendarBody}
+                onPress={() => setSelectedCalendar(calendar)}
+                activeOpacity={0.7}
+              >
+                <View style={[styles.calendarColor, { backgroundColor: calendar.color }]} />
+                <Text style={styles.calendarTitle}>{calendar.title}</Text>
+                <MaterialIcons
+                  style={styles.calendarSelectedIcon}
+                  color={calendar === selectedCalendar ? "green" : "transparent"}
+                  name="check"
+                  size={24}
+                />
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+      <TouchableOpacity
+        style={styles.button}
+        disabled={!selectedCalendar}
+        onPress={async () => {
+          try {
+            if (!selectedCalendar) {
+              throw new Error("Please select a calendar to add the event to.");
+            }
+            await Calendar.createEventAsync(selectedCalendar.id, event);
+            onEventAdded?.(selectedCalendar, event);
+            onRequestClose();
+          } catch (err) {
+            Sentry.captureException(err);
+            Alert.alert(err.message);
+          }
+        }}
+      >
+        <SafeAreaView edges={["bottom", "left", "right"]}>
+          <Text style={styles.buttonText}>Add to Calendar</Text>
+        </SafeAreaView>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: "white",
+    flex: 1,
+  },
+  middle: {
+    flex: 1,
+  },
+  bodyContentContainer: {
+    flex: 1,
+  },
+  body: {},
+  eventMeta: {
+    padding: 16,
+  },
+  eventTitle: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  eventDates: {
+    color: "gray",
+    marginBottom: 10,
+  },
+  eventLocation: {
+    color: "gray",
+    marginBottom: 10,
+  },
+  eventUrl: {
+    color: "gray",
+    marginBottom: 10,
+  },
+  eventNotes: {
+    color: "gray",
+  },
+  calendars: {
+    marginTop: 20,
+  },
+  calendar: {
+    borderTopWidth: 1,
+    borderTopColor: "lightgray",
+  },
+  calendarLast: {
+    borderBottomWidth: 1,
+    borderBottomColor: "lightgray",
+  },
+  calendarBody: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+  calendarColor: {
+    borderRadius: 100,
+    height: 12,
+    width: 12,
+    marginRight: 10,
+  },
+  calendarTitle: {},
+  calendarSelectedIcon: {
+    marginLeft: "auto",
+  },
+  button: {
+    backgroundColor: "#1a202c",
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+  },
+  buttonText: {
+    color: "white",
+    textAlign: "center",
+  },
+});

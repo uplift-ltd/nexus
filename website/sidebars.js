@@ -11,6 +11,7 @@ module.exports = {
       "packages/money",
       "packages/nexus",
       "packages/push-notifications",
+      "packages/react-native-add-to-calendar",
       "packages/react-native-debug",
       "packages/react-native-screen-views",
       "packages/react-native-updates",
