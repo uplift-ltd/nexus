@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@1.3.1...@uplift-ltd/react-native-debug@1.3.2) (2021-04-07)
+
+
+### Bug Fixes
+
+* forward verifyScreen param to magic login screen ([#126](https://github.com/uplift-ltd/nexus/issues/126)) ([3e3b9f9](https://github.com/uplift-ltd/nexus/commit/3e3b9f9785c9a71eca56ab14a33e072d1430ad5f))
+
+
+
 ### [1.3.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@1.3.0...@uplift-ltd/react-native-debug@1.3.1) (2021-03-10)
 
 **Note:** Version bump only for package @uplift-ltd/react-native-debug
