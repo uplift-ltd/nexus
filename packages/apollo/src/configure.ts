@@ -13,6 +13,7 @@ import {
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
 import Sentry from "@uplift-ltd/sentry";
@@ -169,6 +170,15 @@ export const configureClient = ({
         batchInterval,
         batchKey,
         batchMax,
+      })
+    );
+  } else {
+    links.push(
+      new HttpLink({
+        uri: GRAPHQL_AUTH_URL,
+        credentials: "same-origin",
+        fetch,
+        fetchOptions,
       })
     );
   }
