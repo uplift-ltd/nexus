@@ -2,17 +2,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Sentry from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-// expo-calendar doesn't export this
-type OptionalKeys<T> = {
-  [P in keyof T]?: T[P] | null;
-};
-
-type OptionalKeysEvent = OptionalKeys<Calendar.Event>;
+import { useCalendars, useAddEventToCalendar } from "./hooks";
+import { OptionalKeysEvent } from "./types";
 
 export interface AddToCalendarProps {
   event: OptionalKeysEvent;
@@ -25,37 +21,18 @@ export const AddToCalendar: React.FC<AddToCalendarProps> = ({
   onEventAdded,
   onRequestClose,
 }) => {
-  const [calendars, setCalendars] = useState<Calendar.Calendar[]>([]);
+  const { writeableCalendars, primaryCalendar } = useCalendars();
+  const addEventToCalendar = useAddEventToCalendar();
+
   const [selectedCalendar, setSelectedCalendar] = useState<Calendar.Calendar | null>(null);
 
-  const writeableCalendars = calendars.filter((calendar) => calendar.allowsModifications);
-
   useEffect(() => {
-    (async () => {
-      try {
-        const { status } = await Calendar.requestCalendarPermissionsAsync();
-        if (status === "granted") {
-          const cals = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-          setCalendars(cals);
-        } else {
-          throw new Error("We need access to your calendars to add the event.");
-        }
-      } catch (err) {
-        Sentry.captureException(err);
-        Alert.alert(err.message);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    const primaryCalendar = calendars.filter((cal) => cal.isPrimary)[0];
-    const firstModifiableCalendar = calendars.filter((cal) => cal.allowsModifications)[0];
-
+    const firstModifiableCalendar = writeableCalendars[0];
     setSelectedCalendar(primaryCalendar ?? firstModifiableCalendar ?? null);
-  }, [calendars]);
+  }, [primaryCalendar, writeableCalendars]);
 
   const dates = [event.startDate, event.endDate]
-    .filter((d) => d)
+    .filter(Boolean)
     .map((d) => new Date(d as string | Date));
 
   return (
@@ -102,7 +79,8 @@ export const AddToCalendar: React.FC<AddToCalendarProps> = ({
             if (!selectedCalendar) {
               throw new Error("Please select a calendar to add the event to.");
             }
-            await Calendar.createEventAsync(selectedCalendar.id, event);
+
+            await addEventToCalendar(event, selectedCalendar);
             onEventAdded?.(selectedCalendar, event);
             onRequestClose();
           } catch (err) {
