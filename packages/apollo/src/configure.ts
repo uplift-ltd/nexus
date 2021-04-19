@@ -31,9 +31,11 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   cache?: ApolloCache<unknown>;
   fetch?: BatchHttpLink.Options["fetch"];
   fetchOptions?: BatchHttpLink.Options["fetchOptions"];
+  batch?: boolean;
   batchInterval?: BatchHttpLink.Options["batchInterval"];
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
+  extraLinks?: ApolloLink[];
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
@@ -50,9 +52,11 @@ export const configureClient = ({
   cache = new InMemoryCache(),
   fetch = defaultFetch,
   fetchOptions,
+  batch = true,
   batchInterval,
   batchKey,
   batchMax,
+  extraLinks = [],
   cookie,
   getToken,
   removeToken,
@@ -150,11 +154,10 @@ export const configureClient = ({
     };
   });
 
-  return new ApolloClient({
-    ssrMode: IS_SSR,
-    link: ApolloLink.from([
-      errorLink,
-      authLink,
+  const links: ApolloLink[] = [errorLink, authLink, ...extraLinks];
+
+  if (batch) {
+    links.push(
       new BatchHttpLink({
         uri: GRAPHQL_AUTH_URL,
         credentials: "same-origin",
@@ -163,8 +166,13 @@ export const configureClient = ({
         batchInterval,
         batchKey,
         batchMax,
-      }),
-    ]),
+      })
+    );
+  }
+
+  return new ApolloClient({
+    ssrMode: IS_SSR,
+    link: ApolloLink.from(links),
     cache,
     ...otherOptions,
   });
