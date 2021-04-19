@@ -13,6 +13,7 @@ import {
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
 import Sentry from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
@@ -154,7 +155,9 @@ export const configureClient = ({
     };
   });
 
-  const links: ApolloLink[] = [errorLink, authLink, ...extraLinks];
+  const retryLink = new RetryLink();
+
+  const links: ApolloLink[] = [errorLink, retryLink, authLink, ...extraLinks];
 
   if (batch) {
     links.push(
