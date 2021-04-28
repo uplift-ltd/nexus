@@ -2,8 +2,6 @@
 title: Fixing schema check
 ---
 
-### Fixing schema check
-
 The schema check could fail if your python dependencies are out of date with the branch. Typically
 you want to run:
 

@@ -2,8 +2,6 @@
 title: Fixing audit
 ---
 
-### Fixing audit error and warnings
-
 Yarn audit will tell you where the dependency is coming from. For example it could look something
 like this:
 
