@@ -34,7 +34,7 @@ const modules = ["@expo/vector-icons"]
   .filter(
     (m, i, self) =>
       // Remove duplicates and package names of the packages in the monorepo
-      self.lastIndexOf(m) === i && !m.startsWith("@react-navigation/")
+      self.lastIndexOf(m) === i && !m.startsWith("@uplift-ltd/")
   );
 
 module.exports = {

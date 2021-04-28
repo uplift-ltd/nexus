@@ -17,7 +17,7 @@ const AppNavigator = createStackNavigator<RootStackParamList>();
 function AppNavigation() {
   return (
     <NavigationContainer>
-      <AppNavigator.Navigator>
+      <AppNavigator.Navigator initialRouteName={Screens.HOME_SCREEN}>
         <AppNavigator.Screen
           name={Screens.HOME_SCREEN}
           component={HomeScreen}
