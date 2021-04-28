@@ -12,7 +12,7 @@ module.exports = {
     navbar: {
       title: "Nexus",
       logo: {
-        alt: "My Site Logo",
+        alt: "Uplift.ltd",
         src: "img/apple-touch-icon.png",
       },
       items: [
@@ -22,7 +22,6 @@ module.exports = {
           label: "Docs",
           position: "left",
         },
-        { to: "blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/uplift-ltd/nexus",
           label: "GitHub",
@@ -55,10 +54,6 @@ module.exports = {
           title: "More",
           items: [
             {
-              label: "Blog",
-              to: "blog",
-            },
-            {
               label: "GitHub",
               href: "https://github.com/uplift-ltd/nexus",
             },
@@ -76,11 +71,6 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl: "https://github.com/uplift-ltd/nexus/edit/master/website/",
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: "https://github.com/uplift-ltd/nexus/edit/master/website/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

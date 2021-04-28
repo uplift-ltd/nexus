@@ -22,7 +22,8 @@
     "prettier:write": "prettier --write \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
     "eslint:fix": "eslint packages --ext .js,.jsx,.ts,.tsx --cache --fix",
-    "update-docs": "cd website && yarn update-docs"
+    "update-docs": "cd website && yarn update-docs",
+    "docs": "cd website && yarn start"
   },
   "workspaces": [
     "packages/*"

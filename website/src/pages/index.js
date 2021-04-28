@@ -17,17 +17,14 @@ const features = [
     ),
   },
   {
-    title: <>Tailwind</>,
+    title: <>Time Saver</>,
     description: (
-      <>
-        Components are written with tailwind in mind, but the helpers and scripts can work with any
-        project.
-      </>
+      <>No need to re-invent the wheel, use the helper you need, or write one yourself.</>
     ),
   },
   {
-    title: <>Open Source</>,
-    description: <>Coming soon!</>,
+    title: <>Robust</>,
+    description: <>Tested in multiple projects, bugs can be fixed in one place.</>,
   },
 ];
 

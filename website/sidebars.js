@@ -2,6 +2,7 @@
 module.exports = {
   sidebar: {
     "Getting Started": ["getting-started/installation", "getting-started/contributing"],
+    FAQ: ["faq/audit", "faq/schema"],
     Packages: [
       "packages/apollo",
       "packages/constants",

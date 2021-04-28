@@ -75,7 +75,7 @@ tsconfig.json     <== if the package supports typescript it needs to configure i
 
 ### Publishing a new version
 
-[Run the publish workflow](https://github.com/uplift-ltd/nexus/actions?query=workflow%3Apublish).
+[Run the publish workflow](https://github.com/uplift-ltd/nexus/actions/workflows/publish.yml).
 
 Select the branch you want to publish from and enter `latest` or `prerelease` as the `distTag`.
 

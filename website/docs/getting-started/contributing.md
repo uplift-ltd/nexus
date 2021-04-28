@@ -14,28 +14,19 @@ tsconfig.json     <== if the package supports typescript it needs to configure i
 
 ## Publishing a new version
 
-We use [lerna](https://github.com/lerna/lerna) to manage packages.
+[Run the publish workflow](https://github.com/uplift-ltd/nexus/actions/workflows/publish.yml).
 
-You can either install lerna globally or run commands through yarn.
+Select the branch you want to publish from and enter `latest` or `prerelease` as the `distTag`.
 
-    yarn lerna version major|minor|patch
+For production release use `master` branch and `latest`.
 
-That will create new versions as needed and push the tags to GitHub.
+For prereleases use any branch and the `prerelease` dist tag.
 
-Next, create a GitHub release:
+The versioning is based on conventional commit history (see the Contributing section).
 
-1. Go to [tags](https://github.com/uplift-ltd/nexus/tags) in GitHub and find one for your release.
-2. Click on the triple dots on the right and select `Create Release`.
-3. Enter a description of what changed.
-4. Press `Publish Release`
+### Adding a new package
 
-Go to the [Actions tab](https://github.com/uplift-ltd/nexus/actions) to check progress.
-
-**Note:** If you publish multiple packages you should wait until the first one finishes publishing
-as it will publish all the changed packages. After the first one is done you can create GitHub
-releases for the other packages (or not, I'm not your mom).
-
-## Adding a new package
+See the documentation for `create-nexus-package`. To summarize:
 
 Create a new folder and `cd` to it.
 
@@ -52,14 +43,21 @@ if the package depends on `react` you may have to alias that to the app `react` 
 react versions (and hooks failing).
 
     cd packages/formik
-
     npm link
-
+    cd ../..
     npm link ../../../myapp/node_modules/react
-
     cd myapp
-
     npm link @uplift-ltd/formik
+
+Additionally you may need to alias `@apollo/client` _and_ its own `react` version to the app.
+
+    cd packages/apollo
+    npm link
+    cd ../..
+    npm link ../myapp/node_modules/react
+    npm link ../myapp/node_modules/@apollo/client
+    cd node_modules/@apollo/client
+    npm link ../../../myapp/node_modules/react
 
 Don't forget to run `yarn build` after every change.
 
