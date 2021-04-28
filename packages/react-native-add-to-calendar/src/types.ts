@@ -1,4 +1,3 @@
-import * as Calendar from "expo-calendar";
 import { AddToCalendarProps } from "./AddToCalendar";
 import { AddToCalendarHeaderProps } from "./AddToCalendarHeader";
 import { AddToCalendarScreens } from "./screens";
