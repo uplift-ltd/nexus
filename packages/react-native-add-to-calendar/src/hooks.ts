@@ -1,22 +1,36 @@
-import Sentry from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
 
-import { OptionalKeysEvent } from "./types";
+// expo-calendar doesn't export this
+type OptionalKeys<T> = {
+  [P in keyof T]?: T[P] | null;
+};
+
+export type OptionalKeysEvent = OptionalKeys<Calendar.Event>;
+
+const defaultOnPermissionsErrorHandler = (err: Error) => {
+  Alert.alert(err.message);
+};
 
 export type UseCalendarsParams = {
-  errorText?: string;
+  permissionsErrorText?: string;
+  onPermissionsError?: (err: Error) => void;
 };
 
 export type UseCalendarsResult = {
   calendars: Calendar.Calendar[];
   writeableCalendars: Calendar.Calendar[];
   primaryCalendar: Calendar.Calendar | undefined;
+  addEventToCalendar: (
+    event: OptionalKeysEvent,
+    calendar: Calendar.Calendar
+  ) => ReturnType<typeof Calendar.createEventAsync>;
 };
 
 export const useCalendars = ({
-  errorText = "We need access to your calendars to add the event.",
+  permissionsErrorText = "We need access to your calendars to add the event.",
+  onPermissionsError = defaultOnPermissionsErrorHandler,
 }: UseCalendarsParams = {}) => {
   const [calendars, setCalendars] = useState<Calendar.Calendar[]>([]);
 
@@ -28,27 +42,28 @@ export const useCalendars = ({
           const cals = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
           setCalendars(cals);
         } else {
-          throw new Error(errorText);
+          throw new Error(permissionsErrorText);
         }
       } catch (err) {
-        Sentry.captureException(err);
-        Alert.alert(err.message);
+        onPermissionsError(err);
       }
     })();
-  }, [errorText]);
+  }, [onPermissionsError, permissionsErrorText]);
+
+  const addEventToCalendar = useCallback(
+    (event: OptionalKeysEvent, calendar: Calendar.Calendar) => {
+      return Calendar.createEventAsync(calendar.id, event);
+    },
+    []
+  );
 
   return useMemo(
     () => ({
       calendars,
       writeableCalendars: calendars.filter((cal) => cal.allowsModifications),
       primaryCalendar: calendars.filter((cal) => cal.isPrimary)[0],
+      addEventToCalendar,
     }),
-    [calendars]
+    [calendars, addEventToCalendar]
   );
-};
-
-export const useAddEventToCalendar = () => {
-  return useCallback((event: OptionalKeysEvent, calendar: Calendar.Calendar) => {
-    return Calendar.createEventAsync(calendar.id, event);
-  }, []);
 };
