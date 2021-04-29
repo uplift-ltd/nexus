@@ -2,10 +2,8 @@ import Sentry from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import * as FileSystem from "expo-file-system";
 import * as IntentLauncher from "expo-intent-launcher";
-
 import * as Sharing from "expo-sharing";
 import { createEvent, DateArray, EventAttributes } from "ics";
-
 import { useCallback } from "react";
 import { Platform } from "react-native";
 
