@@ -13,6 +13,8 @@ import {
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
+import { HttpLink } from "@apollo/client/link/http";
+import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
 import Sentry from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
@@ -31,9 +33,11 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   cache?: ApolloCache<unknown>;
   fetch?: BatchHttpLink.Options["fetch"];
   fetchOptions?: BatchHttpLink.Options["fetchOptions"];
+  batch?: boolean;
   batchInterval?: BatchHttpLink.Options["batchInterval"];
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
+  extraLinks?: ApolloLink[];
   cookie?: string;
   getToken?: () => string | null | Promise<string | null>;
   removeToken?: () => void;
@@ -50,9 +54,11 @@ export const configureClient = ({
   cache = new InMemoryCache(),
   fetch = defaultFetch,
   fetchOptions,
+  batch = true,
   batchInterval,
   batchKey,
   batchMax,
+  extraLinks = [],
   cookie,
   getToken,
   removeToken,
@@ -150,11 +156,12 @@ export const configureClient = ({
     };
   });
 
-  return new ApolloClient({
-    ssrMode: IS_SSR,
-    link: ApolloLink.from([
-      errorLink,
-      authLink,
+  const retryLink = new RetryLink();
+
+  const links: ApolloLink[] = [errorLink, retryLink, authLink, ...extraLinks];
+
+  if (batch) {
+    links.push(
       new BatchHttpLink({
         uri: GRAPHQL_AUTH_URL,
         credentials: "same-origin",
@@ -163,8 +170,22 @@ export const configureClient = ({
         batchInterval,
         batchKey,
         batchMax,
-      }),
-    ]),
+      })
+    );
+  } else {
+    links.push(
+      new HttpLink({
+        uri: GRAPHQL_AUTH_URL,
+        credentials: "same-origin",
+        fetch,
+        fetchOptions,
+      })
+    );
+  }
+
+  return new ApolloClient({
+    ssrMode: IS_SSR,
+    link: ApolloLink.from(links),
     cache,
     ...otherOptions,
   });
