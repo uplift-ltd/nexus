@@ -8,6 +8,75 @@ title: react-native-add-to-calendar
 
 ## API
 
+### useCalendars
+
+Hook that exposes some common calendaring helpers and automatically requests the proper permissions.
+
+```tsx
+import { useCalendars } from "uplift-ltd/react-native-add-to-calendar";
+
+const Event = ({ event }) => {
+  const { writeableCalendars, addEventToCalendar } = useCalendars();
+
+  const handleAddEvent = useCallback(
+    async (calendar: Calendar.Calendar) => {
+      try {
+        await addEventToCalendar(event, calendar);
+        Alert.alert("Event added!");
+      } catch (err) {
+        Alert.alert(err.message);
+      }
+    },
+    [addEventToCalendar, event]
+  );
+
+  return (
+    <View>
+      {writeableCalendars.map((cal) => (
+        <Pressable key={cal.id} onPress={() => handleAddEvent(cal)}>
+          <Text>{cal.title}</Text>
+        </Pressable>
+      ))}
+    </View>
+  );
+};
+```
+
+### useShareIcs
+
+Hook that gives convenient access to sharing an ICS file. This is a nicer method of adding events to
+the calendar for Android that doesn't require extra permissions.
+
+```tsx
+import { useShareIcs } from "uplift-ltd/react-native-add-to-calendar";
+
+const Event = ({ event }) => {
+  const shareIcs = useShareIcs();
+
+  const handleAddEvent = useCallback(
+    async (event: Calendar.Event) => {
+      try {
+        await shareIcs(event);
+        Alert.alert("Event added!");
+      } catch (err) {
+        Alert.alert(err.message);
+      }
+    },
+    [shareIcs, event]
+  );
+
+  return (
+    <View>
+      {events.map((e) => (
+        <Pressable key={e.id} onPress={() => handleAddEvent(e)}>
+          <Text>{e.title}</Text>
+        </Pressable>
+      ))}
+    </View>
+  );
+};
+```
+
 ### AddToCalendarScreen
 
 Add the screen to the Main/Root stack navigator (as a react-navigation modal).
