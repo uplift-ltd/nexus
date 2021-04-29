@@ -8,6 +8,7 @@ const _ = require("lodash");
   const packageJsonPaths = readmePaths.map((readmePath) =>
     readmePath.replace("README.md", "package.json")
   );
+  const faqPaths = (await globby(path.resolve(__dirname, "../docs/faq/*.md"))).sort();
 
   const packages = await Promise.all(
     readmePaths.map(async (readmePath, i) => {
@@ -29,9 +30,14 @@ const _ = require("lodash");
     })
   );
 
+  const faqs = faqPaths.map((faqPath) => ({
+    filename: path.basename(faqPath, ".md"),
+  }));
+
   const sidebars = {
     sidebar: {
       "Getting Started": ["getting-started/installation", "getting-started/contributing"],
+      FAQ: faqs.map(({ filename }) => `faq/${filename}`),
       Packages: packages.map(({ filename }) => `packages/${filename}`),
     },
   };
