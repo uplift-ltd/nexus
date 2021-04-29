@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@1.1.1...@uplift-ltd/apollo@1.2.0) (2021-04-29)
+
+
+### Features
+
+* add retry, configure batch, support extra links ([#130](https://github.com/uplift-ltd/nexus/issues/130)) ([991bc89](https://github.com/uplift-ltd/nexus/commit/991bc8900e1daa158fd060f5a0c4e1da903213f6))
+
+
+
 ### [1.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@1.1.0...@uplift-ltd/apollo@1.1.1) (2021-03-10)
 
 **Note:** Version bump only for package @uplift-ltd/apollo
