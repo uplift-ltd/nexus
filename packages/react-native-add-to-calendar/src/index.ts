@@ -12,4 +12,3 @@ export { useCalendars } from "./useCalendars";
 export type { OptionalKeysEvent, UseCalendarsParams, UseCalendarsResult } from "./useCalendars";
 
 export { useShareIcs } from "./useShareIcs";
-export type { CalendarEvent } from "./useShareIcs";
