@@ -7,7 +7,7 @@ import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useCalendars, OptionalKeysEvent } from "./hooks";
+import { useCalendars, OptionalKeysEvent } from "./useCalendars";
 
 const reportAndDisplayError = (err: Error) => {
   Sentry.captureException(err);

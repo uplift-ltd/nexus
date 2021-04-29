@@ -1,3 +1,4 @@
+import Sentry from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
@@ -29,8 +30,8 @@ export type UseCalendarsResult = {
 };
 
 export const useCalendars = ({
-  permissionsErrorText = "We need access to your calendars to add the event.",
   onPermissionsError = defaultOnPermissionsErrorHandler,
+  permissionsErrorText = "We need access to your calendars to add the event.",
 }: UseCalendarsParams = {}) => {
   const [calendars, setCalendars] = useState<Calendar.Calendar[]>([]);
 
@@ -45,6 +46,7 @@ export const useCalendars = ({
           throw new Error(permissionsErrorText);
         }
       } catch (err) {
+        Sentry.captureException(err);
         onPermissionsError(err);
       }
     })();
