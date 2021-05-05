@@ -16,6 +16,7 @@ const isStringOrNumber = (variableToCheck: unknown): variableToCheck is string |
 // safeJoin :: String -> [a] -> String
 export const safeJoin = (delimiter: string) => (...xs: unknown[]) =>
   xs
+    .flat()
     .filter(isStringOrNumber)
     .map((x) => {
       if (typeof x === "number") {
