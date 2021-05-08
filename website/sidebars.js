@@ -28,6 +28,7 @@ module.exports = {
       "packages/use-keyboard-visible",
       "packages/use-on-page-scroll",
       "packages/use-safe-timeout",
+      "packages/use-user-context",
     ],
   },
 };

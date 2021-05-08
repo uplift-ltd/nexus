@@ -17,7 +17,7 @@ interface ExtraOptions {
   auth?: boolean;
 }
 
-type EnhancedQueryResult<TData, TVariables> = QueryResult<TData, TVariables> & {
+export type EnhancedQueryResult<TData, TVariables> = QueryResult<TData, TVariables> & {
   initialLoading: boolean;
   refetching: boolean;
   fetchingMore: boolean;
