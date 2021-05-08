@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@1.1.0...@uplift-ltd/sentry@1.2.0) (2021-05-08)
+
+
+### Features
+
+* add support for nextjs env vars ([#136](https://github.com/uplift-ltd/nexus/issues/136)) ([42ad33b](https://github.com/uplift-ltd/nexus/commit/42ad33bd9122c8baeea1276da75b0e1cb75f014d))
+
+
+
 ## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@1.0.1...@uplift-ltd/sentry@1.1.0) (2021-02-16)
 
 

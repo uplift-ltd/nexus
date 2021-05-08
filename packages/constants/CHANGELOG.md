@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.2.1...@uplift-ltd/constants@1.3.0) (2021-05-08)
+
+
+### Features
+
+* add support for nextjs env vars ([#136](https://github.com/uplift-ltd/nexus/issues/136)) ([42ad33b](https://github.com/uplift-ltd/nexus/commit/42ad33bd9122c8baeea1276da75b0e1cb75f014d))
+
+
+
 ### [1.2.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.2.0...@uplift-ltd/constants@1.2.1) (2021-03-10)
 
 **Note:** Version bump only for package @uplift-ltd/constants

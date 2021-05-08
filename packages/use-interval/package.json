@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/use-interval",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "use-interval",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -32,7 +32,7 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.2.1",
+    "@uplift-ltd/constants": "^1.3.0",
     "react-uid": "^2.3.1"
   }
 }
