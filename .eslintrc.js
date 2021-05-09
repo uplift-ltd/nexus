@@ -87,7 +87,7 @@ module.exports = {
 
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/init-declarations.md
     "init-declarations": "off",
-    "@typescript-eslint/init-declarations": ["error"],
+    "@typescript-eslint/init-declarations": "off",
 
     camelcase: 0,
     "@typescript-eslint/camelcase": 0,
