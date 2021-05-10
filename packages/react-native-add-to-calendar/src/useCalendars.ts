@@ -3,13 +3,6 @@ import * as Calendar from "expo-calendar";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
 
-// expo-calendar doesn't export this
-type OptionalKeys<T> = {
-  [P in keyof T]?: T[P] | null;
-};
-
-export type OptionalKeysEvent = OptionalKeys<Calendar.Event>;
-
 const defaultOnPermissionsErrorHandler = (err: Error) => {
   Alert.alert(err.message);
 };
@@ -24,7 +17,7 @@ export type UseCalendarsResult = {
   writeableCalendars: Calendar.Calendar[];
   primaryCalendar: Calendar.Calendar | undefined;
   addEventToCalendar: (
-    event: OptionalKeysEvent,
+    event: Calendar.Event,
     calendar: Calendar.Calendar
   ) => ReturnType<typeof Calendar.createEventAsync>;
 };
@@ -52,12 +45,9 @@ export const useCalendars = ({
     })();
   }, [onPermissionsError, permissionsErrorText]);
 
-  const addEventToCalendar = useCallback(
-    (event: OptionalKeysEvent, calendar: Calendar.Calendar) => {
-      return Calendar.createEventAsync(calendar.id, event);
-    },
-    []
-  );
+  const addEventToCalendar = useCallback((event: Calendar.Event, calendar: Calendar.Calendar) => {
+    return Calendar.createEventAsync(calendar.id, event);
+  }, []);
 
   return useMemo(
     () => ({
