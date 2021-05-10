@@ -9,6 +9,6 @@ export { AddToCalendarScreens } from "./screens";
 export type { AddToCalendarNavigatorParamList } from "./types";
 
 export { useCalendars } from "./useCalendars";
-export type { OptionalKeysEvent, UseCalendarsParams, UseCalendarsResult } from "./useCalendars";
+export type { UseCalendarsParams, UseCalendarsResult } from "./useCalendars";
 
 export { useShareIcs } from "./useShareIcs";

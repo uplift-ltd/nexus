@@ -7,7 +7,7 @@ import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useCalendars, OptionalKeysEvent } from "./useCalendars";
+import { useCalendars } from "./useCalendars";
 
 const reportAndDisplayError = (err: Error) => {
   Sentry.captureException(err);
@@ -15,8 +15,8 @@ const reportAndDisplayError = (err: Error) => {
 };
 
 export interface AddToCalendarProps {
-  event: OptionalKeysEvent;
-  onEventAdded?: (calendar: Calendar.Calendar, event: OptionalKeysEvent) => void;
+  event: Calendar.Event;
+  onEventAdded?: (calendar: Calendar.Calendar, event: Calendar.Event) => void;
   onRequestClose: () => void;
 }
 
