@@ -1,5 +1,5 @@
 import { StackNavigationOptions, StackScreenProps } from "@react-navigation/stack";
-import React from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { AddToCalendar } from "./AddToCalendar";
 import { AddToCalendarHeader } from "./AddToCalendarHeader";
@@ -12,13 +12,13 @@ export type AddToCalendarScreenProps = StackScreenProps<
 >;
 
 export const AddToCalendarScreen: React.FC<AddToCalendarScreenProps> = ({ navigation, route }) => {
+  const { event } = route.params;
+  const handleClose = useCallback(() => navigation.pop(), [navigation]);
+
   return (
     <View style={styles.root}>
-      <AddToCalendarHeader
-        sharePath={route.params.sharePath}
-        onRequestClose={() => navigation.pop()}
-      />
-      <AddToCalendar event={route.params.event} onRequestClose={() => navigation.pop()} />
+      <AddToCalendarHeader event={event} onRequestClose={handleClose} />
+      <AddToCalendar event={event} onRequestClose={handleClose} />
     </View>
   );
 };
