@@ -24,13 +24,13 @@ export const useShareIcs = () => {
 
       if (Platform.OS === "android") {
         const fileUri = await FileSystem.getContentUriAsync(filePath);
-        return IntentLauncher.startActivityAsync("android.intent.action.VIEW", {
+        return await IntentLauncher.startActivityAsync("android.intent.action.VIEW", {
           data: fileUri,
           flags: 1,
         });
       }
       // assumed iOS
-      return Sharing.shareAsync(filePath);
+      return await Sharing.shareAsync(filePath);
     } catch (err) {
       Sentry.captureException(err);
       throw err;
