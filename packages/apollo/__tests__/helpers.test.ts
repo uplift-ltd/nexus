@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 import { getQueryName } from "../src/helpers";
 
 const CURRENT_USER_QUERY = gql`

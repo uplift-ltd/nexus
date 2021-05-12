@@ -48,13 +48,50 @@ module.exports = {
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-redeclare.md
     "no-redeclare": "off",
     "@typescript-eslint/no-redeclare": ["error"],
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["error"],
+
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "error",
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-duplicate-imports.md
+    "no-duplicate-imports": "off",
+    "@typescript-eslint/no-duplicate-imports": "error",
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": ["error"],
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implied-eval.md
+    "no-implied-eval": "off",
+    "@typescript-eslint/no-implied-eval": ["error"],
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/return-await.md
+    "return-await": "off",
+    "@typescript-eslint/return-await": ["error"],
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-this.md
+    "no-invalid-this": "off",
+    "@typescript-eslint/no-invalid-this": ["error"],
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/init-declarations.md
+    "init-declarations": "off",
+    "@typescript-eslint/init-declarations": "off",
+
+    camelcase: 0,
     "@typescript-eslint/camelcase": 0,
+
     "@typescript-eslint/indent": 0,
     "@typescript-eslint/member-delimiter-style": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
@@ -76,6 +113,7 @@ module.exports = {
       files: ["*.ts", "*.tsx"],
       rules: {
         "react/prop-types": 0,
+        "react/require-default-props": 0,
       },
     },
     {
