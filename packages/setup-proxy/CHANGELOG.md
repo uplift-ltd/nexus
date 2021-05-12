@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.1.0...@uplift-ltd/setup-proxy@1.2.0) (2021-05-12)
+
+
+### Features
+
+* add nextjs proxy rewrites ([#138](https://github.com/uplift-ltd/nexus/issues/138)) ([c299b4a](https://github.com/uplift-ltd/nexus/commit/c299b4af47c32eee449b9e405e0e0e67f74b49b3))
+
+
+
 ## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.0.1...@uplift-ltd/setup-proxy@1.1.0) (2021-02-16)
 
 

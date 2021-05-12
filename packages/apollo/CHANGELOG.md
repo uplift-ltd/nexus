@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@1.3.0...@uplift-ltd/apollo@1.4.0) (2021-05-12)
+
+
+### Features
+
+* add user context helpers ([#137](https://github.com/uplift-ltd/nexus/issues/137)) ([f05c2e8](https://github.com/uplift-ltd/nexus/commit/f05c2e81252a6163b5e4eced7a6466681ba6cc76))
+
+
+
 ## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@1.2.0...@uplift-ltd/apollo@1.3.0) (2021-05-08)
 
 
