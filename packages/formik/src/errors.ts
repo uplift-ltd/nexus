@@ -15,10 +15,10 @@ export interface ApplyErrorsToFieldsOptions {
  * Applies an array of field level errors from graphene to our formik fields for
  * display to the user.
  */
-export const getApplyErrorsToFields = (
-  setErrors: FormikHelpers<unknown>["setErrors"],
+export const getApplyErrorsToFields = (setErrors: FormikHelpers<unknown>["setErrors"]) => (
+  errors: GrapheneFieldError[],
   { mapFieldName }: ApplyErrorsToFieldsOptions
-) => (errors: GrapheneFieldError[]) => {
+) => {
   setErrors(
     errors.reduce((acc, err) => {
       const errField = typeof mapFieldName === "function" ? mapFieldName(err.field) : err.field;
@@ -31,5 +31,5 @@ export const getApplyErrorsToFields = (
 };
 
 export interface ErrorHelpers {
-  applyErrorsToFields: (errors: GrapheneFieldError[]) => void;
+  applyErrorsToFields: (errors: GrapheneFieldError[], options: ApplyErrorsToFieldsOptions) => void;
 }
