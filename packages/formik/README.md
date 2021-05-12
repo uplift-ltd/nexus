@@ -94,11 +94,12 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 />;
 ```
 
-`applyErrorsToFields` also accept a second optional argument of form `{ mapFieldName }`. It is a function used when the FE and BE field names don't match.
+`applyErrorsToFields` also accept a second optional argument of form `{ mapFieldName }`. It is a
+function used when the FE and BE field names don't match.
 
 ```tsx
 applyErrorsToFields(errors || [], {
-  mapFieldName: field => (field in FieldMap ? FieldMap[field] : field),
+  mapFieldName: (field) => (field in FieldMap ? FieldMap[field] : field),
 });
 ```
 
