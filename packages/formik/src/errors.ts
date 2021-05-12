@@ -17,10 +17,11 @@ export interface ApplyErrorsToFieldsOptions {
  */
 export const getApplyErrorsToFields = (setErrors: FormikHelpers<unknown>["setErrors"]) => (
   errors: GrapheneFieldError[],
-  { mapFieldName }: ApplyErrorsToFieldsOptions
+  options?: ApplyErrorsToFieldsOptions
 ) => {
   setErrors(
     errors.reduce((acc, err) => {
+      const { mapFieldName } = options || {};
       const errField = typeof mapFieldName === "function" ? mapFieldName(err.field) : err.field;
       return {
         ...acc,
