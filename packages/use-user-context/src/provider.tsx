@@ -14,20 +14,15 @@ interface CurrentUserQueryShape {
 
 interface UserContextProviderProps {
   children: React.ReactNode;
-  getToken?: () => string | undefined;
   authenticatedQuery: DocumentNode;
   currentUserQuery: DocumentNode;
+  skip?: boolean;
 }
 
 export function UserContextProvider<
   AuthenticatedQueryResult extends AuthenticatedQueryShape,
   CurrentUserQueryResult extends CurrentUserQueryShape
->({
-  children,
-  getToken = () => "token", // return truthy so we don't disable the query if this is not passed in
-  authenticatedQuery,
-  currentUserQuery,
-}: UserContextProviderProps) {
+>({ children, authenticatedQuery, currentUserQuery, skip = false }: UserContextProviderProps) {
   const {
     loading: authenticatedLoading,
     error: authenticatedError,
@@ -39,7 +34,7 @@ export function UserContextProvider<
     error: currentUserError,
     data: currentUserData,
   } = useEnhancedQuery<CurrentUserQueryResult>(currentUserQuery, {
-    skip: Boolean(getToken()),
+    skip,
   });
 
   const loading = authenticatedLoading || currentUserLoading;
