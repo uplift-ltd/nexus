@@ -94,6 +94,8 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 />;
 ```
 
+`applyErrorsToFields` also accept a second optional argument of form `{ mapFieldName }`. It is a function used when the FE and BE field names don't match.
+
 ### EnhancedField / useEnhancedField
 
 Enhancement that allows you to hide field errors when the input gains focus. It does this by setting
