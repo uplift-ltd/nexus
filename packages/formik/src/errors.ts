@@ -31,5 +31,5 @@ export const getApplyErrorsToFields = (setErrors: FormikHelpers<unknown>["setErr
 };
 
 export interface ErrorHelpers {
-  applyErrorsToFields: (errors: GrapheneFieldError[], options: ApplyErrorsToFieldsOptions) => void;
+  applyErrorsToFields: (errors: GrapheneFieldError[], options?: ApplyErrorsToFieldsOptions) => void;
 }
