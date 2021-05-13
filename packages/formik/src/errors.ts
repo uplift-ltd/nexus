@@ -11,7 +11,7 @@ export interface ApplyErrorsToFieldsOptions {
   mapFieldName?: (fieldName: string) => string;
 }
 
-const identity = (field: string) => field;
+const identity = <T extends unknown> (field: T) => field;
 
 /**
  * Applies an array of field level errors from graphene to our formik fields for
