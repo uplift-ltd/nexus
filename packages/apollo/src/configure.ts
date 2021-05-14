@@ -156,7 +156,11 @@ export const configureClient = ({
     };
   });
 
-  const retryLink = new RetryLink();
+  const retryLink = new RetryLink({
+    attempts: {
+      max: IS_SSR ? 1 : 5,
+    },
+  });
 
   const links: ApolloLink[] = [errorLink, retryLink, authLink, ...extraLinks];
 
