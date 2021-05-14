@@ -11,6 +11,7 @@ export const GITHUB_RUN_NUMBER = process.env.GITHUB_RUN_NUMBER || "";
 export const GRAPHQL_TOKEN =
   process.env.NEXT_PUBLIC_GRAPHQL_TOKEN || process.env.REACT_APP_GRAPHQL_TOKEN || "GRAPHQL_TOKEN";
 export const GRAPHQL_HOST =
+  process.env.GRAPHQL_HOST ||
   process.env.NEXT_PUBLIC_GRAPHQL_HOST ||
   process.env.REACT_APP_GRAPHQL_HOST ||
   "http://localhost:5000";
