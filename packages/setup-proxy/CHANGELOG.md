@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.2.0...@uplift-ltd/setup-proxy@1.3.0) (2021-05-15)
+
+
+### Features
+
+* add support for ssr-only graphql host ([#145](https://github.com/uplift-ltd/nexus/issues/145)) ([aa87172](https://github.com/uplift-ltd/nexus/commit/aa871729305ed4078801ab8b8e28384b466a559a))
+
+
+
 ## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.1.0...@uplift-ltd/setup-proxy@1.2.0) (2021-05-12)
 
 
