@@ -1,9 +1,9 @@
 import Sentry from "@uplift-ltd/sentry";
-import { Formik, FormikValues } from "formik";
+import { Formik, FormikValues, isFunction } from "formik";
 import React from "react";
 import { getApplyErrorsToFields } from "./errors";
 import { DEFAULT_INITIAL_STATUS, getSetFormSuccess, getSetFormError } from "./status";
-import { FormikConfigWithOverrides, isFunction, EnhancedFormikExtraProps } from "./types";
+import { FormikConfigWithOverrides, EnhancedFormikExtraProps } from "./types";
 
 export function EnhancedFormik<
   Values extends FormikValues = FormikValues,
