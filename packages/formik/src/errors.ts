@@ -7,23 +7,33 @@ export interface GrapheneFieldError {
   messages: string[];
 }
 
+export interface ApplyErrorsToFieldsOptions {
+  mapFieldName?: (fieldName: string) => string;
+}
+
+const identity = <T extends unknown>(field: T) => field;
+
 /**
  * Applies an array of field level errors from graphene to our formik fields for
  * display to the user.
  */
 export const getApplyErrorsToFields = (setErrors: FormikHelpers<unknown>["setErrors"]) => (
-  errors: GrapheneFieldError[]
+  errors?: GrapheneFieldError[],
+  { mapFieldName = identity }: ApplyErrorsToFieldsOptions = {}
 ) => {
   setErrors(
-    errors.reduce((acc, err) => {
+    errors?.reduce((acc, err) => {
       return {
         ...acc,
-        [err.field]: safeJoinWithComma(err.messages),
+        [mapFieldName(err.field)]: safeJoinWithComma(err.messages),
       };
-    }, {})
+    }, {}) || []
   );
 };
 
 export interface ErrorHelpers {
-  applyErrorsToFields: (errors: GrapheneFieldError[]) => void;
+  applyErrorsToFields: (
+    errors?: GrapheneFieldError[],
+    options?: ApplyErrorsToFieldsOptions
+  ) => void;
 }

@@ -31,3 +31,5 @@ esm/
 # yarn doesn't link the nexus bin if the file doesn't exist on install, so we check these files in
 !packages/nexus/cjs/
 !packages/nexus/esm/
+
+.idea
