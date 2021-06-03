@@ -4,44 +4,34 @@ import React, { useEffect } from "react";
 import { UserContext } from "./context";
 import { CurrentUserShape } from "./types";
 
-interface AuthenticatedQueryShape {
-  isAuthenticated: boolean;
-}
-
 interface CurrentUserQueryShape {
+  isAuthenticated: boolean;
   currentUser: CurrentUserShape | null;
 }
 
 interface UserContextProviderProps {
   children: React.ReactNode;
-  authenticatedQuery: DocumentNode;
   currentUserQuery: DocumentNode;
   skip?: boolean;
 }
 
-export function UserContextProvider<
-  AuthenticatedQueryResult extends AuthenticatedQueryShape,
-  CurrentUserQueryResult extends CurrentUserQueryShape
->({ children, authenticatedQuery, currentUserQuery, skip = false }: UserContextProviderProps) {
-  const {
-    loading: authenticatedLoading,
-    error: authenticatedError,
-    data: authenticatedData,
-  } = useEnhancedQuery<AuthenticatedQueryResult>(authenticatedQuery, {}, { auth: false });
+export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQueryShape>({
+  children,
+  currentUserQuery,
+  skip = false,
+}: UserContextProviderProps) {
+  const { loading, error, data } = useEnhancedQuery<CurrentUserQueryResult>(
+    currentUserQuery,
+    {
+      skip,
+    },
+    {
+      auth: false,
+    }
+  );
 
-  const {
-    loading: currentUserLoading,
-    error: currentUserError,
-    data: currentUserData,
-  } = useEnhancedQuery<CurrentUserQueryResult>(currentUserQuery, {
-    skip,
-  });
-
-  const loading = authenticatedLoading || currentUserLoading;
-  const error = authenticatedError || currentUserError;
-
-  const isAuthenticated = authenticatedData ? authenticatedData.isAuthenticated : false;
-  const currentUser = currentUserData ? currentUserData.currentUser : null;
+  const isAuthenticated = data ? data.isAuthenticated : false;
+  const currentUser = data ? data.currentUser : null;
 
   useEffect(() => {
     if (currentUser) {

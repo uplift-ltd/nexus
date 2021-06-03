@@ -11,17 +11,11 @@
 ```tsx
 import { gql } from "@uplift-ltd/apollo";
 import { UserContextProvider } from "@uplift-ltd/use-user-context";
-import { Authenticated } from "./__generated__/Authenticated";
 import { CurrentUser } from "./__generated__/CurrentUser";
-
-const AUTHENTICATED_QUERY = gql`
-  query Authenticated {
-    isAuthenticated
-  }
-`;
 
 const CURRENT_USER_QUERY = gql`
   query CurrentUser {
+    isAuthenticated
     currentUser: me {
       id
       email
@@ -31,11 +25,7 @@ const CURRENT_USER_QUERY = gql`
 
 function MyApp() {
   return (
-    <UserContextProvider<Authenticated, CurrentUser>
-      getToken={getToken}
-      authenticatedQuery={AUTHENTICATED_QUERY}
-      currentUserQuery={CURRENT_USER_QUERY}
-    >
+    <UserContextProvider<CurrentUser> getToken={getToken} currentUserQuery={CURRENT_USER_QUERY}>
       <div />
     </UserContextProvider>
   );
