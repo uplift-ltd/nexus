@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.2.0...@uplift-ltd/graphene@1.3.0) (2021-06-04)
+
+
+### Features
+
+* accept null edge for mapNodes ([#151](https://github.com/uplift-ltd/nexus/issues/151)) ([64ba707](https://github.com/uplift-ltd/nexus/commit/64ba7077b6da3163c8cd765c190f9b3aace10f37))
+
+
+
 ## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.1.0...@uplift-ltd/graphene@1.2.0) (2021-02-17)
 
 
