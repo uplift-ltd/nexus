@@ -32,3 +32,6 @@ export const GRAPHQL_UNAUTH_URL =
   (IS_SSR || IS_REACT_NATIVE
     ? `${GRAPHQL_HOST}${GRAPHQL_UNAUTH_ENDPOINT}`
     : GRAPHQL_UNAUTH_ENDPOINT);
+
+export const S3_UPLOAD_URL =
+  process.env.NEXT_PUBLIC_S3_UPLOAD_URL || process.env.REACT_APP_S3_UPLOAD_URL || "/upload/s3";
