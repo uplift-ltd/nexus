@@ -1,7 +1,7 @@
 {
-  "name": "@uplift-ltd/use-file-upload",
+  "name": "@uplift-ltd/file-uploads",
   "version": "1.0.0",
-  "description": "use-file-upload",
+  "description": "file-uploads",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
@@ -17,12 +17,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uplift-ltd/nexus.git",
-    "directory": "packages/use-file-upload"
+    "directory": "packages/file-uploads"
   },
   "bugs": {
-    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-file-upload"
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:file-uploads"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/use-file-upload",
+  "homepage": "https://nexus.uplift.sh/docs/packages/file-uploads",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

@@ -7,6 +7,7 @@ module.exports = {
       "packages/apollo",
       "packages/constants",
       "packages/create-nexus-package",
+      "packages/file-uploads",
       "packages/formik",
       "packages/graphene",
       "packages/money",
