@@ -23,10 +23,12 @@
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
     "eslint:fix": "eslint packages --ext .js,.jsx,.ts,.tsx --cache --fix",
     "update-docs": "cd website && yarn update-docs",
-    "docs": "cd website && yarn start"
+    "docs": "cd website && yarn start",
+    "example:mobile": "yarn --cwd examples/mobile"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "husky": {
     "hooks": {
@@ -101,6 +103,7 @@
     "react-native-gesture-handler": "~1.8.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.0",
+    "sentry-expo": "^2.1.2",
     "typescript": "^4.1.5"
   }
 }

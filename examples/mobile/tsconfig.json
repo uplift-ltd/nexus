@@ -1,11 +1,33 @@
 {
   "extends": "../../tsconfig.json",
   "references": [
-    { "path": "../packages/react-native-add-to-calendar" },
-    { "path": "../packages/react-native-debug" },
-    { "path": "../packages/react-native-screen-views" },
-    { "path": "../packages/react-native-updates" },
-    { "path": "../packages/use-keyboard-visible" }
+    { "path": "../../packages/apollo" },
+    { "path": "../../packages/constants" },
+    { "path": "../../packages/create-nexus-package" },
+    { "path": "../../packages/formik" },
+    { "path": "../../packages/graphene" },
+    { "path": "../../packages/helpers" },
+    { "path": "../../packages/money" },
+    { "path": "../../packages/nexus" },
+    { "path": "../../packages/push-notifications" },
+    { "path": "../../packages/react-native-add-to-calendar" },
+    { "path": "../../packages/react-native-debug" },
+    { "path": "../../packages/react-native-screen-views" },
+    { "path": "../../packages/react-native-updates" },
+    { "path": "../../packages/sass" },
+    { "path": "../../packages/save-on-navigate-back" },
+    { "path": "../../packages/scripts" },
+    { "path": "../../packages/sentry" },
+    { "path": "../../packages/setup-proxy" },
+    { "path": "../../packages/space-between" },
+    { "path": "../../packages/strings" },
+    { "path": "../../packages/ts-helpers" },
+    { "path": "../../packages/use-after-delay" },
+    { "path": "../../packages/use-interval" },
+    { "path": "../../packages/use-keyboard-visible" },
+    { "path": "../../packages/use-on-page-scroll" },
+    { "path": "../../packages/use-safe-timeout" },
+    { "path": "../../packages/use-user-context" }
   ],
   "compilerOptions": {
     "strict": true
