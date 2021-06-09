@@ -1,14 +1,12 @@
 import { S3_UPLOAD_URL } from "@uplift-ltd/constants";
 import axios from "axios";
 
+import { Fields } from "./shared";
+
 export interface FileAttachment {
   id: string;
   key: string;
   name: string;
-}
-
-interface Fields {
-  [key: string]: string;
 }
 
 export interface SignedRequestResponse {
@@ -17,6 +15,10 @@ export interface SignedRequestResponse {
   headers?: Headers;
   file: File;
   fileAttachment: FileAttachment;
+}
+
+interface ResponseDataType {
+  data: Record<string, unknown>;
 }
 
 export function uploadFile(
@@ -35,21 +37,25 @@ export function uploadFile(
   axios
     .post(result.url, formData, {
       onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
-        onProgress(Math.round((loaded / total) * 100));
+        onProgress(Math.ceil((loaded / total) * 100));
       },
     })
-    .then(({ data: response }: { data: Record<string, unknown> }) => {
+    .then(({ data: response }: ResponseDataType) => {
       onComplete(result.fileAttachment.id);
     })
     .catch(onError);
 }
 
-export function getSignedRequest(objectId: string, appLabel: string, token: string, file: File) {
+export function getSignedRequest(objectId: string, appLabel: string, file: File, token?: string) {
   return new Promise<SignedRequestResponse>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", S3_UPLOAD_URL);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    if (token) {
+      xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    } else {
+      xhr.withCredentials = true;
+    }
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {

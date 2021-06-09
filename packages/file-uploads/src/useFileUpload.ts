@@ -4,17 +4,13 @@ import { useState, useEffect } from "react";
 
 import { SignedRequestResponse, getSignedRequest, uploadFile, FileAttachment } from "./helpers";
 
-type FileProgressMap = {
-  [index: string]: number | string;
-};
+type FileProgressMap = Record<string, number | string>;
 
 export interface FileInterface {
   name: string;
 }
 
-type FileMetadataMap = {
-  [index: string]: { file: FileInterface };
-};
+type FileMetadataMap = Record<string, { file: FileInterface }>;
 
 interface FileUploadsHookProps {
   objectId: string;
@@ -45,8 +41,8 @@ export const useFileUpload = ({
   appLabel,
   token,
 }: FileUploadsHookProps): FileUploadsHookValues => {
-  const [fileProgress, setFileProgress] = useState<FileProgressMap>(
-    value
+  const [fileProgress, setFileProgress] = useState<FileProgressMap>(() => {
+    return value
       ? value.reduce(
           (acc, { id }) => ({
             ...acc,
@@ -54,14 +50,16 @@ export const useFileUpload = ({
           }),
           {} as FileProgressMap
         )
-      : {}
-  );
-  const [fileMetadata, setFileMetadata] = useState<FileMetadataMap>(
-    mapValues(
-      keyBy(value, ({ id }) => id),
-      (v) => ({ file: v })
-    ) || {}
-  );
+      : {};
+  });
+  const [fileMetadata, setFileMetadata] = useState<FileMetadataMap>(() => {
+    return (
+      mapValues(
+        keyBy(value, ({ id }) => id),
+        (v) => ({ file: v })
+      ) || {}
+    );
+  });
 
   useEffect(() => {
     const fileIds = Object.entries(fileProgress)
@@ -125,7 +123,7 @@ export const useFileUpload = ({
   function handleFilesAdded(addedFiles: File[]) {
     addedFiles.forEach((file) => {
       // get s3 signed upload data
-      getSignedRequest(objectId, appLabel, token, file)
+      getSignedRequest(objectId, appLabel, file, token)
         // store file metadata
         .then(addFile)
         // upload file to s3

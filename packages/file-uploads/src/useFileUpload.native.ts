@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useReducer } from "react";
 
 import {
   getSignedRequest,
@@ -44,12 +44,77 @@ type UseUploadFileReturn = [
   }
 ];
 
+interface FileState {
+  data: UploadFileData;
+  status: UploadFileStatus;
+  progress: UploadFileProgress;
+  error: UploadFileError;
+}
+
+type DataAction = {
+  type: "SET_DATA";
+  data: UploadFileData;
+};
+
+type StatusAction = {
+  type: "SET_STATUS";
+  status: UploadFileStatus;
+};
+
+type ProgressAction = {
+  type: "SET_PROGRESS";
+  progress: UploadFileProgress;
+};
+
+type ErrorAction = {
+  type: "SET_ERROR";
+  error: UploadFileError;
+};
+
+interface SetAllAction extends FileState {
+  type: "SET_ALL";
+}
+
+type FileAction = DataAction | StatusAction | ProgressAction | ErrorAction | SetAllAction;
+
+const reducer = (prevState: FileState, action: FileAction): FileState => {
+  switch (action.type) {
+    case "SET_DATA":
+      return {
+        ...prevState,
+        data: action.data,
+      };
+    case "SET_STATUS":
+      return {
+        ...prevState,
+        status: action.status,
+      };
+    case "SET_PROGRESS":
+      return {
+        ...prevState,
+        progress: action.progress,
+      };
+    case "SET_ERROR":
+      return {
+        ...prevState,
+        error: action.error,
+      };
+    case "SET_ALL": {
+      const { type, ...newState } = action;
+      return newState;
+    }
+    default:
+      return prevState;
+  }
+};
+
 export default function useUploadFile(): UseUploadFileReturn {
-  // TODO: make this useReducer
-  const [data, setData] = useState<UploadFileData>(null);
-  const [status, setStatus] = useState<UploadFileStatus>(UploadStatus.IDLE);
-  const [progress, setProgress] = useState<UploadFileProgress>(0);
-  const [error, setError] = useState<UploadFileError>(null);
+  const [state, dispatch] = useReducer(reducer, {
+    data: null,
+    status: UploadStatus.IDLE,
+    progress: 0,
+    error: null,
+  });
 
   const uploadFile = useCallback(
     async ({
@@ -63,33 +128,36 @@ export default function useUploadFile(): UseUploadFileReturn {
       onUploadStatusChange,
       onError,
     }: UseUploadFileOptions) => {
-      setStatus(UploadStatus.UPLOADING);
-      setData(null);
-      setProgress(0);
-      setError(null);
+      dispatch({
+        type: "SET_ALL",
+        data: null,
+        status: UploadStatus.UPLOADING,
+        progress: 0,
+        error: null,
+      });
 
       try {
-        const signedRequest = await getSignedRequest(objectId, name, token, appLabel, metadata);
+        const signedRequest = await getSignedRequest(objectId, name, appLabel, token, metadata);
         await uploadFileToS3(signedRequest, url, name, {
           onProgress: (p: number) => {
-            setProgress(p);
+            dispatch({ type: "SET_PROGRESS", progress: p });
             onProgress?.(p);
           },
           onSuccess: () => {
-            setStatus(UploadStatus.SUCCESS);
+            dispatch({ type: "SET_STATUS", status: UploadStatus.SUCCESS });
           },
           onUploadStatusChange,
           onError: (err: Error) => {
-            setStatus(UploadStatus.ERROR);
-            setError(err);
+            dispatch({ type: "SET_STATUS", status: UploadStatus.ERROR });
+            dispatch({ type: "SET_ERROR", error: err });
             onError?.(err);
           },
         });
-        setData(signedRequest);
+        dispatch({ type: "SET_DATA", data: signedRequest });
         return signedRequest;
       } catch (err) {
-        setStatus(UploadStatus.ERROR);
-        setError(err);
+        dispatch({ type: "SET_STATUS", status: UploadStatus.ERROR });
+        dispatch({ type: "SET_ERROR", error: err });
         throw err;
       }
     },
@@ -99,11 +167,8 @@ export default function useUploadFile(): UseUploadFileReturn {
   return [
     uploadFile,
     {
-      data,
-      status,
-      uploading: status === UploadStatus.UPLOADING,
-      error,
-      progress,
+      uploading: state.status === UploadStatus.UPLOADING,
+      ...state,
     },
   ];
 }

@@ -2,9 +2,7 @@ import { S3_UPLOAD_URL } from "@uplift-ltd/constants";
 import axios from "axios";
 import mime from "mime";
 
-interface Fields {
-  [key: string]: string;
-}
+import { getFileNameComponents, Fields } from "./shared";
 
 export interface SignedRequestFileAttachment {
   id: string;
@@ -49,12 +47,12 @@ declare let FormData: {
 export const getSignedRequest = async <MetadataShape extends Record<string, unknown>>(
   objectId: string,
   filename: string,
-  token: string,
   appLabel: string,
+  token?: string,
   metadata?: MetadataShape
 ): Promise<SignedRequest> => {
   return new Promise<SignedRequest>((resolve, reject) => {
-    const extension = filename.split(".").pop() || "";
+    const extension = getFileNameComponents(filename)[1];
     const fileType = mime.getType(extension) || "";
 
     const urlEncodedFormData = new URLSearchParams();
@@ -70,7 +68,11 @@ export const getSignedRequest = async <MetadataShape extends Record<string, unkn
     const xhr = new XMLHttpRequest();
     xhr.open("POST", S3_UPLOAD_URL);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    if (token) {
+      xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    } else {
+      xhr.withCredentials = true;
+    }
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
@@ -114,7 +116,7 @@ export const uploadFile = async (
   const config = {
     onUploadProgress(progressEvent: ProgressEvent) {
       const { loaded, total } = progressEvent;
-      callbacks?.onProgress?.(Math.round((loaded / total) * 100));
+      callbacks?.onProgress?.(Math.ceil((loaded / total) * 100));
       callbacks?.onUploadStatusChange?.(true);
     },
   };
