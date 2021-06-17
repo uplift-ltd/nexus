@@ -8,7 +8,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   containerComponent: ContainerComponent,
   toastComponent: ToastComponent,
   defaultTimeout = 5000,
-  leaveDuration = 100,
+  leaveDuration = 0,
 }) => {
   const [toasts, setToasts] = useState<ToastShape[]>([]);
 

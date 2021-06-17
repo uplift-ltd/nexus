@@ -13,7 +13,11 @@ export const ToastDismiss: React.FC<ToastDismissProps> = ({
 
   const onRequestClose = useCallback(() => {
     setShow(false);
-    setSafeTimeout(() => dismissToast(toast), leaveDuration);
+    if (leaveDuration) {
+      setSafeTimeout(() => dismissToast(toast), leaveDuration);
+    } else {
+      dismissToast(toast);
+    }
   }, [toast, dismissToast, leaveDuration, setSafeTimeout]);
 
   useEffect(() => {
