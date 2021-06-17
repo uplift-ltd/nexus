@@ -5,7 +5,7 @@ export const ToastContext = createContext<ToastContextShape>({
   toasts: [],
   addToast: () => {
     // noop
-    return { id: "", title: "", leaveDuration: 0 };
+    return "";
   },
   dismissToast: () => {
     // noop
