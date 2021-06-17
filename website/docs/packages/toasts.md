@@ -21,7 +21,7 @@ function MyApp() {
       containerComponent={NotificationsContainer}
       notificationComponent={Notification}
       defaultTimeout={5000} // auto dismiss after this timeout, use 0 to keep forever
-      leaveDuration={100} // how long to wait before unmounting (use this for animations)
+      leaveDuration={0} // how long to wait before unmounting (use this for animations)
     >
       <div />
     </NotificationsProvider>
