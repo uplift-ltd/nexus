@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { ToastContext } from "./context";
 import { ToastDismiss } from "./dismiss";
-import { AddToast, DismissToast, ToastOptions, ToastProviderProps, ToastShape } from "./types";
+import { AddToast, DismissToast, ToastProviderProps, ToastShape } from "./types";
 
 export const ToastProvider: React.FC<ToastProviderProps> = ({
   children,
@@ -13,22 +13,22 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   const [toasts, setToasts] = useState<ToastShape[]>([]);
 
   const addToast = useCallback<AddToast>(
-    (toast: ToastOptions) => {
-      const newToast = {
+    (toast) => {
+      const newToast: ToastShape = {
         ...toast,
         timeout: toast.timeout || defaultTimeout,
         leaveDuration,
         id: Math.floor(Math.random() * 1000000000).toString(),
       };
       setToasts((existingToasts) => [...existingToasts, newToast]);
-      return newToast;
+      return newToast.id;
     },
     [defaultTimeout, leaveDuration]
   );
 
-  const dismissToast = useCallback<DismissToast>((toast: ToastShape) => {
+  const dismissToast = useCallback<DismissToast>((toastId) => {
     setToasts((existingToasts) =>
-      existingToasts.filter((exisitingToast) => exisitingToast.id !== toast.id)
+      existingToasts.filter((exisitingToast) => exisitingToast.id !== toastId)
     );
   }, []);
 

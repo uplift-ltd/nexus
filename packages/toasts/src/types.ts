@@ -16,8 +16,8 @@ export interface ToastOptions {
 
 export type ToastShape = ToastOptions & ToastInternalState;
 
-export type AddToast = (toast: ToastOptions) => ToastShape;
-export type DismissToast = (toast: ToastShape) => void;
+export type AddToast = (toast: ToastOptions) => ToastShape["id"];
+export type DismissToast = (toastId: ToastShape["id"]) => void;
 
 export interface ToastContextShape {
   toasts: ToastShape[];
