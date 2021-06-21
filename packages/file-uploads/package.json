@@ -30,6 +30,7 @@
   },
   "peerDependencies": {
     "@uplift-ltd/constants": "^1.4.0",
+    "expo-file-system": "^10.0.0",
     "react-native": "*",
     "react": "^16.0.0"
   },

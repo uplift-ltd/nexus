@@ -2,7 +2,8 @@ import keyBy from "lodash/keyBy";
 import mapValues from "lodash/mapValues";
 import { useState, useEffect } from "react";
 
-import { SignedRequestResponse, getSignedRequest, uploadFile, FileAttachment } from "./helpers";
+import { RequestWithFile, SignedRequestResponse, uploadFile, FileAttachment } from "./helpers";
+import { getSignedRequest } from "./shared";
 
 type FileProgressMap = Record<string, number | string>;
 
@@ -69,7 +70,7 @@ export const useFileUpload = ({
     onChange(fileIds);
   }, [onChange, fileProgress]);
 
-  function addFile(data: SignedRequestResponse) {
+  function addFile(data: RequestWithFile) {
     const { file, fileAttachment } = data;
 
     setFileMetadata((prev) => ({
@@ -114,8 +115,7 @@ export const useFileUpload = ({
 
   function onRequestRemove(fileId: string) {
     setFileProgress((state) => {
-      const newFiles = { ...state };
-      delete newFiles[fileId];
+      const { [fileId]: _, ...newFiles } = state;
       return newFiles;
     });
   }
@@ -123,9 +123,9 @@ export const useFileUpload = ({
   function handleFilesAdded(addedFiles: File[]) {
     addedFiles.forEach((file) => {
       // get s3 signed upload data
-      getSignedRequest(objectId, appLabel, file, token)
+      getSignedRequest(objectId, file.name, appLabel, token)
         // store file metadata
-        .then(addFile)
+        .then((res) => addFile({ ...res, file }))
         // upload file to s3
         .then((result) => {
           const fileId = result.fileAttachment.id;

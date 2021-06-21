@@ -1,11 +1,7 @@
 import { useCallback, useReducer } from "react";
 
-import {
-  getSignedRequest,
-  SignedRequest,
-  UploadFileOptions,
-  uploadFile as uploadFileToS3,
-} from "./helpers.native";
+import { UploadFileOptions, uploadFile as uploadFileToS3 } from "./helpers.native";
+import { getSignedRequest, SignedRequest } from "./shared";
 
 type UseUploadFileOptions = UploadFileOptions & {
   objectId: string;
@@ -108,13 +104,15 @@ const reducer = (prevState: FileState, action: FileAction): FileState => {
   }
 };
 
+const initialFileState = {
+  data: null,
+  status: UploadStatus.IDLE,
+  progress: 0,
+  error: null,
+};
+
 export default function useUploadFile(): UseUploadFileReturn {
-  const [state, dispatch] = useReducer(reducer, {
-    data: null,
-    status: UploadStatus.IDLE,
-    progress: 0,
-    error: null,
-  });
+  const [state, dispatch] = useReducer(reducer, initialFileState);
 
   const uploadFile = useCallback(
     async ({
