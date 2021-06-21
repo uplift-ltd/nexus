@@ -24,6 +24,7 @@ module.exports = {
       "packages/setup-proxy",
       "packages/space-between",
       "packages/strings",
+      "packages/toasts",
       "packages/ts-helpers",
       "packages/use-after-delay",
       "packages/use-interval",
