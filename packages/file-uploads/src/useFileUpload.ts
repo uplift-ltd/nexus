@@ -2,8 +2,8 @@ import keyBy from "lodash/keyBy";
 import mapValues from "lodash/mapValues";
 import { useState, useEffect } from "react";
 
-import { RequestWithFile, SignedRequestResponse, uploadFile, FileAttachment } from "./helpers";
-import { getSignedRequest } from "./shared";
+import { RequestWithFile, uploadFile, FileAttachment } from "./helpers";
+import { getSignedRequest, SignedRequest as SignedRequestResponse } from "./shared";
 
 type FileProgressMap = Record<string, number | string>;
 
