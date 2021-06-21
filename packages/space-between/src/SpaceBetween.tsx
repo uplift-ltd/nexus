@@ -14,7 +14,7 @@ type SpaceBetweenProps = {
 export const SpaceBetween: React.FC<SpaceBetweenProps> = ({ children, className, divider }) => {
   let kids = children;
 
-  if ((children as React.ReactElement).type === React.Fragment) {
+  if (children && (children as React.ReactElement).type === React.Fragment) {
     kids = (children as React.ReactElement).props.children;
   }
 
