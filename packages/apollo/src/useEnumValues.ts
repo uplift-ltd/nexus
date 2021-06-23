@@ -7,7 +7,7 @@ import {
 } from "./__generated__/EnumData";
 import { useEnhancedQuery } from "./hooks";
 
-const ENUM_QUERY = gql`
+export const ENUM_QUERY = gql`
   query EnumData($enumName: String!) {
     enumData: __type(name: $enumName) {
       name
