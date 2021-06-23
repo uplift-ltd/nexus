@@ -6,7 +6,7 @@ export * from "./helpers";
 
 export * from "./hooks";
 
-export { useEnumValues } from "./useEnumValues";
+export * from "./useEnumValues";
 
 export * from "./tokenHelpers";
 
