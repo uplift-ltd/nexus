@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/space-between@1.2.0...@uplift-ltd/space-between@1.2.1) (2021-06-24)
+
+
+### Bug Fixes
+
+* space between for falsy child ([#156](https://github.com/uplift-ltd/nexus/issues/156)) ([6657c2a](https://github.com/uplift-ltd/nexus/commit/6657c2ad8dd94af25d56f4107e49517c315738bc))
+
+
+
 ## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/space-between@1.1.0...@uplift-ltd/space-between@1.2.0) (2021-02-16)
 
 
