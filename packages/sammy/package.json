@@ -1,0 +1,40 @@
+{
+  "name": "@uplift-ltd/sammy",
+  "version": "1.0.0",
+  "description": "sammy",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/sammy"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sammy"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/sammy",
+  "scripts": {
+    "build": "run-s build:library build:version",
+    "build:library": "nexus build-library",
+    "build:version": "nexus replace-program-version",
+    "check-types": "tsc --noEmit",
+    "test": "jest"
+  },
+  "peerDependencies": {},
+  "dependencies": {
+    "commander": "^8.0.0",
+    "execa": "^5.1.1",
+    "read-pkg-up": "^7.0.1"
+  },
+  "devDependencies": {}
+}

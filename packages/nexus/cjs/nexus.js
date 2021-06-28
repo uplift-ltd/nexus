@@ -46,6 +46,7 @@ var commander_1 = require("commander");
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 var execa_1 = __importDefault(require("execa"));
+var replaceProgramVersion_1 = require("./replaceProgramVersion");
 var program = new commander_1.Command();
 program.version("1.1.1");
 program
@@ -115,6 +116,40 @@ program.command("clean-library").action(function (script, options) { return __aw
             case 2:
                 err_2 = _a.sent();
                 console.error(err_2);
+                process.exitCode = 1;
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+program.command("replace-program-version").action(function (script, options) { return __awaiter(void 0, void 0, void 0, function () {
+    var result, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, replaceProgramVersion_1.replaceProgramVersion()];
+            case 1:
+                result = _a.sent();
+                if (result.length) {
+                    console.info(result
+                        .filter(function (_a) {
+                        var hasChanged = _a.hasChanged;
+                        return hasChanged;
+                    })
+                        .map(function (_a) {
+                        var file = _a.file;
+                        return file;
+                    })
+                        .join("\n"));
+                }
+                else {
+                    console.info("Nothing to replace.");
+                }
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                console.error(err_3);
                 process.exitCode = 1;
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

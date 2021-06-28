@@ -6,10 +6,11 @@ import { Command } from "commander";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import execa from "execa";
+import { replaceProgramVersion } from "./replaceProgramVersion";
 
 const program = new Command();
 
-program.version(process.env.NEXUS_PACKAGE_VERSION || "1.0.0");
+program.version("1.0.0");
 
 program
   .command("build-library")
@@ -54,6 +55,25 @@ program.command("clean-library").action(async (script, options) => {
       console.info(clean.all);
     } else {
       console.info("Nexus clean-library done!");
+    }
+  } catch (err) {
+    console.error(err);
+    process.exitCode = 1;
+  }
+});
+
+program.command("replace-program-version").action(async (script, options) => {
+  try {
+    const result = await replaceProgramVersion();
+    if (result.length) {
+      console.info(
+        result
+          .filter(({ hasChanged }) => hasChanged)
+          .map(({ file }) => file)
+          .join("\n")
+      );
+    } else {
+      console.info("Nothing to replace.");
     }
   } catch (err) {
     console.error(err);
