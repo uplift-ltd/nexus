@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.1.1...@uplift-ltd/nexus@1.2.0) (2021-06-28)
+
+
+### Features
+
+* add digitalocean cli helpers ([#161](https://github.com/uplift-ltd/nexus/issues/161)) ([92aef2f](https://github.com/uplift-ltd/nexus/commit/92aef2f3884b0a8ea310d7e53405ab45f024f653))
+
+
+
 ## [1.2.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.1.1...@uplift-ltd/nexus@1.2.0-alpha.0) (2021-06-28)
 
 
