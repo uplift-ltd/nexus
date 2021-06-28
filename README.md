@@ -28,7 +28,7 @@ Then add the following to your `~/.npmrc` file.
 ```yml
 uses: actions/setup-node@v1
 with:
-  node-version: "12.x"
+  node-version: "14.x"
   registry-url: "https://npm.pkg.github.com/"
   scope: "@uplift-ltd"
 ```
