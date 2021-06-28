@@ -6,6 +6,9 @@
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
+  "bin": {
+    "sammy": "./cjs/sammy.js"
+  },
   "files": [
     "cjs/",
     "esm/",
