@@ -31,7 +31,7 @@
     "build:library": "nexus build-library",
     "build:version": "nexus replace-program-version",
     "check-types": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "commander": "^8.0.0",
