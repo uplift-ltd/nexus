@@ -19,7 +19,9 @@ export const ENUM_QUERY = gql`
   }
 `;
 
-type EnumDataMap<T> = {
+export type { EnumData, EnumDataVariables, EnumValue };
+
+export type EnumDataMap<T> = {
   [K in keyof T]: string;
 };
 
