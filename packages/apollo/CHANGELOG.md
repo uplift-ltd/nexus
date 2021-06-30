@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@1.6.0...@uplift-ltd/apollo@1.7.0) (2021-06-30)
+
+
+### Features
+
+* export enum query types ([#162](https://github.com/uplift-ltd/nexus/issues/162)) ([fedf3d0](https://github.com/uplift-ltd/nexus/commit/fedf3d08e8afe2e41ca4ac03f596c06340efd4f9))
+
+
+
 ## [1.6.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@1.5.0...@uplift-ltd/apollo@1.6.0) (2021-06-24)
 
 
