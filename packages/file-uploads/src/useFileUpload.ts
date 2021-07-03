@@ -16,7 +16,7 @@ type FileMetadataMap = Record<string, { file: FileInterface }>;
 interface FileUploadsHookProps {
   objectId: string;
   appLabel: string;
-  token: string;
+  token?: string;
   onChange: (fileIds: string[]) => void;
   value?: FileAttachment[];
 }
