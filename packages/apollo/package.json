@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/apollo",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Apollo helpers.",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -36,7 +36,7 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.4.0",
+    "@uplift-ltd/constants": "^1.5.0",
     "@uplift-ltd/sentry": "^1.2.0"
   },
   "devDependencies": {

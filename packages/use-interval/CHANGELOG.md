@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.1.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.1.3...@uplift-ltd/use-interval@2.1.4) (2021-07-03)
+
+**Note:** Version bump only for package @uplift-ltd/use-interval
+
+
+
+
+
 ### [2.1.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.1.2...@uplift-ltd/use-interval@2.1.3) (2021-05-15)
 
 **Note:** Version bump only for package @uplift-ltd/use-interval

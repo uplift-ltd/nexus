@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.0...@uplift-ltd/setup-proxy@1.3.1) (2021-07-03)
+
+**Note:** Version bump only for package @uplift-ltd/setup-proxy
+
+
+
+
+
 ## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.2.0...@uplift-ltd/setup-proxy@1.3.0) (2021-05-15)
 
 

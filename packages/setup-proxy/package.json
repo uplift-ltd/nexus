@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/setup-proxy",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "setup-proxy",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -29,7 +29,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.4.0",
+    "@uplift-ltd/constants": "^1.5.0",
     "http-proxy-middleware": "^1.0.5"
   },
   "devDependencies": {
