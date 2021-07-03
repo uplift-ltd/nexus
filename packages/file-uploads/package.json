@@ -1,0 +1,46 @@
+{
+  "name": "@uplift-ltd/file-uploads",
+  "version": "1.0.0",
+  "description": "file-uploads",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/file-uploads"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:file-uploads"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/file-uploads",
+  "scripts": {
+    "build": "nexus build-library",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "peerDependencies": {
+    "@uplift-ltd/constants": "^1.4.0",
+    "expo-file-system": "^10.0.0",
+    "react-native": "*",
+    "react": "^16.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "lodash": "^4.17.20",
+    "mime": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/mime": "^2.0.3",
+    "@types/lodash": "^4.14.160"
+  }
+}
