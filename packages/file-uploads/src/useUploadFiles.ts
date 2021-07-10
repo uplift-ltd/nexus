@@ -1,12 +1,18 @@
 import { useCallback, useMemo, useReducer } from "react";
-import { fileUploadsReducer, initialFileUploadsState } from "./fileUploadsReducer";
-import { UploadFilesOptions } from "./types";
+import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer";
+import { S3FileAttachment, UploadFilesOptions } from "./types";
 import { useUploadFile, UseUploadFileOptions } from "./useUploadFile";
 
-export function useUploadFiles<FileType = File>() {
+export interface UseUploadFilesOptions {
+  initialFileAttachments?: S3FileAttachment[];
+}
+
+export function useUploadFiles<FileType = File>({
+  initialFileAttachments,
+}: UseUploadFilesOptions = {}) {
   const [fileUploadsState, fileUploadsDispatch] = useReducer(
     fileUploadsReducer,
-    initialFileUploadsState
+    getInitialFileUploadsState(initialFileAttachments)
   );
 
   const uploadFileOptions = useMemo(() => {

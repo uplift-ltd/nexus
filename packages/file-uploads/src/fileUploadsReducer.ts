@@ -122,12 +122,22 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
   }
 }
 
-export const initialFileUploadsState: FileUploadsState = {
-  fileAttachmentsById: {},
-  fileAttachments: [],
-  loadingByFile: {},
-  errorByFile: {},
-  progressByFile: {},
-  loading: false,
-  progress: 0,
+export const getInitialFileUploadsState = (
+  fileAttachments: S3FileAttachment[] = []
+): FileUploadsState => {
+  const fileAttachmentsById: FileUploadsState["fileAttachmentsById"] = {};
+
+  fileAttachments.forEach((fileAttachment) => {
+    fileAttachmentsById[fileAttachment.id] = fileAttachment;
+  });
+
+  return {
+    fileAttachmentsById,
+    fileAttachments,
+    loadingByFile: {},
+    errorByFile: {},
+    progressByFile: {},
+    loading: false,
+    progress: 0,
+  };
 };
