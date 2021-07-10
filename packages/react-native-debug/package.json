@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/react-native-debug",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "react-native-debug",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -40,8 +40,8 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@uplift-ltd/apollo": "^1.7.1",
-    "@uplift-ltd/constants": "^1.5.0",
+    "@uplift-ltd/apollo": "^1.7.2",
+    "@uplift-ltd/constants": "^1.6.0",
     "@uplift-ltd/push-notifications": "^1.1.1"
   }
 }

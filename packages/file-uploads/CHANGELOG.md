@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.1.1...@uplift-ltd/file-uploads@1.2.0) (2021-07-10)
+
+
+### Features
+
+* update file uploads implementation ([#165](https://github.com/uplift-ltd/nexus/issues/165)) ([f9e652b](https://github.com/uplift-ltd/nexus/commit/f9e652b1c5486169b7c986d9df5742131909a423))
+
+
+
 ### [1.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.1.0...@uplift-ltd/file-uploads@1.1.1) (2021-07-03)
 
 
