@@ -1,35 +1,10 @@
-import axios from "axios";
+export function getFileNameComponents(filename: string) {
+  const extensionIdx = filename.lastIndexOf(".");
 
-import { SignedRequest } from "./shared";
-
-export interface FileAttachment {
-  id: string;
-  key: string;
-  name: string;
+  return [filename.substr(0, extensionIdx), filename.substr(extensionIdx + 1).toLowerCase()];
 }
 
-export interface RequestWithFile extends SignedRequest {
-  file: File;
-}
-
-interface ResponseDataType {
-  data: Record<string, unknown>;
-}
-
-export function uploadFile(
-  result: RequestWithFile,
-  onProgress: (progress: number) => void,
-  onComplete: (id: string) => void,
-  onError: (err: Error) => void
-) {
-  axios
-    .put(result.uploadUrl, result.file, {
-      onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
-        onProgress(Math.ceil((loaded / total) * 100));
-      },
-    })
-    .then(({ data: response }: ResponseDataType) => {
-      onComplete(result.fileAttachment.id);
-    })
-    .catch(onError);
+export async function getFileType(extension: string) {
+  const mime = await import("mime");
+  return mime.getType(extension) || "";
 }
