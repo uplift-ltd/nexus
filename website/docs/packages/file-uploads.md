@@ -12,37 +12,69 @@ File upload related functionalities for web and React Native.
 
 ### useFileUpload
 
-#### web
+Upload a single file.
 
-```ts
-import { useFileUpload } from "@uplift-ltd/file-uploads";
+```tsx
+import { useUploadFile } from "@uplift-ltd/file-uploads";
 
-const { handleFilesAdded, onRequestRemove, files, reset, isUploading } = useFileUploads({
-  onChange,
-  value,
-  objectId,
-  appLabel,
-  token, // Authorization token
-});
+interface UseUploadFileOptions {
+  onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
+  onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
+  onComplete?: (fileAttachment: S3FileAttachment) => void;
+  onError?: (error: Error, fileAttachment: S3FileAttachment) => void;
+}
+
+function MyComponent() {
+  const { uploadFile, fileAttachment, loading, error } = useUploadFile();
+
+  <input
+    type="file"
+    onChange={(e) => {
+      if (!e.target.files) {
+        return;
+      }
+      Array.from(e.target.files).forEach((file) => {
+        uploadFile({
+          file,
+          grapheneId: "VXNlcjox",
+          appLabel: "runbook",
+          isDraft: true,
+          metadata: { caption: "Brooo" },
+        });
+      });
+    }}
+  />;
+}
 ```
 
-#### React Native
+#### useFileUploads
 
-```ts
-import { useFileUpload } from "@uplift-ltd/file-uploads";
+Upload multiple files.
 
-const [uploadFile, { error, status, progress, uploading }] = useUploadFile();
+```tsx
+import { useUploadFiles } from "@uplift-ltd/file-uploads";
 
-const uploadedFile = await uploadFile({
-  objectId,
-  appLabel,
-  token, // Authorization token
-  name,
-  url: result.uri,
-  metadata: {
-    aspectRatio: result.width / result.height,
-    height: result.height,
-    width: result.width,
-  },
-});
+function MyComponent() {
+  const {
+    uploadFiles,
+    onRequestRemove,
+    fileAttachments,
+    fileAttachmentsById,
+    loadingById,
+    errorById,
+    progressById,
+    progress, // total / num files
+    loading, // any loading
+  } = useUploadFiles();
+
+  <input
+    type="file"
+    onChange={(e) => {
+      if (!e.target.files) {
+        return;
+      }
+      uploadFiles(Array.from(e.target.files));
+    }}
+  />;
+}
 ```

@@ -34,7 +34,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.5.0",
+    "@uplift-ltd/apollo": "^1.7.1",
     "axios": "^0.21.1",
     "lodash": "^4.17.20",
     "mime": "^2.5.2"
