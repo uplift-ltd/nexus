@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.1.5...@uplift-ltd/use-interval@2.2.0) (2021-07-12)
+
+
+### Features
+
+* add React 17 to peer dependencies ([#164](https://github.com/uplift-ltd/nexus/issues/164)) ([88f7761](https://github.com/uplift-ltd/nexus/commit/88f77615dfab14127dfdf76f665ee73c3195bcb4))
+
+
+
 ### [2.1.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-interval@2.1.4...@uplift-ltd/use-interval@2.1.5) (2021-07-10)
 
 **Note:** Version bump only for package @uplift-ltd/use-interval

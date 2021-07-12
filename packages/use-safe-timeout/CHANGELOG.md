@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-safe-timeout@1.1.0...@uplift-ltd/use-safe-timeout@1.2.0) (2021-07-12)
+
+
+### Features
+
+* add React 17 to peer dependencies ([#164](https://github.com/uplift-ltd/nexus/issues/164)) ([88f7761](https://github.com/uplift-ltd/nexus/commit/88f77615dfab14127dfdf76f665ee73c3195bcb4))
+
+
+
 ## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-safe-timeout@1.0.2...@uplift-ltd/use-safe-timeout@1.1.0) (2021-02-16)
 
 
