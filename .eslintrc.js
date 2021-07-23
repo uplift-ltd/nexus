@@ -32,6 +32,16 @@ module.exports = {
       "error",
       {
         alphabetize: { order: "asc" },
+        groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+        pathGroups: [
+          {
+            // CSS should be loaded last so that it can override components in common folder
+            pattern: "./*.module.css",
+            group: "sibling",
+            position: "after",
+          },
+        ],
+        "newlines-between": "never",
       },
     ],
     "import/prefer-default-export": 0,
