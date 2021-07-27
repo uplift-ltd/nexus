@@ -1,18 +1,16 @@
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer";
 import { S3FileAttachment, UploadFilesOptions } from "./types";
 import { useUploadFile, UseUploadFileOptions } from "./useUploadFile";
 
 export interface UseUploadFilesOptions {
-  initialFileAttachments?: S3FileAttachment[];
+  fileAttachments?: S3FileAttachment[];
 }
 
-export function useUploadFiles<FileType = File>({
-  initialFileAttachments,
-}: UseUploadFilesOptions = {}) {
+export function useUploadFiles<FileType = File>({ fileAttachments }: UseUploadFilesOptions = {}) {
   const [fileUploadsState, fileUploadsDispatch] = useReducer(
     fileUploadsReducer,
-    getInitialFileUploadsState(initialFileAttachments)
+    getInitialFileUploadsState(fileAttachments)
   );
 
   const uploadFileOptions = useMemo(() => {
@@ -60,6 +58,18 @@ export function useUploadFiles<FileType = File>({
 
     return { onProgress, onLoading, onComplete, onError };
   }, []);
+
+  useEffect(() => {
+    fileAttachments?.forEach((fileAttachment) => {
+      if (fileUploadsState.fileAttachmentsById[fileAttachment.id] !== fileAttachment) {
+        fileUploadsDispatch({
+          type: "SET_DATA",
+          fileAttachmentId: fileAttachment.id,
+          data: fileAttachment,
+        });
+      }
+    });
+  }, [fileUploadsState, fileAttachments]);
 
   const { uploadFile } = useUploadFile<FileType>(uploadFileOptions);
 
