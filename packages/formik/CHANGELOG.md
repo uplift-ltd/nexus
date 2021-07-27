@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.4.0...@uplift-ltd/formik@1.4.1) (2021-07-27)
+
+
+### Bug Fixes
+
+* update eslint import order ([#168](https://github.com/uplift-ltd/nexus/issues/168)) ([fab35b9](https://github.com/uplift-ltd/nexus/commit/fab35b9e60fb96fa9f2d717efe6b5c15c0ea6b0e))
+
+
+
 ## [1.4.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.3.0...@uplift-ltd/formik@1.4.0) (2021-07-12)
 
 
