@@ -18,8 +18,17 @@ export const GRAPHQL_HOST =
 export const GRAPHQL_BATCHING =
   (process.env.NEXT_PUBLIC_GRAPHQL_BATCHING || process.env.REACT_APP_GRAPHQL_BATCHING) !== "false";
 
-export const GRAPHQL_AUTH_ENDPOINT = GRAPHQL_BATCHING ? "/batch/auth/graphql/" : "/auth/graphql/";
-export const GRAPHQL_UNAUTH_ENDPOINT = GRAPHQL_BATCHING ? "/batch/graphql/" : "/graphql/";
+export const GRAPHQL_AUTH_ENDPOINT =
+  process.env.GRAPHQL_AUTH_ENDPOINT ||
+  process.env.NEXT_PUBLIC_GRAPHQL_AUTH_ENDPOINT ||
+  process.env.REACT_APP_GRAPHQL_AUTH_ENDPOINT ||
+  (GRAPHQL_BATCHING ? "/batch/auth/graphql/" : "/auth/graphql/");
+
+export const GRAPHQL_UNAUTH_ENDPOINT =
+  process.env.GRAPHQL_UNAUTH_ENDPOINT ||
+  process.env.NEXT_PUBLIC_GRAPHQL_UNAUTH_ENDPOINT ||
+  process.env.REACT_APP_GRAPHQL_UNAUTH_ENDPOINT ||
+  (GRAPHQL_BATCHING ? "/batch/graphql/" : "/graphql/");
 
 export const GRAPHQL_AUTH_URL =
   process.env.NEXT_PUBLIC_GRAPHQL_AUTH_URL ||
