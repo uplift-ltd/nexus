@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.6.0...@uplift-ltd/constants@1.7.0) (2021-07-30)
+
+
+### Features
+
+* allow to configure gql endpoints ([#171](https://github.com/uplift-ltd/nexus/issues/171)) ([bce5669](https://github.com/uplift-ltd/nexus/commit/bce56696d5160727d27732b93d39923149ee45b9))
+
+
+
 ## [1.6.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.5.0...@uplift-ltd/constants@1.6.0) (2021-07-10)
 
 
