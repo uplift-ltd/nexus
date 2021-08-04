@@ -83,3 +83,14 @@ const nodes = mapNodes(connection);
 
 console.log(nodes); // => [{ id: 1}]
 ```
+
+Optionally takes in a transform callback which will operate on each node,
+
+```js
+import { mapNodes } from "@uplift-ltd/graphene";
+
+const connection = { edges: [{ node: { id: 1 } }] };
+const nodes = mapNodes(connection, (node) => ({ ...node, type: "EnhancedNode" }));
+
+console.log(nodes); // => [{ id: 1, type: "EnhancedNode" }]
+```
