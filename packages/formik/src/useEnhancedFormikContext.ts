@@ -1,6 +1,12 @@
 import { useFormikContext, FormikContextType } from "formik";
 import { getApplyErrorsToFields, ErrorHelpers } from "./errors";
-import { getSetFormSuccess, getSetFormError, StatusHelpers } from "./status";
+import {
+  getEnhancedSetStatus,
+  getSetFormSuccess,
+  getSetFormError,
+  getSetSentryEventId,
+  StatusHelpers,
+} from "./status";
 
 type EnhancedFormikContextType<FormikValues> = FormikContextType<FormikValues> &
   StatusHelpers &
@@ -9,10 +15,14 @@ type EnhancedFormikContextType<FormikValues> = FormikContextType<FormikValues> &
 export function useEnhancedFormikContext<FormikValues>(): EnhancedFormikContextType<FormikValues> {
   const context = useFormikContext<FormikValues>();
 
+  const setStatus = getEnhancedSetStatus(context.setStatus, context.status);
+
   return {
     ...context,
     applyErrorsToFields: getApplyErrorsToFields(context.setErrors),
-    setFormSuccess: getSetFormSuccess(context.setStatus),
-    setFormError: getSetFormError(context.setStatus),
+    setStatus,
+    setFormSuccess: getSetFormSuccess(setStatus),
+    setFormError: getSetFormError(setStatus),
+    setSentryEventId: getSetSentryEventId(setStatus),
   };
 }

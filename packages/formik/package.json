@@ -36,6 +36,6 @@
     "@uplift-ltd/strings": "^1.4.2"
   },
   "devDependencies": {
-    "formik": "^2.1.5"
+    "formik": "^2.2.9"
   }
 }

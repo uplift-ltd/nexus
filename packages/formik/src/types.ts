@@ -1,9 +1,12 @@
-import { FormikConfig, FormikHelpers, FieldInputProps, FormikProps } from "formik";
+import { FormikConfig, FormikHelpers, FieldInputProps, FormikProps, FormikValues } from "formik";
+import { MutableRefObject } from "react";
 import { ErrorHelpers } from "./errors";
 import { StatusHelpers } from "./status";
 
-export interface EnhancedFormikExtraProps {
+export interface EnhancedFormikExtraProps<Values extends FormikValues = FormikValues> {
   resetStatusOnSubmit?: boolean;
+  captureValuesOnError?: boolean;
+  innerRef?: MutableRefObject<FormikProps<Values>>;
 }
 
 type FormikConfigWithoutOverrides<Values> = Omit<FormikConfig<Values>, "children" | "onSubmit">;

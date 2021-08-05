@@ -1,55 +1,75 @@
 import Sentry from "@uplift-ltd/sentry";
-import { Formik, FormikValues, isFunction } from "formik";
-import React from "react";
+import { Formik, FormikProps, FormikValues, isFunction } from "formik";
+import React, { useRef } from "react";
 import { getApplyErrorsToFields } from "./errors";
-import { DEFAULT_INITIAL_STATUS, getSetFormSuccess, getSetFormError } from "./status";
+import {
+  DEFAULT_INITIAL_STATUS,
+  getEnhancedSetStatus,
+  getSetFormSuccess,
+  getSetFormError,
+  getSetSentryEventId,
+} from "./status";
 import { FormikConfigWithOverrides, EnhancedFormikExtraProps } from "./types";
 
 export function EnhancedFormik<
   Values extends FormikValues = FormikValues,
   // Formik uses {} type so we disable the eslint rule
   // eslint-disable-next-line @typescript-eslint/ban-types
-  ExtraProps extends EnhancedFormikExtraProps = {}
+  ExtraProps extends EnhancedFormikExtraProps<Values> = {}
 >({
+  captureValuesOnError,
   children,
   initialStatus,
   resetStatusOnSubmit,
   onSubmit,
+  innerRef,
   ...otherProps
 }: FormikConfigWithOverrides<Values> & ExtraProps) {
+  const formikRef = useRef<FormikProps<Values> | null>(null);
+  const ref = innerRef || formikRef;
+
+  const initStatus = {
+    ...DEFAULT_INITIAL_STATUS,
+    ...initialStatus,
+  };
+
   return (
     <Formik
-      initialStatus={{
-        ...DEFAULT_INITIAL_STATUS,
-        ...initialStatus,
-      }}
+      innerRef={ref}
+      initialStatus={initStatus}
       onSubmit={async (values, formikHelpers) => {
+        const setStatus = getEnhancedSetStatus(formikHelpers.setStatus, ref.current?.status);
+
         try {
           if (resetStatusOnSubmit) {
-            formikHelpers.setStatus({
-              ...DEFAULT_INITIAL_STATUS,
-              ...initialStatus,
-            });
+            setStatus(initStatus);
           }
+
           await onSubmit(values, {
             ...formikHelpers,
             applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
-            setFormSuccess: getSetFormSuccess(formikHelpers.setStatus),
-            setFormError: getSetFormError(formikHelpers.setStatus),
+            setStatus,
+            setFormSuccess: getSetFormSuccess(setStatus),
+            setFormError: getSetFormError(setStatus),
+            setSentryEventId: getSetSentryEventId(setStatus),
           });
         } catch (err) {
-          Sentry.captureException(err);
-          formikHelpers.setStatus({ formError: err });
+          const extra = captureValuesOnError ? { values } : {};
+          const sentryEventId = Sentry.captureException(err, { extra });
+          setStatus({ formError: err, sentryEventId });
         }
       }}
       {...otherProps}
     >
       {(formik) => {
         if (isFunction(children)) {
+          const setStatus = getEnhancedSetStatus(formik.setStatus, formik.status);
           return children({
             ...formik,
-            setFormSuccess: getSetFormSuccess(formik.setStatus),
-            setFormError: getSetFormError(formik.setStatus),
+            setStatus,
+            setFormSuccess: getSetFormSuccess(setStatus),
+            setFormError: getSetFormError(setStatus),
+            setSentryEventId: getSetSentryEventId(setStatus),
           });
         }
         return children;
