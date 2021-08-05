@@ -66,6 +66,7 @@ export function EnhancedFormik<
           const setStatus = getEnhancedSetStatus(formik.setStatus, formik.status);
           return children({
             ...formik,
+            applyErrorsToFields: getApplyErrorsToFields(formik.setErrors),
             setStatus,
             setFormSuccess: getSetFormSuccess(setStatus),
             setFormError: getSetFormError(setStatus),

@@ -1,21 +1,30 @@
-import { FormikConfig, FormikHelpers, FieldInputProps, FormikProps, FormikValues } from "formik";
+import {
+  FormikConfig,
+  FormikHelpers,
+  FieldInputProps,
+  FormikProps,
+  FormikValues,
+  FormikContextType,
+} from "formik";
 import { MutableRefObject } from "react";
 import { ErrorHelpers } from "./errors";
 import { StatusHelpers } from "./status";
 
+type ExtraHelpers = StatusHelpers & ErrorHelpers;
+
 export interface EnhancedFormikExtraProps<Values extends FormikValues = FormikValues> {
-  resetStatusOnSubmit?: boolean;
   captureValuesOnError?: boolean;
   innerRef?: MutableRefObject<FormikProps<Values>>;
+  resetStatusOnSubmit?: boolean;
 }
 
 type FormikConfigWithoutOverrides<Values> = Omit<FormikConfig<Values>, "children" | "onSubmit">;
 
 interface FormikConfigOverrides<Values> extends EnhancedFormikExtraProps {
-  children?: ((props: FormikProps<Values> & StatusHelpers) => React.ReactNode) | React.ReactNode;
+  children?: ((props: FormikProps<Values> & ExtraHelpers) => React.ReactNode) | React.ReactNode;
   onSubmit: (
     values: Values,
-    formikHelpers: FormikHelpers<Values> & StatusHelpers & ErrorHelpers
+    formikHelpers: FormikHelpers<Values> & ExtraHelpers
     // Promise<any> mirrors Formik's definition for onSubmit
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) => void | Promise<any>;
@@ -29,3 +38,6 @@ export type EnhancedFieldInputProps<T> = FieldInputProps<T> & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFocus: (e: React.FocusEvent<any>) => void;
 };
+
+export type EnhancedFormikContextType<FormikValues> = FormikContextType<FormikValues> &
+  ExtraHelpers;
