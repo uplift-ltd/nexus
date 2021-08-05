@@ -41,6 +41,9 @@ export const getSetSentryEventId = (setStatus: FormikHelpers<unknown>["setStatus
 export interface StatusHelpers {
   setStatus: (status: FormikStatus) => void;
   setFormSuccess: (formSuccess: FormikStatus["formSuccess"]) => void;
-  setFormError: (formError: FormikStatus["formError"]) => void;
+  setFormError: (
+    formError: FormikStatus["formError"],
+    sentryEventId?: FormikStatus["sentryEventId"]
+  ) => void;
   setSentryEventId: (sentryEventId: FormikStatus["sentryEventId"]) => void;
 }
