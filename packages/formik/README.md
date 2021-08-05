@@ -53,6 +53,12 @@ const formik = useEnhancedFormik<FormValues>({
 
 #### setFormSuccess / setFormError
 
+Note that setFormError accepts a `sentryEventId` as the second property, which will be available on
+form status.
+
+You can use `Sentry.showReportDialog(status.sentryEventId)` to show a report error dialog to the
+user.
+
 ```tsx
 import { EnhancedFormik } from "@uplift-ltd/formik";
 
@@ -67,8 +73,8 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
       }
       setFormSuccesss("You did it!");
     } catch (err) {
-      Sentry.captureExpection(err);
-      setFormError(err.message);
+      const sentryEventId = Sentry.captureExpection(err);
+      setFormError(err.message, sentryEventId);
     }
   }}
 />;
