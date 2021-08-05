@@ -17,7 +17,7 @@ export const DEFAULT_INITIAL_STATUS: FormikStatus = {
 export const getEnhancedSetStatus = (
   setStatus: FormikHelpers<unknown>["setStatus"],
   extraStatus?: FormikStatus
-) => (status: FormikStatus) => setStatus({ ...status, ...extraStatus });
+) => (status: FormikStatus) => setStatus({ ...extraStatus, ...status });
 
 export const getSetFormSuccess = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
   formSuccess: FormikStatus["formSuccess"]
