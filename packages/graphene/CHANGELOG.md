@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.3.0...@uplift-ltd/graphene@1.4.0) (2021-08-06)
+
+
+### Features
+
+* enhance status and capture values on error ([#175](https://github.com/uplift-ltd/nexus/issues/175)) ([123b389](https://github.com/uplift-ltd/nexus/commit/123b389c2122849869e2f770d17f83b00d03c3da))
+
+
+
 ### [1.3.1-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.3.0...@uplift-ltd/graphene@1.3.1-alpha.0) (2021-08-05)
 
 **Note:** Version bump only for package @uplift-ltd/graphene
