@@ -1,37 +1,52 @@
 import Sentry from "@uplift-ltd/sentry";
 import { useFormik } from "formik";
 import { getApplyErrorsToFields } from "./errors";
-import { DEFAULT_INITIAL_STATUS, FormikStatus, getSetFormSuccess, getSetFormError } from "./status";
+import {
+  DEFAULT_INITIAL_STATUS,
+  FormikStatus,
+  getSetFormSuccess,
+  getSetFormError,
+  getSetSentryEventId,
+  getEnhancedSetStatus,
+} from "./status";
 import { FormikConfigWithOverrides } from "./types";
 
 export function useEnhancedFormik<FormikValues>({
+  captureValuesOnError,
   resetStatusOnSubmit,
   ...options
 }: FormikConfigWithOverrides<FormikValues>) {
-  return useFormik<FormikValues>({
+  const initStatus = {
+    ...DEFAULT_INITIAL_STATUS,
+    ...options.initialStatus,
+  } as FormikStatus;
+
+  const formik = useFormik<FormikValues>({
     ...options,
-    initialStatus: {
-      ...DEFAULT_INITIAL_STATUS,
-      ...options.initialStatus,
-    } as FormikStatus,
+    initialStatus: initStatus,
     onSubmit: async (values, formikHelpers) => {
+      const setStatus = getEnhancedSetStatus(formikHelpers.setStatus, formik.status);
+
       try {
         if (resetStatusOnSubmit) {
-          formikHelpers.setStatus({
-            ...DEFAULT_INITIAL_STATUS,
-            ...options.initialStatus,
-          });
+          setStatus(initStatus);
         }
+
         await options.onSubmit(values, {
           ...formikHelpers,
           applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
-          setFormSuccess: getSetFormSuccess(formikHelpers.setStatus),
-          setFormError: getSetFormError(formikHelpers.setStatus),
+          setStatus,
+          setFormSuccess: getSetFormSuccess(setStatus),
+          setFormError: getSetFormError(setStatus),
+          setSentryEventId: getSetSentryEventId(setStatus),
         });
       } catch (err) {
-        Sentry.captureException(err);
-        formikHelpers.setStatus({ formError: err });
+        const extra = captureValuesOnError ? { values } : {};
+        const sentryEventId = Sentry.captureException(err, { extra });
+        setStatus({ formError: err, sentryEventId });
       }
     },
   });
+
+  return formik;
 }

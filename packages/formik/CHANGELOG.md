@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0-alpha.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.5.0-alpha.0...@uplift-ltd/formik@1.5.0-alpha.1) (2021-08-05)
+
+**Note:** Version bump only for package @uplift-ltd/formik
+
+
+
+
+
+## [1.5.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.4.1...@uplift-ltd/formik@1.5.0-alpha.0) (2021-08-05)
+
+
+### Features
+
+* enhance status and capture values on error ([1d6fb89](https://github.com/uplift-ltd/nexus/commit/1d6fb8930d3105ebedfd53f98155535d8333f524))
+
+
+
 ### [1.4.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.4.0...@uplift-ltd/formik@1.4.1) (2021-07-27)
 
 
