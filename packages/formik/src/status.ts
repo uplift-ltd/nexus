@@ -21,13 +21,13 @@ export const getEnhancedSetStatus = (
 
 export const getSetFormSuccess = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
   formSuccess: FormikStatus["formSuccess"]
-) => setStatus({ formSuccess });
+) => setStatus({ formSuccess, formError: null });
 
 export const getSetFormError = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
   formError: FormikStatus["formError"],
   sentryEventId?: FormikStatus["sentryEventId"]
 ) => {
-  const status: FormikStatus = { formError };
+  const status: FormikStatus = { formError, formSuccess: null };
   if (typeof sentryEventId !== "undefined") {
     status.sentryEventId = sentryEventId;
   }
