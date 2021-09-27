@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.5.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.5.0...@uplift-ltd/formik@1.5.1) (2021-09-27)
+
+
+### Bug Fixes
+
+* formik status override ([#183](https://github.com/uplift-ltd/nexus/issues/183)) ([388efde](https://github.com/uplift-ltd/nexus/commit/388efde42b248c162a1424c85c440d85005c5b52))
+
+
+
 ## [1.5.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@1.4.1...@uplift-ltd/formik@1.5.0) (2021-08-06)
 
 
