@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.7.0...@uplift-ltd/constants@1.8.0) (2021-09-28)
+
+
+### Features
+
+* default graphql host when running in vercel ([#186](https://github.com/uplift-ltd/nexus/issues/186)) ([4263f36](https://github.com/uplift-ltd/nexus/commit/4263f36c27810aea1f5e0fd291f632f9a66ee649))
+
+
+
 ## [1.7.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.6.0...@uplift-ltd/constants@1.7.0) (2021-07-30)
 
 
