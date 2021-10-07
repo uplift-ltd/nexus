@@ -1,9 +1,10 @@
 import * as Sentry from "sentry-expo";
-import { SENTRY_DSN } from "./constants";
+import { NORMALIZE_DEPTH, SENTRY_DSN } from "./constants";
 
 if (SENTRY_DSN) {
   Sentry.init({
     dsn: SENTRY_DSN,
+    normalizeDepth: NORMALIZE_DEPTH,
     enableInExpoDevelopment: typeof __DEV__ !== "undefined",
     debug: typeof __DEV__ !== "undefined",
   });
