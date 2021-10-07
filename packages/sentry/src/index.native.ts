@@ -1,8 +1,9 @@
 import * as Sentry from "sentry-expo";
+import { SENTRY_DSN } from "./constants";
 
-if (process.env.SENTRY_PUBLIC_DSN) {
+if (SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.SENTRY_PUBLIC_DSN,
+    dsn: SENTRY_DSN,
     enableInExpoDevelopment: typeof __DEV__ !== "undefined",
     debug: typeof __DEV__ !== "undefined",
   });
