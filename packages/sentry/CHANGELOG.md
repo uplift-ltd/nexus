@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@1.2.0...@uplift-ltd/sentry@2.0.0) (2021-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade sentry (#190)
+
+### Features
+
+* upgrade sentry ([#190](https://github.com/uplift-ltd/nexus/issues/190)) ([3f0e1bc](https://github.com/uplift-ltd/nexus/commit/3f0e1bc998da71a458b98dc2cd6cb09698d6030c))
+
+
+
 ## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@1.1.0...@uplift-ltd/sentry@1.2.0) (2021-05-08)
 
 
