@@ -1,8 +1,10 @@
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/react";
+import { NORMALIZE_DEPTH, SENTRY_DSN } from "./constants";
 
-if (process.env.NEXT_PUBLIC_SENTRY_DSN || process.env.REACT_APP_SENTRY_PUBLIC_DSN) {
+if (SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN || process.env.REACT_APP_SENTRY_PUBLIC_DSN,
+    dsn: SENTRY_DSN,
+    normalizeDepth: NORMALIZE_DEPTH,
   });
 }
 

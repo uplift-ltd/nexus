@@ -29,13 +29,14 @@
     "test": "jest"
   },
   "optionalDependencies": {
-    "sentry-expo": "^2.1.2"
+    "sentry-expo": "^4.0.3"
   },
   "dependencies": {
-    "@sentry/browser": "^5.24.2",
-    "@sentry/node": "^5.24.2"
+    "@sentry/browser": "^6.13.3",
+    "@sentry/node": "^6.13.3",
+    "@sentry/react": "^6.13.3"
   },
   "devDependencies": {
-    "sentry-expo": "^2.1.2"
+    "sentry-expo": "^4.0.3"
   }
 }
