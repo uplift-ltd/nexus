@@ -8,3 +8,6 @@ export const SENTRY_DSN =
 export const NORMALIZE_DEPTH = Number(
   process.env.SENTRY_NORMALIZE_DEPTH || process.env.NEXT_PUBLIC_SENTRY_NORMALIZE_DEPTH || 10
 );
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+export type { CaptureContext } from "@sentry/types";

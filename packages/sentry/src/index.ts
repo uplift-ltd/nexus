@@ -9,3 +9,6 @@ if (SENTRY_DSN) {
 }
 
 export default Sentry;
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+export type { CaptureContext } from "@sentry/types";
