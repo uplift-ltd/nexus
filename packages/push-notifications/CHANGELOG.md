@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/push-notifications@2.0.0...@uplift-ltd/push-notifications@2.0.1) (2021-10-11)
+
+**Note:** Version bump only for package @uplift-ltd/push-notifications
+
+
+
+
+
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/push-notifications@1.2.2...@uplift-ltd/push-notifications@2.0.0) (2021-10-11)
 
 

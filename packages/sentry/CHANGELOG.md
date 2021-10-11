@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@3.0.0...@uplift-ltd/sentry@3.1.0) (2021-10-11)
+
+
+### Features
+
+* export sentry constants ([#193](https://github.com/uplift-ltd/nexus/issues/193)) ([c14b671](https://github.com/uplift-ltd/nexus/commit/c14b671afda41a2659b92b6a1a6ef0ca9bf36b32))
+
+
+
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@2.0.1...@uplift-ltd/sentry@3.0.0) (2021-10-11)
 
 
