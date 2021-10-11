@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@2.0.0...@uplift-ltd/sentry@2.0.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* sentry version and export CaptureContext ([#191](https://github.com/uplift-ltd/nexus/issues/191)) ([616fac9](https://github.com/uplift-ltd/nexus/commit/616fac90474d295e65800275d3525ffeffaf44ce))
+
+
+
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@1.2.0...@uplift-ltd/sentry@2.0.0) (2021-10-11)
 
 
