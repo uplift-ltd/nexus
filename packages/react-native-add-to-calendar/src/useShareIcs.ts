@@ -1,4 +1,4 @@
-import Sentry from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import * as FileSystem from "expo-file-system";
 import * as IntentLauncher from "expo-intent-launcher";
@@ -32,7 +32,7 @@ export const useShareIcs = () => {
       // assumed iOS
       return await Sharing.shareAsync(filePath);
     } catch (err) {
-      Sentry.captureException(err);
+      captureException(err);
       throw err;
     }
   }, []);

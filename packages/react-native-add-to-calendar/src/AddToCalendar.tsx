@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import Sentry from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -8,7 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useCalendars } from "./useCalendars";
 
 const reportAndDisplayError = (err: Error) => {
-  Sentry.captureException(err);
+  captureException(err);
   Alert.alert(err.message);
 };
 

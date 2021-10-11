@@ -1,4 +1,4 @@
-import Sentry from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import { PermissionStatus } from "expo-permissions";
@@ -41,7 +41,7 @@ export function useNotificationPermission({
       status = (await Notifications.getPermissionsAsync()).status;
       setPermissionStatus(status);
     } catch (err) {
-      Sentry.captureException(err);
+      captureException(err);
     }
     return status;
   }, []);
@@ -62,7 +62,7 @@ export function useNotificationPermission({
         await onRegisterPushNotifications({ token, status });
       }
     } catch (err) {
-      Sentry.captureException(err);
+      captureException(err);
       throw err;
     }
     return { token, status };

@@ -1,4 +1,4 @@
-import Sentry from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry";
 import { PermissionStatus } from "expo-permissions";
 import React, { useContext, useEffect } from "react";
 import { Alert } from "react-native";
@@ -33,7 +33,7 @@ export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = (
               const result = await registerPushNotifications();
               onRegisterResult?.(result);
             } catch (err) {
-              Sentry.captureException(err);
+              captureException(err);
             }
           },
         },

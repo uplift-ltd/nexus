@@ -7,7 +7,7 @@
 ## API
 
 ```ts
-import Sentry from "@uplift-ltd/sentry";
+import * as Sentry from "@uplift-ltd/sentry";
 
 Sentry.captureException(new Error("Baroque"));
 

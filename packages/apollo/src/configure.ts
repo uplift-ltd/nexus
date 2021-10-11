@@ -16,7 +16,7 @@ import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
-import Sentry from "@uplift-ltd/sentry";
+import { captureException, captureMessage } from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
 import { GRAPHQL_AUTH_URL } from "./constants";
 
@@ -90,7 +90,7 @@ export const configureClient = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map?.((result: Record<string, any>) => result.errors);
 
-      Sentry.captureException(networkError, {
+      captureException(networkError, {
         extra: {
           operationName: operation.operationName,
           query: operation.query,
@@ -125,7 +125,7 @@ export const configureClient = ({
         }
       });
 
-      Sentry.captureMessage("GraphQL Errors", {
+      captureMessage("GraphQL Errors", {
         extra: {
           operationName: operation.operationName,
           query: operation.query,
