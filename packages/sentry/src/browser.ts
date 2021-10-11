@@ -8,6 +8,8 @@ if (SENTRY_DSN) {
   });
 }
 
+export * from "./constants";
+
 export * from "@sentry/react";
 
-export { captureEvent, captureException, captureMessage } from "@sentry/react";
+export { captureEvent, captureException, captureMessage, showReportDialog } from "@sentry/react";

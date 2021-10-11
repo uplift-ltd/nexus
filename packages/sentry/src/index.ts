@@ -8,6 +8,8 @@ if (SENTRY_DSN) {
   });
 }
 
+export * from "./constants";
+
 export * from "@sentry/node";
 
 export { captureEvent, captureException, captureMessage } from "@sentry/node";

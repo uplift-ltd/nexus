@@ -10,6 +10,8 @@ if (SENTRY_DSN) {
   });
 }
 
+export * from "./constants";
+
 export * from "sentry-expo";
 
 // eslint-disable-next-line import/no-extraneous-dependencies
