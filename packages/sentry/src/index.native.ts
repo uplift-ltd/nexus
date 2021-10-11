@@ -1,8 +1,8 @@
-import * as Sentry from "sentry-expo";
+import { init } from "sentry-expo";
 import { NORMALIZE_DEPTH, SENTRY_DSN } from "./constants";
 
 if (SENTRY_DSN) {
-  Sentry.init({
+  init({
     dsn: SENTRY_DSN,
     normalizeDepth: NORMALIZE_DEPTH,
     enableInExpoDevelopment: typeof __DEV__ !== "undefined",
@@ -10,7 +10,7 @@ if (SENTRY_DSN) {
   });
 }
 
-export default Sentry;
+export * from "sentry-expo";
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-export type { CaptureContext } from "@sentry/types";
+export { captureEvent, captureException, captureMessage } from "@sentry/react-native";

@@ -1,14 +1,13 @@
-import * as Sentry from "@sentry/react";
+import { init } from "@sentry/react";
 import { NORMALIZE_DEPTH, SENTRY_DSN } from "./constants";
 
 if (SENTRY_DSN) {
-  Sentry.init({
+  init({
     dsn: SENTRY_DSN,
     normalizeDepth: NORMALIZE_DEPTH,
   });
 }
 
-export default Sentry;
+export * from "@sentry/react";
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-export type { CaptureContext } from "@sentry/types";
+export { captureEvent, captureException, captureMessage } from "@sentry/react";

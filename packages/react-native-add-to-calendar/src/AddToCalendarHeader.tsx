@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import Sentry from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import React from "react";
 import { Alert, StyleSheet } from "react-native";
@@ -32,7 +32,7 @@ export const AddToCalendarHeader: React.FC<AddToCalendarHeaderProps> = ({
             try {
               await shareIcs(event);
             } catch (err) {
-              Sentry.captureException(err);
+              captureException(err);
               Alert.alert(err);
             }
           }}
