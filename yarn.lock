@@ -3018,7 +3018,7 @@
     "@sentry/utils" "6.12.0"
     tslib "^1.9.3"
 
-"@sentry/browser@6.13.3", "@sentry/browser@^6.12.0", "@sentry/browser@^6.13.3":
+"@sentry/browser@6.13.3", "@sentry/browser@^6.12.0":
   version "6.13.3"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.13.3.tgz#d4511791b1e484ad48785eba3bce291fdf115c1e"
   integrity sha512-jwlpsk2/u1cofvfYsjmqcnx50JJtf/T6HTgdW+ih8+rqWC5ABEZf4IiB/H+KAyjJ3wVzCOugMq5irL83XDCfqQ==
@@ -3118,7 +3118,7 @@
     "@sentry/types" "6.13.3"
     tslib "^1.9.3"
 
-"@sentry/node@^6.13.3":
+"@sentry/node@^6.12.0":
   version "6.13.3"
   resolved "https://registry.yarnpkg.com/@sentry/node/-/node-6.13.3.tgz#94c646c31fd240ab68ee8b85aa663e65eb499d06"
   integrity sha512-ZeZSw+TcPcf4e0j7iEqNMtoVmz+WFW/TEoGokXIwysZqSgchKdAXDHqn+CqUqFan7d76JcJmzztAUK2JruQ2Kg==
@@ -3160,7 +3160,7 @@
     hoist-non-react-statics "^3.3.2"
     tslib "^1.9.3"
 
-"@sentry/react@^6.13.3":
+"@sentry/react@^6.12.0":
   version "6.13.3"
   resolved "https://registry.yarnpkg.com/@sentry/react/-/react-6.13.3.tgz#f9607e0a60d52efd0baa96a14e694b6059f9379a"
   integrity sha512-fdfmD9XNpGDwdkeLyd+iq+kqtNeghpH3wiez2rD81ZBvrn70uKaO2/yYDE71AXC6fUOwQuJmdfAuqBcNJkYIEw==
