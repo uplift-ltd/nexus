@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.7](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@1.2.6...@uplift-ltd/use-user-context@1.2.7) (2021-10-12)
+
+
+### Bug Fixes
+
+* user context provider ([#194](https://github.com/uplift-ltd/nexus/issues/194)) ([8cce7df](https://github.com/uplift-ltd/nexus/commit/8cce7df1ebb8ff3f8bf0db919d581a865526e862))
+
+
+
 ### [1.2.6](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@1.2.5...@uplift-ltd/use-user-context@1.2.6) (2021-10-11)
 
 **Note:** Version bump only for package @uplift-ltd/use-user-context
