@@ -1,5 +1,5 @@
 import { DocumentNode, useEnhancedQuery } from "@uplift-ltd/apollo";
-import Sentry from "@uplift-ltd/sentry";
+import { setUser } from "@uplift-ltd/sentry";
 import React, { useEffect } from "react";
 import { UserContext } from "./context";
 import { CurrentUserShape } from "./types";
@@ -35,7 +35,7 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
 
   useEffect(() => {
     if (currentUser) {
-      Sentry.setUser({
+      setUser({
         id: currentUser.id,
         email: currentUser.email,
       });
