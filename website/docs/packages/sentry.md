@@ -9,7 +9,7 @@ title: sentry
 ## API
 
 ```ts
-import * as Sentry from "@uplift-ltd/sentry";
+import { captureException, captureMessage } from "@uplift-ltd/sentry";
 
 Sentry.captureException(new Error("Baroque"));
 
