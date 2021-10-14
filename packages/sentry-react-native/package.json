@@ -1,0 +1,41 @@
+{
+  "name": "@uplift-ltd/sentry-react-native",
+  "version": "1.0.0",
+  "description": "sentry-react-native",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "browser": "./cjs/browser.js",
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/sentry-react-native"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sentry-react-native"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/sentry-react-native",
+  "scripts": {
+    "build": "nexus build-library",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "optionalDependencies": {
+    "sentry-expo": "^4.0.3"
+  },
+  "dependencies": {
+    "@uplift-ltd/sentry": "^3.1.1"
+  },
+  "devDependencies": {
+    "sentry-expo": "^4.0.3"
+  }
+}

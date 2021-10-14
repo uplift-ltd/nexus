@@ -1,13 +1,13 @@
-# @uplift-ltd/sentry
+# @uplift-ltd/sentry-react-native
 
 ## Installation
 
-    yarn add @uplift-ltd/sentry
+    yarn add @uplift-ltd/sentry-react-native
 
 ## API
 
 ```ts
-import { captureException, captureMessage } from "@uplift-ltd/sentry";
+import { captureException, captureMessage } from "@uplift-ltd/sentry-react-native";
 
 Sentry.captureException(new Error("Baroque"));
 
@@ -19,4 +19,5 @@ separate `SENTRY_DSN` (defaults to `NEXT_PUBLIC_SENTRY_DSN` if not provided).
 
 ### React Native
 
-See the `@uplift-ltd/sentry-react-native` package.
+Note: May need to set up
+[babel-plugin-transform-inline-environment-variables](https://babeljs.io/docs/en/babel-plugin-transform-inline-environment-variables/).

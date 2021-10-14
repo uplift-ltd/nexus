@@ -22,6 +22,7 @@ module.exports = {
       "packages/sass",
       "packages/save-on-navigate-back",
       "packages/scripts",
+      "packages/sentry-react-native",
       "packages/sentry",
       "packages/setup-proxy",
       "packages/space-between",
