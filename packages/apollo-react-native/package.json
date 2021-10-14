@@ -26,7 +26,7 @@
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
     "expo-secure-store": "~9.3.0"
