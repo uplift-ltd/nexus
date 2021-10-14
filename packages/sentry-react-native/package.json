@@ -27,7 +27,7 @@
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "optionalDependencies": {
     "sentry-expo": "^4.0.3"
