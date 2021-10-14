@@ -1,0 +1,38 @@
+{
+  "name": "@uplift-ltd/apollo-react-native",
+  "version": "1.0.0",
+  "description": "apollo-react-native",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/apollo-react-native"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:apollo-react-native"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/apollo-react-native",
+  "scripts": {
+    "build": "nexus build-library",
+    "check-types": "tsc --noEmit",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "expo-secure-store": "~9.3.0"
+  },
+  "dependencies": {
+    "@uplift-ltd/apollo": "^2.0.2"
+  },
+  "devDependencies": {}
+}

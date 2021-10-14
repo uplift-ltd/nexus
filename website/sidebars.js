@@ -4,6 +4,7 @@ module.exports = {
     "Getting Started": ["getting-started/installation", "getting-started/contributing"],
     FAQ: ["faq/audit", "faq/schema"],
     Packages: [
+      "packages/apollo-react-native",
       "packages/apollo",
       "packages/constants",
       "packages/create-nexus-package",
