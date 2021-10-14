@@ -1,5 +1,5 @@
+import { GRAPHQL_TOKEN } from "@uplift-ltd/apollo";
 import * as SecureStore from "expo-secure-store";
-import { GRAPHQL_TOKEN } from "./constants";
 
 export const getToken = () => SecureStore.getItemAsync(GRAPHQL_TOKEN);
 
