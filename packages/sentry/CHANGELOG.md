@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@3.1.0...@uplift-ltd/sentry@3.1.1) (2021-10-14)
+
+
+### Bug Fixes
+
+* use sentry browser instead ([#195](https://github.com/uplift-ltd/nexus/issues/195)) ([cde18cf](https://github.com/uplift-ltd/nexus/commit/cde18cf1daa4e06f8ee590270d1358ceb09b3d44))
+* user context provider ([#194](https://github.com/uplift-ltd/nexus/issues/194)) ([8cce7df](https://github.com/uplift-ltd/nexus/commit/8cce7df1ebb8ff3f8bf0db919d581a865526e862))
+
+
+
 ## [3.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@3.0.0...@uplift-ltd/sentry@3.1.0) (2021-10-11)
 
 
