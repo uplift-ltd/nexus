@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.8](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@1.4.7...@uplift-ltd/react-native-debug@1.4.8) (2021-10-14)
+
+**Note:** Version bump only for package @uplift-ltd/react-native-debug
+
+
+
+
+
 ### [1.4.7](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@1.4.6...@uplift-ltd/react-native-debug@1.4.7) (2021-10-14)
 
 **Note:** Version bump only for package @uplift-ltd/react-native-debug
