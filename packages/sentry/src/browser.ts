@@ -1,4 +1,4 @@
-import { init } from "@sentry/react";
+import { init } from "@sentry/browser";
 import { NORMALIZE_DEPTH, SENTRY_DSN } from "./constants";
 
 if (SENTRY_DSN) {
@@ -10,6 +10,6 @@ if (SENTRY_DSN) {
 
 export * from "./constants";
 
-export * from "@sentry/react";
+export * from "@sentry/browser";
 
-export { captureEvent, captureException, captureMessage, showReportDialog } from "@sentry/react";
+export { captureEvent, captureException, captureMessage, showReportDialog } from "@sentry/browser";
