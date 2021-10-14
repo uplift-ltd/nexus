@@ -14,8 +14,8 @@ Sentry.captureException(new Error("Baroque"));
 Sentry.captureMessage("Does not compute");
 ```
 
-Add `NEXT_PUBLIC_SENTRY_PUBLIC_DSN` to `.env`. If using in Node (for example for Next.js) you can
-add a separate `SENTRY_DNS` (defaults to `NEXT_PUBLIC_SENTRY_PUBLIC_DSN` if not provided).
+Add `NEXT_PUBLIC_SENTRY_DSN` to `.env`. If using in Node (for example for Next.js) you can add a
+separate `SENTRY_DSN` (defaults to `NEXT_PUBLIC_SENTRY_DSN` if not provided).
 
 ### React Native
 
