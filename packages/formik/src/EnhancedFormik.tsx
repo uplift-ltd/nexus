@@ -56,7 +56,7 @@ export function EnhancedFormik<
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
           const sentryEventId = captureException(err, { extra });
-          setStatus({ formError: err, sentryEventId });
+          setStatus({ formError: err, formSuccess: null, sentryEventId });
         }
       }}
       {...otherProps}
