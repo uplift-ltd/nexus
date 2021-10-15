@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/create-nexus-package@1.1.0...@uplift-ltd/create-nexus-package@1.2.0) (2021-10-15)
+
+
+### Features
+
+* set passWithNoTests for new packages ([#199](https://github.com/uplift-ltd/nexus/issues/199)) ([bd7e5ec](https://github.com/uplift-ltd/nexus/commit/bd7e5ec1977a554031ba1ceb6785047dfe0ddb2e))
+
+
+
 ## [1.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/create-nexus-package@1.0.1...@uplift-ltd/create-nexus-package@1.1.0) (2021-02-16)
 
 

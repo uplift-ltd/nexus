@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.3...@uplift-ltd/formik@2.0.4) (2021-10-15)
+
+
+### Bug Fixes
+
+* reset formSuccess when catching error ([#200](https://github.com/uplift-ltd/nexus/issues/200)) ([8a748fc](https://github.com/uplift-ltd/nexus/commit/8a748fc0a23bac73cea422cd8cf7b6c1bfff0331))
+
+
+
 ### [2.0.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.2...@uplift-ltd/formik@2.0.3) (2021-10-14)
 
 **Note:** Version bump only for package @uplift-ltd/formik
