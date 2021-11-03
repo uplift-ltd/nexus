@@ -15,7 +15,7 @@ export const GRAPHQL_HOST =
   process.env.NEXT_PUBLIC_GRAPHQL_HOST ||
   process.env.REACT_APP_GRAPHQL_HOST ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "") ||
-  "http://localhost:5000";
+  "http://localhost:8000";
 export const GRAPHQL_BATCHING =
   (process.env.NEXT_PUBLIC_GRAPHQL_BATCHING || process.env.REACT_APP_GRAPHQL_BATCHING) !== "false";
 

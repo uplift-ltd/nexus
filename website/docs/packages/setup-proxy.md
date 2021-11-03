@@ -32,7 +32,7 @@ module.exports = setupProxy({ target: pkg.proxy });
 const { setupProxy, DEFAULT_TARGET, DEFAULT_PROXY_PATHS } = require("@uplift-ltd/setup-proxy");
 
 module.exports = setupProxy({
-  target: "http://localhost:5000",
+  target: "http://localhost:8000",
   proxyPaths: DEFAULT_PROXY_PATHS.filter((proxyPath) => proxyPath.indexOf("logout") !== -1),
 });
 ```
