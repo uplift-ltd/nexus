@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@1.2.9...@uplift-ltd/use-user-context@1.3.0) (2021-11-29)
+
+
+### Features
+
+* add user context refetch ([#205](https://github.com/uplift-ltd/nexus/issues/205)) ([30b3cbf](https://github.com/uplift-ltd/nexus/commit/30b3cbf51d591af42e334a70c9defd79fa6f844d))
+
+
+
 ### [1.2.9](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@1.2.8...@uplift-ltd/use-user-context@1.2.9) (2021-10-14)
 
 **Note:** Version bump only for package @uplift-ltd/use-user-context
