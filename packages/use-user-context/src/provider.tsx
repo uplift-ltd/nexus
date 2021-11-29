@@ -20,7 +20,7 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
   currentUserQuery,
   skip = false,
 }: UserContextProviderProps) {
-  const { loading, error, data } = useEnhancedQuery<CurrentUserQueryResult>(
+  const { loading, error, data, refetch, refetching } = useEnhancedQuery<CurrentUserQueryResult>(
     currentUserQuery,
     {
       skip,
@@ -43,7 +43,9 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
   }, [currentUser]);
 
   return (
-    <UserContext.Provider value={{ loading, error, isAuthenticated, currentUser }}>
+    <UserContext.Provider
+      value={{ loading, error, isAuthenticated, currentUser, refetch, refetching }}
+    >
       {children}
     </UserContext.Provider>
   );
