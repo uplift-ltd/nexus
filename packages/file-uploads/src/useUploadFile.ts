@@ -32,6 +32,8 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
 
   const uploadFile = useCallback(
     async ({ file, rawFileName, ...variables }: UploadFileOptions<FileType>) => {
+      fileUploadDispatch({ type: "SET_LOADING", loading: true });
+
       let fileName = "";
       if (variables.fileName) {
         fileName = variables.fileName;
@@ -66,7 +68,7 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
       const { fileAttachment } = signedRequestData.getSignedRequest;
 
       // This is here mainly to support the useUploadFiles hook
-      onLoading?.(false, fileAttachment);
+      onLoading?.(true, fileAttachment);
 
       let uploadFileData = null;
 
