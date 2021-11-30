@@ -25,7 +25,7 @@ export function useUploadFile<FileType = File>({
   );
 
   const uploadFile = useCallback(
-    async ({ file, formData, ...variables }: UploadFileOptions<FileType>) => {
+    async ({ file, ...variables }: UploadFileOptions<FileType>) => {
       const axios = (await import("axios")).default;
 
       let fileName = "";
@@ -63,27 +63,13 @@ export function useUploadFile<FileType = File>({
       let uploadFileData = null;
 
       try {
-        const fileOrFormData = formData || file;
-
-        if (formData && typeof file === "string") {
-          formData.append("file", {
-            uri: file,
-            name: fileName,
-            type: fileType,
-          } as any);
-        }
-
-        uploadFileData = await axios.put(
-          signedRequestData.getSignedRequest.uploadUrl,
-          fileOrFormData,
-          {
-            onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
-              const progress = Math.ceil((loaded / total) * 100);
-              fileUploadDispatch({ type: "SET_PROGRESS", progress });
-              onProgress?.(progress, fileAttachment);
-            },
-          }
-        );
+        uploadFileData = await axios.put(signedRequestData.getSignedRequest.uploadUrl, file, {
+          onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
+            const progress = Math.ceil((loaded / total) * 100);
+            fileUploadDispatch({ type: "SET_PROGRESS", progress });
+            onProgress?.(progress, fileAttachment);
+          },
+        });
 
         fileUploadDispatch({ type: "SET_DATA", data: uploadFileData.data });
         fileUploadDispatch({ type: "SET_PROGRESS", progress: 100 });
