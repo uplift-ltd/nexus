@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0-alpha.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.4.0-alpha.0...@uplift-ltd/file-uploads@1.4.0-alpha.1) (2021-11-30)
+
+
+### Reverts
+
+* Revert "no form data" ([b4d6327](https://github.com/uplift-ltd/nexus/commit/b4d63279df2dff2ccebd29d456da59c04fded14f))
+
+
+
 ## [1.4.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.3.9...@uplift-ltd/file-uploads@1.4.0-alpha.0) (2021-11-30)
 
 
