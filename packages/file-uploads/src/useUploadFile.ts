@@ -13,16 +13,16 @@ export interface UseUploadFileOptions<FileType = File, UploadResultData = unknow
   onError?: (error: Error, fileAttachment: S3FileAttachment) => void;
 }
 
-const defaultFileUploader = getAxiosFileUploader<unknown, unknown>();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const defaultFileUploader = getAxiosFileUploader<any, any>();
 
 export function useUploadFile<FileType = File, UploadResultData = unknown>({
-  fileUploader,
+  fileUploader = defaultFileUploader,
   onProgress,
   onLoading,
   onComplete,
   onError,
 }: UseUploadFileOptions<FileType, UploadResultData> = {}) {
-  const uploader = fileUploader || defaultFileUploader;
   const [getSignedRequest, signedRequestState] = useGetSignedRequest();
 
   const [fileUploadState, fileUploadDispatch] = useReducer(
@@ -67,7 +67,7 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
       let uploadFileData = null;
 
       try {
-        uploadFileData = await uploader(signedRequestData.getSignedRequest.uploadUrl, file, {
+        uploadFileData = await fileUploader(signedRequestData.getSignedRequest.uploadUrl, file, {
           fileAttachment,
           fileUploadDispatch,
           onProgress,
@@ -86,7 +86,7 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
 
       return { signedRequestData, uploadFileData };
     },
-    [uploader, getSignedRequest, onProgress, onLoading, onComplete, onError]
+    [fileUploader, getSignedRequest, onProgress, onLoading, onComplete, onError]
   );
 
   const loading = signedRequestState.loading || fileUploadState.loading;
