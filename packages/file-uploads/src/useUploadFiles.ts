@@ -1,17 +1,28 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
+import { FileUploader } from "./fileUploaders";
 import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer";
-import { S3FileAttachment, UploadFilesOptions } from "./types";
+import { S3FileAttachment, UploadFileOptions, UploadFilesOptions } from "./types";
 import { useUploadFile, UseUploadFileOptions } from "./useUploadFile";
 
-export interface UseUploadFilesOptions<FileType = File, UploadType = FileType> {
+export interface UseUploadFilesOptions<
+  FileType = File,
+  UploadResultData = unknown,
+  UploadType = FileType
+> {
   fileAttachments?: S3FileAttachment[];
-  mapFileUpload?: (file: FileType) => UploadType;
+  fileUploader?: FileUploader<UploadType, UploadResultData>;
+  mapFileUpload?: (options: UploadFileOptions<FileType>) => UploadFileOptions<UploadType>;
 }
 
-export function useUploadFiles<FileType = File>({
+const defaultMapFileUpload = <FileType = File, UploadType = FileType>(
+  options: UploadFileOptions<FileType>
+) => (options as unknown) as UploadType;
+
+export function useUploadFiles<FileType = File, UploadResultData = unknown, UploadType = FileType>({
   fileAttachments,
-  mapFileUpload,
-}: UseUploadFilesOptions<FileType> = {}) {
+  fileUploader,
+  mapFileUpload = defaultMapFileUpload,
+}: UseUploadFilesOptions<FileType, UploadResultData, UploadType> = {}) {
   const [fileUploadsState, fileUploadsDispatch] = useReducer(
     fileUploadsReducer,
     getInitialFileUploadsState(fileAttachments)
@@ -60,8 +71,8 @@ export function useUploadFiles<FileType = File>({
       });
     };
 
-    return { mapFileUpload, onProgress, onLoading, onComplete, onError };
-  }, [mapFileUpload]);
+    return { fileUploader, onProgress, onLoading, onComplete, onError };
+  }, [fileUploader]);
 
   useEffect(() => {
     fileAttachments?.forEach((fileAttachment) => {
@@ -75,15 +86,17 @@ export function useUploadFiles<FileType = File>({
     });
   }, [fileUploadsState, fileAttachments]);
 
-  const { uploadFile } = useUploadFile<FileType>(uploadFileOptions);
+  const { uploadFile } = useUploadFile<UploadType>(uploadFileOptions);
 
   const uploadFiles = useCallback(
-    ({ files, ...variables }: UploadFilesOptions<FileType>) => {
-      return files.map((file) => {
-        return uploadFile({ file, ...variables });
-      });
+    async ({ files, ...variables }: UploadFilesOptions<FileType>) => {
+      return Promise.all(
+        files.map((file) => {
+          return uploadFile(mapFileUpload({ file, ...variables }));
+        })
+      );
     },
-    [uploadFile]
+    [uploadFile, mapFileUpload]
   );
 
   const onRequestRemove = useCallback((fileAttachmentId: string) => {
