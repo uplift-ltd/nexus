@@ -37,6 +37,9 @@ export type GetSignedRequestMutationProvidedVariables = Omit<
 export interface UploadFileOptions<FileType = File>
   extends GetSignedRequestMutationProvidedVariables {
   file: FileType;
+  rawFileName?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  metadata?: any;
 }
 
 export interface UploadFilesOptions<FileType = File>

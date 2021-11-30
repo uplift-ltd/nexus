@@ -20,7 +20,7 @@ interface ProgressAction {
   progress: number;
 }
 
-type FileUploadAction = DataAction | LoadingAction | ErrorAction | ProgressAction;
+export type FileUploadAction = DataAction | LoadingAction | ErrorAction | ProgressAction;
 
 interface FileUploadState {
   data: FileUploadData | null;
