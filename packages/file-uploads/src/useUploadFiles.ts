@@ -3,11 +3,15 @@ import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsRed
 import { S3FileAttachment, UploadFilesOptions } from "./types";
 import { useUploadFile, UseUploadFileOptions } from "./useUploadFile";
 
-export interface UseUploadFilesOptions {
+export interface UseUploadFilesOptions<FileType = File, UploadType = FileType> {
   fileAttachments?: S3FileAttachment[];
+  mapFileUpload?: (file: FileType) => UploadType;
 }
 
-export function useUploadFiles<FileType = File>({ fileAttachments }: UseUploadFilesOptions = {}) {
+export function useUploadFiles<FileType = File>({
+  fileAttachments,
+  mapFileUpload,
+}: UseUploadFilesOptions<FileType> = {}) {
   const [fileUploadsState, fileUploadsDispatch] = useReducer(
     fileUploadsReducer,
     getInitialFileUploadsState(fileAttachments)
@@ -56,8 +60,8 @@ export function useUploadFiles<FileType = File>({ fileAttachments }: UseUploadFi
       });
     };
 
-    return { onProgress, onLoading, onComplete, onError };
-  }, []);
+    return { mapFileUpload, onProgress, onLoading, onComplete, onError };
+  }, [mapFileUpload]);
 
   useEffect(() => {
     fileAttachments?.forEach((fileAttachment) => {
