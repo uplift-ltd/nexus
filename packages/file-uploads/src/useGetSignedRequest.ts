@@ -29,6 +29,7 @@ const GET_SIGNED_REQUEST = gql`
         metadata
       }
       uploadUrl
+      fields
     }
   }
 `;

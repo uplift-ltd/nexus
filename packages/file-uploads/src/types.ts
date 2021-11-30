@@ -23,6 +23,7 @@ export interface GetSignedRequestMutation {
     errors: { field: string; messages: string[] }[];
     fileAttachment: S3FileAttachment;
     uploadUrl: string;
+    fields: string;
   };
 }
 
@@ -37,7 +38,6 @@ export type GetSignedRequestMutationProvidedVariables = Omit<
 export interface UploadFileOptions<FileType = File>
   extends GetSignedRequestMutationProvidedVariables {
   file: FileType;
-  formData?: FormData;
   metadata?: any;
 }
 

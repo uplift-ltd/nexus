@@ -1,22 +1,28 @@
 import { useCallback, useReducer } from "react";
 import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer";
+import { FileUploader, getAxiosFileUploader } from "./fileUploaders";
 import { getFileNameComponents, getFileType } from "./helpers";
 import { S3FileAttachment, UploadFileOptions } from "./types";
 import { useGetSignedRequest } from "./useGetSignedRequest";
 
-export interface UseUploadFileOptions {
+export interface UseUploadFileOptions<FileType = File, UploadResultData = unknown> {
+  fileUploader?: FileUploader<FileType, UploadResultData>;
   onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
   onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
   onComplete?: (fileAttachment: S3FileAttachment) => void;
   onError?: (error: Error, fileAttachment: S3FileAttachment) => void;
 }
 
-export function useUploadFile<FileType = File>({
+const defaultFileUploader = getAxiosFileUploader<unknown, unknown>();
+
+export function useUploadFile<FileType = File, UploadResultData = unknown>({
+  fileUploader,
   onProgress,
   onLoading,
   onComplete,
   onError,
-}: UseUploadFileOptions = {}) {
+}: UseUploadFileOptions<FileType, UploadResultData> = {}) {
+  const uploader = fileUploader || defaultFileUploader;
   const [getSignedRequest, signedRequestState] = useGetSignedRequest();
 
   const [fileUploadState, fileUploadDispatch] = useReducer(
@@ -25,9 +31,7 @@ export function useUploadFile<FileType = File>({
   );
 
   const uploadFile = useCallback(
-    async ({ file, formData, ...variables }: UploadFileOptions<FileType>) => {
-      const axios = (await import("axios")).default;
-
+    async ({ file, ...variables }: UploadFileOptions<FileType>) => {
       let fileName = "";
       if (variables.fileName) {
         fileName = variables.fileName;
@@ -63,29 +67,13 @@ export function useUploadFile<FileType = File>({
       let uploadFileData = null;
 
       try {
-        const fileOrFormData = formData || file;
+        uploadFileData = await uploader(signedRequestData.getSignedRequest.uploadUrl, file, {
+          fileAttachment,
+          fileUploadDispatch,
+          onProgress,
+        });
 
-        if (formData && typeof file === "string") {
-          formData.append("file", {
-            uri: file,
-            name: fileName,
-            type: fileType,
-          } as any);
-        }
-
-        uploadFileData = await axios.put(
-          signedRequestData.getSignedRequest.uploadUrl,
-          fileOrFormData,
-          {
-            onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
-              const progress = Math.ceil((loaded / total) * 100);
-              fileUploadDispatch({ type: "SET_PROGRESS", progress });
-              onProgress?.(progress, fileAttachment);
-            },
-          }
-        );
-
-        fileUploadDispatch({ type: "SET_DATA", data: uploadFileData.data });
+        fileUploadDispatch({ type: "SET_DATA", data: uploadFileData });
         fileUploadDispatch({ type: "SET_PROGRESS", progress: 100 });
         onComplete?.(signedRequestData.getSignedRequest.fileAttachment);
       } catch (err) {
@@ -98,7 +86,7 @@ export function useUploadFile<FileType = File>({
 
       return { signedRequestData, uploadFileData };
     },
-    [getSignedRequest, onProgress, onLoading, onComplete, onError]
+    [uploader, getSignedRequest, onProgress, onLoading, onComplete, onError]
   );
 
   const loading = signedRequestState.loading || fileUploadState.loading;
