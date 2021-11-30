@@ -1,7 +1,12 @@
-export function getFileNameComponents(filename: string) {
-  const extensionIdx = filename.lastIndexOf(".");
+export function getFileNameComponents(fileName: string): [fileName: string, extension: string] {
+  const slashIdx = fileName.lastIndexOf("/");
+  const fileNameIdx = slashIdx === -1 ? 0 : slashIdx + 1;
+  const extensionIdx = fileName.lastIndexOf(".");
 
-  return [filename.substr(0, extensionIdx), filename.substr(extensionIdx + 1).toLowerCase()];
+  return [
+    fileName.substr(fileNameIdx, extensionIdx),
+    fileName.substr(extensionIdx + 1).toLowerCase(),
+  ];
 }
 
 export async function getFileType(extension: string) {

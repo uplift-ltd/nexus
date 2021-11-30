@@ -25,24 +25,28 @@ export function useUploadFile<FileType = File>({
   );
 
   const uploadFile = useCallback(
-    async ({ file, ...variables }: UploadFileOptions<FileType>) => {
+    async ({ file, formData, ...variables }: UploadFileOptions<FileType>) => {
       const axios = (await import("axios")).default;
 
       let fileName = "";
-      if (typeof file === "string") {
+      if (variables.fileName) {
+        fileName = variables.fileName;
+      } else if (typeof file === "string") {
         fileName = file;
       } else if (file instanceof File) {
         fileName = file.name;
       } else {
         throw new Error("Unable to get file name");
       }
-      const [, extension] = getFileNameComponents(fileName);
+
+      const [processedFileName, extension] = getFileNameComponents(fileName);
+      const fileType = variables.fileType || (await getFileType(extension));
 
       const { data: signedRequestData } = await getSignedRequest({
         variables: {
           ...variables,
-          fileName: variables.fileName || fileName,
-          fileType: variables.fileType || (await getFileType(extension)),
+          fileName: variables.fileName || processedFileName,
+          fileType,
           metadata: variables.metadata && JSON.stringify(variables.metadata),
         },
       });
@@ -59,13 +63,27 @@ export function useUploadFile<FileType = File>({
       let uploadFileData = null;
 
       try {
-        uploadFileData = await axios.put(signedRequestData.getSignedRequest.uploadUrl, file, {
-          onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
-            const progress = Math.ceil((loaded / total) * 100);
-            fileUploadDispatch({ type: "SET_PROGRESS", progress });
-            onProgress?.(progress, fileAttachment);
-          },
-        });
+        const fileOrFormData = formData || file;
+
+        if (formData && typeof file === "string") {
+          formData.append("file", {
+            uri: file,
+            name: fileName,
+            type: fileType,
+          } as any);
+        }
+
+        uploadFileData = await axios.put(
+          signedRequestData.getSignedRequest.uploadUrl,
+          fileOrFormData,
+          {
+            onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
+              const progress = Math.ceil((loaded / total) * 100);
+              fileUploadDispatch({ type: "SET_PROGRESS", progress });
+              onProgress?.(progress, fileAttachment);
+            },
+          }
+        );
 
         fileUploadDispatch({ type: "SET_DATA", data: uploadFileData.data });
         fileUploadDispatch({ type: "SET_PROGRESS", progress: 100 });
