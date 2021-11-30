@@ -23,7 +23,6 @@ export interface GetSignedRequestMutation {
     errors: { field: string; messages: string[] }[];
     fileAttachment: S3FileAttachment;
     uploadUrl: string;
-    fields: string;
   };
 }
 
