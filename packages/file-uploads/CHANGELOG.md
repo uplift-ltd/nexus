@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.3.9...@uplift-ltd/file-uploads@1.4.0-alpha.0) (2021-11-30)
+
+
+### Features
+
+* react native file upload fixes ([fdffec8](https://github.com/uplift-ltd/nexus/commit/fdffec8b7c9e1f5025148a271550da013acc4323))
+
+
+
 ### [1.3.9](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.3.8...@uplift-ltd/file-uploads@1.3.9) (2021-10-14)
 
 **Note:** Version bump only for package @uplift-ltd/file-uploads
