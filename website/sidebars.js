@@ -30,6 +30,7 @@ module.exports = {
       "packages/toasts",
       "packages/ts-helpers",
       "packages/use-after-delay",
+      "packages/use-debounce",
       "packages/use-interval",
       "packages/use-keyboard-visible",
       "packages/use-on-page-scroll",
