@@ -96,3 +96,7 @@ const nodes = mapNodes(connection, (node) => ({ ...node, type: "EnhancedNode" })
 
 console.log(nodes); // => [{ id: 1, type: "EnhancedNode" }]
 ```
+
+### useMapNodes
+
+Like mapNodes but returns a stable array (assuming connection and callback are stable).
