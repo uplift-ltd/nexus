@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.4.0...@uplift-ltd/graphene@1.5.0) (2021-12-11)
+
+
+### Features
+
+* add useMapNodes ([#211](https://github.com/uplift-ltd/nexus/issues/211)) ([dfe6c66](https://github.com/uplift-ltd/nexus/commit/dfe6c66c8b7ae3fa946dfbac6f7b945704c28560))
+
+
+
 ## [1.4.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/graphene@1.3.0...@uplift-ltd/graphene@1.4.0) (2021-08-06)
 
 
