@@ -27,6 +27,9 @@
     "build": "nexus build-library",
     "test": "jest"
   },
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0"
+  },
   "devDependencies": {
     "atob": "^2.1.2",
     "btoa": "^1.2.1"

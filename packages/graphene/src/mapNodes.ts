@@ -1,8 +1,8 @@
-interface Edge<T> {
+export interface Edge<T> {
   node: T;
 }
 
-interface Connection<T> {
+export interface Connection<T> {
   edges: (Edge<T> | null)[];
 }
 
