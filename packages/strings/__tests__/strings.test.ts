@@ -78,23 +78,113 @@ test("safeJoins", () => {
   expect(safeJoin(":")(...input)).toBe("Hello:World:123");
 });
 
-test("makeUrls", () => {
-  const TEST_URL = "/test-url/:tokenId";
-  const MULTIPLE_TOKEN_TEST_URL = "/test-url/:tokenId/:userId";
+test.each([
+  ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
+  ["/test-url/:tokenId/", { tokenId: "654" }, undefined, undefined, "/test-url/654/"],
+  [
+    "/test-url/:tokenId",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "ignore" },
+    "/test-url/654",
+  ],
+  [
+    "/test-url/:tokenId/",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "ignore" },
+    "/test-url/654/",
+  ],
+  [
+    "/test-url/:tokenId",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "ensure" },
+    "/test-url/654/",
+  ],
+  [
+    "/test-url/:tokenId/",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "ensure" },
+    "/test-url/654/",
+  ],
+  [
+    "/test-url/:tokenId",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "remove" },
+    "/test-url/654",
+  ],
+  [
+    "/test-url/:tokenId/",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "remove" },
+    "/test-url/654",
+  ],
+  ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
+  ["/test-url/:tokenId", { tokenId: 123 }, undefined, undefined, "/test-url/123"],
+  ["/test-url/:tokenId", { tokenId: 123 }, { msg: "Hello" }, undefined, "/test-url/123?msg=Hello"],
+  [
+    "/test-url/:tokenId/:userId",
+    { tokenId: 987, userId: "ABC123" },
+    undefined,
+    undefined,
+    "/test-url/987/ABC123",
+  ],
+  [
+    "/test-url/:tokenId/:userId",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    undefined,
+    "/test-url/987/ABC123?msg=Hello",
+  ],
 
-  expect(makeUrl(TEST_URL, { tokenId: "654" })).toBe("/test-url/654");
-  expect(makeUrl(TEST_URL, { tokenId: 123 })).toBe("/test-url/123");
-  expect(makeUrl(TEST_URL, { tokenId: 123 }, { msg: "Hello" })).toBe("/test-url/123?msg=Hello");
+  [
+    "/test-url/:tokenId/:userId",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    undefined,
+    "/test-url/987/ABC123?msg=Hello",
+  ],
+  [
+    "/test-url/:tokenId/:userId/",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    undefined,
+    "/test-url/987/ABC123/?msg=Hello",
+  ],
 
-  expect(makeUrl(MULTIPLE_TOKEN_TEST_URL, { tokenId: 987, userId: "ABC123" })).toBe(
-    "/test-url/987/ABC123"
-  );
+  [
+    "/test-url/:tokenId/:userId",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    { trailingSlash: "ensure" },
+    "/test-url/987/ABC123/?msg=Hello",
+  ],
+  [
+    "/test-url/:tokenId/:userId/",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    { trailingSlash: "ensure" },
+    "/test-url/987/ABC123/?msg=Hello",
+  ],
 
-  expect(
-    makeUrl(
-      MULTIPLE_TOKEN_TEST_URL,
-      { tokenId: 987, userId: "ABC123" },
-      { msg: "Hello", null: null, undefined }
-    )
-  ).toBe("/test-url/987/ABC123?msg=Hello");
+  [
+    "/test-url/:tokenId/:userId",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    { trailingSlash: "remove" },
+    "/test-url/987/ABC123?msg=Hello",
+  ],
+  [
+    "/test-url/:tokenId/:userId/",
+    { tokenId: 987, userId: "ABC123" },
+    { msg: "Hello", null: null, undefined },
+    { trailingSlash: "remove" },
+    "/test-url/987/ABC123?msg=Hello",
+  ],
+])("makeUrls (%s, %s, %s, %s)", (url, tokens, params, options, expected) => {
+  expect(makeUrl(url, tokens, params, options)).toBe(expected);
 });

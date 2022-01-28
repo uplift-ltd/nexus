@@ -131,19 +131,34 @@ export const replaceTokens = (urlTemplate: string, tokens: UrlTokensMap) => {
   }, urlTemplate);
 };
 
+export type MakeUrlOptions = {
+  trailingSlash?: "ignore" | "ensure" | "remove";
+};
+
 export const makeUrl = (
   url: string,
   tokens?: UrlTokensMap | null,
-  params?: UrlTokensMap | null
+  params?: UrlTokensMap | null,
+  { trailingSlash = "ignore" }: MakeUrlOptions = {}
 ): string => {
-  const baseUrl = tokens ? replaceTokens(url, tokens) : url;
+  let baseUrl = tokens ? replaceTokens(url, tokens) : url;
+
+  if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
+    baseUrl = `${baseUrl}/`;
+  }
+
+  if (trailingSlash === "remove" && baseUrl.endsWith("/")) {
+    baseUrl = baseUrl.slice(0, -1);
+  }
+
   const filteredParams = params
     ? Object.fromEntries(
         Object.entries(params)
-          .filter(([key, value]) => notEmpty<string | number>(value))
+          .filter(([_, value]) => notEmpty<string | number>(value))
           .map(([key, value]) => [key.toString(), (value as string | number).toString()])
       )
     : {};
+
   const qs = new URLSearchParams(filteredParams).toString();
   return [baseUrl, qs].filter(Boolean).join("?");
 };
