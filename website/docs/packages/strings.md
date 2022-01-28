@@ -114,7 +114,7 @@ null/undefined tokens or params are filtered out and will not make it into the f
 
 makeUrl can also control trailing slashes in your URLS.
 
-- "ignore" will leave slash as-is
+- "ignore" will leave slash as-is (default)
 - "ensure" will ensure urls always end with a slash
 - "remove" will ensure urls never end with a slash
 
