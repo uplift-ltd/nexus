@@ -1,0 +1,36 @@
+{
+  "name": "@uplift-ltd/nextjs-use-react-navigation",
+  "version": "1.0.0",
+  "description": "nextjs-use-react-navigation",
+  "license": "UNLICENSED",
+  "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "files": [
+    "cjs/",
+    "esm/",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uplift-ltd/nexus.git",
+    "directory": "packages/nextjs-use-react-navigation"
+  },
+  "bugs": {
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:nextjs-use-react-navigation"
+  },
+  "homepage": "https://nexus.uplift.sh/docs/packages/nextjs-use-react-navigation",
+  "scripts": {
+    "build": "nexus build-library",
+    "check-types": "tsc --noEmit",
+    "test": "jest --passWithNoTests"
+  },
+  "peerDependencies": {
+    "next": "^11.0.1"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

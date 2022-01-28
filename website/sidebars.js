@@ -12,6 +12,7 @@ module.exports = {
       "packages/formik",
       "packages/graphene",
       "packages/money",
+      "packages/nextjs-use-react-navigation",
       "packages/nexus",
       "packages/push-notifications",
       "packages/react-native-add-to-calendar",
