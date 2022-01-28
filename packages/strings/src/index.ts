@@ -135,12 +135,33 @@ export type MakeUrlOptions = {
   trailingSlash?: "ignore" | "ensure" | "remove";
 };
 
-export const makeUrl = (
-  url: string,
-  tokens?: UrlTokensMap | null,
-  params?: UrlTokensMap | null,
-  { trailingSlash = "ignore" }: MakeUrlOptions = {}
-): string => {
+export type MakeUrlConfig = {
+  url: string;
+  tokens?: UrlTokensMap | null;
+  params?: UrlTokensMap | null;
+  options?: MakeUrlOptions;
+};
+
+export function makeUrl(config: MakeUrlConfig): string;
+export function makeUrl(
+  url: MakeUrlConfig["url"],
+  tokens: MakeUrlConfig["tokens"],
+  params: MakeUrlConfig["params"],
+  options: MakeUrlConfig["options"]
+): string;
+
+export function makeUrl<ConfigType extends string | MakeUrlConfig>(
+  urlOrConfig: MakeUrlConfig["url"] | MakeUrlConfig,
+  ...rest: ConfigType extends string
+    ? [MakeUrlConfig["tokens"], MakeUrlConfig["params"], MakeUrlConfig["options"]]
+    : never[]
+): string {
+  const url = typeof urlOrConfig === "string" ? urlOrConfig : urlOrConfig.url;
+  const tokens = typeof urlOrConfig === "string" ? rest[0] : urlOrConfig.tokens;
+  const params = typeof urlOrConfig === "string" ? rest[1] : urlOrConfig.params;
+  const { trailingSlash = "ignore" } =
+    (typeof urlOrConfig === "string" ? rest[2] : urlOrConfig.options) || {};
+
   let baseUrl = tokens ? replaceTokens(url, tokens) : url;
 
   if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
@@ -161,4 +182,4 @@ export const makeUrl = (
 
   const qs = new URLSearchParams(filteredParams).toString();
   return [baseUrl, qs].filter(Boolean).join("?");
-};
+}

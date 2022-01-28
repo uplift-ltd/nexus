@@ -188,3 +188,27 @@ test.each([
 ])("makeUrls (%s, %s, %s, %s)", (url, tokens, params, options, expected) => {
   expect(makeUrl(url, tokens, params, options)).toBe(expected);
 });
+
+test.each([
+  [{ url: "/test-url/:tokenId", tokens: { tokenId: "654" } }, "/test-url/654"],
+  [
+    {
+      url: "/test-url/:tokenId/:userId",
+      tokens: { tokenId: 987, userId: "ABC123" },
+      params: { msg: "Hello", null: null, undefined },
+      options: { trailingSlash: "ensure" } as const,
+    },
+    "/test-url/987/ABC123/?msg=Hello",
+  ],
+  [
+    {
+      url: "/test-url/:tokenId/:userId/",
+      tokens: { tokenId: 987, userId: "ABC123" },
+      params: { msg: "Hello", null: null, undefined },
+      options: { trailingSlash: "remove" },
+    } as const,
+    "/test-url/987/ABC123?msg=Hello",
+  ],
+])("makeUrls (config arg) (%s)", (config, expected) => {
+  expect(makeUrl(config)).toBe(expected);
+});
