@@ -29,7 +29,8 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "next": "^11.0.1"
+    "next": "^11.0.1",
+    "react": "^16.0.0 || ^17.0.0"
   },
   "dependencies": {},
   "devDependencies": {}
