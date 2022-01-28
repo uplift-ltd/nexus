@@ -1,1 +1,1 @@
-export { default } from "./useRouterNavigation";
+export { useRouterNavigation } from "./useRouterNavigation";

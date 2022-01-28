@@ -12,7 +12,7 @@ type RouterNavigationMethods = Pick<NextRouter, "back" | "push" | "reload" | "re
  * up evicting memoized objects in the future
  * Inspired by: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
  */
-const useRouterNavigation = (): RouterNavigationMethods => {
+export const useRouterNavigation = (): RouterNavigationMethods => {
   const router = useRouter();
   const routerRef = useRef(router);
 
@@ -32,5 +32,3 @@ const useRouterNavigation = (): RouterNavigationMethods => {
 
   return routerNavigation;
 };
-
-export default useRouterNavigation;
