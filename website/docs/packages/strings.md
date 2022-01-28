@@ -110,7 +110,13 @@ safeJoinWithEmDash("hello", "", false, "world"); // "hello – world"
 ### makeUrl
 
 makeUrl is used to easily replace Url Tokens and optionally, append querystring params. Any
-null/undefined tokens or params are filtered out and will not make it into the final url string
+null/undefined tokens or params are filtered out and will not make it into the final url string.
+
+makeUrl can also control trailing slashes in your URLS.
+
+- "ignore" will leave slash as-is
+- "ensure" will ensure urls always end with a slash
+- "remove" will ensure urls never end with a slash
 
 ```ts
 import { makeUrl } from "@uplift-ltd/strings";
@@ -121,4 +127,63 @@ const USER_SERVICE_DETAILS_URL = "/user/:userId/:serviceId";
 makeUrl(USER_PROFILE_URL, { userId: 654654 }); // => "/user/654654"
 makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }); // => "/user/654654/github"
 makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }, { tab: "repos" }); // => "/user/654654/github?tab=repos"
+
+// trailingSlashes
+const USER_SERVICE_DETAILS_URL_WITH_SLASH = `${USER_SERVICE_DETAILS_URL}/`;
+
+makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }, { tab: "repos" }); // => "/user/654654/github?tab=repos"
+makeUrl(
+  USER_SERVICE_DETAILS_URL_WITH_SLASH,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" }
+); // => "/user/654654/github/?tab=repos"
+
+// same as omitting
+makeUrl(
+  USER_SERVICE_DETAILS_URL,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" },
+  { trailingSlashes: "ignore" }
+); // => "/user/654654/github?tab=repos"
+makeUrl(
+  USER_SERVICE_DETAILS_URL_WITH_SLASH,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" },
+  { trailingSlashes: "ignore" }
+); // => "/user/654654/github/?tab=repos"
+
+// ensure slashes
+makeUrl(
+  USER_SERVICE_DETAILS_URL,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" },
+  { trailingSlashes: "ensure" }
+); // => "/user/654654/github/?tab=repos"
+makeUrl(
+  USER_SERVICE_DETAILS_URL_WITH_SLASH,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" },
+  { trailingSlashes: "ensure" }
+); // => "/user/654654/github/?tab=repos"
+
+// remove slash
+makeUrl(
+  USER_SERVICE_DETAILS_URL,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" },
+  { trailingSlashes: "remove" }
+); // => "/user/654654/github?tab=repos"
+makeUrl(
+  USER_SERVICE_DETAILS_URL_WITH_SLASH,
+  { userId: 654654, serviceId: "github" },
+  { tab: "repos" },
+  { trailingSlashes: "remove" }
+); // => "/user/654654/github?tab=repos"
+
+// Can also pass all config as a single object
+makeUrl({
+  url: USER_SERVICE_DETAILS_URL,
+  tokens: { userId: 654654, serviceId: "github" },
+  options: { trailingSlashes: "ensure" },
+}); // => "/user/654654/github/"
 ```
