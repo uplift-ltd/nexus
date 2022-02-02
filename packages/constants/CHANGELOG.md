@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.8.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.8.0...@uplift-ltd/constants@1.8.1) (2022-02-02)
+
+
+### Bug Fixes
+
+* update backend default port ([#202](https://github.com/uplift-ltd/nexus/issues/202)) ([295300e](https://github.com/uplift-ltd/nexus/commit/295300edcf8be71775ada7352e4f3cb8ba0fe6b9))
+
+
+
 ## [1.8.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.7.0...@uplift-ltd/constants@1.8.0) (2021-09-28)
 
 

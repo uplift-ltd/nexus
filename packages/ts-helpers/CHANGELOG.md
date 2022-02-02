@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.1...@uplift-ltd/ts-helpers@1.2.2) (2022-02-02)
+
+
+### Bug Fixes
+
+* **ts-helpers:** export all helpers ([#223](https://github.com/uplift-ltd/nexus/issues/223)) ([c43b3b1](https://github.com/uplift-ltd/nexus/commit/c43b3b193d20b3913586294a7614e11112b2c320))
+
+
+
 ### [1.2.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.0...@uplift-ltd/ts-helpers@1.2.1) (2021-04-29)
 
 **Note:** Version bump only for package @uplift-ltd/ts-helpers

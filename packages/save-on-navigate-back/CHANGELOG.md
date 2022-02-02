@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.6.9](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.8...@uplift-ltd/save-on-navigate-back@1.6.9) (2022-02-02)
+
+**Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
+
+
+
+
+
 ### [1.6.8](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.7...@uplift-ltd/save-on-navigate-back@1.6.8) (2021-10-15)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back

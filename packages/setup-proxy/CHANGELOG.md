@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.4...@uplift-ltd/setup-proxy@1.3.5) (2022-02-02)
+
+
+### Bug Fixes
+
+* update backend default port ([#202](https://github.com/uplift-ltd/nexus/issues/202)) ([295300e](https://github.com/uplift-ltd/nexus/commit/295300edcf8be71775ada7352e4f3cb8ba0fe6b9))
+
+
+
 ### [1.3.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.3...@uplift-ltd/setup-proxy@1.3.4) (2021-09-28)
 
 **Note:** Version bump only for package @uplift-ltd/setup-proxy

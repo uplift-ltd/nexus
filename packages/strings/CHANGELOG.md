@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.4.2...@uplift-ltd/strings@1.5.0) (2022-02-02)
+
+
+### Features
+
+* add options to makeUrl ([#219](https://github.com/uplift-ltd/nexus/issues/219)) ([699c93f](https://github.com/uplift-ltd/nexus/commit/699c93f6881881f34481b4518db19d34fb85ff12))
+
+
+
 ### [1.4.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.4.1...@uplift-ltd/strings@1.4.2) (2021-05-05)
 
 **Note:** Version bump only for package @uplift-ltd/strings
