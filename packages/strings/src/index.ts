@@ -145,22 +145,21 @@ export type MakeUrlConfig = {
 export function makeUrl(config: MakeUrlConfig): string;
 export function makeUrl(
   url: MakeUrlConfig["url"],
-  tokens: MakeUrlConfig["tokens"],
-  params: MakeUrlConfig["params"],
-  options: MakeUrlConfig["options"]
+  tokens?: MakeUrlConfig["tokens"],
+  params?: MakeUrlConfig["params"],
+  options?: MakeUrlConfig["options"]
 ): string;
-
-export function makeUrl<ConfigType extends string | MakeUrlConfig>(
+export function makeUrl(
   urlOrConfig: MakeUrlConfig["url"] | MakeUrlConfig,
-  ...rest: ConfigType extends string
-    ? [MakeUrlConfig["tokens"], MakeUrlConfig["params"], MakeUrlConfig["options"]]
-    : never[]
+  providedTokens?: MakeUrlConfig["tokens"],
+  providedParams?: MakeUrlConfig["params"],
+  providedOptions?: MakeUrlConfig["options"]
 ): string {
   const url = typeof urlOrConfig === "string" ? urlOrConfig : urlOrConfig.url;
-  const tokens = typeof urlOrConfig === "string" ? rest[0] : urlOrConfig.tokens;
-  const params = typeof urlOrConfig === "string" ? rest[1] : urlOrConfig.params;
+  const tokens = typeof urlOrConfig === "string" ? providedTokens : urlOrConfig.tokens;
+  const params = typeof urlOrConfig === "string" ? providedParams : urlOrConfig.params;
   const { trailingSlash = "ignore" } =
-    (typeof urlOrConfig === "string" ? rest[2] : urlOrConfig.options) || {};
+    (typeof urlOrConfig === "string" ? providedOptions : urlOrConfig.options) || {};
 
   let baseUrl = tokens ? replaceTokens(url, tokens) : url;
 
