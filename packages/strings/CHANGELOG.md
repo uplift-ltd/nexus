@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.5.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.5.0...@uplift-ltd/strings@1.5.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* makeUrl backwards compatibility ([#224](https://github.com/uplift-ltd/nexus/issues/224)) ([deaf031](https://github.com/uplift-ltd/nexus/commit/deaf031ff4249241d43444b261c32ed4f9ff10fc))
+
+
+
 ## [1.5.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.4.2...@uplift-ltd/strings@1.5.0) (2022-02-02)
 
 
