@@ -84,7 +84,16 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
         });
       }
     });
-  }, [fileUploadsState, fileAttachments]);
+    fileUploadsState.fileAttachments.forEach((fileAttachment) => {
+      if (!fileAttachments?.includes(fileAttachment)) {
+        fileUploadsDispatch({
+          type: "REMOVE_FILE",
+          fileAttachmentId: fileAttachment.id,
+        });
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fileAttachments]);
 
   const { uploadFile } = useUploadFile<UploadType>(uploadFileOptions);
 
