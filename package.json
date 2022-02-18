@@ -94,7 +94,7 @@
     "jest-fetch-mock": "^3.0.3",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.11",
-    "next": "^11.0.1",
+    "next": "^12.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "react": "^17.0.2",
