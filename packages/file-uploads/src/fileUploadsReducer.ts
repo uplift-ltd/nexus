@@ -76,13 +76,14 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
         },
       };
     case "SET_PROGRESS": {
-      const progressValues = [...Object.values(prevState.progressByFile), action.progress];
+      const progressByFile = {
+        ...prevState.progressByFile,
+        [action.fileAttachmentId]: action.progress,
+      };
+      const progressValues = Object.values(progressByFile);
       return {
         ...prevState,
-        progressByFile: {
-          ...prevState.progressByFile,
-          [action.fileAttachmentId]: action.progress,
-        },
+        progressByFile,
         progress: progressValues.reduce((acc, x) => acc + x, 0) / progressValues.length || 0,
       };
     }
