@@ -57,14 +57,14 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
       };
     }
     case "SET_LOADING": {
-      const loadingValues = [...Object.values(prevState.loadingByFile), action.loading];
+      const loadingByFile = {
+        ...prevState.loadingByFile,
+        [action.fileAttachmentId]: action.loading,
+      };
       return {
         ...prevState,
-        loadingByFile: {
-          ...prevState.loadingByFile,
-          [action.fileAttachmentId]: action.loading,
-        },
-        loading: loadingValues.some((x) => x),
+        loadingByFile,
+        loading: Object.values(loadingByFile).some((x) => x),
       };
     }
     case "SET_ERROR":

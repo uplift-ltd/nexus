@@ -56,11 +56,6 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
         fileAttachmentId: fileAttachment.id,
         progress: 100,
       });
-      fileUploadsDispatch({
-        type: "SET_LOADING",
-        fileAttachmentId: fileAttachment.id,
-        loading: false,
-      });
     };
 
     const onError: UseUploadFileOptions["onError"] = (error, fileAttachment) => {
