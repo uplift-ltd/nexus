@@ -45,4 +45,6 @@ export interface UploadFileOptions<FileType = File>
 export interface UploadFilesOptions<FileType = File>
   extends GetSignedRequestMutationProvidedVariables {
   files: FileType[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  metadata?: any;
 }
