@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.4.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.4.3...@uplift-ltd/file-uploads@1.4.4) (2022-02-24)
+
+
+### Bug Fixes
+
+* **file-uploads:** fix uploadFiles metadata type ([#235](https://github.com/uplift-ltd/nexus/issues/235)) ([7b6fc65](https://github.com/uplift-ltd/nexus/commit/7b6fc6554730ad59036d79786f8239cf717fe31b))
+
+
+
 ### [1.4.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.4.2...@uplift-ltd/file-uploads@1.4.3) (2022-02-24)
 
 
