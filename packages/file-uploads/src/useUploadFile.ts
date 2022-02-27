@@ -4,10 +4,11 @@ import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer";
 import { FileUploader, getAxiosFileUploader } from "./fileUploaders";
 import { getFileNameComponents, getFileType } from "./helpers";
 import { S3FileAttachment, UploadFileOptions } from "./types";
-import { useGetSignedRequest } from "./useGetSignedRequest";
+import { useGetSignedRequest, UseGetSignedRequestOptions } from "./useGetSignedRequest";
 
 export interface UseUploadFileOptions<FileType = File, UploadResultData = unknown> {
   fileUploader?: FileUploader<FileType, UploadResultData>;
+  signedRequestOptions?: UseGetSignedRequestOptions;
   onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
   onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
   onComplete?: (fileAttachment: S3FileAttachment) => void;
@@ -23,8 +24,9 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
   onLoading,
   onComplete,
   onError,
+  signedRequestOptions,
 }: UseUploadFileOptions<FileType, UploadResultData> = {}) {
-  const [getSignedRequest, signedRequestState] = useGetSignedRequest();
+  const [getSignedRequest, signedRequestState] = useGetSignedRequest(signedRequestOptions);
 
   const [fileUploadState, fileUploadDispatch] = useReducer(
     fileUploadReducer,

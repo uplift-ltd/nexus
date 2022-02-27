@@ -12,6 +12,7 @@ export interface UseUploadFilesOptions<
   fileAttachments?: S3FileAttachment[];
   fileUploader?: FileUploader<UploadType, UploadResultData>;
   mapFileUpload?: (options: UploadFileOptions<FileType>) => UploadFileOptions<UploadType>;
+  signedRequestOptions?: UseUploadFileOptions["signedRequestOptions"];
 }
 
 const defaultMapFileUpload = <FileType = File, UploadType = FileType>(
@@ -22,6 +23,7 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
   fileAttachments,
   fileUploader,
   mapFileUpload = defaultMapFileUpload,
+  signedRequestOptions,
 }: UseUploadFilesOptions<FileType, UploadResultData, UploadType> = {}) {
   const [fileUploadsState, fileUploadsDispatch] = useReducer(
     fileUploadsReducer,
@@ -66,7 +68,13 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
       });
     };
 
-    return { fileUploader, onProgress, onLoading, onComplete, onError };
+    return {
+      fileUploader,
+      onProgress,
+      onLoading,
+      onComplete,
+      onError,
+    };
   }, [fileUploader]);
 
   useEffect(() => {
@@ -90,7 +98,7 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileAttachments]);
 
-  const { uploadFile } = useUploadFile<UploadType>(uploadFileOptions);
+  const { uploadFile } = useUploadFile<UploadType>({ ...uploadFileOptions, signedRequestOptions });
 
   const uploadFiles = useCallback(
     async ({ files, ...variables }: UploadFilesOptions<FileType>) => {
