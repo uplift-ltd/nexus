@@ -12,6 +12,8 @@
  *     // typeof myColor = "blue" | "green" | "red"
  * }
  *
+ * Adapted from: https://github.com/microsoft/TypeScript/issues/26255#issuecomment-736971438
+ *
  */
 export const typedIncludes = <S, R extends `${Extract<S, string>}`>(
   haystack: ReadonlyArray<R>,
