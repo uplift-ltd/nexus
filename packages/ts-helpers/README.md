@@ -32,6 +32,24 @@ const array: (string | null)[] = ["foo", "bar", null, "zoo", null];
 const filteredArray: string[] = array.filter(notEmpty);
 ```
 
+### typedIncludes
+
+Assert whether a variable is a member of an array in a type-safe way. This also avoids the "string"
+is not a member of TYPE errors.
+
+```ts
+const colors = ["blue", "green", "red"] as const;
+
+// You avoid the error here, that myColor is string, not a member of colors
+if (typedIncludes(colors, myColor)) {
+  // typeof myColor = "blue" | "green" | "red"
+
+  // You also get a type error here that yellow is not "blue" | "green" | "red"
+  if (myColor === "yellow") {
+  }
+}
+```
+
 ### ArrayElement
 
 Returns the type of an element of the array
