@@ -33,7 +33,12 @@ export const AddToCalendarHeader: React.FC<AddToCalendarHeaderProps> = ({
               await shareIcs(event);
             } catch (err) {
               captureException(err);
-              Alert.alert(err);
+
+              if (err instanceof Error) {
+                Alert.alert(err.message);
+              } else {
+                Alert.alert(typeof err === "string" ? err : "Encountered an error");
+              }
             }
           }}
         >

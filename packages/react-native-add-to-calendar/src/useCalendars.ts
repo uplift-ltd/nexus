@@ -40,7 +40,7 @@ export const useCalendars = ({
         }
       } catch (err) {
         captureException(err);
-        onPermissionsError(err);
+        onPermissionsError(err as Error);
       }
     })();
   }, [onPermissionsError, permissionsErrorText]);

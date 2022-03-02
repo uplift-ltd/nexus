@@ -87,7 +87,7 @@ export const AddToCalendar: React.FC<AddToCalendarProps> = ({
             onEventAdded?.(selectedCalendar, event);
             onRequestClose();
           } catch (err) {
-            reportAndDisplayError(err);
+            reportAndDisplayError(err as Error);
           }
         }}
       >
