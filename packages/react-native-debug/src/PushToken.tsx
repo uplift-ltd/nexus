@@ -1,5 +1,6 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import { useNotificationPermission } from "@uplift-ltd/push-notifications";
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { Button, Input } from "./common";
@@ -76,7 +77,8 @@ export const PushToken: React.FC<PushTokenProps> = () => {
               }),
             });
           } catch (err) {
-            Alert.alert(err.message);
+            const error = ensureError(err);
+            Alert.alert(error.message);
           }
         }}
       >

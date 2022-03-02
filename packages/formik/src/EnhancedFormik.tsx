@@ -1,4 +1,5 @@
 import { captureException } from "@uplift-ltd/sentry";
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import { Formik, FormikProps, FormikValues, isFunction } from "formik";
 import React, { useRef } from "react";
 import { getApplyErrorsToFields } from "./errors";
@@ -56,7 +57,12 @@ export function EnhancedFormik<
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
           const sentryEventId = captureException(err, { extra });
-          setStatus({ formError: err, formSuccess: null, sentryEventId });
+
+          setStatus({
+            formError: ensureError(err),
+            formSuccess: null,
+            sentryEventId,
+          });
         }
       }}
       {...otherProps}

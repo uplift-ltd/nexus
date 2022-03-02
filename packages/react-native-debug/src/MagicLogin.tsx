@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { setToken } from "@uplift-ltd/apollo";
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import Clipboard from "expo-clipboard";
 import { reloadAsync } from "expo-updates";
 import React from "react";
@@ -17,8 +18,9 @@ const getClipboardValue = async () => {
       throw new Error("Failed to get value");
     }
   } catch (err) {
-    Alert.alert(err.message);
-    throw err;
+    const error = ensureError(err);
+    Alert.alert(error.message);
+    throw error;
   }
   return value;
 };
