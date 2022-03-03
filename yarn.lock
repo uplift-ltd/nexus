@@ -3667,11 +3667,6 @@
     invariant "^2.2.4"
     lodash "^4.5.0"
 
-"@uplift-ltd/ts-helpers@^1.2.3":
-  version "1.2.3"
-  resolved "https://npm.pkg.github.com/download/@uplift-ltd/ts-helpers/1.2.3/d2cc7b7a2b896e300e152b649cae1447fa1a393acfe2494470565b2dee2d0dee#41f484170498c2c74f5c63b92e66a96aa09c393c"
-  integrity sha512-U/m0kQRuLG9/8iMxDWDKcbc3wOQ+lGhKAwuzUvxujCsZHStBBp5P1F3e5/FzdIzsC22mVQoLlOIUuicNU/GCjg==
-
 "@wry/context@^0.5.2":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@wry/context/-/context-0.5.4.tgz#b6c28038872e0a0e1ff14eb40b5bf4cab2ab4e06"
