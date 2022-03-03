@@ -107,8 +107,11 @@ safeJoinWithEmDash("hello", "", false, "world"); // "hello – world"
 
 ### makeUrl
 
-makeUrl is used to easily replace Url Tokens and optionally, append querystring params. Any
-null/undefined tokens or params are filtered out and will not make it into the final url string.
+When constructing URLs, `makeUrl` will help with token replacement, querystring parameters, and can
+optionally control trailing slashes.
+
+When given a url with tokens, `makeUrl` will type check the tokens in the given url. This provides
+autocompletion of tokens and ensures that values for all tokens are provided.
 
 makeUrl can also control trailing slashes in your URLS.
 
@@ -177,11 +180,4 @@ makeUrl(
   { tab: "repos" },
   { trailingSlashes: "remove" }
 ); // => "/user/654654/github?tab=repos"
-
-// Can also pass all config as a single object
-makeUrl({
-  url: USER_SERVICE_DETAILS_URL,
-  tokens: { userId: 654654, serviceId: "github" },
-  options: { trailingSlashes: "ensure" },
-}); // => "/user/654654/github/"
 ```
