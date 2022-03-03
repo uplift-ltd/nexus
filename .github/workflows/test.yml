@@ -72,6 +72,7 @@ jobs:
           if [[ `git status --porcelain` ]]; then
             git status --porcelain
             echo "Found changes from build. If these are in packages/nexus/(cjs|esm)/ please check them in."
+            git diff
             exit 1
           fi
 

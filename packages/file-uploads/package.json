@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@uplift-ltd/apollo": "^3.0.1",
+    "@uplift-ltd/ts-helpers": "^1.2.3",
     "axios": "^0.21.1",
     "lodash": "^4.17.20",
     "mime": "^2.5.2"
