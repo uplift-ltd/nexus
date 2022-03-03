@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/formik",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Helpers for dealing with formik.",
   "license": "UNLICENSED",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@uplift-ltd/sentry": "^4.0.0",
-    "@uplift-ltd/strings": "^1.5.3",
+    "@uplift-ltd/strings": "^1.5.4",
     "@uplift-ltd/ts-helpers": "^1.2.3"
   },
   "devDependencies": {
