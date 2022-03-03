@@ -58,7 +58,7 @@ program
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                return [4 /*yield*/, execa_1.default("tsc", [
+                return [4 /*yield*/, (0, execa_1.default)("tsc", [
                         "-p",
                         script.tsconfig,
                         "--outDir",
@@ -71,7 +71,7 @@ program
                 if (cjs.all) {
                     console.info(cjs.all);
                 }
-                return [4 /*yield*/, execa_1.default("tsc", [
+                return [4 /*yield*/, (0, execa_1.default)("tsc", [
                         "-p",
                         script.tsconfig,
                         "--outDir",
@@ -103,7 +103,7 @@ program.command("clean-library").action(function (script, options) { return __aw
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, execa_1.default("git", ["clean", "-dfx", "cjs", "esm"])];
+                return [4 /*yield*/, (0, execa_1.default)("git", ["clean", "-dfx", "cjs", "esm"])];
             case 1:
                 clean = _a.sent();
                 if (clean.all) {
@@ -128,7 +128,7 @@ program.command("replace-program-version").action(function (script, options) { r
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, replaceProgramVersion_1.replaceProgramVersion()];
+                return [4 /*yield*/, (0, replaceProgramVersion_1.replaceProgramVersion)()];
             case 1:
                 result = _a.sent();
                 if (result.length) {
