@@ -1,7 +1,7 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ### [1.5.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.5.2...@uplift-ltd/strings@1.5.3) (2022-03-03)
 
@@ -9,8 +9,8 @@ All notable changes to this project will be documented in this file. See
 
 # Change Log
 
-All notable changes to this project will be documented in this file. See
-[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ### [1.5.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.5.1...@uplift-ltd/strings@1.5.2) (2022-03-03)
 
