@@ -13,7 +13,7 @@ import { replaceAll } from "./formatters";
 
 // Root is ignored on purpose
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-type UrlTokens<T extends string> = T extends `${infer Root}/:${infer Token}/${infer Rest}`
+export type UrlTokens<T extends string> = T extends `${infer Root}/:${infer Token}/${infer Rest}`
   ? Token | UrlTokens<Rest>
   : T extends `:${infer Token}/${infer Rest}`
   ? Token | UrlTokens<Rest>
@@ -35,13 +35,15 @@ type UrlTokens<T extends string> = T extends `${infer Root}/:${infer Token}/${in
  * // { orgId: string | number, userId: string | number }
  *
  */
-type UrlTokensMap<Url extends string, K extends string = UrlTokens<Url>> = [K] extends [never]
+
+// prettier-ignore
+export type UrlTokensMap<Url extends string, K extends string = UrlTokens<Url>> = [K] extends [never]
   ? never
   : [K] extends [string]
   ? { [P in K]: string | number }
   : never;
 
-type QueryStringParametersMap = Record<string, string | number | null | undefined>;
+export type QueryStringParametersMap = Record<string, string | number | null | undefined>;
 
 export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensMap<UrlTemplate>>(
   urlTemplate: UrlTemplate,
@@ -58,11 +60,14 @@ export type MakeUrlOptions = {
   trailingSlash?: "ignore" | "ensure" | "remove";
 };
 
+// prettier-ignore
+export type MakeUrlArgsList<Url extends string, TokensMap = UrlTokensMap<Url>> = [TokensMap] extends [never]
+  ? [(null | undefined)?, (null | QueryStringParametersMap)?, MakeUrlOptions?]
+  : [UrlTokensMap<Url>, (null | QueryStringParametersMap)?, MakeUrlOptions?];
+
 export function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
   url: Url,
-  ...args: [TokensMap] extends [never]
-    ? [(null | undefined)?, (null | QueryStringParametersMap)?, MakeUrlOptions?]
-    : [UrlTokensMap<Url>, (null | QueryStringParametersMap)?, MakeUrlOptions?]
+  ...args: MakeUrlArgsList<Url, TokensMap>
 ) {
   const [tokens, params, { trailingSlash = "ignore" } = {}] = args;
 
