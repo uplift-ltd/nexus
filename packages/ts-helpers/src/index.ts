@@ -4,6 +4,7 @@ export type { DeepPartial } from "./deepPartial";
 export { ensureError } from "./ensureError";
 export { notEmpty } from "./notEmpty";
 export type { RequireAtLeastOne, RequireOnlyOne } from "./require";
+export { typedIncludes } from "./typedIncludes";
 export type { Unpromise } from "./unpromise";
 export { assertUnreachable, UnreachableCaseError } from "./unreachable";
 export type { ValuesOf } from "./valuesOf";
