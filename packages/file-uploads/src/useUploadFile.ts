@@ -1,3 +1,4 @@
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import { useCallback, useReducer } from "react";
 import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer";
 import { FileUploader, getAxiosFileUploader } from "./fileUploaders";
@@ -83,8 +84,10 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
         fileUploadDispatch({ type: "SET_PROGRESS", progress: 100 });
         onComplete?.(signedRequestData.getSignedRequest.fileAttachment);
       } catch (err) {
-        fileUploadDispatch({ type: "SET_ERROR", error: err });
-        onError?.(err, fileAttachment);
+        const error = ensureError(err);
+
+        fileUploadDispatch({ type: "SET_ERROR", error });
+        onError?.(error, fileAttachment);
       }
 
       fileUploadDispatch({ type: "SET_LOADING", loading: false });

@@ -1,5 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { captureException } from "@uplift-ltd/sentry";
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import * as Calendar from "expo-calendar";
 import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -87,7 +88,7 @@ export const AddToCalendar: React.FC<AddToCalendarProps> = ({
             onEventAdded?.(selectedCalendar, event);
             onRequestClose();
           } catch (err) {
-            reportAndDisplayError(err);
+            reportAndDisplayError(ensureError(err));
           }
         }}
       >

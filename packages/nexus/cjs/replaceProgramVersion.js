@@ -48,7 +48,7 @@ function replaceProgramVersion() {
         var pkg, dir, cjsPath, esmPath, options;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, read_pkg_up_1.default()];
+                case 0: return [4 /*yield*/, (0, read_pkg_up_1.default)()];
                 case 1:
                     pkg = _a.sent();
                     if (!pkg) {
@@ -62,9 +62,9 @@ function replaceProgramVersion() {
                         from: /program\.version\((.+)\)/,
                         // format differently so we don't replace in this file (the compiled one)
                         // eslint-disable-next-line no-useless-concat
-                        to: "program.version" + ("(" + JSON.stringify(pkg.packageJson.version) + ")"),
+                        to: "program.version" + "(".concat(JSON.stringify(pkg.packageJson.version), ")"),
                     };
-                    return [2 /*return*/, replace_in_file_1.replaceInFile(options)];
+                    return [2 /*return*/, (0, replace_in_file_1.replaceInFile)(options)];
             }
         });
     });
