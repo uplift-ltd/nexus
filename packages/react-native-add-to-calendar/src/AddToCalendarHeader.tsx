@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { ensureError } from "@uplift-ltd/ts-helpers";
 import { captureException } from "@uplift-ltd/sentry";
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import * as Calendar from "expo-calendar";
 import React from "react";
 import { Alert, StyleSheet } from "react-native";

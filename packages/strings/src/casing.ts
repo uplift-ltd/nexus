@@ -1,9 +1,7 @@
-import { safeJoinWithSpace} from "./safeJoin"
-
+import { safeJoinWithSpace } from "./safeJoin";
 
 // capitalize :: String -> String'
 export const capitalize = (str: string) => (str ? `${str[0].toUpperCase()}${str.slice(1)}` : str);
-
 
 // prettier-ignore
 export const defaultAlwaysLowerCaseList = [ "a", "an", "and", "as if", "as long as", "as", "at", "but", "by", "down", "en", "even if", "for", "from", "if only", "if", "in", "into", "like", "near", "nor", "now that", "of", "off", "on top of", "on", "once", "onto", "or", "out of", "over", "past", "per", "so that", "so", "than", "that", "the", "till", "to", "up", "upon", "v.", "via", "vs.", "when", "with", "yet"];
