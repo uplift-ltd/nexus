@@ -34,7 +34,7 @@
   "dependencies": {
     "@uplift-ltd/sentry": "^4.0.0",
     "@uplift-ltd/strings": "^1.5.1",
-    "@uplift-ltd/ts-helpers": "^1.6.0"
+    "@uplift-ltd/ts-helpers": "^1.2.3"
   },
   "devDependencies": {
     "formik": "^2.2.9"

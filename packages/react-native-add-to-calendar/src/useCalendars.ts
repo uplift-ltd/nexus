@@ -1,3 +1,4 @@
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import { captureException } from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -40,7 +41,7 @@ export const useCalendars = ({
         }
       } catch (err) {
         captureException(err);
-        onPermissionsError(err as Error);
+        onPermissionsError(ensureError(err));
       }
     })();
   }, [onPermissionsError, permissionsErrorText]);

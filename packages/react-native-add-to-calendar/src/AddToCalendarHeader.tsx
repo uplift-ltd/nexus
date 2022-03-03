@@ -1,4 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { ensureError } from "@uplift-ltd/ts-helpers";
 import { captureException } from "@uplift-ltd/sentry";
 import * as Calendar from "expo-calendar";
 import React from "react";
@@ -32,13 +33,9 @@ export const AddToCalendarHeader: React.FC<AddToCalendarHeaderProps> = ({
             try {
               await shareIcs(event);
             } catch (err) {
-              captureException(err);
-
-              if (err instanceof Error) {
-                Alert.alert(err.message);
-              } else {
-                Alert.alert(typeof err === "string" ? err : "Encountered an error");
-              }
+              const error = ensureError(err);
+              captureException(error);
+              Alert.alert(error.message);
             }
           }}
         >

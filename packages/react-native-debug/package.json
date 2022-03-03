@@ -43,6 +43,6 @@
     "@uplift-ltd/apollo": "^3.0.1",
     "@uplift-ltd/constants": "^1.8.1",
     "@uplift-ltd/push-notifications": "^2.0.3",
-    "@uplift-ltd/ts-helpers": "^1.6.0"
+    "@uplift-ltd/ts-helpers": "^1.2.3"
   }
 }
