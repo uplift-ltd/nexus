@@ -98,7 +98,10 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileAttachments]);
 
-  const { uploadFile } = useUploadFile<UploadType>({ ...uploadFileOptions, signedRequestOptions });
+  const { uploadFile } = useUploadFile<UploadType, UploadResultData>({
+    ...uploadFileOptions,
+    signedRequestOptions,
+  });
 
   const uploadFiles = useCallback(
     async ({ files, ...variables }: UploadFilesOptions<FileType>) => {
