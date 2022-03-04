@@ -10,7 +10,7 @@ title: file-uploads
 
 File upload related functionalities for web and React Native.
 
-### useFileUpload
+### useUploadFile
 
 Upload a single file.
 
@@ -47,7 +47,7 @@ function MyComponent() {
 }
 ```
 
-#### useFileUploads
+#### useUploadFiles
 
 Upload multiple files.
 
@@ -76,5 +76,26 @@ function MyComponent() {
       uploadFiles(Array.from(e.target.files));
     }}
   />;
+}
+```
+
+#### Custom signed request
+
+To use a custom signed request:
+
+```tsx
+// MyComponent.tsx
+
+useUploadFile({ signedRequestOptions: { query: MY_SIGNED_REQUEST_MUTATION } });
+// OR
+useUploadFiles({ signedRequestOptions: { query: MY_SIGNED_REQUEST_MUTATION } });
+
+// file-uploads.d.ts
+import "@uplift-ltd/file-uploads";
+
+declare module "@uplift-ltd/file-uploads" {
+  export interface GetSignedRequestMutationVariables {
+    recaptchaToken: string;
+  }
 }
 ```
