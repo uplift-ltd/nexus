@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.4.6...@uplift-ltd/file-uploads@1.5.0) (2022-03-04)
+
+
+### Features
+
+* **file-uploads:** allow to customize getSignedRequest query and options ([#245](https://github.com/uplift-ltd/nexus/issues/245)) ([182d12a](https://github.com/uplift-ltd/nexus/commit/182d12a518059bdc8edeaa47e81df4fb2b26eb2f))
+
+
+
 ### [1.4.6](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.4.5...@uplift-ltd/file-uploads@1.4.6) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/file-uploads
