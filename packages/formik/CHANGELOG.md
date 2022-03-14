@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.11](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.10...@uplift-ltd/formik@2.0.11) (2022-03-14)
+
+**Note:** Version bump only for package @uplift-ltd/formik
+
+
+
+
+
 ### [2.0.10](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.9...@uplift-ltd/formik@2.0.10) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/formik
