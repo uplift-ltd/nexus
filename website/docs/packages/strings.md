@@ -109,8 +109,9 @@ safeJoinWithEmDash("hello", "", false, "world"); // "hello – world"
 
 ### makeQueryString
 
-Given an object, will return a properly encoded querystring for appending to a URL. This function
-removes all falsey/missing values before encoding.
+Given an object of key/values, returns a properly encoded querystring for appending to a URL after
+removing any falsey/missing values. Values as arrays will be appended multiple times. If you want to
+add an array as comma separated, you will need to pass it as a string for the value.
 
 ```ts
 makeQueryString({
@@ -119,6 +120,18 @@ makeQueryString({
   repoName: "hello world",
   message: "",
 }); // => "userId=1234&repoName=hello%20world"
+
+// with array value
+makeQueryString({
+  term: ["hello", "world"],
+  repoName: "hello world",
+}); // => "repoName=hello%20world&term=hello&term=world"
+
+// for comma separated values, join first
+makeQueryString({
+  terms: ["hello", "world"].join(","),
+  repoName: "hello world",
+}); // => "repoName=hello%20world&terms=hello%2Cworld"
 ```
 
 ### makeUrl
