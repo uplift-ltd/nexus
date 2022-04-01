@@ -29,7 +29,7 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@uplift-ltd/strings": "1.5.7"
+    "@uplift-ltd/strings": "1.5.8"
   },
   "peerDependencies": {
     "next": "^11.0.1",
