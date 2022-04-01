@@ -1,5 +1,8 @@
 import { notEmpty } from "@uplift-ltd/ts-helpers";
 import { replaceAll } from "./formatters";
+import { safeJoin } from "./safeJoin";
+
+const safeJoinWithQuestionMark = safeJoin("?");
 
 /**
  * This type parses out the path tokens :token from a url
@@ -81,6 +84,27 @@ export function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
     baseUrl = baseUrl.slice(0, -1);
   }
 
+  const qs = makeQueryString(params);
+
+  return safeJoinWithQuestionMark(baseUrl, qs);
+}
+
+/**
+ * Given an object of key/values, returns a properly encoded querystring for appending to a URL after
+ * removing any falsey/missing values
+ *
+ * @example
+ * makeQueryString({
+ *   userId: 1234,
+ *   search: null,
+ *   repoName: "hello world",
+ *   message: ""
+ * }) // => "userId=1234&repoName=hello%20world"
+ *
+ */
+export function makeQueryString<Params extends QueryStringParametersMap = QueryStringParametersMap>(
+  params?: Params | undefined | null
+) {
   const filteredParams = params
     ? Object.fromEntries(
         Object.entries(params)
@@ -89,6 +113,5 @@ export function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
       )
     : {};
 
-  const qs = new URLSearchParams(filteredParams).toString();
-  return [baseUrl, qs].filter(Boolean).join("?");
+  return new URLSearchParams(filteredParams).toString();
 }
