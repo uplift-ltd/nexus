@@ -1,10 +1,8 @@
 import { ParsedUrlQuery } from "querystring";
-import { makeQueryString } from "@uplift-ltd/strings";
+import { makeQueryString, QueryStringParametersMap } from "@uplift-ltd/strings";
 import { useRouter } from "next/router";
 
-export type ParsedRouterQueryStrings = Record<string, string | undefined>;
-
-export function useRouterQuery<QueryShape extends ParsedUrlQuery = ParsedRouterQueryStrings>() {
+export function useRouterQuery<QueryShape extends ParsedUrlQuery = QueryStringParametersMap>() {
   const router = useRouter();
 
   const updateRouterQuery = (newQuery: ParsedUrlQuery) => {
