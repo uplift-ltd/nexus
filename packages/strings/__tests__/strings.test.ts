@@ -10,6 +10,7 @@ import {
   safeJoinWithEmDash,
   safeJsonParse,
   makeUrl,
+  makeQueryString,
 } from "../src";
 
 test("capitalize", () => {
@@ -186,5 +187,17 @@ test.each([
     "/test-url/987/ABC123?msg=Hello",
   ],
 ])("makeUrls (%s, %s, %s, %s)", (url, tokens, params, options, expected) => {
+  // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
   expect(makeUrl(url, tokens, params, options)).toBe(expected);
+});
+
+test.each([
+  [{ msg: "Hello", null: null, undefined, empty: "" }, "msg=Hello"],
+  [{}, ""],
+  [{ terms: ["hello", "world"].join(",") }, "terms=hello%2Cworld"],
+  [{ userId: 1354, terms: ["hello", "world"].join(",") }, "userId=1354&terms=hello%2Cworld"],
+  [{ term: ["hello", "world"] }, "term=hello&term=world"],
+  [{ userId: 1354, term: ["hello", "world"] }, "userId=1354&term=hello&term=world"],
+])("makeQueryString (%s, %s)", (params, expected) => {
+  expect(makeQueryString(params)).toBe(expected);
 });
