@@ -105,6 +105,20 @@ safeJoinWithEnDash("hello", "", false, "world"); // "hello–world"
 safeJoinWithEmDash("hello", "", false, "world"); // "hello – world"
 ```
 
+### makeQueryString
+
+Given an object, will return a properly encoded querystring for appending to a URL. This function
+removes all falsey/missing values before encoding.
+
+```ts
+makeQueryString({
+  userId: 1234,
+  search: null,
+  repoName: "hello world",
+  message: "",
+}); // => "userId=1234&repoName=hello%20world"
+```
+
 ### makeUrl
 
 When constructing URLs, `makeUrl` will help with token replacement, querystring parameters, and can
