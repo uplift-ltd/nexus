@@ -2,9 +2,9 @@ import { makeQueryString, QueryStringParametersMap, UrlTokens } from "@uplift-lt
 import { useRouter } from "next/router";
 
 // prettier-ignore
-type RouterQueryResult<Tokens extends string, QueryStringParams extends never | string | Record<string, unknown> = never> =
+type RouterQueryResult<QueryStringParams extends never | string | Record<string, unknown> = never, Tokens extends never | string = never> =
     // set URL params to be string
-    { [K in Tokens]: string } &
+    ([Tokens] extends never ? never : { [K in Tokens]: string }) &
     // Iterate through params union or shape and make values optional
     // Allows explicit overrides of value types if needed. example, for arrays
     (
@@ -14,9 +14,8 @@ type RouterQueryResult<Tokens extends string, QueryStringParams extends never | 
     )
 
 export function useRouterQuery<
-  URL extends string,
   QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
-  QueryResult = RouterQueryResult<UrlTokens<URL>, QueryStringShape>,
+  QueryResult = RouterQueryResult<QueryStringShape>,
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {
   const router = useRouter();
@@ -35,4 +34,13 @@ export function useRouterQuery<
     routerQuery: (router.query as unknown) as QueryResult,
     updateRouterQuery,
   };
+}
+
+export function useRouterQueryForUrl<
+  URL extends string,
+  QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
+  QueryResult = RouterQueryResult<QueryStringShape, UrlTokens<URL>>,
+  UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
+>() {
+  return useRouterQuery<QueryStringShape, QueryResult, UpdateQueryShape>();
 }
