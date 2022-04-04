@@ -1,2 +1,2 @@
 export { useRouterNavigation } from "./useRouterNavigation";
-export { useRouterQuery } from "./useRouterQuery";
+export { useRouterQuery, useRouterQueryForUrl } from "./useRouterQuery";

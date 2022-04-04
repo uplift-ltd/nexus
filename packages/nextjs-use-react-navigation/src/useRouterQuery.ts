@@ -2,7 +2,7 @@ import { makeQueryString, QueryStringParametersMap, UrlTokens } from "@uplift-lt
 import { useRouter } from "next/router";
 
 // prettier-ignore
-type RouterQueryResult<QueryStringParams extends never | string | Record<string, unknown> = never, Tokens extends never | string = never> =
+export type RouterQueryResult<QueryStringParams extends never | string | Record<string, unknown> = never, Tokens extends never | string = never> =
     // set URL params to be string
     ([Tokens] extends never ? never : { [K in Tokens]: string }) &
     // Iterate through params union or shape and make values optional
