@@ -13,7 +13,7 @@ import {
 import { DocumentNode } from "graphql";
 import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants";
 
-interface ExtraOptions {
+export interface ExtraOptions {
   auth?: boolean;
 }
 
