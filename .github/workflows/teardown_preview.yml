@@ -15,5 +15,7 @@ jobs:
         uses: rlespinasse/github-slug-action@v4
 
       - name: Teardown preview
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          npx surge teardown nexus-$GITHUB_REF_SLUG_URL.surge.sh
+          npx surge --token $SURGE_TOKEN teardown nexus-$GITHUB_REF_SLUG_URL.surge.sh

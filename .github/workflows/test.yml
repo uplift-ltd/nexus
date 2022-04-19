@@ -175,8 +175,10 @@ jobs:
         uses: rlespinasse/github-slug-action@v4
 
       - name: Publish to surge
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           cd ./website
           yarn install
           yarn build
-          yarn surge ./build nexus-$GITHUB_REF_SLUG_URL.surge.sh
+          yarn surge --token $SURGE_TOKEN ./build nexus-$GITHUB_REF_SLUG_URL.surge.sh
