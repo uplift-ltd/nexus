@@ -148,7 +148,7 @@ jobs:
 
   publish-preview:
     environment:
-      name: $GITHUB_REF_NAME Preview
+      name: Preview
       url: ${{ steps.create-preview-url.outputs.preview_url}}
     runs-on: ubuntu-latest
     needs:
