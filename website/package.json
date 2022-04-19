@@ -11,7 +11,7 @@
     "serve": "docusaurus serve",
     "update-docs": "node ./scripts/update-docs.js && ../node_modules/.bin/prettier --write sidebars.js",
     "deploy": "run-s build deploy:surge:production",
-    "deploy:surge:production": "surge ./build nexus-uplift.surge.sh"
+    "deploy:surge:production": "surge ./build"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.74",
