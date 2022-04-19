@@ -199,3 +199,50 @@ const Colors = {
 
 type Color = ValuesOf<typeof Colors>; // => "blue" | "red" | "green"
 ```
+
+### Relay
+
+Helpers for working with Relay Connections
+
+_GetConnectionNode_  
+Extracts the Node from a Relay Connection, even if some or all of the Connection is nullable
+
+_GetConnectionNodeArray_  
+Helper that just returns an array of the Connection Node, also works if Connection is nullable
+
+```ts
+type User = {
+  firstName: string;
+  lastName: string;
+  age: number;
+};
+
+// Non-nullable
+type Organization = {
+  users: {
+    edges: { node: User }[];
+  };
+};
+
+// Nullable
+type NullableOrganization = {
+  users?: {
+    edges?: { node: User }[] | null;
+  } | null;
+};
+
+Organization["users"]["edges"][0]["node"];
+// => User
+
+GetConnectionNode<Organization["users"]>;
+// => User
+
+GetConnectionNodeArray<Organization["users"]>;
+// => Array<User>
+
+GetConnectionNode<NonNullable<NullableOrganization["users"]>>;
+// => User
+
+GetConnectionNodeArray<NonNullable<NullableOrganization["users"]>>;
+// => Array<User>
+```

@@ -3,6 +3,7 @@ export type { ArrayToUnion } from "./arrayToUnion";
 export type { DeepPartial } from "./deepPartial";
 export { ensureError } from "./ensureError";
 export { notEmpty } from "./notEmpty";
+export type { GetConnectionNode, GetConnectionNodeArray } from "./relay";
 export type { RequireAtLeastOne, RequireOnlyOne } from "./require";
 export { typedIncludes } from "./typedIncludes";
 export type { Unpromise } from "./unpromise";
