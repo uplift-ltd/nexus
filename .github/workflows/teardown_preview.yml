@@ -1,0 +1,23 @@
+name: teardown preview
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  teardown-preview:
+    if:
+      github.event_name == 'pull_request' && github.event.action == 'closed' &&
+      github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Teardown preview
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          cd website
+          yarn install
+          yarn surge --token $SURGE_TOKEN teardown nexus-$GITHUB_REF_SLUG_URL.surge.sh
