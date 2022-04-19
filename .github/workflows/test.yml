@@ -149,7 +149,7 @@ jobs:
   publish-preview:
     environment:
       name: Preview
-      url: ${{ steps.create-preview-url.outputs.preview_url}}
+      url: "https://${{ steps.create-preview-url.outputs.preview_url}}"
     runs-on: ubuntu-latest
     needs:
       - dependencies
@@ -189,4 +189,4 @@ jobs:
           cd ./website
           yarn install
           yarn build
-          yarn surge --token $SURGE_TOKEN ./build ${{ env.preview_url }}
+          yarn surge --token $SURGE_TOKEN ./build ${{ steps.create-preview-url.outputs.preview_url }}
