@@ -81,6 +81,9 @@ jobs:
             ./packages/*/esm/*
 
   publish:
+    environment:
+      name: Production
+      url: "https://${{ steps.get-url.outputs.url }}"
     runs-on: ubuntu-latest
     needs:
       - build
@@ -147,6 +150,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get Production URL
+        id: get-url
+        run: |
+          cd website
+          echo "::set-output name=url::$(cat CNAME)"
+
       - name: Publish docs
         if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
         env:
@@ -154,4 +163,4 @@ jobs:
         run: |
           cd website
           yarn install
-          yarn deploy --token $SURGE_TOKEN
+          yarn deploy --token $SURGE_TOKEN ${{ steps.get-url.outputs.url }}
