@@ -8,6 +8,25 @@ jobs:
   teardown-preview:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js with GitHub Packages
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+          registry-url: "https://npm.pkg.github.com/"
+          scope: "@uplift-ltd"
+
+      - name: Restore dependencies
+        uses: actions/cache@main
+        env:
+          cache-name: npm-cache
+        with:
+          path: node_modules
+          key:
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
+            hashFiles('packages/*/package.json') }}
+
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
