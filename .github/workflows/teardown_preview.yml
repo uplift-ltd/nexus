@@ -36,4 +36,4 @@ jobs:
         run: |
           cd website
           yarn install
-          yarn surge --token $SURGE_TOKEN teardown nexus-$GITHUB_REF_SLUG_URL.surge.sh
+          yarn surge --token $SURGE_TOKEN teardown nexus-$GITHUB_REF_NAME_SLUG_URL.surge.sh
