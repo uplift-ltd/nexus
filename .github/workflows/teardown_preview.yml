@@ -2,13 +2,10 @@ name: teardown preview
 
 on:
   pull_request:
-    branches: [master]
+    types: [closed]
 
 jobs:
   teardown-preview:
-    if:
-      github.event_name == 'pull_request' && github.event.action == 'closed' &&
-      github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Inject slug/short variables
