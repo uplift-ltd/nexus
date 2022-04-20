@@ -11,9 +11,6 @@ jobs:
       name: Preview
       url: "https://${{ steps.create-preview-url.outputs.preview_url}}"
     runs-on: ubuntu-latest
-    needs:
-      - dependencies
-      - docs
     steps:
       - uses: actions/checkout@v2
 
@@ -24,23 +21,13 @@ jobs:
           registry-url: "https://npm.pkg.github.com/"
           scope: "@uplift-ltd"
 
-      - name: Restore dependencies
-        uses: actions/cache@main
-        env:
-          cache-name: npm-cache
-        with:
-          path: node_modules
-          key:
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
-            hashFiles('packages/*/package.json') }}
-
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
       - name: Create Preview URL
         id: create-preview-url
         run: |
-          echo "::set-output name=preview_url::nexus-$GITHUB_REF_SLUG_URL.surge.sh"
+          echo "::set-output name=preview_url::nexus-$GITHUB_REF_NAME_SLUG_URL.surge.sh"
 
       - name: Publish to surge
         env:
