@@ -22,3 +22,10 @@ const getOperationDefinitionName = (definition: OperationDefinitionNode) => {
 
 export const getQueryName = (query: DocumentNode) =>
   getOperationDefinitionName(getOperationDefinition(query));
+
+export const getQueryBody = (query: DocumentNode) => {
+  if (!query.loc) {
+    throw new Error("Failed to find operation location");
+  }
+  return query.loc.source.body;
+};
