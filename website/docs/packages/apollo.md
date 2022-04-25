@@ -103,3 +103,31 @@ const CurrentUserQueryName = getQueryName(CURRENT_USER_QUERY);
 
 expect(CurrentUserQueryName).toEqual("CurrentUser");
 ```
+
+### getQueryBody
+
+Get the query or mutation body.
+
+```ts
+import { getQueryBody } from "@uplift-ltd/apollo";
+
+const CURRENT_USER_QUERY = gql`
+  query CurrentUser {
+    me {
+      id
+    }
+  }
+`;
+
+const CurrentUserQueryBody = getQueryBody(CURRENT_USER_QUERY);
+
+const EXPECTED_BODY = `
+  query CurrentUser {
+    me {
+      id
+    }
+  }
+`;
+
+expect(CurrentUserQueryBody).toEqual(EXPECTED_BODY);
+```
