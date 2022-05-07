@@ -1,5 +1,6 @@
 import { makeQueryString, QueryStringParametersMap, UrlTokens } from "@uplift-ltd/strings";
 import { useRouter } from "next/router";
+import { useCallback, useRef } from "react";
 
 // prettier-ignore
 export type RouterQueryResult<QueryStringParams extends never | string | Record<string, unknown> = never, Tokens extends never | string = never> =
@@ -19,18 +20,22 @@ export function useRouterQuery<
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {
   const router = useRouter();
+  const routerRef = useRef(router);
 
-  const updateRouterQuery = (newQuery: UpdateQueryShape) => {
-    const q = makeQueryString({ ...router.query, ...newQuery });
+  routerRef.current = router;
+
+  const updateRouterQuery = useCallback((newQuery: UpdateQueryShape) => {
+    const q = makeQueryString({ ...routerRef.current.query, ...newQuery });
 
     if (q) {
-      router.replace(`${router.pathname}?${q}`);
+      routerRef.current.replace(`${routerRef.current.pathname}?${q}`);
     } else {
-      router.replace(router.pathname);
+      routerRef.current.replace(routerRef.current.pathname);
     }
-  };
+  }, []);
 
   return {
+    isReady: router.isReady,
     routerQuery: (router.query as unknown) as QueryResult,
     updateRouterQuery,
   };
