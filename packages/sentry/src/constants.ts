@@ -8,3 +8,6 @@ export const SENTRY_DSN =
 export const NORMALIZE_DEPTH = Number(
   process.env.SENTRY_NORMALIZE_DEPTH || process.env.NEXT_PUBLIC_SENTRY_NORMALIZE_DEPTH || 10
 );
+
+export const SENTRY_ENVIRONMENT =
+  process.env.SENTRY_ENVIRONMENT || process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT;
