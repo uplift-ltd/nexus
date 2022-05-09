@@ -36,4 +36,4 @@ jobs:
           cd ./website
           yarn install
           yarn build
-          yarn surge --token $SURGE_TOKEN ./build ${{ steps.create-preview-url.outputs.preview_url }}
+          yarn surge ./build ${{ steps.create-preview-url.outputs.preview_url }}
