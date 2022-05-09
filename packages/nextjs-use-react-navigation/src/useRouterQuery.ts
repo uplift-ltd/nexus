@@ -1,5 +1,6 @@
 import { makeQueryString, QueryStringParametersMap, UrlTokens } from "@uplift-ltd/strings";
-import { useRouter } from "next/router";
+import { useCallback } from "react";
+import { useRouterNavigation } from "./useRouterNavigation";
 
 // prettier-ignore
 export type RouterQueryResult<QueryStringParams extends never | string | Record<string, unknown> = never, Tokens extends never | string = never> =
@@ -18,20 +19,24 @@ export function useRouterQuery<
   QueryResult = RouterQueryResult<QueryStringShape>,
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {
-  const router = useRouter();
+  const routerNavigation = useRouterNavigation();
 
-  const updateRouterQuery = (newQuery: UpdateQueryShape) => {
-    const q = makeQueryString({ ...router.query, ...newQuery });
+  const updateRouterQuery = useCallback(
+    (newQuery: UpdateQueryShape) => {
+      const q = makeQueryString({ ...routerNavigation.query, ...newQuery });
 
-    if (q) {
-      router.replace(`${router.pathname}?${q}`);
-    } else {
-      router.replace(router.pathname);
-    }
-  };
+      if (q) {
+        routerNavigation.replace(`${routerNavigation.pathname}?${q}`);
+      } else {
+        routerNavigation.replace(routerNavigation.pathname);
+      }
+    },
+    [routerNavigation]
+  );
 
   return {
-    routerQuery: (router.query as unknown) as QueryResult,
+    isReady: routerNavigation.isReady,
+    routerQuery: (routerNavigation.query as unknown) as QueryResult,
     updateRouterQuery,
   };
 }
