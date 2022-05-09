@@ -149,18 +149,3 @@ jobs:
         run: yarn lerna publish from-package --yes --dist-tag prerelease
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Get Production URL
-        id: get-url
-        run: |
-          cd website
-          echo "::set-output name=url::$(cat CNAME)"
-
-      - name: Publish docs
-        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
-        env:
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: |
-          cd website
-          yarn install
-          yarn deploy --token $SURGE_TOKEN ${{ steps.get-url.outputs.url }}
