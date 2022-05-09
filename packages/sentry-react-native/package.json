@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/sentry-react-native",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "sentry-react-native",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -33,7 +33,7 @@
     "sentry-expo": "^4.0.3"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^4.0.0"
+    "@uplift-ltd/sentry": "^4.1.0"
   },
   "devDependencies": {
     "sentry-expo": "^4.0.3"

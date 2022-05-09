@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/push-notifications",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "push-notifications",
   "license": "UNLICENSED",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -36,6 +36,6 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^4.0.0"
+    "@uplift-ltd/sentry": "^4.1.0"
   }
 }
