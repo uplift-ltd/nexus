@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@3.0.4...@uplift-ltd/apollo@3.1.0) (2022-05-25)
+
+
+### Features
+
+* **apollo:** add default batch key helper ([#271](https://github.com/uplift-ltd/nexus/issues/271)) ([ba7e01a](https://github.com/uplift-ltd/nexus/commit/ba7e01a69c8e6fadb506609257f1dcd4e9516c04))
+
+
+
 ### [3.0.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@3.0.3...@uplift-ltd/apollo@3.0.4) (2022-05-09)
 
 **Note:** Version bump only for package @uplift-ltd/apollo
