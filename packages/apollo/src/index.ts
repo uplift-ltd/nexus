@@ -1,3 +1,5 @@
+export * from "./batch";
+
 export * from "./configure";
 
 export * from "./constants";
