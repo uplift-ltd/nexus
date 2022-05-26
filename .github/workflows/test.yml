@@ -29,7 +29,9 @@ jobs:
         env:
           cache-name: npm-cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
             hashFiles('packages/*/package.json') }}
@@ -60,7 +62,9 @@ jobs:
         env:
           cache-name: npm-cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
             hashFiles('packages/*/package.json') }}
@@ -103,7 +107,9 @@ jobs:
         env:
           cache-name: npm-cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
             hashFiles('packages/*/package.json') }}
@@ -137,7 +143,9 @@ jobs:
         env:
           cache-name: npm-cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            packages/*/node_modules
           key:
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
             hashFiles('packages/*/package.json') }}
