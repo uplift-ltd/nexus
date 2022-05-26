@@ -21,29 +21,6 @@ jobs:
           registry-url: "https://npm.pkg.github.com/"
           scope: "@uplift-ltd"
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Restore dependencies
-        uses: actions/cache@main
-        env:
-          cache-name: npm-cache
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-          key:
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
-            hashFiles('packages/*/package.json') }}
-
-      - name: Install dependencies
-        run:
-          yarn install --non-interactive --frozen-lockfile --cache-folder ${{
-          steps.yarn-cache-dir-path.outputs.dir }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
@@ -57,5 +34,6 @@ jobs:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           cd ./website
+          yarn install
           yarn build
           yarn surge ./build ${{ steps.create-preview-url.outputs.preview_url }}
