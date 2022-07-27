@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.2.2-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.2.1...@uplift-ltd/nexus@1.2.2-alpha.0) (2022-07-27)
+
+
+### Bug Fixes
+
+* cache all node_modules folders ([#272](https://github.com/uplift-ltd/nexus/issues/272)) ([544d8b3](https://github.com/uplift-ltd/nexus/commit/544d8b30a30193f503b6d880d0af7f09323fd032))
+
+
+
 ### [1.2.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.2.0...@uplift-ltd/nexus@1.2.1) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/nexus

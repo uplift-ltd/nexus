@@ -36,7 +36,7 @@ export function useExpoUpdates() {
   }, [canUpdate]);
 
   useEffect(() => {
-    const listener: Updates.Listener<Updates.UpdateEvent> = ({ type }) => {
+    const listener = ({ type }: Updates.UpdateEvent) => {
       if (type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
         setCanUpdate(true);
       } else if (type === Updates.UpdateEventType.NO_UPDATE_AVAILABLE) {

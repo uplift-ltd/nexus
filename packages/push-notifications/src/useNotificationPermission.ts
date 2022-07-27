@@ -1,13 +1,13 @@
-import { captureException } from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry-react-native";
 import Constants from "expo-constants";
-import * as Notifications from "expo-notifications";
-import { PermissionStatus } from "expo-permissions";
+import { getPermissionsAsync } from "expo-notifications";
 import { useEffect, useState, useCallback } from "react";
 import {
   registerForPushNotifications as defaultRegisterForPushNotifications,
   RegisterForPushNotifications,
   RegisterForPushNotificationsResult,
 } from "./registerForPushNotifications";
+import { PermissionStatus } from "./types";
 
 export type RegisterPushNotificationsResult = {
   token: string | null;
@@ -38,7 +38,7 @@ export function useNotificationPermission({
   const updatePermissionStatus = useCallback(async () => {
     let status = null;
     try {
-      status = (await Notifications.getPermissionsAsync()).status;
+      status = await getPermissionsAsync();
       setPermissionStatus(status);
     } catch (err) {
       captureException(err);
