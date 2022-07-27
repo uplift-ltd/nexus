@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo-react-native@2.0.5...@uplift-ltd/apollo-react-native@3.0.0) (2022-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade react native dependencies to expo 45 (#281)
+
+### Features
+
+* upgrade react native dependencies to expo 45 ([#281](https://github.com/uplift-ltd/nexus/issues/281)) ([536b739](https://github.com/uplift-ltd/nexus/commit/536b7390efd620be40953cd7c800fdeaf87489fc))
+
+
+
 ### [2.0.6-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo-react-native@2.0.5...@uplift-ltd/apollo-react-native@2.0.6-alpha.0) (2022-07-27)
 
 **Note:** Version bump only for package @uplift-ltd/apollo-react-native

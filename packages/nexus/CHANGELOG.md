@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.2.1...@uplift-ltd/nexus@2.0.0) (2022-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade react native dependencies to expo 45 (#281)
+
+### Features
+
+* upgrade react native dependencies to expo 45 ([#281](https://github.com/uplift-ltd/nexus/issues/281)) ([536b739](https://github.com/uplift-ltd/nexus/commit/536b7390efd620be40953cd7c800fdeaf87489fc))
+
+
+### Bug Fixes
+
+* cache all node_modules folders ([#272](https://github.com/uplift-ltd/nexus/issues/272)) ([544d8b3](https://github.com/uplift-ltd/nexus/commit/544d8b30a30193f503b6d880d0af7f09323fd032))
+
+
+
 ### [1.2.2-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@1.2.1...@uplift-ltd/nexus@1.2.2-alpha.0) (2022-07-27)
 
 
