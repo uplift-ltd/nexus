@@ -1,4 +1,4 @@
-import { captureException } from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry-react-native";
 import * as Calendar from "expo-calendar";
 import * as FileSystem from "expo-file-system";
 import * as IntentLauncher from "expo-intent-launcher";

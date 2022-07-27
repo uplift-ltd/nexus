@@ -1,4 +1,4 @@
-import { captureException } from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/sentry-react-native";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import * as Calendar from "expo-calendar";
 import { useCallback, useEffect, useMemo, useState } from "react";
