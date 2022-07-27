@@ -1,5 +1,5 @@
-import { captureException } from "@uplift-ltd/sentry";
-import { PermissionStatus } from "expo-permissions";
+import { captureException } from "@uplift-ltd/sentry-react-native";
+import { IosAuthorizationStatus } from "expo-notifications";
 import React, { useContext, useEffect } from "react";
 import { Alert } from "react-native";
 import { NotificationContext } from "./NotificationContext";
@@ -23,7 +23,7 @@ export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = (
   const { permissionStatus, registerPushNotifications } = useContext(NotificationContext);
 
   useEffect(() => {
-    if (permissionStatus === PermissionStatus.UNDETERMINED) {
+    if (permissionStatus?.ios?.status === IosAuthorizationStatus.NOT_DETERMINED) {
       Alert.alert(title, message, [
         { text: cancelLabel, style: "cancel" },
         {

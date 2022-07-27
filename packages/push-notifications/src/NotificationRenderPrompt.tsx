@@ -1,6 +1,6 @@
-import { PermissionStatus } from "expo-permissions";
 import React, { useContext } from "react";
 import { NotificationContext } from "./NotificationContext";
+import { IosAuthorizationStatus, PermissionStatus } from "./types";
 import { UsePushNotificationsResult } from "./usePushNotifications";
 
 export interface NotificationRenderPromptProps {
@@ -16,7 +16,7 @@ export interface NotificationRenderPromptProps {
 export const NotificationRenderPrompt: React.FC<NotificationRenderPromptProps> = ({ children }) => {
   const { permissionStatus, registerPushNotifications } = useContext(NotificationContext);
 
-  if (permissionStatus === PermissionStatus.UNDETERMINED) {
+  if (permissionStatus?.ios?.status === IosAuthorizationStatus.NOT_DETERMINED) {
     return <>{children({ permissionStatus, registerPushNotifications })}</>;
   }
 

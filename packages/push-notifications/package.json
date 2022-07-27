@@ -29,13 +29,12 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "expo-constants": "~9.3.3",
-    "expo-notifications": "~0.8.2",
-    "expo-permissions": "~10.0.0",
+    "expo-constants": "~13.1.1",
+    "expo-notifications": "~0.15.4",
     "react": "^16.0.0 || ^17.0.0",
     "react-native": "*"
   },
   "dependencies": {
-    "@uplift-ltd/sentry": "^4.1.0"
+    "@uplift-ltd/sentry-react-native": "^2.1.0"
   }
 }

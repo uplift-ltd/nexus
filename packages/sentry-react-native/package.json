@@ -30,12 +30,12 @@
     "test": "jest --passWithNoTests"
   },
   "optionalDependencies": {
-    "sentry-expo": "^4.0.3"
+    "sentry-expo": "^4.2.0"
   },
   "dependencies": {
     "@uplift-ltd/sentry": "^4.1.0"
   },
   "devDependencies": {
-    "sentry-expo": "^4.0.3"
+    "sentry-expo": "^4.2.0"
   }
 }

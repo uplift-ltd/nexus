@@ -1,6 +1,5 @@
-import { PermissionStatus } from "expo-permissions";
 import { RefObject } from "react";
-import { Subscription } from "./types";
+import { PermissionStatus, Subscription } from "./types";
 import { useNotificationHandler, UseNotificationHandlerOptions } from "./useNotificationHandler";
 import { useNotificationListener, UseNotificationListenerOptions } from "./useNotificationListener";
 import {
