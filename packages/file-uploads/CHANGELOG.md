@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.5.6-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.5.5...@uplift-ltd/file-uploads@1.5.6-alpha.0) (2022-07-27)
+
+**Note:** Version bump only for package @uplift-ltd/file-uploads
+
+
+
+
+
 ### [1.5.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@1.5.4...@uplift-ltd/file-uploads@1.5.5) (2022-05-25)
 
 **Note:** Version bump only for package @uplift-ltd/file-uploads
