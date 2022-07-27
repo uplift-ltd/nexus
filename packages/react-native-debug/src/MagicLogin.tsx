@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { setToken } from "@uplift-ltd/apollo";
 import { ensureError } from "@uplift-ltd/ts-helpers";
-import Clipboard from "expo-clipboard";
+import { getStringAsync } from "expo-clipboard";
 import { reloadAsync } from "expo-updates";
 import React from "react";
 import { Alert, Text, StyleSheet } from "react-native";
@@ -13,7 +13,7 @@ import { DebugNavigatorParamList } from "./types";
 const getClipboardValue = async () => {
   let value = "";
   try {
-    value = await Clipboard.getStringAsync();
+    value = await getStringAsync();
     if (!value) {
       throw new Error("Failed to get value");
     }
