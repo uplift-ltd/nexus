@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:money"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/money",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/money",
   "scripts": {
     "build": "nexus build-library",
     "test": "jest"

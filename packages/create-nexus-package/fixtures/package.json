@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:<%= PACKAGE_NAME %>"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/<%= PACKAGE_NAME %>",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/<%= PACKAGE_NAME %>",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

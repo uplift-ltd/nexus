@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:formik"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/formik",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/formik",
   "scripts": {
     "build": "nexus build-library",
     "test": "jest"

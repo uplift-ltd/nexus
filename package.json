@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Uplift's front end core library.",
   "license": "UNLICENSED",
-  "homepage": "https://nexus.uplift.sh/",
+  "homepage": "https://nexus.uplift.ltd/",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },

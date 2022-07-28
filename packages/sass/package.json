@@ -20,6 +20,6 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sass"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/sass",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/sass",
   "scripts": {}
 }

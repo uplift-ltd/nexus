@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:save-on-navigate-back"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/save-on-navigate-back",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/save-on-navigate-back",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

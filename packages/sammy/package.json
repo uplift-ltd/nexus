@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sammy"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/sammy",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/sammy",
   "scripts": {
     "build": "run-s build:library build:version",
     "build:library": "nexus build-library",

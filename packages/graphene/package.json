@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:graphene"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/graphene",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/graphene",
   "scripts": {
     "build": "nexus build-library",
     "test": "jest"

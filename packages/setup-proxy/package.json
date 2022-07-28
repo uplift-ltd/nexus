@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:setup-proxy"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/setup-proxy",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/setup-proxy",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

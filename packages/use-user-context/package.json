@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-user-context"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/use-user-context",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/use-user-context",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sentry-react-native"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/sentry-react-native",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/sentry-react-native",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

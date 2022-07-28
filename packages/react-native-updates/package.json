@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:react-native-updates"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/react-native-updates",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/react-native-updates",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",
