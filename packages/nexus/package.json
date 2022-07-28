@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:nexus"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/nexus",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/nexus",
   "scripts": {
     "clean": "git clean -dfx cjs esm",
     "build": "run-s clean build:cjs build:esm build:version",

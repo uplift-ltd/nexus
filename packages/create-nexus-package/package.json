@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:create-nexus-package"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/create-nexus-package",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/create-nexus-package",
   "scripts": {
     "build": "nexus build-library",
     "test": "tsc -p tsconfig.fixtures.json"

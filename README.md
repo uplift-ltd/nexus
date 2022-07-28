@@ -4,7 +4,7 @@
 
 ## Docs
 
-View docs [nexus.uplift.sh](https://nexus.uplift.sh/).
+View docs [nexus.uplift.ltd](https://nexus.uplift.ltd/).
 
 ## Setting Up GitHub Packages
 

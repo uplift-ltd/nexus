@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:ts-helpers"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/ts-helpers",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/ts-helpers",
   "scripts": {
     "build": "nexus build-library",
     "test": "jest"

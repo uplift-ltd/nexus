@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:use-interval"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/use-interval",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/use-interval",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",

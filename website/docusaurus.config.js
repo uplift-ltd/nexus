@@ -1,7 +1,7 @@
 module.exports = {
   title: "Nexus",
   tagline: "by Uplift.ltd",
-  url: "https://nexus.uplift.sh",
+  url: "https://nexus.uplift.ltd",
   baseUrl: "/",
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",

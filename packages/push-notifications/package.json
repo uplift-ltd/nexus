@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:push-notifications"
   },
-  "homepage": "https://nexus.uplift.sh/docs/packages/push-notifications",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/push-notifications",
   "scripts": {
     "build": "nexus build-library",
     "check-types": "tsc --noEmit",
