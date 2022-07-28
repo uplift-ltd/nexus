@@ -114,10 +114,10 @@ const reducer = (prevState: AuthState, action: AuthAction): AuthState => {
 };
 
 interface AuthProviderProps {
-  setToken: (token: string) => void;
-  removeToken: () => void;
-  onSetToken: (token: string | null) => void;
-  onRemoveToken: () => void;
+  setToken: (token: string) => void | Promise<void>;
+  removeToken: () => void | Promise<void>;
+  onSetToken: (token: string | null) => void | Promise<void>;
+  onRemoveToken: () => void | Promise<void>;
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({
