@@ -1,8 +1,26 @@
 import { trim } from "./pointFree";
 
-// pluralize :: String -> String -> Number -> String
-export const pluralize = (singular: string, plural: string) => (count: number) =>
-  count === 1 ? `${count} ${singular}` : `${count} ${plural}`;
+export type MakePluralizerParams = {
+  singular: string;
+  plural?: string;
+  includeCount?: boolean;
+};
+export const makePluralizer = ({
+  singular,
+  plural: providedPlural,
+  includeCount = true,
+}: MakePluralizerParams) => (count: number) => {
+  const plural = providedPlural ?? `${singular}s`;
+  const word = count === 1 ? singular : plural;
+
+  return includeCount ? `${count} ${word}` : word;
+};
+
+/**
+ * @deprecated: use makePluralizer instead
+ */
+export const pluralize = (singular: string, plural: string) =>
+  makePluralizer({ singular, plural, includeCount: true });
 
 export const formatUsCurrency = (dollars: number, hideCents = false) => {
   const hasCents = dollars % 1 !== 0;
