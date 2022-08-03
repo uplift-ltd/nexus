@@ -48,7 +48,7 @@ var commander_1 = require("commander");
 var execa_1 = __importDefault(require("execa"));
 var replaceProgramVersion_1 = require("./replaceProgramVersion");
 var program = new commander_1.Command();
-program.version("2.0.0");
+program.version("2.0.1");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")

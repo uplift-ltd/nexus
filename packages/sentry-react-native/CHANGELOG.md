@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry-react-native@3.0.0...@uplift-ltd/sentry-react-native@3.0.1) (2022-08-03)
+
+
+### Bug Fixes
+
+* Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282)) ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
+
+
+
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry-react-native@2.1.0...@uplift-ltd/sentry-react-native@3.0.0) (2022-07-27)
 
 

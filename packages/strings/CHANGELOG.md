@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.5.9...@uplift-ltd/strings@1.6.0) (2022-08-03)
+
+
+### Features
+
+* allow pluralization without counts ([#287](https://github.com/uplift-ltd/nexus/issues/287)) ([5f5ff28](https://github.com/uplift-ltd/nexus/commit/5f5ff28b2e883e46902db0ec5e60bb517f6ee0ab))
+
+
+### Bug Fixes
+
+* Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282)) ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
+
+
+
 ### [1.5.9](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.5.8...@uplift-ltd/strings@1.5.9) (2022-04-19)
 
 **Note:** Version bump only for package @uplift-ltd/strings
