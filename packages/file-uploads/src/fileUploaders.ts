@@ -10,6 +10,7 @@ export type FileUploaderOptions = {
 export type FileUploader<FileType = File, UploadResultData = unknown> = (
   uploadUrl: string,
   file: FileType,
+  fileContentType: string,
   options: FileUploaderOptions
 ) => Promise<UploadResultData>;
 
@@ -20,11 +21,15 @@ export function getAxiosFileUploader<FileType, UploadResultData = unknown>(): Fi
   const axiosFileUploader: FileUploader<FileType, UploadResultData> = async (
     uploadUrl,
     file,
+    fileContentType,
     { fileAttachment, fileUploadDispatch, onProgress }
   ) => {
     const axios = (await import("axios")).default;
 
     const { data } = await axios.put(uploadUrl, file, {
+      headers: {
+        "Content-Type": fileContentType,
+      },
       onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
         const progress = Math.ceil((loaded / total) * 100);
         fileUploadDispatch?.({ type: "SET_PROGRESS", progress });
@@ -45,11 +50,13 @@ export function getFetchFileUploader<FileType, UploadResultData = unknown>(): Fi
   const fetchFileUploader: FileUploader<FileType, UploadResultData> = async (
     uploadUrl,
     file,
+    fileContentType,
     { fileAttachment, fileUploadDispatch, onProgress }
   ) => {
     const res = await fetch(uploadUrl, {
       method: "PUT",
       body: (file as unknown) as string | Blob | FormData,
+      headers: new Headers([["Content-Type", fileContentType]]),
     });
 
     const progress = 100;

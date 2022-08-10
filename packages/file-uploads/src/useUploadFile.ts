@@ -76,11 +76,16 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
       let uploadFileData = null;
 
       try {
-        uploadFileData = await fileUploader(signedRequestData.getSignedRequest.uploadUrl, file, {
-          fileAttachment,
-          fileUploadDispatch,
-          onProgress,
-        });
+        uploadFileData = await fileUploader(
+          signedRequestData.getSignedRequest.uploadUrl,
+          file,
+          fileType,
+          {
+            fileAttachment,
+            fileUploadDispatch,
+            onProgress,
+          }
+        );
 
         fileUploadDispatch({ type: "SET_DATA", data: uploadFileData });
         fileUploadDispatch({ type: "SET_PROGRESS", progress: 100 });
