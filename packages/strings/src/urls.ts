@@ -72,26 +72,31 @@ export type MakeUrlArgsList<Url extends string, TokensMap = UrlTokensMap<Url>> =
   ? [(null | undefined)?, (null | QueryStringParametersMap)?, MakeUrlOptions?]
   : [UrlTokensMap<Url>, (null | QueryStringParametersMap)?, MakeUrlOptions?];
 
-export function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
-  url: Url,
-  ...args: MakeUrlArgsList<Url, TokensMap>
-) {
-  const [tokens, params, { trailingSlash = "ignore" } = {}] = args;
+function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
+  return function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
+    url: Url,
+    ...args: MakeUrlArgsList<Url, TokensMap>
+  ) {
+    const [tokens, params, { trailingSlash = "ignore" } = defaultOptions] = args;
 
-  let baseUrl = tokens ? replaceTokens(url, tokens) : url;
+    let baseUrl = tokens ? replaceTokens(url, tokens) : url;
 
-  if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
-    baseUrl = `${baseUrl}/`;
-  }
+    if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
+      baseUrl = `${baseUrl}/`;
+    }
 
-  if (trailingSlash === "remove" && baseUrl.endsWith("/")) {
-    baseUrl = baseUrl.slice(0, -1);
-  }
+    if (trailingSlash === "remove" && baseUrl.endsWith("/")) {
+      baseUrl = baseUrl.slice(0, -1);
+    }
 
-  const qs = makeQueryString(params);
+    const qs = makeQueryString(params);
 
-  return safeJoinWithQuestionMark(baseUrl, qs);
+    return safeJoinWithQuestionMark(baseUrl, qs);
+  };
 }
+
+export const makeUrl = createMakeUrl();
+export const makeUrlWithTrailingSlash = createMakeUrl({ trailingSlash: "ensure" });
 
 /**
  * Given an object of key/values, returns a properly encoded querystring for appending to a URL after
