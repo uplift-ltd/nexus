@@ -29,7 +29,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.8.6",
+    "@uplift-ltd/constants": "^1.8.2",
     "@uplift-ltd/ts-helpers": "^1.2.6"
   }
 }
