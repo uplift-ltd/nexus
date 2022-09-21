@@ -1,3 +1,4 @@
+import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
 import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
@@ -63,7 +64,63 @@ export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensM
   }, urlTemplate as string);
 };
 
+/**
+ * defaultGetAbsoluteUrlHttpSetting
+ *
+ * Determine whether we should be https based on
+ * some common configurations, defaults to `true`
+ *
+ */
+function defaultGetAbsoluteUrlHttpSetting(url: string) {
+  if (url.includes("localhost")) return false;
+  if (url.includes("127.0.0.1")) return false;
+  if (process.env.NODE_ENV !== "production") return false;
+  if (process.env.APP_ENV === "local") return false;
+
+  return true;
+}
+
+/**
+ * defaultGetAbsoluteUrlOrigin
+ *
+ * Tries to get the window.origin if we're not SSR,
+ * otherwise defaults to the GRAPHQL_HOST.origin if that's set
+ *
+ */
+function defaultGetAbsoluteUrlOrigin() {
+  if (typeof window !== "undefined") return window.location.origin;
+  if (GRAPHQL_HOST) {
+    const hostUrl = new URL(GRAPHQL_HOST);
+    return hostUrl.origin;
+  }
+
+  return "";
+}
+
 export type MakeUrlOptions = {
+  /** should we create absolute URLs instead of relative?
+   */
+  absoluteUrl?: boolean;
+
+  /**
+   * If we're constructing absolute urls, this controls whether
+   * the protocol will be https or http. Can define as a constant or
+   * by passing a callback predicate
+   */
+  absoluteUrlHttps?: boolean | ((url: string) => boolean);
+
+  /**
+   * What origin should be used for the absolute URL? By default
+   * we will try to determine the origin based on window.location
+   */
+  absoluteUrlOrigin?: string | ((url: string) => string);
+
+  /**
+   * Controls how the trailing slash on our URLs will be handled,
+   * - "ignore" will leave the URL as-is
+   * - "ensure" will append a trailing slash if the slash is not already present
+   * - "remove" will remove a trailing slash if it exists
+   */
   trailingSlash?: "ignore" | "ensure" | "remove";
 };
 
@@ -72,21 +129,46 @@ export type MakeUrlArgsList<Url extends string, TokensMap = UrlTokensMap<Url>> =
   ? [(null | undefined)?, (null | QueryStringParametersMap)?, MakeUrlOptions?]
   : [UrlTokensMap<Url>, (null | QueryStringParametersMap)?, MakeUrlOptions?];
 
-function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
+export function createMakeUrl({
+  absoluteUrl = false,
+  absoluteUrlHttps = defaultGetAbsoluteUrlHttpSetting,
+  absoluteUrlOrigin = defaultGetAbsoluteUrlOrigin,
+  trailingSlash = "ignore",
+}: MakeUrlOptions = {}) {
   return function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
     url: Url,
     ...args: MakeUrlArgsList<Url, TokensMap>
   ) {
-    const [tokens, params, { trailingSlash = "ignore" } = defaultOptions] = args;
+    const [tokens, params, optionOverrides] = args;
+
+    const absoluteUrlConfig = optionOverrides?.absoluteUrl ?? absoluteUrl;
+    const absoluteUrlHttpsConfig = optionOverrides?.absoluteUrlHttps ?? absoluteUrlHttps;
+    const absoluteUrlOriginConfig = optionOverrides?.absoluteUrlOrigin ?? absoluteUrlOrigin;
+    const trailingSlashConfig = optionOverrides?.trailingSlash ?? trailingSlash;
 
     let baseUrl = tokens ? replaceTokens(url, tokens) : url;
 
-    if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
+    if (trailingSlashConfig === "ensure" && !baseUrl.endsWith("/")) {
       baseUrl = `${baseUrl}/`;
     }
 
-    if (trailingSlash === "remove" && baseUrl.endsWith("/")) {
+    if (trailingSlashConfig === "remove" && baseUrl.endsWith("/")) {
       baseUrl = baseUrl.slice(0, -1);
+    }
+
+    if (absoluteUrlConfig) {
+      const useHttps =
+        typeof absoluteUrlHttpsConfig === "function"
+          ? absoluteUrlHttpsConfig(baseUrl)
+          : absoluteUrlHttpsConfig;
+      const originUrl =
+        typeof absoluteUrlOriginConfig === "function"
+          ? absoluteUrlOriginConfig(baseUrl)
+          : absoluteUrlOriginConfig;
+
+      const protocol = useHttps ? "https" : "http";
+
+      baseUrl = url.startsWith(protocol) ? url : (`${protocol}://${originUrl}${baseUrl}` as const);
     }
 
     const qs = makeQueryString(params);
@@ -95,8 +177,8 @@ function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
   };
 }
 
+// export our default `makeUrl` function as before
 export const makeUrl = createMakeUrl();
-export const makeUrlWithTrailingSlash = createMakeUrl({ trailingSlash: "ensure" });
 
 /**
  * Given an object of key/values, returns a properly encoded querystring for appending to a URL after
