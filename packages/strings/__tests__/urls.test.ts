@@ -197,25 +197,23 @@ test("Test absolute URLs", () => {
   const USERS_URL = "/users/:userId";
   const USERS_URL_WITH_SLASH = "/users/:userId/";
 
-  /*
-   *  expect(makeAbsoluteUrl(USERS_URL, { userId: 3213 })).toBe("https://test.uplift.ltd/users/3213");
-   *  expect(makeAbsoluteUrl(USERS_URL, { userId: 3213 }, { term: "test" })).toBe(
-   *    "https://test.uplift.ltd/users/3213?term=test"
-   *  );
-   *
-   *  const makeAbsoluteUrlWithFunctions = createMakeUrl({
-   *    absoluteUrl: true,
-   *    absoluteUrlHttps: (url) => url.length > 25,
-   *    absoluteUrlOrigin: (url) => `url-length-${url.length}.uplift.ltd`,
-   *  });
-   *
-   *  expect(makeAbsoluteUrlWithFunctions(USERS_URL, { userId: 3213 })).toBe(
-   *    `http://url-length-11.uplift.ltd/users/3213`
-   *  );
-   *  expect(makeAbsoluteUrlWithFunctions(USERS_URL, { userId: 3213 }, { term: "test" })).toBe(
-   *    `http://url-length-11.uplift.ltd/users/3213?term=test`
-   *  );
-   */
+  expect(makeAbsoluteUrl(USERS_URL, { userId: 3213 })).toBe("https://test.uplift.ltd/users/3213");
+  expect(makeAbsoluteUrl(USERS_URL, { userId: 3213 }, { term: "test" })).toBe(
+    "https://test.uplift.ltd/users/3213?term=test"
+  );
+
+  const makeAbsoluteUrlWithFunctions = createMakeUrl({
+    absoluteUrl: true,
+    absoluteUrlHttps: (url) => url.length > 25,
+    absoluteUrlOrigin: (url) => `url-length-${url.length}.uplift.ltd`,
+  });
+
+  expect(makeAbsoluteUrlWithFunctions(USERS_URL, { userId: 3213 })).toBe(
+    `http://url-length-11.uplift.ltd/users/3213`
+  );
+  expect(makeAbsoluteUrlWithFunctions(USERS_URL, { userId: 3213 }, { term: "test" })).toBe(
+    `http://url-length-11.uplift.ltd/users/3213?term=test`
+  );
 
   const makeAbsoluteUrlWithFunctionsAndSlash = createMakeUrl({
     absoluteUrl: true,
