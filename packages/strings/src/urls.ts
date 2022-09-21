@@ -81,39 +81,43 @@ function defaultGetAbsoluteUrlHttpSetting(url: string) {
 }
 
 /**
- * defaultGetAbsoluteUrlOrigin
+ * defaultGetAbsoluteUrlHost
  *
- * Tries to get the window.origin if we're not SSR,
- * otherwise defaults to the GRAPHQL_HOST.origin if that's set
+ * Tries to get the window.host if we're not SSR,
+ * otherwise defaults to the GRAPHQL_HOST.host if that's set
  *
  */
-function defaultGetAbsoluteUrlOrigin() {
-  if (typeof window !== "undefined") return window.location.origin;
+function defaultGetAbsoluteUrlHost() {
+  if (typeof window !== "undefined") return window.location.host;
   if (GRAPHQL_HOST) {
     const hostUrl = new URL(GRAPHQL_HOST);
-    return hostUrl.origin;
+    return hostUrl.host;
   }
 
   return "";
 }
 
-export type MakeUrlOptions = {
-  /** should we create absolute URLs instead of relative?
-   */
-  absoluteUrl?: boolean;
-
+export type MakeUrlAbsoluteUrlOptions = {
   /**
    * If we're constructing absolute urls, this controls whether
    * the protocol will be https or http. Can define as a constant or
    * by passing a callback predicate
    */
-  absoluteUrlHttps?: boolean | ((url: string) => boolean);
+  https?: boolean | ((url: string) => boolean);
 
   /**
-   * What origin should be used for the absolute URL? By default
-   * we will try to determine the origin based on window.location
+   * What host should be used for the absolute URL? By default
+   * we will try to determine the host based on window.location
    */
-  absoluteUrlOrigin?: string | ((url: string) => string);
+  host?: string | ((url: string) => string);
+};
+
+export type MakeUrlOptions = {
+  /** should we create absolute URLs instead of relative?
+   *
+   * passing `true` will enable absoluteUrls with default config
+   */
+  absoluteUrl?: boolean | MakeUrlAbsoluteUrlOptions;
 
   /**
    * Controls how the trailing slash on our URLs will be handled,
@@ -124,55 +128,83 @@ export type MakeUrlOptions = {
   trailingSlash?: "ignore" | "ensure" | "remove";
 };
 
+const DEFAULT_ABSOLUTE_URL_OPTIONS: MakeUrlAbsoluteUrlOptions = {
+  https: defaultGetAbsoluteUrlHttpSetting,
+  host: defaultGetAbsoluteUrlHost,
+};
+
+/**
+ * MakeUrlArgsList
+ *
+ * This Type is a tuple switched on the existance of Tokens found in the URL
+ *
+ * This is necessary because our makeUrl function signature changes depending on the
+ * contents of the URL. If the URL does not contain any tokens (:userId),
+ * then the tokens argument must not be populated (and can be left out)
+ * to prevent confusion.
+ *
+ */
 // prettier-ignore
 export type MakeUrlArgsList<Url extends string, TokensMap = UrlTokensMap<Url>> = [TokensMap] extends [never]
   ? [(null | undefined)?, (null | QueryStringParametersMap)?, MakeUrlOptions?]
   : [UrlTokensMap<Url>, (null | QueryStringParametersMap)?, MakeUrlOptions?];
 
-export function createMakeUrl({
-  absoluteUrl = false,
-  absoluteUrlHttps = defaultGetAbsoluteUrlHttpSetting,
-  absoluteUrlOrigin = defaultGetAbsoluteUrlOrigin,
-  trailingSlash = "ignore",
-}: MakeUrlOptions = {}) {
+/**
+ * createMakeUrl
+ *
+ * HOF that builds our `makeUrl` instances. This wrapper allows us to have
+ * project-level configuration easily, or several helpers per project
+ * (eg, one for relative and one for absolute URLs)
+ *
+ * The original `makeUrl` function is exported below, created
+ * by calling `createMakeUrl` without any arguments
+ */
+export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
+  /**
+   * returns new function with our defaultOptions baked in
+   */
   return function makeUrl<Url extends string, TokensMap = UrlTokensMap<Url>>(
     url: Url,
     ...args: MakeUrlArgsList<Url, TokensMap>
   ) {
     const [tokens, params, optionOverrides] = args;
 
-    const absoluteUrlConfig = optionOverrides?.absoluteUrl ?? absoluteUrl;
-    const absoluteUrlHttpsConfig = optionOverrides?.absoluteUrlHttps ?? absoluteUrlHttps;
-    const absoluteUrlOriginConfig = optionOverrides?.absoluteUrlOrigin ?? absoluteUrlOrigin;
-    const trailingSlashConfig = optionOverrides?.trailingSlash ?? trailingSlash;
+    // Combine provided defaults and any instance options
+    const { absoluteUrl = false, trailingSlash = "ignore" } = {
+      ...defaultOptions,
+      ...optionOverrides,
+    };
 
+    // construct the main portion of our URL by replacing tokens, if provided
     let baseUrl = tokens ? replaceTokens(url, tokens) : url;
 
-    if (trailingSlashConfig === "ensure" && !baseUrl.endsWith("/")) {
+    if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
+      // Ensure we have a trailing slash
       baseUrl = `${baseUrl}/`;
     }
 
-    if (trailingSlashConfig === "remove" && baseUrl.endsWith("/")) {
+    if (trailingSlash === "remove" && baseUrl.endsWith("/")) {
+      // remove any trailing slashes
       baseUrl = baseUrl.slice(0, -1);
     }
 
-    if (absoluteUrlConfig) {
-      const useHttps =
-        typeof absoluteUrlHttpsConfig === "function"
-          ? absoluteUrlHttpsConfig(baseUrl)
-          : absoluteUrlHttpsConfig;
-      const originUrl =
-        typeof absoluteUrlOriginConfig === "function"
-          ? absoluteUrlOriginConfig(baseUrl)
-          : absoluteUrlOriginConfig;
+    if (absoluteUrl) {
+      // We're constructing an absoluteUrl,
+      // https and host configuration will be determined by merging any provided options
+      // on top of the default callbacks
+      const { https = defaultGetAbsoluteUrlHttpSetting, host = defaultGetAbsoluteUrlHost } =
+        typeof absoluteUrl === "boolean" ? DEFAULT_ABSOLUTE_URL_OPTIONS : absoluteUrl;
 
-      const protocol = useHttps ? "https" : "http";
+      // these settings can be defined as a constant or by the result of a callback
+      const shouldUseHttps = typeof https === "function" ? https(baseUrl) : https;
+      const hostUrl = typeof host === "function" ? host(baseUrl) : host;
 
-      baseUrl = url.startsWith(protocol) ? url : (`${protocol}://${originUrl}${baseUrl}` as const);
+      const protocol = shouldUseHttps ? "https" : "http";
+
+      baseUrl = url.startsWith(protocol) ? url : (`${protocol}://${hostUrl}${baseUrl}` as const);
     }
 
     const qs = makeQueryString(params);
-
     return safeJoinWithQuestionMark(baseUrl, qs);
   };
 }

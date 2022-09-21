@@ -189,9 +189,10 @@ test.each([
 
 test("Test absolute URLs", () => {
   const makeAbsoluteUrl = createMakeUrl({
-    absoluteUrl: true,
-    absoluteUrlHttps: true,
-    absoluteUrlOrigin: "test.uplift.ltd",
+    absoluteUrl: {
+      https: true,
+      host: "test.uplift.ltd",
+    },
   });
 
   const USERS_URL = "/users/:userId";
@@ -203,9 +204,10 @@ test("Test absolute URLs", () => {
   );
 
   const makeAbsoluteUrlWithFunctions = createMakeUrl({
-    absoluteUrl: true,
-    absoluteUrlHttps: (url) => url.length > 25,
-    absoluteUrlOrigin: (url) => `url-length-${url.length}.uplift.ltd`,
+    absoluteUrl: {
+      https: (url) => url.length > 25,
+      host: (url) => `url-length-${url.length}.uplift.ltd`,
+    },
   });
 
   expect(makeAbsoluteUrlWithFunctions(USERS_URL, { userId: 3213 })).toBe(
@@ -216,9 +218,10 @@ test("Test absolute URLs", () => {
   );
 
   const makeAbsoluteUrlWithFunctionsAndSlash = createMakeUrl({
-    absoluteUrl: true,
-    absoluteUrlHttps: (url) => url.length > 25,
-    absoluteUrlOrigin: (url) => `url-length-${url.length}.uplift.ltd`,
+    absoluteUrl: {
+      https: (url) => url.length > 25,
+      host: (url) => `url-length-${url.length}.uplift.ltd`,
+    },
     trailingSlash: "ensure",
   });
 
