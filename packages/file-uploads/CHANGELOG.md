@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.2-alpha.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@2.0.1...@uplift-ltd/file-uploads@2.0.2-alpha.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* Set ContentType header for uploaded files ([#288](https://github.com/uplift-ltd/nexus/issues/288)) ([70f1433](https://github.com/uplift-ltd/nexus/commit/70f143351278b8552f90682d617b588cb3ddf91b))
+
+
+
 ### [2.0.2-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@2.0.1...@uplift-ltd/file-uploads@2.0.2-alpha.0) (2022-08-10)
 
 **Note:** Version bump only for package @uplift-ltd/file-uploads

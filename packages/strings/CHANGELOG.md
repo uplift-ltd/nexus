@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.6.0...@uplift-ltd/strings@1.7.0) (2022-09-22)
+
+
+### Features
+
+* makeUrl constructor ([#289](https://github.com/uplift-ltd/nexus/issues/289)) ([f090edb](https://github.com/uplift-ltd/nexus/commit/f090edb0b567c77f152f293df63f148e65f520f2))
+
+
+
 ## [1.6.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.5.9...@uplift-ltd/strings@1.6.0) (2022-08-03)
 
 
