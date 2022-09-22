@@ -3,14 +3,13 @@ import {
   formatPhoneNumber,
   formatUsCurrency,
   pluralize,
+  makePluralizer,
   safeJoin,
   safeJoinWithSpace,
   safeJoinWithComma,
   safeJoinWithEnDash,
   safeJoinWithEmDash,
   safeJsonParse,
-  makeUrl,
-  makeQueryString,
 } from "../src";
 
 test("capitalize", () => {
@@ -32,12 +31,60 @@ test("formatUsCurrency", () => {
   expect(formatUsCurrency(123.12, true)).toBe("$123");
 });
 
-test("pluralize", () => {
-  const getCarsLabel = pluralize("car", "cars");
+describe("pluralize", () => {
+  test("legacy pluralize", () => {
+    const getCarsLabel = pluralize("car", "cars");
 
-  expect(getCarsLabel(0)).toBe("0 cars");
-  expect(getCarsLabel(1)).toBe("1 car");
-  expect(getCarsLabel(2)).toBe("2 cars");
+    expect(getCarsLabel(0)).toBe("0 cars");
+    expect(getCarsLabel(1)).toBe("1 car");
+    expect(getCarsLabel(2)).toBe("2 cars");
+  });
+
+  test("makePluralizer with plural", () => {
+    const hatsPluralizer = makePluralizer({
+      singular: "ax",
+      plural: "axes",
+      includeCount: false,
+    });
+
+    expect(hatsPluralizer(0)).toBe("axes");
+    expect(hatsPluralizer(1)).toBe("ax");
+    expect(hatsPluralizer(5)).toBe("axes");
+  });
+
+  test("makePluralizer with plural and count", () => {
+    const hatsPluralizer = makePluralizer({
+      singular: "ax",
+      plural: "axes",
+      includeCount: true,
+    });
+
+    expect(hatsPluralizer(0)).toBe("0 axes");
+    expect(hatsPluralizer(1)).toBe("1 ax");
+    expect(hatsPluralizer(5)).toBe("5 axes");
+  });
+
+  test("makePluralizer with implied plural", () => {
+    const hatsPluralizer = makePluralizer({
+      singular: "hat",
+      includeCount: false,
+    });
+
+    expect(hatsPluralizer(0)).toBe("hats");
+    expect(hatsPluralizer(1)).toBe("hat");
+    expect(hatsPluralizer(5)).toBe("hats");
+  });
+
+  test("makePluralizer with implied plural and count", () => {
+    const hatsPluralizer = makePluralizer({
+      singular: "hat",
+      includeCount: true,
+    });
+
+    expect(hatsPluralizer(0)).toBe("0 hats");
+    expect(hatsPluralizer(1)).toBe("1 hat");
+    expect(hatsPluralizer(5)).toBe("5 hats");
+  });
 });
 
 test("safeJsonParse", () => {
@@ -77,127 +124,4 @@ test("safeJoins", () => {
   expect(safeJoinWithEmDash(...input)).toBe("Hello — World — 123");
 
   expect(safeJoin(":")(...input)).toBe("Hello:World:123");
-});
-
-test.each([
-  ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
-  ["/test-url/:tokenId/", { tokenId: "654" }, undefined, undefined, "/test-url/654/"],
-  [
-    "/test-url/:tokenId",
-    { tokenId: "654" },
-    undefined,
-    { trailingSlash: "ignore" },
-    "/test-url/654",
-  ],
-  [
-    "/test-url/:tokenId/",
-    { tokenId: "654" },
-    undefined,
-    { trailingSlash: "ignore" },
-    "/test-url/654/",
-  ],
-  [
-    "/test-url/:tokenId",
-    { tokenId: "654" },
-    undefined,
-    { trailingSlash: "ensure" },
-    "/test-url/654/",
-  ],
-  [
-    "/test-url/:tokenId/",
-    { tokenId: "654" },
-    undefined,
-    { trailingSlash: "ensure" },
-    "/test-url/654/",
-  ],
-  [
-    "/test-url/:tokenId",
-    { tokenId: "654" },
-    undefined,
-    { trailingSlash: "remove" },
-    "/test-url/654",
-  ],
-  [
-    "/test-url/:tokenId/",
-    { tokenId: "654" },
-    undefined,
-    { trailingSlash: "remove" },
-    "/test-url/654",
-  ],
-  ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
-  ["/test-url/:tokenId", { tokenId: 123 }, undefined, undefined, "/test-url/123"],
-  ["/test-url/:tokenId", { tokenId: 123 }, { msg: "Hello" }, undefined, "/test-url/123?msg=Hello"],
-  [
-    "/test-url/:tokenId/:userId",
-    { tokenId: 987, userId: "ABC123" },
-    undefined,
-    undefined,
-    "/test-url/987/ABC123",
-  ],
-  [
-    "/test-url/:tokenId/:userId",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    undefined,
-    "/test-url/987/ABC123?msg=Hello",
-  ],
-
-  [
-    "/test-url/:tokenId/:userId",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    undefined,
-    "/test-url/987/ABC123?msg=Hello",
-  ],
-  [
-    "/test-url/:tokenId/:userId/",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    undefined,
-    "/test-url/987/ABC123/?msg=Hello",
-  ],
-
-  [
-    "/test-url/:tokenId/:userId",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    { trailingSlash: "ensure" },
-    "/test-url/987/ABC123/?msg=Hello",
-  ],
-  [
-    "/test-url/:tokenId/:userId/",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    { trailingSlash: "ensure" },
-    "/test-url/987/ABC123/?msg=Hello",
-  ],
-
-  [
-    "/test-url/:tokenId/:userId",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    { trailingSlash: "remove" },
-    "/test-url/987/ABC123?msg=Hello",
-  ],
-  [
-    "/test-url/:tokenId/:userId/",
-    { tokenId: 987, userId: "ABC123" },
-    { msg: "Hello", null: null, undefined },
-    { trailingSlash: "remove" },
-    "/test-url/987/ABC123?msg=Hello",
-  ],
-])("makeUrls (%s, %s, %s, %s)", (url, tokens, params, options, expected) => {
-  // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
-  expect(makeUrl(url, tokens, params, options)).toBe(expected);
-});
-
-test.each([
-  [{ msg: "Hello", null: null, undefined, empty: "" }, "msg=Hello"],
-  [{}, ""],
-  [{ terms: ["hello", "world"].join(",") }, "terms=hello%2Cworld"],
-  [{ userId: 1354, terms: ["hello", "world"].join(",") }, "userId=1354&terms=hello%2Cworld"],
-  [{ term: ["hello", "world"] }, "term=hello&term=world"],
-  [{ userId: 1354, term: ["hello", "world"] }, "userId=1354&term=hello&term=world"],
-])("makeQueryString (%s, %s)", (params, expected) => {
-  expect(makeQueryString(params)).toBe(expected);
 });

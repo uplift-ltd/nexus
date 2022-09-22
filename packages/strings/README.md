@@ -140,11 +140,13 @@ optionally control trailing slashes.
 When given a url with tokens, `makeUrl` will type check the tokens in the given url. This provides
 autocompletion of tokens and ensures that values for all tokens are provided.
 
-makeUrl can also control trailing slashes in your URLS.
+makeUrl has several options available,
 
-- "ignore" will leave slash as-is (default)
-- "ensure" will ensure urls always end with a slash
-- "remove" will ensure urls never end with a slash
+1. Control over trailing slashes in your URLS.
+   - "ignore" will leave slash as-is (default)
+   - "ensure" will ensure urls always end with a slash
+   - "remove" will ensure urls never end with a slash
+1. Manage absolute url creation, as well as the origin and protocol
 
 ```ts
 import { makeUrl } from "@uplift-ltd/strings";
@@ -208,3 +210,9 @@ makeUrl(
   { trailingSlashes: "remove" }
 ); // => "/user/654654/github?tab=repos"
 ```
+
+### createMakeUrl
+
+Constructs a custom version of `makeUrl` with default options. This makes it easy to add trailing
+slashes to every link on your site as well as creating a second instance that is used for creating
+absolute URLs. All options can be overriden manually during use by passing as the 4th argument.
