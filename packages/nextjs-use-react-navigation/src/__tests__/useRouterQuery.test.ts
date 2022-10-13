@@ -29,4 +29,7 @@ test("Parsed params/tokens are always string", () => {
 
   // @ts-expect-error: userId should not be a number
   const userUrlParamsWithNumber: TestRouterParams = { userId: 654564 };
+
+  // empty test
+  expect(true).toBeTruthy();
 });
