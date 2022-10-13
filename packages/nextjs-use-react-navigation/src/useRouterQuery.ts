@@ -34,6 +34,10 @@ export type RouterQueryResult<
           }
     );
 
+/**
+ * Access to the routerQuery object as well as a callback that makes it easy to modify the
+ * querystring from a component.
+ */
 export function useRouterQuery<
   QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
   QueryResult = RouterQueryResult<QueryStringShape>,
@@ -61,10 +65,30 @@ export function useRouterQuery<
   };
 }
 
+/**
+ * When passing values to makeUrl, we can stringify numbers, so its OK to pass,
+ * but when parsing URLs for params/tokens, the value will always be a string
+ */
+type TokenMapToRouterParamMap<TokenMaps> = TokenMaps extends infer TokenMap
+  ? { [K in keyof TokenMap]: string }
+  : never;
+
+/**
+ * Wrapper to convert from URL(s) to the RouterParamMap
+ */
+type RouterParamMapFromURLs<URLs extends string> = TokenMapToRouterParamMap<
+  MultipleUrlsTokensMap<URLs>
+>;
+
+/**
+ * useRouterQueryForUrl
+ * Gives type-safe access to useRouterQuery of a URL or union of URLs
+ *
+ */
 export function useRouterQueryForUrl<
   URL extends string,
   QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
-  QueryResult = RouterQueryResult<QueryStringShape, MultipleUrlsTokensMap<URL>>,
+  QueryResult = RouterQueryResult<QueryStringShape, RouterParamMapFromURLs<URL>>,
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {
   return useRouterQuery<QueryStringShape, QueryResult, UpdateQueryShape>();
