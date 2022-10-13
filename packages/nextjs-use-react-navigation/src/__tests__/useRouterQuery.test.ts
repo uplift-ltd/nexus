@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RouterParamMapFromURLs } from "../useRouterQuery";
 
 const USER_URL = "/users/:userId";
