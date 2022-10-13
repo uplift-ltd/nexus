@@ -76,7 +76,7 @@ type TokenMapToRouterParamMap<TokenMaps> = TokenMaps extends infer TokenMap
 /**
  * Wrapper to convert from URL(s) to the RouterParamMap
  */
-type RouterParamMapFromURLs<URLs extends string> = TokenMapToRouterParamMap<
+export type RouterParamMapFromURLs<URLs extends string> = TokenMapToRouterParamMap<
   MultipleUrlsTokensMap<URLs>
 >;
 
