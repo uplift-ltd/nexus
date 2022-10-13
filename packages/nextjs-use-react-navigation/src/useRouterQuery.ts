@@ -66,15 +66,6 @@ export function useRouterQuery<
 export function useRouterQueryForUrl<
   URL extends string,
   QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
-  QueryResult = RouterQueryResult<QueryStringShape, UrlTokens<URL>>,
-  UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
->() {
-  return useRouterQuery<QueryStringShape, QueryResult, UpdateQueryShape>();
-}
-
-export function useRouterQueryForUrls<
-  URL extends string,
-  QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
   QueryResult = RouterQueryResult<QueryStringShape, MultipleUrlsTokensMap<URL>>,
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {
