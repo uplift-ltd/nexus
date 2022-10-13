@@ -47,6 +47,53 @@ export type UrlTokensMap<Url extends string, K extends string = UrlTokens<Url>> 
   ? { [P in K]: string | number }
   : never;
 
+/**
+ * Given a union of possible URLs, return a union of TokensMap.
+ *
+ * This is very handy when retrieving parameters from a union of possibly matching
+ * URLs. Probably for a component rendering part of a route
+ *
+ * @example
+ * type tokensMap = UrlTokensMap<"https://example.com/:orgId/:userId" | "https://example.com/:orgId/:userId/:itemId">
+ * // | { orgId: string | number, userId: string | number }
+ * // | { orgId: string | number, userId: string | number, itemId: string | number }
+ */
+// prettier-ignore
+export type MultipleUrlsTokensMap<Urls extends string> = Urls extends infer U
+  ? U extends string
+    ? UrlTokensMap<U>
+    : never
+  : never;
+
+/** helpers for the Widened type below. I'm putting this here for a single commit in case we want it later.
+ *
+ */
+type AllKeys<T> = T extends any ? keyof T : never;
+type OptionalKeys<T> = T extends any
+  ? { [K in keyof T]-?: {} extends Pick<T, K> ? K : never }[keyof T]
+  : never;
+type Idx<T, K extends PropertyKey, D = never> = T extends any
+  ? K extends keyof T
+    ? T[K]
+    : D
+  : never;
+type PartialKeys<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>> extends infer O
+  ? { [P in keyof O]: O[P] }
+  : never;
+type Widen<T> = [T] extends [Array<infer E>]
+  ? { [K in keyof T]: Widen<T[K]> }
+  : [T] extends [object]
+  ? PartialKeys<
+      { [K in AllKeys<T>]: Widen<Idx<T, K>> },
+      Exclude<AllKeys<T>, keyof T> | OptionalKeys<T>
+    >
+  : T;
+
+// This will merge all our TokensMaps into a single type that has optional keys INSTEAD of
+// the current implementation that returns a union of possible types. The union is much more
+// strict and _correct_, but we might want this at some point.
+type MultipleUrlsTokensMapsWidened<Urls extends string> = Widen<MultipleUrlsTokensMap<Urls>>;
+
 type QueryStringParameterValue = string | number;
 export type QueryStringParametersMap = Record<
   string,
