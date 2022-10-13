@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.2.2...@uplift-ltd/nextjs-use-react-navigation@1.3.0) (2022-10-13)
+
+
+### Features
+
+* enhance support for union of URLs in useRouterQuery ([#290](https://github.com/uplift-ltd/nexus/issues/290)) ([d90275a](https://github.com/uplift-ltd/nexus/commit/d90275a04177568c09a4ebe75854a92a7baff34c))
+
+
+
 ### [1.2.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.2.1...@uplift-ltd/nextjs-use-react-navigation@1.2.2) (2022-09-22)
 
 **Note:** Version bump only for package @uplift-ltd/nextjs-use-react-navigation

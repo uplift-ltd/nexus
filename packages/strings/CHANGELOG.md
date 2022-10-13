@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.7.0...@uplift-ltd/strings@1.8.0) (2022-10-13)
+
+
+### Features
+
+* enhance support for union of URLs in useRouterQuery ([#290](https://github.com/uplift-ltd/nexus/issues/290)) ([d90275a](https://github.com/uplift-ltd/nexus/commit/d90275a04177568c09a4ebe75854a92a7baff34c))
+
+
+
 ## [1.7.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.6.0...@uplift-ltd/strings@1.7.0) (2022-09-22)
 
 
