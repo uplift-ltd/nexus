@@ -1,7 +1,6 @@
 import {
   makeQueryString,
   QueryStringParametersMap,
-  UrlTokens,
   MultipleUrlsTokensMap,
 } from "@uplift-ltd/strings";
 import { useCallback } from "react";
@@ -11,13 +10,12 @@ export type RouterQueryResult<
   QueryStringParams extends never | string | Record<string, unknown> = never,
   Tokens extends never | string | Record<string, unknown> = never
 > =
-  // set URL params to be string
   // prettier-ignore
   (
       [Tokens] extends [never]
-        ? // no tokens, return never
+        ? // No Tokens, return never
         never
-        : // tokens is a string union, create a simple object of item in union to string
+        : // Tokens is a string union, create a simple object of item in union to string
         [Tokens] extends [string]
         ? { [K in Tokens]: string }
         : // Tokens is actually already a object type or union of object types, just return
