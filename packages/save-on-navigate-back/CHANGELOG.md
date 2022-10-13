@@ -1,88 +1,54 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [1.6.22](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.21...@uplift-ltd/save-on-navigate-back@1.6.22) (2022-10-13)
+
+**Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
 
 ### [1.6.21](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.20...@uplift-ltd/save-on-navigate-back@1.6.21) (2022-09-22)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
 
-
-
-
-
 ### [1.6.20](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.19...@uplift-ltd/save-on-navigate-back@1.6.20) (2022-08-03)
-
 
 ### Bug Fixes
 
-* Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282)) ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
-
-
+- Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282))
+  ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
 
 ### [1.6.19](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.18...@uplift-ltd/save-on-navigate-back@1.6.19) (2022-05-09)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
 
-
-
-
-
 ### [1.6.18](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.17...@uplift-ltd/save-on-navigate-back@1.6.18) (2022-04-19)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
-
-
-
-
 
 ### [1.6.17](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.16...@uplift-ltd/save-on-navigate-back@1.6.17) (2022-04-01)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
 
-
-
-
-
 ### [1.6.16](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.15...@uplift-ltd/save-on-navigate-back@1.6.16) (2022-04-01)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
-
-
-
-
 
 ### [1.6.15](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.14...@uplift-ltd/save-on-navigate-back@1.6.15) (2022-03-14)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
 
-
-
-
-
 ### [1.6.14](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.13...@uplift-ltd/save-on-navigate-back@1.6.14) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
-
-
-
-
 
 ### [1.6.13](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.12...@uplift-ltd/save-on-navigate-back@1.6.13) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
 
-
-
-
-
 ### [1.6.12](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.11...@uplift-ltd/save-on-navigate-back@1.6.12) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/save-on-navigate-back
-
-
-
-
 
 # Change Log
 
