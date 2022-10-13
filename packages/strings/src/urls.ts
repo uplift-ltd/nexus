@@ -47,7 +47,26 @@ export type UrlTokensMap<Url extends string, K extends string = UrlTokens<Url>> 
   ? { [P in K]: string | number }
   : never;
 
+/**
+ * Given a union of possible URLs, return a union of TokensMap.
+ *
+ * This is very handy when retrieving parameters from a union of possibly matching
+ * URLs. Probably for a component rendering part of a route
+ *
+ * @example
+ * type tokensMap = UrlTokensMap<"https://example.com/:orgId/:userId" | "https://example.com/:orgId/:userId/:itemId">
+ * // | { orgId: string | number, userId: string | number }
+ * // | { orgId: string | number, userId: string | number, itemId: string | number }
+ */
+// prettier-ignore
+export type MultipleUrlsTokensMap<Urls extends string> = Urls extends infer U
+  ? U extends string
+    ? UrlTokensMap<U>
+    : never
+  : never;
+
 type QueryStringParameterValue = string | number;
+
 export type QueryStringParametersMap = Record<
   string,
   QueryStringParameterValue[] | QueryStringParameterValue | null | undefined
