@@ -12,7 +12,7 @@ export type RouterQueryResult<
 > =
   // prettier-ignore
   (
-      [Tokens] extends [never]
+      [Tokens] extends never
         ? // No Tokens, return never
         never
         : // Tokens is a string union, create a simple object of item in union to string
