@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/constants",
   "version": "1.8.2",
   "description": "constants",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

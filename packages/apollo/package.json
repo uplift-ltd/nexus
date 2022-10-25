@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/apollo",
   "version": "3.1.1",
   "description": "Apollo helpers.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

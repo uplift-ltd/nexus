@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/ts-helpers",
   "version": "1.2.6",
   "description": "Helpers for dealing with typescript.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

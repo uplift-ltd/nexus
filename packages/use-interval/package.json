@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/use-interval",
   "version": "2.2.4",
   "description": "use-interval",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

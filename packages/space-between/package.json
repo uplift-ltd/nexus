@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/space-between",
   "version": "1.3.1",
   "description": "space-between",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
