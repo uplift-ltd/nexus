@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@3.1.1...@uplift-ltd/apollo@3.2.0) (2022-10-28)
+
+
+### Features
+
+* **apollo:** add support for TypedDocumentNode ([#297](https://github.com/uplift-ltd/nexus/issues/297)) ([316cd0c](https://github.com/uplift-ltd/nexus/commit/316cd0cda7ac422799e15c79021e757ce5544c8d))
+
+
+
 ### [3.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@3.1.0...@uplift-ltd/apollo@3.1.1) (2022-08-03)
 
 
