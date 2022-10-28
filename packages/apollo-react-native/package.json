@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/apollo-react-native",
   "version": "3.0.2",
   "description": "apollo-react-native",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

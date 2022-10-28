@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/strings",
   "version": "1.8.0",
   "description": "strings",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

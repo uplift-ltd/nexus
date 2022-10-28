@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/money",
   "version": "1.1.1",
   "description": "Helpers for dealing with django money.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

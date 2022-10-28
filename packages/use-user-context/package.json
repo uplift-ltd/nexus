@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/use-user-context",
   "version": "1.3.7",
   "description": "use-user-context",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

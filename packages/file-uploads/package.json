@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/file-uploads",
   "version": "2.0.3",
   "description": "file-uploads",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

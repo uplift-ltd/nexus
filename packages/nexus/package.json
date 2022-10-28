@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/nexus",
   "version": "2.0.1",
   "description": "nexus",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/nexus.js",
   "module": "./esm/nexus.js",

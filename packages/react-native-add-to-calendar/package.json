@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/react-native-add-to-calendar",
   "version": "3.0.1",
   "description": "react-native-add-to-calendar",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

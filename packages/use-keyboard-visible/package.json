@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/use-keyboard-visible",
   "version": "1.3.1",
   "description": "use-keyboard-visible",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

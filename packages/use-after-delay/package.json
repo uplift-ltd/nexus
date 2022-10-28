@@ -2,7 +2,7 @@
   "name": "@uplift-ltd/use-after-delay",
   "version": "1.2.1",
   "description": "use-after-delay",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
