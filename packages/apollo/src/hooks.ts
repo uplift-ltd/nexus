@@ -9,6 +9,7 @@ import {
   QueryHookOptions,
   QueryResult,
   QueryTuple,
+  TypedDocumentNode,
 } from "@apollo/client";
 import { DocumentNode } from "graphql";
 import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants";
@@ -23,8 +24,9 @@ export type EnhancedQueryResult<TData, TVariables> = QueryResult<TData, TVariabl
   fetchingMore: boolean;
 };
 
-export function useEnhancedQuery<TData, TVariables = OperationVariables>(
-  query: DocumentNode,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function useEnhancedQuery<TData = any, TVariables = OperationVariables>(
+  query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
   extraOptions: ExtraOptions = { auth: true }
 ): EnhancedQueryResult<TData, TVariables> {
@@ -44,8 +46,9 @@ export function useEnhancedQuery<TData, TVariables = OperationVariables>(
   };
 }
 
-export function useEnhancedLazyQuery<TData, TVariables = OperationVariables>(
-  query: DocumentNode,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function useEnhancedLazyQuery<TData = any, TVariables = OperationVariables>(
+  query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
   extraOptions: ExtraOptions = { auth: true }
 ): QueryTuple<TData, TVariables> {
@@ -58,8 +61,9 @@ export function useEnhancedLazyQuery<TData, TVariables = OperationVariables>(
   });
 }
 
-export function useEnhancedMutation<TData, TVariables = OperationVariables>(
-  mutation: DocumentNode,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function useEnhancedMutation<TData = any, TVariables = OperationVariables>(
+  mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: MutationHookOptions<TData, TVariables> = {},
   extraOptions: ExtraOptions = { auth: true }
 ): MutationTuple<TData, TVariables> {
