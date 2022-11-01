@@ -8,17 +8,17 @@ jobs:
   teardown-preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: "14.x"
           registry-url: "https://npm.pkg.github.com/"
           scope: "@uplift-ltd"
 
       - name: Restore dependencies
-        uses: actions/cache@main
+        uses: actions/cache@v3
         env:
           cache-name: npm-cache
         with:
@@ -35,7 +35,7 @@ jobs:
       - name: Create Preview URL
         id: create-preview-url
         run: |
-          echo "::set-output name=preview_url::nexus-$GITHUB_REF_NAME_SLUG_URL.surge.sh"
+          echo "preview_url=nexus-$GITHUB_REF_NAME_SLUG_URL.surge.sh" >> $GITHUB_OUTPUT
 
       - name: Teardown preview
         env:
