@@ -273,7 +273,7 @@ ab.filter(makeUnionMemberGuard("__typename", "A")); // A[]
 
 ab.filter(makeUnionMemberGuard("__typename", "B")); // B[]
 
-ab.filter(makeGraphqlUnionMemberGuard("__typename", "A")); // A[]
+ab.filter(makeGraphqlUnionMemberGuard("A")); // A[]
 
-ab.filter(makeGraphqlUnionMemberGuard("__typename", "B")); // B[]
+ab.filter(makeGraphqlUnionMemberGuard("B")); // B[]
 ```
