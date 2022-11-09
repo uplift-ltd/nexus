@@ -247,11 +247,11 @@ GetConnectionNodeArray<NonNullable<NullableOrganization["users"]>>;
 // => Array<User>
 ```
 
-### makeUnionrMemberGuard
+### makeUnionMemberGuard
 
 Filter on a discriminated union.
 
 ```ts
 const someUnion: Array<Team | Fruits> = [];
-const teams = someUnion.filter(makeUnionrMemberGuard("__typename", "Team")); // Team[]
+const teams = someUnion.filter(makeUnionMemberGuard("__typename", "Team")); // Team[]
 ```
