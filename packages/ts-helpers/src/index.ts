@@ -2,6 +2,7 @@ export type { ArrayElement } from "./arrayElement";
 export type { ArrayToUnion } from "./arrayToUnion";
 export type { DeepPartial } from "./deepPartial";
 export { ensureError } from "./ensureError";
+export { makeUnionMemberGuard, makeGraphqlUnionMemberGuard } from "./unionMemberGuard";
 export { notEmpty } from "./notEmpty";
 export type { GetConnectionNode, GetConnectionNodeArray } from "./relay";
 export type { RequireAtLeastOne, RequireOnlyOne } from "./require";

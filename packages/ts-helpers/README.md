@@ -244,3 +244,36 @@ GetConnectionNode<NonNullable<NullableOrganization["users"]>>;
 GetConnectionNodeArray<NonNullable<NullableOrganization["users"]>>;
 // => Array<User>
 ```
+
+### makeUnionMemberGuard
+
+Filter on a discriminated union.
+
+```ts
+import { makeGraphqlUnionGuard, makeUnionMemberGuard } from "@uplift-ltd/ts-helpers";
+
+type A = {
+  __typename: "A";
+  x: number;
+};
+
+type B = {
+  __typename: "B";
+  y: number;
+};
+
+type AB = A | B;
+
+const a = { __typename: "A", x: 1 } as const;
+const b = { __typename: "B", y: 2 } as const;
+
+const ab: AB[] = [a, b];
+
+ab.filter(makeUnionMemberGuard("__typename", "A")); // A[]
+
+ab.filter(makeUnionMemberGuard("__typename", "B")); // B[]
+
+ab.filter(makeGraphqlUnionMemberGuard("A")); // A[]
+
+ab.filter(makeGraphqlUnionMemberGuard("B")); // B[]
+```
