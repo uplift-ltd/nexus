@@ -43,7 +43,7 @@ import { Command } from "commander";
 import execa from "execa";
 import { replaceProgramVersion } from "./replaceProgramVersion";
 var program = new Command();
-program.version("2.0.1");
+program.version("2.0.2");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")

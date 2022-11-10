@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/sass",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Helpers for dealing with sass.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",

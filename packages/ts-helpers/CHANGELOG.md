@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.6...@uplift-ltd/ts-helpers@1.3.0) (2022-11-10)
+
+
+### Features
+
+* **ts-helpers:** add union member guard ([#304](https://github.com/uplift-ltd/nexus/issues/304)) ([e61b4b2](https://github.com/uplift-ltd/nexus/commit/e61b4b273ea01a28a51782bad6bea3095deab79c))
+
+
+
 ### [1.2.6](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.5...@uplift-ltd/ts-helpers@1.2.6) (2022-08-03)
 
 
