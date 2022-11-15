@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.9-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@1.3.8...@uplift-ltd/use-user-context@1.3.9-alpha.0) (2022-11-15)
+
+**Note:** Version bump only for package @uplift-ltd/use-user-context
+
+
+
+
+
 ### [1.3.8](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@1.3.7...@uplift-ltd/use-user-context@1.3.8) (2022-11-10)
 
 **Note:** Version bump only for package @uplift-ltd/use-user-context
