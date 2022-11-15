@@ -5,6 +5,7 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
+      "registry": "https://npm.pkg.github.com",
       "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"]
     },
     "version": {

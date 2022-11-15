@@ -146,7 +146,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lerna publish ghp
-        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://npm.pkg.github.com
+        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -155,11 +155,13 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
 
-      - run: |
-          cat lerna.json
-          git diff
+      - uses: microsoft/variable-substitution@v1 
+        with:
+          files: lerna.json
+        env:
+          command.publish.registry: "https://registry.npmjs.org"
 
       - name: Lerna publish npm
-        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://registry.npmjs.org
+        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
