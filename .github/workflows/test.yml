@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js
+      - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
+          registry-url: "https://npm.pkg.github.com/"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -49,11 +49,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js
+      - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
+          registry-url: "https://npm.pkg.github.com/"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -94,11 +94,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js
+      - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
+          registry-url: "https://npm.pkg.github.com/"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -129,11 +129,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js
+      - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
+          registry-url: "https://npm.pkg.github.com/"
 
       - name: Restore dependencies
         uses: actions/cache@v3
