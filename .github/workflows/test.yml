@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -53,7 +53,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -98,7 +98,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -133,7 +133,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
         uses: actions/cache@v3
