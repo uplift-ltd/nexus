@@ -41,7 +41,7 @@ jobs:
           yarn install --non-interactive --frozen-lockfile --cache-folder ${{
           steps.yarn-cache-dir-path.outputs.dir }}
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
