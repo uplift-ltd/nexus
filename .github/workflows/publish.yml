@@ -155,6 +155,10 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
 
+      - run: |
+          cat lerna.json
+          git diff
+
       - name: Lerna publish npm
         run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://registry.npmjs.org
         env:
