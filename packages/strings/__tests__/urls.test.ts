@@ -45,6 +45,13 @@ test.each([
     { trailingSlash: "remove" },
     "/test-url/654",
   ],
+  [
+    "/test-url/:tokenId/",
+    { tokenId: "VGFza2xpc3Q6OTI=" },
+    undefined,
+    { trailingSlash: "remove" },
+    "/test-url/VGFza2xpc3Q6OTI=",
+  ],
   ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
   ["/test-url/:tokenId", { tokenId: 123 }, undefined, undefined, "/test-url/123"],
   ["/test-url/:tokenId", { tokenId: 123 }, { msg: "Hello" }, undefined, "/test-url/123?msg=Hello"],
@@ -106,6 +113,13 @@ test.each([
     { msg: "Hello", null: null, undefined },
     { trailingSlash: "remove" },
     "/test-url/987/ABC123?msg=Hello",
+  ],
+  [
+    "/test-url/:tokenId/:userId/",
+    { tokenId: "VGFza2xpc3Q6OTI=", userId: "ABC123" },
+    { msg: "Hello", null: null, id: "VGFza2xpc3Q6OTI=" },
+    { trailingSlash: "remove" },
+    "/test-url/VGFza2xpc3Q6OTI=/ABC123?msg=Hello&id=VGFza2xpc3Q6OTI%3D",
   ],
 ])("makeUrls (%s, %s, %s, %s)", (url, tokens, params, options, expected) => {
   // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
