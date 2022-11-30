@@ -1,6 +1,5 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
-import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
 
 const safeJoinWithQuestionMark = safeJoin("?");
@@ -76,14 +75,25 @@ export type QueryStringParametersMap = Record<
   QueryStringParameterValue[] | QueryStringParameterValue | null | undefined
 >;
 
+// Used for express style URLs
+export const defaultGetTokenStringForParamName = (paramName: string) => `:${paramName}`;
+
+/**
+ * Takes a urlTemplate and a tokens map to replace all instances of the token
+ * with the value needed. Also supports custom token formats by customizing the
+ * getTokenStringForKey callback. This defaults to an express style parameter using
+ * ":keyName" but can be updated to support next.js by supplying a return value of "[keyName]"
+ */
 export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensMap<UrlTemplate>>(
   urlTemplate: UrlTemplate,
-  tokens: TokensMap
+  tokens: TokensMap,
+  getTokenStringForParamName = defaultGetTokenStringForParamName
 ) => {
   return Object.entries(tokens).reduce((url, [key, value]) => {
     if (!notEmpty(value)) return url;
 
-    return replaceAll(url, `:${key}`, value.toString());
+    const paramName = getTokenStringForParamName(key);
+    return url.replaceAll(paramName, value.toString());
   }, urlTemplate as string);
 };
 
