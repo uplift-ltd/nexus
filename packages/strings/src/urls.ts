@@ -130,6 +130,54 @@ function defaultGetAbsoluteUrlHost() {
   return "";
 }
 
+/**
+ * Given an object of key/values, returns a properly encoded querystring for appending to a URL after
+ * removing any falsey/missing values. Values as arrays will be appended multiple times. If you want to
+ * add an array as comma separated, you will need to pass it as a string for the value.
+ *
+ * @example
+ * makeQueryString({
+ *   userId: 1234,
+ *   search: null,
+ *   repoName: "hello world",
+ *   message: ""
+ * }) // => "userId=1234&repoName=hello%20world"
+ *
+ * @example
+ * // with array value
+ * makeQueryString({
+ *   term: ["hello", "world"],
+ *   repoName: "hello world",
+ * }) // => "repoName=hello%20world&term=hello&term=world"
+ *
+ * // for comma separated values, join first
+ * makeQueryString({
+ *   terms: ["hello", "world"].join(","),
+ *   repoName: "hello world",
+ * }) // => "repoName=hello%20world&terms=hello%2Cworld"
+ *
+ */
+export function makeQueryString<Params extends QueryStringParametersMap = QueryStringParametersMap>(
+  params: Params | undefined | null
+) {
+  const searchParams = Object.entries(params ?? {}).reduce((qs, [key, value]) => {
+    // skip falsey/empty values
+    if (!notEmpty(value) || !value) return qs;
+
+    const keyStr = key.toString();
+
+    if (Array.isArray(value)) {
+      value.forEach((val) => qs.append(keyStr, val.toString()));
+    } else {
+      qs.append(keyStr, value.toString());
+    }
+
+    return qs;
+  }, new URLSearchParams());
+
+  return searchParams.toString();
+}
+
 export type MakeUrlAbsoluteUrlOptions = {
   /**
    * If we're constructing absolute urls, this controls whether
@@ -244,51 +292,3 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
 
 // export our default `makeUrl` function as before
 export const makeUrl = createMakeUrl();
-
-/**
- * Given an object of key/values, returns a properly encoded querystring for appending to a URL after
- * removing any falsey/missing values. Values as arrays will be appended multiple times. If you want to
- * add an array as comma separated, you will need to pass it as a string for the value.
- *
- * @example
- * makeQueryString({
- *   userId: 1234,
- *   search: null,
- *   repoName: "hello world",
- *   message: ""
- * }) // => "userId=1234&repoName=hello%20world"
- *
- * @example
- * // with array value
- * makeQueryString({
- *   term: ["hello", "world"],
- *   repoName: "hello world",
- * }) // => "repoName=hello%20world&term=hello&term=world"
- *
- * // for comma separated values, join first
- * makeQueryString({
- *   terms: ["hello", "world"].join(","),
- *   repoName: "hello world",
- * }) // => "repoName=hello%20world&terms=hello%2Cworld"
- *
- */
-export function makeQueryString<Params extends QueryStringParametersMap = QueryStringParametersMap>(
-  params: Params | undefined | null
-) {
-  const searchParams = Object.entries(params ?? {}).reduce((qs, [key, value]) => {
-    // skip falsey/empty values
-    if (!notEmpty(value) || !value) return qs;
-
-    const keyStr = key.toString();
-
-    if (Array.isArray(value)) {
-      value.forEach((val) => qs.append(keyStr, val.toString()));
-    } else {
-      qs.append(keyStr, value.toString());
-    }
-
-    return qs;
-  }, new URLSearchParams());
-
-  return searchParams.toString();
-}
