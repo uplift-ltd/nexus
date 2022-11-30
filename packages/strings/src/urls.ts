@@ -1,5 +1,6 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
+import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
 
 const safeJoinWithQuestionMark = safeJoin("?");
@@ -78,7 +79,9 @@ export type QueryStringParametersMap = Record<
 // Used for express style URLs
 export const getExpressTokenForParamName = (paramName: string) => `:${paramName}`;
 // Used for next.js style URLs
-export const getNextJsTokenForParamName = (paramName: string) => `[${paramName}]`;
+// We need to escape the brackets because this string is used as a regexp for better
+// backward-compatibility on node <15
+export const getNextJsTokenForParamName = (paramName: string) => `\\[${paramName}\\]`;
 
 /**
  * Takes a urlTemplate and a tokens map to replace all instances of the token
@@ -95,7 +98,7 @@ export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensM
     if (!notEmpty(value)) return url;
 
     const paramName = getTokenStringForParamName(key);
-    return url.replaceAll(paramName, value.toString());
+    return replaceAll(url, paramName, value.toString());
   }, urlTemplate as string);
 };
 
