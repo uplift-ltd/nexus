@@ -16,20 +16,24 @@ const safeJoinWithQuestionMark = safeJoin("?");
  */
 
 // Root is ignored on purpose
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type UrlTokens<T extends string> = T extends `${infer Root}/:${infer Token}/${infer Rest}`
+// prettier-ignore
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export type UrlTokens<T extends string> = T extends
+  // express style urls
+  | `${infer Root}/:${infer Token}/${infer Rest}`
+  // or next.js style urls
+  | `${infer Root}/[${infer Token}]/${infer Rest}`
   ? Token | UrlTokens<Rest>
-  : T extends `:${infer Token}/${infer Rest}`
+  : T extends `:${infer Token}/${infer Rest}` | `[${infer Token}]/${infer Rest}`
   ? Token | UrlTokens<Rest>
-  : // Root is ignored on purpose
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  T extends `${infer Root}/:${infer Token}`
+  : T extends `${infer Root}/:${infer Token}` | `${infer Root}/[${infer Token}]`
   ? Token
-  : T extends `:${infer Token}/`
+  : T extends `:${infer Token}/` | `[${infer Token}]/`
   ? Token
-  : T extends `:${infer Token}`
+  : T extends `:${infer Token}` | `[${infer Token}]`
   ? Token
   : never;
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 /**
  * Takes a URL and returns a Record with all tokens as required keys
