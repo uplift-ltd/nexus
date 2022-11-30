@@ -201,6 +201,11 @@ export type MakeUrlOptions = {
   absoluteUrl?: boolean | MakeUrlAbsoluteUrlOptions;
 
   /**
+   * Customize pathname replacement, defaults to express style params (:paramName)
+   */
+  getDynamicPathnameForParam?: (paramName: string) => string;
+
+  /**
    * Controls how the trailing slash on our URLs will be handled,
    * - "ignore" will leave the URL as-is
    * - "ensure" will append a trailing slash if the slash is not already present
@@ -251,13 +256,13 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
     const [tokens, params, optionOverrides] = args;
 
     // Combine provided defaults and any instance options
-    const { absoluteUrl = false, trailingSlash = "ignore" } = {
+    const { absoluteUrl = false, getDynamicPathnameForParam, trailingSlash = "ignore" } = {
       ...defaultOptions,
       ...optionOverrides,
     };
 
     // construct the main portion of our URL by replacing tokens, if provided
-    let baseUrl = tokens ? replaceTokens(url, tokens) : url;
+    let baseUrl = tokens ? replaceTokens(url, tokens, getDynamicPathnameForParam) : url;
 
     if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
       // Ensure we have a trailing slash
