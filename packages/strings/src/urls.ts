@@ -76,7 +76,9 @@ export type QueryStringParametersMap = Record<
 >;
 
 // Used for express style URLs
-export const defaultGetTokenStringForParamName = (paramName: string) => `:${paramName}`;
+export const getExpressTokenForParamName = (paramName: string) => `:${paramName}`;
+// Used for next.js style URLs
+export const getNextJsTokenForParamName = (paramName: string) => `[${paramName}]`;
 
 /**
  * Takes a urlTemplate and a tokens map to replace all instances of the token
@@ -87,7 +89,7 @@ export const defaultGetTokenStringForParamName = (paramName: string) => `:${para
 export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensMap<UrlTemplate>>(
   urlTemplate: UrlTemplate,
   tokens: TokensMap,
-  getTokenStringForParamName = defaultGetTokenStringForParamName
+  getTokenStringForParamName = getExpressTokenForParamName
 ) => {
   return Object.entries(tokens).reduce((url, [key, value]) => {
     if (!notEmpty(value)) return url;
@@ -203,7 +205,7 @@ export type MakeUrlOptions = {
   /**
    * Customize pathname replacement, defaults to express style params (:paramName)
    */
-  getDynamicPathnameForParam?: (paramName: string) => string;
+  dynamicUrlStyle?: "express" | "nextjs";
 
   /**
    * Controls how the trailing slash on our URLs will be handled,
@@ -256,10 +258,13 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
     const [tokens, params, optionOverrides] = args;
 
     // Combine provided defaults and any instance options
-    const { absoluteUrl = false, getDynamicPathnameForParam, trailingSlash = "ignore" } = {
+    const { absoluteUrl = false, dynamicUrlStyle = "express", trailingSlash = "ignore" } = {
       ...defaultOptions,
       ...optionOverrides,
     };
+
+    const getDynamicPathnameForParam =
+      dynamicUrlStyle === "nextjs" ? getNextJsTokenForParamName : getExpressTokenForParamName;
 
     // construct the main portion of our URL by replacing tokens, if provided
     let baseUrl = tokens ? replaceTokens(url, tokens, getDynamicPathnameForParam) : url;
