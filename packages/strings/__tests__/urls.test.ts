@@ -1,6 +1,6 @@
 import { createMakeUrl, makeUrl, makeQueryString } from "../src/urls";
 
-test.each([
+const EXPRESS_URL_TEST_CASES = [
   ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
   ["/test-url/:tokenId/", { tokenId: "654" }, undefined, undefined, "/test-url/654/"],
   [
@@ -121,10 +121,33 @@ test.each([
     { trailingSlash: "remove" },
     "/test-url/VGFza2xpc3Q6OTI=/ABC123?msg=Hello&id=VGFza2xpc3Q6OTI%3D",
   ],
-])("makeUrls (%s, %s, %s, %s)", (url, tokens, params, options, expected) => {
-  // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
-  expect(makeUrl(url, tokens, params, options)).toBe(expected);
-});
+] as const;
+
+const TOKENS_REGEX = /:([^/]+)/g;
+
+const NEXTJS_URL_TEST_CASES = EXPRESS_URL_TEST_CASES.map(
+  ([url, ...testCase]) => [url.replace(TOKENS_REGEX, "[$1]"), ...testCase] as const
+);
+
+test.each(EXPRESS_URL_TEST_CASES)(
+  "express style makeUrl (%s, %s, %s, %s)",
+  (url, tokens, params, options, expected) => {
+    // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
+    expect(makeUrl(url, tokens, params, options)).toBe(expected);
+  }
+);
+
+test.each(NEXTJS_URL_TEST_CASES)(
+  "next.js style makeUrl (%s, %s, %s, %s)",
+  (url, tokens, params, options, expected) => {
+    const nextjsMakeUrl = createMakeUrl({ dynamicUrlStyle: "nextjs" });
+    // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
+    expect(nextjsMakeUrl(url, tokens, params, options)).toBe(expected);
+
+    // @ts-expect-error: tokens will complain because some of the provided URLs won't have tokens
+    expect(makeUrl(url, tokens, params, { ...options, dynamicUrlStyle: "nextjs" })).toBe(expected);
+  }
+);
 
 test.each([
   ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
@@ -169,6 +192,13 @@ test.each([
     { tokenId: "654" },
     undefined,
     { trailingSlash: "remove" },
+    "/test-url/654",
+  ],
+  [
+    "/test-url/[tokenId]/",
+    { tokenId: "654" },
+    undefined,
+    { trailingSlash: "remove", dynamicUrlStyle: "nextjs" },
     "/test-url/654",
   ],
 ])("createMakeUrl with trailing slash option", (url, tokens, params, options, expected) => {
