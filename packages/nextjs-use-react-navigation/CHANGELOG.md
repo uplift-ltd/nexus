@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.3.4...@uplift-ltd/nextjs-use-react-navigation@1.3.5) (2022-11-30)
+
+**Note:** Version bump only for package @uplift-ltd/nextjs-use-react-navigation
+
+
+
+
+
 ### [1.3.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.3.3...@uplift-ltd/nextjs-use-react-navigation@1.3.4) (2022-11-29)
 
 
