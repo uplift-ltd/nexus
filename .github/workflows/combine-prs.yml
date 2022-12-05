@@ -1,5 +1,5 @@
 # https://github.com/hrvey/combine-prs-workflow/blob/master/combine-prs.yml
-name: 'Combine PRs'
+name: combine prs
 
 # Controls when the action will run - in this case triggered manually
 on:
@@ -14,10 +14,14 @@ on:
         required: true
         type: boolean
         default: true
+      combinePRTitle:
+        description: 'Semantic PR Title'
+        required: true
+        default: 'chore(deps): combined dependabot updates'
       combineBranchName:
         description: 'Name of the branch to combine PRs into'
         required: true
-        default: 'combine-prs-branch'
+        default: 'combined-dependabot-updates'
       ignoreLabel:
         description: 'Exclude PRs with this label'
         required: true
@@ -146,7 +150,7 @@ jobs:
             await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'Combined PR',
+              title: '${{ github.event.inputs.combinePRTitle }}',
               head: '${{ github.event.inputs.combineBranchName }}',
               base: baseBranch,
               body: body
