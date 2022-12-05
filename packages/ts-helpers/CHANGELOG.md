@@ -1,41 +1,33 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [1.3.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.3.0...@uplift-ltd/ts-helpers@1.3.1) (2022-12-05)
+
+**Note:** Version bump only for package @uplift-ltd/ts-helpers
 
 ## [1.3.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.6...@uplift-ltd/ts-helpers@1.3.0) (2022-11-10)
 
-
 ### Features
 
-* **ts-helpers:** add union member guard ([#304](https://github.com/uplift-ltd/nexus/issues/304)) ([e61b4b2](https://github.com/uplift-ltd/nexus/commit/e61b4b273ea01a28a51782bad6bea3095deab79c))
-
-
+- **ts-helpers:** add union member guard ([#304](https://github.com/uplift-ltd/nexus/issues/304))
+  ([e61b4b2](https://github.com/uplift-ltd/nexus/commit/e61b4b273ea01a28a51782bad6bea3095deab79c))
 
 ### [1.2.6](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.5...@uplift-ltd/ts-helpers@1.2.6) (2022-08-03)
 
-
 ### Bug Fixes
 
-* Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282)) ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
-
-
+- Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282))
+  ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
 
 ### [1.2.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.4...@uplift-ltd/ts-helpers@1.2.5) (2022-04-19)
 
 **Note:** Version bump only for package @uplift-ltd/ts-helpers
 
-
-
-
-
 ### [1.2.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.2.3...@uplift-ltd/ts-helpers@1.2.4) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/ts-helpers
-
-
-
-
 
 # Change Log
 
