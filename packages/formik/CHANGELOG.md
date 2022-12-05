@@ -1,120 +1,70 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [2.0.20-alpha.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.20-alpha.1...@uplift-ltd/formik@2.0.20-alpha.2) (2022-12-05)
+
+**Note:** Version bump only for package @uplift-ltd/formik
 
 ### [2.0.20-alpha.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.20-alpha.0...@uplift-ltd/formik@2.0.20-alpha.1) (2022-11-15)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.20-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.19...@uplift-ltd/formik@2.0.20-alpha.0) (2022-11-15)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 ### [2.0.19](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.18...@uplift-ltd/formik@2.0.19) (2022-11-10)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.18](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.17...@uplift-ltd/formik@2.0.18) (2022-10-13)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 ### [2.0.17](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.16...@uplift-ltd/formik@2.0.17) (2022-09-22)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.16](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.15...@uplift-ltd/formik@2.0.16) (2022-08-03)
-
 
 ### Bug Fixes
 
-* Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282)) ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
-
-
+- Update URLs ([#282](https://github.com/uplift-ltd/nexus/issues/282))
+  ([c2d0c84](https://github.com/uplift-ltd/nexus/commit/c2d0c843c8eb18c4a9ae360ee2d840f5be388fac))
 
 ### [2.0.15](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.14...@uplift-ltd/formik@2.0.15) (2022-05-09)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.14](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.13...@uplift-ltd/formik@2.0.14) (2022-04-19)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 ### [2.0.13](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.12...@uplift-ltd/formik@2.0.13) (2022-04-01)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.12](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.11...@uplift-ltd/formik@2.0.12) (2022-04-01)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 ### [2.0.11](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.10...@uplift-ltd/formik@2.0.11) (2022-03-14)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.10](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.9...@uplift-ltd/formik@2.0.10) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 ### [2.0.9](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.8...@uplift-ltd/formik@2.0.9) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [2.0.8](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.7...@uplift-ltd/formik@2.0.8) (2022-03-03)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 # Change Log
 
