@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/save-on-navigate-back",
-  "version": "1.6.23",
+  "version": "1.6.24",
   "description": "save-on-navigate-back",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -12,7 +12,7 @@
     "README.md"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,6 @@
     "react": "^16.0.0 || ^17.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/formik": "^2.0.19"
+    "@uplift-ltd/formik": "^2.0.20"
   }
 }

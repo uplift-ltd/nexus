@@ -4,13 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       distTag:
-        description: "distTag (latest or prerelease)"
-        required: true
-        default: "latest"
+        type: choice
+        description: "distTag"
+        default: latest
+        options:
+          - latest
+          - prerelease
       graduate:
+        type: boolean
         description: "graduate (true or false)"
-        required: true
-        default: "false"
+        default: false
 
 jobs:
   dependencies:
@@ -22,8 +25,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
-          scope: "@uplift-ltd"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -60,8 +62,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
-          scope: "@uplift-ltd"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -102,8 +103,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com/"
-          scope: "@uplift-ltd"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -142,17 +142,19 @@ jobs:
             yarn lerna version --yes --conventional-prerelease
           fi
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lerna publish
-        if: github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master'
-        run: yarn lerna publish from-package --yes
+      - name: Lerna publish npm
+        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://registry.npmjs.org
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish package (prerelease)
-        if: github.event.inputs.distTag == 'prerelease'
-        run: yarn lerna publish from-package --yes --dist-tag prerelease
+      - name: Use ghp registry
+        uses: actions/setup-node@v3
+        with:
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Lerna publish ghp
+        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
