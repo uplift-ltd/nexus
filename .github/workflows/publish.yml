@@ -103,7 +103,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org"
+          # registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
         uses: actions/cache@v3
@@ -142,18 +143,17 @@ jobs:
             yarn lerna version --yes --conventional-prerelease
           fi
         env:
-          # NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lerna publish ghp
-        run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://npm.pkg.github.com
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Lerna publish ghp
+      #   run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://npm.pkg.github.com
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use npm registry
-        uses: actions/setup-node@v3
-        with:
-          registry-url: "https://registry.npmjs.org"
+      # - name: Use npm registry
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     registry-url: "https://registry.npmjs.org"
 
       - name: Lerna publish npm
         run: yarn lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} --registry https://registry.npmjs.org

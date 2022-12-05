@@ -6,7 +6,7 @@
   "license": "MIT",
   "homepage": "https://nexus.uplift.ltd/",
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "repository": {
     "type": "git",
