@@ -147,6 +147,9 @@ makeUrl has several options available,
    - "ensure" will ensure urls always end with a slash
    - "remove" will ensure urls never end with a slash
 1. Manage absolute url creation, as well as the origin and protocol
+1. Choose Dynamic URL pathname parameter type.
+   - `express` uses `:userId` style params (default)
+   - `nextjs` uses `[userId]` style params
 
 ```ts
 import { makeUrl } from "@uplift-ltd/strings";
@@ -154,9 +157,13 @@ import { makeUrl } from "@uplift-ltd/strings";
 const USER_PROFILE_URL = "/user/:userId";
 const USER_SERVICE_DETAILS_URL = "/user/:userId/:serviceId";
 
+const NEXTJS_USER_PROFILE_URL = "/user/[userId]";
+
 makeUrl(USER_PROFILE_URL, { userId: 654654 }); // => "/user/654654"
 makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }); // => "/user/654654/github"
 makeUrl(USER_SERVICE_DETAILS_URL, { userId: 654654, serviceId: "github" }, { tab: "repos" }); // => "/user/654654/github?tab=repos"
+
+makeUrl(NEXTJS_USER_PROFILE_URL, { userId: 654654 }, null, { dynamicUrlStyle: "nextjs" }); // => "/user/654654"
 
 // trailingSlashes
 const USER_SERVICE_DETAILS_URL_WITH_SLASH = `${USER_SERVICE_DETAILS_URL}/`;

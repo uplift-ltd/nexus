@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.8.1...@uplift-ltd/strings@1.9.0) (2022-11-30)
+
+
+### Features
+
+* Support Next.js URLs ([#310](https://github.com/uplift-ltd/nexus/issues/310)) ([dd3ed34](https://github.com/uplift-ltd/nexus/commit/dd3ed3467367ddf5a6e7d2cf9848092087d4829b))
+
+
+### Bug Fixes
+
+* Querystring double encoding ([#308](https://github.com/uplift-ltd/nexus/issues/308)) ([d61df16](https://github.com/uplift-ltd/nexus/commit/d61df16649219d02b5fb792ea7ee9ebc9e1d948c))
+
+
+
 ### [1.8.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.8.0...@uplift-ltd/strings@1.8.1) (2022-11-10)
 
 **Note:** Version bump only for package @uplift-ltd/strings

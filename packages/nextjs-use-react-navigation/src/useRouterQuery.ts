@@ -1,8 +1,4 @@
-import {
-  makeQueryString,
-  QueryStringParametersMap,
-  MultipleUrlsTokensMap,
-} from "@uplift-ltd/strings";
+import { QueryStringParametersMap, MultipleUrlsTokensMap } from "@uplift-ltd/strings";
 import { useCallback } from "react";
 import { useRouterNavigation } from "./useRouterNavigation";
 
@@ -47,13 +43,13 @@ export function useRouterQuery<
 
   const updateRouterQuery = useCallback(
     (newQuery: UpdateQueryShape) => {
-      const q = makeQueryString({ ...routerNavigation.query, ...newQuery });
-
-      if (q) {
-        routerNavigation.replace(`${routerNavigation.pathname}?${q}`);
-      } else {
-        routerNavigation.replace(routerNavigation.pathname);
-      }
+      routerNavigation.replace({
+        pathname: routerNavigation.pathname,
+        query: {
+          ...routerNavigation.query,
+          ...newQuery,
+        },
+      });
     },
     [routerNavigation]
   );

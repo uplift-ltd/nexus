@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.3.4...@uplift-ltd/nextjs-use-react-navigation@1.3.5) (2022-11-30)
+
+**Note:** Version bump only for package @uplift-ltd/nextjs-use-react-navigation
+
+
+
+
+
+### [1.3.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.3.3...@uplift-ltd/nextjs-use-react-navigation@1.3.4) (2022-11-29)
+
+
+### Bug Fixes
+
+* Querystring double encoding ([#308](https://github.com/uplift-ltd/nexus/issues/308)) ([d61df16](https://github.com/uplift-ltd/nexus/commit/d61df16649219d02b5fb792ea7ee9ebc9e1d948c))
+
+
+
 ### [1.3.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.3.2...@uplift-ltd/nextjs-use-react-navigation@1.3.3) (2022-11-10)
 
 **Note:** Version bump only for package @uplift-ltd/nextjs-use-react-navigation
