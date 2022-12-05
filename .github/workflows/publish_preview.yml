@@ -2,7 +2,8 @@ name: publish preview
 
 on:
   pull_request:
-    branches: [master]
+    paths:
+      - 'website/**'
 
 jobs:
   publish-preview:
