@@ -41,7 +41,7 @@ type DeriveSkipFromSkipAndSkipVariablesArgs<
 };
 
 /**
- * Derives whether the query should be skipped based on an explicity skip, or
+ * Derives whether the query should be skipped based on an explicit skip, or
  * the existence of query variables that should be notEmpty based on a provided
  * list of skipVariables (a list of variable keys).
  *
