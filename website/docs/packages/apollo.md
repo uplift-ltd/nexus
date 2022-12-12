@@ -16,11 +16,42 @@ Same API as Apollo useQuery except:
   endpoint.
 - It returns `initialLoading`, `refetching`, and `fetchingMore` (pass in
   `notifyOnNetworkStatusChange: true`)
+- Supports automatically skipping a query based on undefined/null values for specified variables.
+  - When `skip` evaluates to `true`, the query will _always_ be skipped and `skipVariables` will not
+    be evaluated
+  - When `skip` is falsey, `skipVariables` will be evaluated using `skipVariablesPredicate`. If any
+    variable returns `true` from the `skipVariablesPredicate`, the query will be skipped
 
 ```ts
 import { useEnhancedQuery } from "@uplift-ltd/apollo";
 
 useEnhancedQuery<MyQuery, MyQueryVariables>(MY_QUERY, { variables }, { auth: false });
+
+useEnhancedQuery(MY_QUERY, {
+  variables: {
+    userId,
+    itemId,
+  },
+  skip: !isOnline, // this is a non-variable-related condition that will skip the query if `true`. If this condition becomes false, then we will check values of skipVariables below
+  skipVariables: ["userId"], // if variables.userId evaluates to null or undefined, this Query will be skipped until it is defined.
+});
+
+useEnhancedQuery(MY_QUERY, {
+  variables: {
+    userId,
+    itemId,
+  },
+  skip: !isOnline,
+  skipVariables: ["userId"],
+  // customize the predicate used to determine if a variable is "missing" and therefore,
+  // the query should be skipped until it evaluates as "not missing"
+  //
+  // Returning `true` from this predicate indicates the variable is missing and
+  // that the query SHOULD BE SKIPPED.
+  skipVariablesPredicate: (key, value) => {
+    return !SKIP_VARIABLE_KEYS_TO_IGNORE.includes(key) || !notEmpty(value);
+  },
+});
 ```
 
 See [Apollo useQuery docs](https://www.apollographql.com/docs/react/api/react/hooks/#usequery).
