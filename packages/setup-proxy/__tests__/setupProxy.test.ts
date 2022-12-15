@@ -21,10 +21,10 @@ describe("setupProxy", () => {
   it("should fall back to defaults if callback returns partial result", () => {
     const app = { use: jest.fn() };
 
-    setupProxy({ target: "http://localhost:3000" })(app as any);
+    setupProxy({ target: "http://127.0.0.1:3000" })(app as any);
 
     expect(createProxyMiddleware).toHaveBeenCalledWith(DEFAULT_PROXY_PATHS, {
-      target: "http://localhost:3000",
+      target: "http://127.0.0.1:3000",
       changeOrigin: true,
     });
   });
