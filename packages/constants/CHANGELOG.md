@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.8.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.8.4...@uplift-ltd/constants@1.8.5) (2022-12-15)
+
+**Note:** Version bump only for package @uplift-ltd/constants
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ### [1.8.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.8.3...@uplift-ltd/constants@1.8.4) (2022-12-05)
 
 **Note:** Version bump only for package @uplift-ltd/constants
