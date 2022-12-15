@@ -112,6 +112,7 @@ export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensM
 function defaultGetAbsoluteUrlHttpSetting(url: string) {
   if (url.includes("localhost")) return false;
   if (url.includes("127.0.0.1")) return false;
+  if (url.includes("::1")) return false;
   if (process.env.NODE_ENV !== "production") return false;
   if (process.env.ENV === "local") return false;
 

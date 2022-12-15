@@ -1,6 +1,6 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 
-export const DEFAULT_TARGET = GRAPHQL_HOST || "http://localhost:8000";
+export const DEFAULT_TARGET = GRAPHQL_HOST || "http://127.0.0.1:8000";
 
 export const LOGOUT_URL =
   process.env.NEXT_PUBLIC_LOGOUT_URL || process.env.REACT_APP_LOGOUT_URL || "/logout";
