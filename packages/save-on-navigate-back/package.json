@@ -32,7 +32,7 @@
     "@react-navigation/core": "^5.0.0",
     "@react-navigation/native": "^5.0.0",
     "@react-navigation/stack": "^5.0.0",
-    "react": "^16.0.0 || ^17.0.0"
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@uplift-ltd/formik": "^2.0.22"
