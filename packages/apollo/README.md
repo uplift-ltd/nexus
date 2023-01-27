@@ -129,3 +129,39 @@ const EXPECTED_BODY = `
 
 expect(CurrentUserQueryBody).toEqual(EXPECTED_BODY);
 ```
+
+### useSkipVariables
+
+Problem: Apollo's API makes it (currently) impossible for typescript to determine that variables
+can't be potentially undefined. For example this:
+
+```ts
+const organizationSlug = "o";
+const commentId = "c" as string | undefined;
+
+const { data } = useQuery(InstanceCommentPageDocument, {
+  // Error: Type 'string | undefined' is not assignable to type 'string'. Type 'undefined' is not assignable to type 'string'.ts(2322)
+  variables: { organizationSlug, commentId },
+  ssr: false,
+  skip: !commentId,
+});
+```
+
+This hook helps handle skippable variables.
+
+```ts
+const organizationSlug = "o";
+const commentId = "c" as string | undefined;
+
+const [skip, skipVariables] = useSkipVariables({ commentId });
+
+const { data } = useQuery(InstanceCommentPageDocument, {
+  variables: { organizationSlug, ...skipVariables },
+  ssr: false,
+  skip,
+});
+```
+
+**Note:** Do not use skipVariables in any other case since the hook does not actually map the
+values, it relies on apollo skipping the query if any of the passed in variables are null or
+undefined.
