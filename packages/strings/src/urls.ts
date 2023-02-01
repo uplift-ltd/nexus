@@ -89,7 +89,10 @@ export const getNextJsTokenForParamName = (paramName: string) => `\\[${paramName
  * getTokenStringForKey callback. This defaults to an express style parameter using
  * ":keyName" but can be updated to support next.js by supplying a return value of "[keyName]"
  */
-export const replaceTokens = <UrlTemplate extends string, TokensMap = UrlTokensMap<UrlTemplate>>(
+export const replaceTokens = <
+  UrlTemplate extends string,
+  TokensMap extends Record<string, string | number> = UrlTokensMap<UrlTemplate>
+>(
   urlTemplate: UrlTemplate,
   tokens: TokensMap,
   getTokenStringForParamName = getExpressTokenForParamName

@@ -10,6 +10,8 @@ import {
   QueryResult,
   QueryTuple,
   TypedDocumentNode,
+  DefaultContext,
+  ApolloCache,
 } from "@apollo/client";
 import { DocumentNode } from "graphql";
 import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants";
@@ -18,14 +20,20 @@ export interface ExtraOptions {
   auth?: boolean;
 }
 
-export type EnhancedQueryResult<TData, TVariables> = QueryResult<TData, TVariables> & {
+export type EnhancedQueryResult<TData, TVariables extends OperationVariables> = QueryResult<
+  TData,
+  TVariables
+> & {
   initialLoading: boolean;
   refetching: boolean;
   fetchingMore: boolean;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useEnhancedQuery<TData = any, TVariables = OperationVariables>(
+export function useEnhancedQuery<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TData = any,
+  TVariables extends OperationVariables = OperationVariables
+>(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
   extraOptions: ExtraOptions = { auth: true }
@@ -46,8 +54,11 @@ export function useEnhancedQuery<TData = any, TVariables = OperationVariables>(
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useEnhancedLazyQuery<TData = any, TVariables = OperationVariables>(
+export function useEnhancedLazyQuery<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TData = any,
+  TVariables extends OperationVariables = OperationVariables
+>(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
   extraOptions: ExtraOptions = { auth: true }
@@ -61,17 +72,28 @@ export function useEnhancedLazyQuery<TData = any, TVariables = OperationVariable
   });
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useEnhancedMutation<TData = any, TVariables = OperationVariables>(
+interface EnhancedDefaultContext extends DefaultContext {
+  uri?: string;
+}
+
+export function useEnhancedMutation<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TData = any,
+  TVariables extends OperationVariables = OperationVariables,
+  TContext extends EnhancedDefaultContext = EnhancedDefaultContext,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TCache extends ApolloCache<any> = ApolloCache<any>
+>(
   mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: MutationHookOptions<TData, TVariables> = {},
+  options: MutationHookOptions<TData, TVariables, TContext, TCache> = {},
   extraOptions: ExtraOptions = { auth: true }
-): MutationTuple<TData, TVariables> {
+): MutationTuple<TData, TVariables, TContext, TCache> {
   return useMutation(mutation, {
     ...options,
     context: {
       uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
       ...options.context,
-    },
+    } as TContext,
+    // TODO: figure out a way to remove this cast
   });
 }
