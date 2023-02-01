@@ -1,32 +1,13 @@
-import { gql } from "@apollo/client";
 import { useMemo } from "react";
-import {
-  EnumData,
-  EnumDataVariables,
-  EnumData_enumData_enumValues as EnumValue,
-} from "./__generated__/EnumData";
+import { EnumDataDocument } from "./__generated__/EnumData";
 import { useEnhancedQuery } from "./hooks";
-
-export const ENUM_QUERY = gql`
-  query EnumData($enumName: String!) {
-    enumData: __type(name: $enumName) {
-      name
-      enumValues {
-        name
-        description
-      }
-    }
-  }
-`;
-
-export type { EnumData, EnumDataVariables, EnumValue };
 
 export type EnumDataMap<T> = {
   [K in keyof T]: string;
 };
 
 export const useEnumValues = <T>(enumName: string): EnumDataMap<T> => {
-  const { data, loading, error } = useEnhancedQuery<EnumData, EnumDataVariables>(ENUM_QUERY, {
+  const { data, loading, error } = useEnhancedQuery(EnumDataDocument, {
     variables: { enumName },
   });
 
@@ -36,7 +17,7 @@ export const useEnumValues = <T>(enumName: string): EnumDataMap<T> => {
     }
 
     return data.enumData.enumValues.reduce(
-      (acc: EnumDataMap<T>, e: EnumValue) => ({
+      (acc, e) => ({
         ...acc,
         [e.name]: e.description,
       }),
