@@ -114,19 +114,20 @@ const reducer = (prevState: AuthState, action: AuthAction): AuthState => {
 };
 
 interface AuthProviderProps {
+  children: React.ReactNode | React.ReactNode[];
   setToken: (token: string) => void | Promise<void>;
   removeToken: () => void | Promise<void>;
   onSetToken: (token: string | null) => void | Promise<void>;
   onRemoveToken: () => void | Promise<void>;
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({
+export function AuthProvider({
   children,
   setToken,
   removeToken,
   onSetToken,
   onRemoveToken,
-}) => {
+}: AuthProviderProps) {
   const [state, dispatch] = useReducer(reducer, {
     token: null,
   });
@@ -149,7 +150,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+}
 
 export const useAuthContext = () => {
   return useContext<AuthContextShape>(AuthContext);
