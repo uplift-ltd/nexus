@@ -8,7 +8,7 @@ export interface Connection<T> {
 
 export function mapNodes<Node>(connection: Connection<Node> | null | undefined): Node[];
 
-export function mapNodes<Result>(
+export function mapNodes<Result, Node>(
   connection: Connection<Node> | null | undefined,
   callback: (node: Node) => Result
 ): Result[];
