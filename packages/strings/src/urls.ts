@@ -265,7 +265,11 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
     const [tokens, params, optionOverrides] = args;
 
     // Combine provided defaults and any instance options
-    const { absoluteUrl = false, dynamicUrlStyle = "express", trailingSlash = "ignore" } = {
+    const {
+      absoluteUrl = false,
+      dynamicUrlStyle = "express",
+      trailingSlash = "ignore",
+    } = {
       ...defaultOptions,
       ...optionOverrides,
     };

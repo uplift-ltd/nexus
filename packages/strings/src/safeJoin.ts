@@ -11,18 +11,20 @@ const isStringOrNumber = (variableToCheck: unknown): variableToCheck is string |
 // the returned fn takes in variadic arguments, and returns all truthy components with the delimeter.
 //
 // safeJoin :: String -> [a] -> String
-export const safeJoin = (delimiter: string) => (...xs: unknown[]) =>
-  xs
-    .flat()
-    .filter(isStringOrNumber)
-    .map((x) => {
-      if (typeof x === "number") {
-        return x.toString();
-      }
+export const safeJoin =
+  (delimiter: string) =>
+  (...xs: unknown[]) =>
+    xs
+      .flat()
+      .filter(isStringOrNumber)
+      .map((x) => {
+        if (typeof x === "number") {
+          return x.toString();
+        }
 
-      return trim(x);
-    })
-    .join(delimiter);
+        return trim(x);
+      })
+      .join(delimiter);
 
 // fn to join all arguments with an empty string
 export const safeJoinTogether = safeJoin("");

@@ -47,7 +47,7 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
       } else if (file instanceof File) {
         fileName = file.name;
       } else if (Object.prototype.hasOwnProperty.call(file || {}, "name")) {
-        fileName = ((file as unknown) as File).name;
+        fileName = (file as unknown as File).name;
       } else {
         throw new Error("Unable to get file name");
       }

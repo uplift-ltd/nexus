@@ -32,11 +32,10 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
     );
   }, []);
 
-  const value = useMemo(() => ({ toasts, addToast, dismissToast }), [
-    toasts,
-    addToast,
-    dismissToast,
-  ]);
+  const value = useMemo(
+    () => ({ toasts, addToast, dismissToast }),
+    [toasts, addToast, dismissToast]
+  );
 
   return (
     <ToastContext.Provider value={value}>

@@ -28,18 +28,16 @@ export function useNotificationListener({
   useEffect(() => {
     if (onReceived) {
       // This listener is fired whenever a notification is received while the app is foregrounded
-      notificationReceivedListener.current = Notifications.addNotificationReceivedListener(
-        onReceived
-      );
+      notificationReceivedListener.current =
+        Notifications.addNotificationReceivedListener(onReceived);
     }
 
     if (onResponseReceived) {
       // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
-      notificationResponseReceivedListener.current = Notifications.addNotificationResponseReceivedListener(
-        (response) => {
+      notificationResponseReceivedListener.current =
+        Notifications.addNotificationResponseReceivedListener((response) => {
           onResponseReceived(response);
-        }
-      );
+        });
     }
 
     return () => {

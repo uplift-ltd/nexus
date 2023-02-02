@@ -5,16 +5,14 @@ export type MakePluralizerParams = {
   plural?: string;
   includeCount?: boolean;
 };
-export const makePluralizer = ({
-  singular,
-  plural: providedPlural,
-  includeCount = true,
-}: MakePluralizerParams) => (count: number) => {
-  const plural = providedPlural ?? `${singular}s`;
-  const word = count === 1 ? singular : plural;
+export const makePluralizer =
+  ({ singular, plural: providedPlural, includeCount = true }: MakePluralizerParams) =>
+  (count: number) => {
+    const plural = providedPlural ?? `${singular}s`;
+    const word = count === 1 ? singular : plural;
 
-  return includeCount ? `${count} ${word}` : word;
-};
+    return includeCount ? `${count} ${word}` : word;
+  };
 
 /**
  * @deprecated: use makePluralizer instead

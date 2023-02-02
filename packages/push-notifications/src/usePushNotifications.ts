@@ -29,16 +29,11 @@ export function usePushNotifications({
 }: UsePushNotificationsOptions): UsePushNotificationsResult {
   useNotificationHandler({ handler });
 
-  const {
-    notificationReceivedListener,
-    notificationResponseReceivedListener,
-  } = useNotificationListener({ onReceived, onResponseReceived });
+  const { notificationReceivedListener, notificationResponseReceivedListener } =
+    useNotificationListener({ onReceived, onResponseReceived });
 
-  const {
-    permissionStatus,
-    setPermissionStatus,
-    registerPushNotifications,
-  } = useNotificationPermission({ registerForPushNotifications, onRegisterPushNotifications });
+  const { permissionStatus, setPermissionStatus, registerPushNotifications } =
+    useNotificationPermission({ registerForPushNotifications, onRegisterPushNotifications });
 
   return {
     notificationReceivedListener,

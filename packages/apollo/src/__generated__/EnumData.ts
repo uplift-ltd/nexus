@@ -147,7 +147,7 @@ export type EnumDataQuery = {
   } | null;
 };
 
-export const EnumDataDocument = ({
+export const EnumDataDocument = {
   kind: "Document",
   definitions: [
     {
@@ -200,4 +200,4 @@ export const EnumDataDocument = ({
       },
     },
   ],
-} as unknown) as DocumentNode<EnumDataQuery, EnumDataQueryVariables>;
+} as unknown as DocumentNode<EnumDataQuery, EnumDataQueryVariables>;
