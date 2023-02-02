@@ -74,7 +74,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "expo": "^45.0.0",
+    "expo": "^47.0.13",
     "expo-calendar": "~8.6.0",
     "expo-clipboard": "~3.0.1",
     "expo-constants": "~13.1.1",
