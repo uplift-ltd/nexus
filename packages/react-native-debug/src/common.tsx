@@ -6,6 +6,7 @@ import {
   TextInput,
   TextInputProps,
   TouchableOpacity,
+  ViewStyle,
 } from "react-native";
 
 interface InfoItemProps {
@@ -31,11 +32,12 @@ export function InfoItem({ label, value }: InfoItemProps) {
 interface ButtonProps {
   children: React.ReactNode;
   onPress: () => void;
+  style?: ViewStyle;
 }
 
-export function Button({ children, onPress }: ButtonProps) {
+export function Button({ children, style, onPress }: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
       <Text style={styles.buttonText}>{children}</Text>
     </TouchableOpacity>
   );
