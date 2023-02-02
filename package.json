@@ -24,16 +24,12 @@
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
     "eslint:fix": "eslint packages --ext .js,.jsx,.ts,.tsx --cache --fix",
     "update-docs": "cd website && yarn update-docs",
-    "docs": "cd website && yarn start"
+    "docs": "cd website && yarn start",
+    "prepare": "husky install"
   },
   "workspaces": [
     "packages/*"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,css,scss}": [
       "prettier --write"
