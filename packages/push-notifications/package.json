@@ -36,5 +36,11 @@
   },
   "dependencies": {
     "@uplift-ltd/sentry-react-native": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.63.9",
+    "expo-constants": "~13.1.1",
+    "expo-notifications": "~0.15.4",
+    "react-native": "0.68.2"
   }
 }
