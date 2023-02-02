@@ -23,12 +23,10 @@ export interface SaveOnNavigateBackProps {
   formSuccessful: React.RefObject<boolean>;
 }
 
-export const SaveOnNavigateBack = <
-  FormValues extends unknown,
+export function SaveOnNavigateBack<
+  FormValues,
   StackParamList extends Record<string, Record<string, unknown>>
->({
-  formSuccessful,
-}: SaveOnNavigateBackProps) => {
+>({ formSuccessful }: SaveOnNavigateBackProps) {
   const navigation = useNavigation<StackNavigationProp<StackParamList>>();
   const { dirty, isSubmitting, submitForm } = useFormikContext<FormValues>();
 
@@ -60,7 +58,7 @@ export const SaveOnNavigateBack = <
 
   // nothing to render
   return null;
-};
+}
 
 export type UseSaveOnNavigateBackResult = [
   typeof SaveOnNavigateBack,

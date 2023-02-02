@@ -12,7 +12,7 @@ type SpaceBetweenProps = {
   divider?: React.ReactElement<{ className?: string }>;
 };
 
-export const SpaceBetween = ({ children, className, divider }: SpaceBetweenProps) => {
+export function SpaceBetween({ children, className, divider }: SpaceBetweenProps) {
   let kids = children;
 
   if (children && (children as React.ReactElement).type === React.Fragment) {
@@ -50,4 +50,4 @@ export const SpaceBetween = ({ children, className, divider }: SpaceBetweenProps
       })}
     </>
   );
-};
+}
