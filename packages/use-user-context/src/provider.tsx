@@ -1,6 +1,6 @@
 import { DocumentNode, useEnhancedQuery } from "@uplift-ltd/apollo";
 import { setUser } from "@uplift-ltd/sentry";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { UserContext } from "./context";
 import { CurrentUserShape } from "./types";
 
@@ -22,12 +22,8 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
 }: UserContextProviderProps) {
   const { loading, error, data, refetch, refetching } = useEnhancedQuery<CurrentUserQueryResult>(
     currentUserQuery,
-    {
-      skip,
-    },
-    {
-      auth: false,
-    }
+    { skip },
+    { auth: false }
   );
 
   const isAuthenticated = data ? data.isAuthenticated : false;
@@ -42,11 +38,9 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
     }
   }, [currentUser]);
 
-  return (
-    <UserContext.Provider
-      value={{ loading, error, isAuthenticated, currentUser, refetch, refetching }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+  const contextValue = useMemo(() => {
+    return { currentUser, error, isAuthenticated, loading, refetch, refetching };
+  }, [currentUser, error, isAuthenticated, loading, refetch, refetching]);
+
+  return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
 }

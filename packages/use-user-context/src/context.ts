@@ -2,6 +2,7 @@ import { ApolloError, ApolloQueryResult, NetworkStatus } from "@uplift-ltd/apoll
 import { createContext } from "react";
 import { CurrentUserShape } from "./types";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface UserContextShape<CurrentUser extends CurrentUserShape = any> {
   loading: boolean;
   error?: ApolloError;

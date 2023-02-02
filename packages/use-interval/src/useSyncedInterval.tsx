@@ -1,5 +1,5 @@
 import { IS_SSR } from "@uplift-ltd/constants";
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useUID } from "react-uid";
 
 type SyncedIntervalId = string;
@@ -174,10 +174,12 @@ export const SyncedIntervalProvider: React.FC<SyncedIntervalProviderProps> = ({
     };
   }, [delaysState]);
 
+  const contextValue = useMemo(() => {
+    return { setCallback, setDelay };
+  }, [setCallback, setDelay]);
+
   return (
-    <SyncedIntervalContext.Provider value={{ setCallback, setDelay }}>
-      {children}
-    </SyncedIntervalContext.Provider>
+    <SyncedIntervalContext.Provider value={contextValue}>{children}</SyncedIntervalContext.Provider>
   );
 };
 
