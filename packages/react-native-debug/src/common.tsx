@@ -6,7 +6,6 @@ import {
   TextInput,
   TextInputProps,
   TouchableOpacity,
-  ViewStyle,
 } from "react-native";
 
 interface InfoItemProps {
@@ -14,33 +13,37 @@ interface InfoItemProps {
   value: string | number | boolean | null | undefined;
 }
 
-export const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
-  <TouchableOpacity
-    style={styles.infoItem}
-    onPress={() => value && Clipboard.setString(value?.toString())}
-    activeOpacity={value ? 0.6 : 1}
-  >
-    <Text style={styles.infoText}>
-      <Text style={styles.infoLabel}>{label}: </Text>
-      <Text style={styles.infoValue}>{value || "N/A"}</Text>
-    </Text>
-  </TouchableOpacity>
-);
+export function InfoItem({ label, value }: InfoItemProps) {
+  return (
+    <TouchableOpacity
+      style={styles.infoItem}
+      onPress={() => value && Clipboard.setString(value?.toString())}
+      activeOpacity={value ? 0.6 : 1}
+    >
+      <Text style={styles.infoText}>
+        <Text style={styles.infoLabel}>{label}: </Text>
+        <Text style={styles.infoValue}>{value || "N/A"}</Text>
+      </Text>
+    </TouchableOpacity>
+  );
+}
 
 interface ButtonProps {
-  style?: ViewStyle;
+  children: React.ReactNode;
   onPress: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, onPress }) => (
-  <TouchableOpacity style={styles.button} onPress={onPress}>
-    <Text style={styles.buttonText}>{children}</Text>
-  </TouchableOpacity>
-);
+export function Button({ children, onPress }: ButtonProps) {
+  return (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.buttonText}>{children}</Text>
+    </TouchableOpacity>
+  );
+}
 
-export const Input: React.FC<TextInputProps> = ({ style, ...props }) => (
-  <TextInput style={[styles.input, style]} {...props} />
-);
+export function Input({ style, ...props }: TextInputProps) {
+  return <TextInput style={[styles.input, style]} {...props} />;
+}
 
 const styles = StyleSheet.create({
   infoItem: {

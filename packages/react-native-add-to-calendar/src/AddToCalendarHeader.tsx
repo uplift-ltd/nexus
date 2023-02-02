@@ -14,11 +14,11 @@ export interface AddToCalendarHeaderProps {
   onRequestClose: () => void;
 }
 
-export const AddToCalendarHeader: React.FC<AddToCalendarHeaderProps> = ({
+export function AddToCalendarHeader({
   event,
   hideShareButton,
   onRequestClose,
-}) => {
+}: AddToCalendarHeaderProps) {
   const shareIcs = useShareIcs();
 
   return (
@@ -44,7 +44,7 @@ export const AddToCalendarHeader: React.FC<AddToCalendarHeaderProps> = ({
       )}
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   header: {

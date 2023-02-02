@@ -1,5 +1,7 @@
 import { captureException } from "@uplift-ltd/sentry-react-native";
 import { IosAuthorizationStatus } from "expo-notifications";
+// Note: I think this should stay put for React <v18
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useContext, useEffect } from "react";
 import { Alert } from "react-native";
 import { NotificationContext } from "./NotificationContext";
@@ -13,13 +15,13 @@ interface NotificationAlertPromptProps {
   onRegisterResult?: (result: RegisterPushNotificationsResult) => void;
 }
 
-export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = ({
+export function NotificationAlertPrompt({
   title = "Please Allow Notifications",
   message = "This application uses notifications to keep you up to date on new activity.",
   acceptLabel = "Enable",
   cancelLabel = "Not Now",
   onRegisterResult,
-}) => {
+}: NotificationAlertPromptProps) {
   const { permissionStatus, registerPushNotifications } = useContext(NotificationContext);
 
   useEffect(() => {
@@ -50,4 +52,4 @@ export const NotificationAlertPrompt: React.FC<NotificationAlertPromptProps> = (
   ]);
 
   return null;
-};
+}

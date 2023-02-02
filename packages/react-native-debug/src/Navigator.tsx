@@ -9,9 +9,9 @@ import { DebugNavigatorParamList } from "./types";
 
 export const DebugStackNavigator = createStackNavigator<DebugNavigatorParamList>();
 
-type DebugNavigatorProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG>;
+export type DebugNavigatorProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG>;
 
-export const DebugNavigator: React.FC<DebugNavigatorProps> = ({ route }) => {
+export function DebugNavigator({ route }: DebugNavigatorProps) {
   return (
     <DebugStackNavigator.Navigator screenOptions={{ headerShown: route.params.headerShown }}>
       <DebugStackNavigator.Screen
@@ -37,4 +37,4 @@ export const DebugNavigator: React.FC<DebugNavigatorProps> = ({ route }) => {
       />
     </DebugStackNavigator.Navigator>
   );
-};
+}

@@ -35,9 +35,12 @@ const getQueryParams = (link: string) => {
   return result;
 };
 
-type MagicLoginProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
+export type MagicLoginProps = StackScreenProps<
+  DebugNavigatorParamList,
+  DebugScreens.DEBUG_MAGIC_LOGIN
+>;
 
-export const MagicLogin: React.FC<MagicLoginProps> = ({ route }) => {
+export function MagicLogin({ route }: MagicLoginProps) {
   const navigation = useNavigation();
 
   return (
@@ -65,7 +68,7 @@ export const MagicLogin: React.FC<MagicLoginProps> = ({ route }) => {
       <Button onPress={reloadAsync}>Reload</Button>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   text: {

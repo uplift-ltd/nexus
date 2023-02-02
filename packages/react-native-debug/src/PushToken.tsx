@@ -7,9 +7,12 @@ import { Button, Input } from "./common";
 import { DebugScreens } from "./screens";
 import { DebugNavigatorParamList } from "./types";
 
-type PushTokenProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_PUSH_TOKEN>;
+export type PushTokenProps = StackScreenProps<
+  DebugNavigatorParamList,
+  DebugScreens.DEBUG_PUSH_TOKEN
+>;
 
-export const PushToken: React.FC<PushTokenProps> = () => {
+export function PushToken(_props: PushTokenProps) {
   const [values, setValues] = useState(() => ({
     pushToken: "",
     title: "",
@@ -86,4 +89,4 @@ export const PushToken: React.FC<PushTokenProps> = () => {
       </Button>
     </>
   );
-};
+}

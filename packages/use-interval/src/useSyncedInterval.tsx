@@ -71,13 +71,14 @@ const SyncedIntervalContext = React.createContext<IntervalContextType>({
 });
 
 interface SyncedIntervalProviderProps {
+  children: React.ReactNode | React.ReactNode[];
   defaultDelay?: number | null;
 }
 
-export const SyncedIntervalProvider: React.FC<SyncedIntervalProviderProps> = ({
+export function SyncedIntervalProvider({
   children,
   defaultDelay = null,
-}) => {
+}: SyncedIntervalProviderProps) {
   const callbacksState = useRef<SyncedIntervalCallbacksState>({});
   const [delaysState, setDelaysState] = useState<SyncedIntervalDelaysState>({});
 
@@ -181,7 +182,7 @@ export const SyncedIntervalProvider: React.FC<SyncedIntervalProviderProps> = ({
   return (
     <SyncedIntervalContext.Provider value={contextValue}>{children}</SyncedIntervalContext.Provider>
   );
-};
+}
 
 export const useSyncedIntervalCallback = (
   callback: SyncedIntervalCallback,

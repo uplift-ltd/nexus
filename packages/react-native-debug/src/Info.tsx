@@ -9,9 +9,9 @@ import { Button, InfoItem } from "./common";
 import { DebugScreens } from "./screens";
 import { DebugNavigatorParamList } from "./types";
 
-type InfoProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
+export type InfoProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
 
-export const Info: React.FC<InfoProps> = () => {
+export function Info(_props: InfoProps) {
   return (
     <>
       <InfoItem label="Commit" value={GITHUB_SHA} />
@@ -48,7 +48,7 @@ export const Info: React.FC<InfoProps> = () => {
       </Button>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   reload: {

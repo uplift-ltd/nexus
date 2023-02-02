@@ -3,13 +3,13 @@ import { ToastContext } from "./context";
 import { ToastDismiss } from "./dismiss";
 import { AddToast, DismissToast, ToastProviderProps, ToastShape } from "./types";
 
-export const ToastProvider: React.FC<ToastProviderProps> = ({
+export function ToastProvider({
   children,
   containerComponent: ContainerComponent,
   toastComponent: ToastComponent,
   defaultTimeout = 5000,
   leaveDuration = 0,
-}) => {
+}: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastShape[]>([]);
 
   const addToast = useCallback<AddToast>(
@@ -52,4 +52,4 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
       </ContainerComponent>
     </ToastContext.Provider>
   );
-};
+}

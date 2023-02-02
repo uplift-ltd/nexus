@@ -13,7 +13,7 @@ export interface NotificationRenderPromptProps {
   }) => React.ReactNode;
 }
 
-export const NotificationRenderPrompt: React.FC<NotificationRenderPromptProps> = ({ children }) => {
+export function NotificationRenderPrompt({ children }: NotificationRenderPromptProps) {
   const { permissionStatus, registerPushNotifications } = useContext(NotificationContext);
 
   if (permissionStatus?.ios?.status === IosAuthorizationStatus.NOT_DETERMINED) {
@@ -21,4 +21,4 @@ export const NotificationRenderPrompt: React.FC<NotificationRenderPromptProps> =
   }
 
   return null;
-};
+}
