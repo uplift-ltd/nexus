@@ -12,8 +12,8 @@ import {
   TypedDocumentNode,
   DefaultContext,
   ApolloCache,
+  DocumentNode,
 } from "@apollo/client";
-import { DocumentNode } from "graphql";
 import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants";
 
 export interface ExtraOptions {
@@ -72,7 +72,7 @@ export function useEnhancedLazyQuery<
   });
 }
 
-interface EnhancedDefaultContext extends DefaultContext {
+export interface EnhancedDefaultContext extends DefaultContext {
   uri?: string;
 }
 
