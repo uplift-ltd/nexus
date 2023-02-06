@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/react-native-add-to-calendar",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "react-native-add-to-calendar",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@uplift-ltd/sentry-react-native": "^3.0.3",
-    "@uplift-ltd/ts-helpers": "^1.3.1",
+    "@uplift-ltd/ts-helpers": "^2.0.0",
     "ics": "^2.27.0"
   },
   "devDependencies": {

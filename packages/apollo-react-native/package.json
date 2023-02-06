@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/apollo-react-native",
-  "version": "3.0.5",
+  "version": "4.0.0",
   "description": "apollo-react-native",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -32,7 +32,7 @@
     "expo-secure-store": "~11.2.0"
   },
   "dependencies": {
-    "@uplift-ltd/apollo": "^3.2.3"
+    "@uplift-ltd/apollo": "^4.0.0"
   },
   "devDependencies": {
     "@uplift-ltd/apollo": "^3.2.3",

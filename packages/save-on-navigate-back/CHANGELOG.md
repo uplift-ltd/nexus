@@ -1,5 +1,23 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/save-on-navigate-back@1.6.26...@uplift-ltd/save-on-navigate-back@2.0.0) (2023-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* update graphql and react dev versions (#334)
+
+### Miscellaneous Chores
+
+* update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334)) ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
