@@ -1,8 +1,6 @@
 import { captureException } from "@uplift-ltd/sentry-react-native";
 import { IosAuthorizationStatus } from "expo-notifications";
-// Note: I think this should stay put for React <v18
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Alert } from "react-native";
 import { NotificationContext } from "./NotificationContext";
 import { RegisterPushNotificationsResult } from "./useNotificationPermission";
