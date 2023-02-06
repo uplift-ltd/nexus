@@ -56,7 +56,7 @@ export function useRouterQuery<
 
   return {
     isReady: routerNavigation.isReady,
-    routerQuery: (routerNavigation.query as unknown) as QueryResult,
+    routerQuery: routerNavigation.query as unknown as QueryResult,
     updateRouterQuery,
   };
 }

@@ -31,5 +31,9 @@
   "peerDependencies": {
     "expo-updates": "~0.13.3",
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "expo": "^47.0.13",
+    "expo-updates": "~0.13.3"
   }
 }

@@ -20,5 +20,5 @@ export const typedIncludes = <S, R extends `${Extract<S, string>}`>(
   needle: S,
   fromIndex?: number
 ): needle is S & R => {
-  return haystack.includes((needle as unknown) as R, fromIndex);
+  return haystack.includes(needle as unknown as R, fromIndex);
 };

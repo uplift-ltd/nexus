@@ -3,17 +3,18 @@ import React from "react";
 import { KeyboardAvoidingView, KeyboardAvoidingViewProps, Platform } from "react-native";
 
 interface ScreenKeyboardAvoidingViewProps extends KeyboardAvoidingViewProps {
+  children: React.ReactNode | React.ReactNode[];
   iosBehavior?: KeyboardAvoidingViewProps["behavior"];
   androidBehavior?: KeyboardAvoidingViewProps["behavior"];
 }
 
-export const ScreenKeyboardAvoidingView: React.FC<ScreenKeyboardAvoidingViewProps> = ({
+export function ScreenKeyboardAvoidingView({
   style = { flex: 1 },
   children,
   iosBehavior = "padding",
   androidBehavior = "height",
   ...props
-}) => {
+}: ScreenKeyboardAvoidingViewProps) {
   const headerHeight = useHeaderHeight();
   return (
     <KeyboardAvoidingView
@@ -25,4 +26,4 @@ export const ScreenKeyboardAvoidingView: React.FC<ScreenKeyboardAvoidingViewProp
       {children}
     </KeyboardAvoidingView>
   );
-};
+}

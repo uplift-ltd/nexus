@@ -11,7 +11,7 @@ export type AddToCalendarScreenProps = StackScreenProps<
   AddToCalendarScreens.ADD_TO_CALENDAR
 >;
 
-export const AddToCalendarScreen: React.FC<AddToCalendarScreenProps> = ({ navigation, route }) => {
+export function AddToCalendarScreen({ navigation, route }: AddToCalendarScreenProps) {
   const { event } = route.params;
   const handleClose = useCallback(() => navigation.pop(), [navigation]);
 
@@ -21,7 +21,7 @@ export const AddToCalendarScreen: React.FC<AddToCalendarScreenProps> = ({ naviga
       <AddToCalendar event={event} onRequestClose={handleClose} />
     </View>
   );
-};
+}
 
 export const AddToCalendarScreenOptions: StackNavigationOptions = {
   title: "Add Event",

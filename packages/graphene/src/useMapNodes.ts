@@ -3,12 +3,12 @@ import { Connection, mapNodes } from "./mapNodes";
 
 export function useMapNodes<Node>(connection: Connection<Node> | null | undefined): Node[];
 
-export function useMapNodes<Result extends unknown, Node>(
+export function useMapNodes<Result, Node>(
   connection: Connection<Node> | null | undefined,
   callback: (node: Node) => Result
 ): Result[];
 
-export function useMapNodes<Node, Result extends unknown = Node>(
+export function useMapNodes<Node, Result = Node>(
   connection: Connection<Node> | null | undefined,
   callback?: (item: Node) => Result
 ) {

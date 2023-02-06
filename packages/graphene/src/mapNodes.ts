@@ -8,12 +8,12 @@ export interface Connection<T> {
 
 export function mapNodes<Node>(connection: Connection<Node> | null | undefined): Node[];
 
-export function mapNodes<Result extends unknown, Node>(
+export function mapNodes<Result, Node>(
   connection: Connection<Node> | null | undefined,
   callback: (node: Node) => Result
 ): Result[];
 
-export function mapNodes<Node, Result extends unknown = Node>(
+export function mapNodes<Node, Result = Node>(
   connection: Connection<Node> | null | undefined,
   callback?: (item: Node) => Result
 ) {

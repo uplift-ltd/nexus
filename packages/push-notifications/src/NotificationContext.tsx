@@ -16,16 +16,18 @@ export const NotificationContext = React.createContext<UsePushNotificationsResul
   registerPushNotifications: () => Promise.resolve({ token: null, status: null }),
 });
 
-type NotificationProviderProps = UsePushNotificationsOptions;
+type NotificationProviderProps = {
+  children: React.ReactNode | React.ReactNode[];
+} & UsePushNotificationsOptions;
 
-export const NotificationProvider: React.FC<NotificationProviderProps> = ({
+export function NotificationProvider({
   children,
   handler,
   onReceived,
   onResponseReceived,
   onRegisterPushNotifications,
   registerForPushNotifications,
-}) => {
+}: NotificationProviderProps) {
   const {
     permissionStatus,
     setPermissionStatus,
@@ -57,4 +59,4 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
   ]);
 
   return <NotificationContext.Provider value={value}>{children}</NotificationContext.Provider>;
-};
+}

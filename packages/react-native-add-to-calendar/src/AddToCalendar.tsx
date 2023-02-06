@@ -19,11 +19,7 @@ export interface AddToCalendarProps {
   onRequestClose: () => void;
 }
 
-export const AddToCalendar: React.FC<AddToCalendarProps> = ({
-  event,
-  onEventAdded,
-  onRequestClose,
-}) => {
+export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCalendarProps) {
   const { writeableCalendars, primaryCalendar, addEventToCalendar } = useCalendars({
     onPermissionsError: reportAndDisplayError,
   });
@@ -98,7 +94,7 @@ export const AddToCalendar: React.FC<AddToCalendarProps> = ({
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   root: {

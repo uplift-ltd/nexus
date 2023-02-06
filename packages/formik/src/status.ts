@@ -14,29 +14,29 @@ export const DEFAULT_INITIAL_STATUS: FormikStatus = {
   sentryEventId: null,
 };
 
-export const getEnhancedSetStatus = (
-  setStatus: FormikHelpers<unknown>["setStatus"],
-  extraStatus?: FormikStatus
-) => (status: FormikStatus) => setStatus({ ...extraStatus, ...status });
+export const getEnhancedSetStatus =
+  (setStatus: FormikHelpers<unknown>["setStatus"], extraStatus?: FormikStatus) =>
+  (status: FormikStatus) =>
+    setStatus({ ...extraStatus, ...status });
 
-export const getSetFormSuccess = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
-  formSuccess: FormikStatus["formSuccess"]
-) => setStatus({ formSuccess, formError: null });
+export const getSetFormSuccess =
+  (setStatus: FormikHelpers<unknown>["setStatus"]) => (formSuccess: FormikStatus["formSuccess"]) =>
+    setStatus({ formSuccess, formError: null });
 
-export const getSetFormError = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
-  formError: FormikStatus["formError"],
-  sentryEventId?: FormikStatus["sentryEventId"]
-) => {
-  const status: FormikStatus = { formError, formSuccess: null };
-  if (typeof sentryEventId !== "undefined") {
-    status.sentryEventId = sentryEventId;
-  }
-  return setStatus(status);
-};
+export const getSetFormError =
+  (setStatus: FormikHelpers<unknown>["setStatus"]) =>
+  (formError: FormikStatus["formError"], sentryEventId?: FormikStatus["sentryEventId"]) => {
+    const status: FormikStatus = { formError, formSuccess: null };
+    if (typeof sentryEventId !== "undefined") {
+      status.sentryEventId = sentryEventId;
+    }
+    return setStatus(status);
+  };
 
-export const getSetSentryEventId = (setStatus: FormikHelpers<unknown>["setStatus"]) => (
-  sentryEventId: FormikStatus["sentryEventId"]
-) => setStatus({ sentryEventId });
+export const getSetSentryEventId =
+  (setStatus: FormikHelpers<unknown>["setStatus"]) =>
+  (sentryEventId: FormikStatus["sentryEventId"]) =>
+    setStatus({ sentryEventId });
 
 export interface StatusHelpers {
   setStatus: (status: FormikStatus) => void;

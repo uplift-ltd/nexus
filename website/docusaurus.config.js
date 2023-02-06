@@ -8,7 +8,6 @@ module.exports = {
   organizationName: "uplift-ltd",
   projectName: "nexus",
   themeConfig: {
-    sidebarCollapsible: false,
     navbar: {
       title: "Nexus",
       logo: {

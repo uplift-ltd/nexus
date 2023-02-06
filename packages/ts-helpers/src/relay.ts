@@ -13,9 +13,8 @@ type NullableEdge<T> = {
  *
  * Extracts the Node type from a Connection, even if the connection/edge/node is nullable
  */
-export type GetConnectionNode<
-  NullableConnectionType extends NullableRelayConnection<unknown>
-> = NonNullable<ArrayElement<NonNullable<NullableConnectionType["edges"]>>["node"]>;
+export type GetConnectionNode<NullableConnectionType extends NullableRelayConnection<unknown>> =
+  NonNullable<ArrayElement<NonNullable<NullableConnectionType["edges"]>>["node"]>;
 
 /**
  * GetConnectionNode

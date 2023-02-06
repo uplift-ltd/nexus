@@ -32,6 +32,7 @@ export interface ToastProps {
 }
 
 export interface ToastProviderProps {
+  children: React.ReactNode | React.ReactNode[];
   containerComponent: ComponentType<{ children: React.ReactNode }>;
   toastComponent: ComponentType<ToastProps>;
   defaultTimeout?: number;

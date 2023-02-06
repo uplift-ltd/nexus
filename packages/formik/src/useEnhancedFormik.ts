@@ -1,6 +1,6 @@
 import { captureException } from "@uplift-ltd/sentry";
 import { ensureError } from "@uplift-ltd/ts-helpers";
-import { useFormik } from "formik";
+import { FormikValues, useFormik } from "formik";
 import { getApplyErrorsToFields } from "./errors";
 import {
   DEFAULT_INITIAL_STATUS,
@@ -12,17 +12,17 @@ import {
 } from "./status";
 import { FormikConfigWithOverrides } from "./types";
 
-export function useEnhancedFormik<FormikValues>({
+export function useEnhancedFormik<TFormikValues extends FormikValues>({
   captureValuesOnError,
   resetStatusOnSubmit,
   ...options
-}: FormikConfigWithOverrides<FormikValues>) {
+}: FormikConfigWithOverrides<TFormikValues>) {
   const initStatus = {
     ...DEFAULT_INITIAL_STATUS,
     ...options.initialStatus,
   } as FormikStatus;
 
-  const formik = useFormik<FormikValues>({
+  const formik = useFormik<TFormikValues>({
     ...options,
     initialStatus: initStatus,
     onSubmit: async (values, formikHelpers) => {

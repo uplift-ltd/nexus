@@ -17,7 +17,7 @@ export interface UseUploadFilesOptions<
 
 const defaultMapFileUpload = <FileType = File, UploadType = FileType>(
   options: UploadFileOptions<FileType>
-) => (options as unknown) as UploadType;
+) => options as unknown as UploadType;
 
 export function useUploadFiles<FileType = File, UploadResultData = unknown, UploadType = FileType>({
   fileAttachments,

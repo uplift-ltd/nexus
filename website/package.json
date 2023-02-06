@@ -7,10 +7,9 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
+    "deploy": "run-s build deploy:surge:production",
     "serve": "docusaurus serve",
     "update-docs": "node ./scripts/update-docs.js && ../node_modules/.bin/prettier --write sidebars.js",
-    "deploy": "run-s build deploy:surge:production",
     "deploy:surge:production": "surge ./build $(cat CNAME)"
   },
   "dependencies": {

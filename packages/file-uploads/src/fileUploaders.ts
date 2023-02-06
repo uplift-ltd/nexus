@@ -55,7 +55,7 @@ export function getFetchFileUploader<FileType, UploadResultData = unknown>(): Fi
   ) => {
     const res = await fetch(uploadUrl, {
       method: "PUT",
-      body: (file as unknown) as string | Blob | FormData,
+      body: file as unknown as string | Blob | FormData,
       headers: { "Content-Type": fileContentType },
     });
 

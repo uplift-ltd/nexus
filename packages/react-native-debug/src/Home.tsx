@@ -4,9 +4,9 @@ import { Button } from "./common";
 import { DebugScreens } from "./screens";
 import { DebugNavigatorParamList } from "./types";
 
-type HomeProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
+export type HomeProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
 
-export const Home: React.FC<HomeProps> = ({ navigation }) => {
+export function Home({ navigation }: HomeProps) {
   return (
     <>
       <Button onPress={() => navigation.navigate(DebugScreens.DEBUG_INFO)}>Info</Button>
@@ -18,4 +18,4 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
       </Button>
     </>
   );
-};
+}

@@ -8,13 +8,13 @@ type KeyboardScreenSafeAreaViewProps = ScreenSafeAreaViewProps &
     keyboardEdges?: ScreenSafeAreaViewProps["edges"];
   };
 
-export const KeyboardScreenSafeAreaView: React.FC<KeyboardScreenSafeAreaViewProps> = ({
+export function KeyboardScreenSafeAreaView({
   edges,
   keyboardEdges = KEYBOARD_SCREEN_EDGES,
   showEvent,
   hideEvent,
   ...props
-}) => {
+}: KeyboardScreenSafeAreaViewProps) {
   const keyboardVisible = useKeyboardVisible({ showEvent, hideEvent });
   return <ScreenSafeAreaView edges={keyboardVisible ? keyboardEdges : edges} {...props} />;
-};
+}

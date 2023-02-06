@@ -25,12 +25,17 @@ function parseNumberAndCurrency(amount: Amount, currencyCode: string) {
   return { number, currency };
 }
 
+// NOTE: The args should stay in the current order for backwards compatibility reasons.
+// Another option to silence this error would be to add a noop default fn for optionsCallback
+//
+/* eslint-disable default-param-last */
 export function formatCurrency(
   amount: Amount,
   currencyCode = "USD",
   options: NumberFormatOptions | null = null,
   optionsCallback?: (number: number, currency: string) => NumberFormatOptions
 ) {
+  /* eslint-enable default-param-last */
   const { number, currency } = parseNumberAndCurrency(amount, currencyCode);
 
   const formatterOptions = {

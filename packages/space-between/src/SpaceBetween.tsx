@@ -2,16 +2,17 @@ import cx from "classnames";
 import React from "react";
 
 type SpaceBetweenProps = {
+  children: React.ReactNode | React.ReactNode[];
   /** className applied to components to space them apart.
    * Working in the horizontal dimension, you want to use a variant of left spacing, pl, ml
    * Working in the vertical dimension, you want to use a variant of top spacing, pt, mt
    */
   className: string;
   /** component to use between spaced items, spacing will be applied to this item as well */
-  divider?: React.ReactNode;
+  divider?: React.ReactElement<{ className?: string }>;
 };
 
-export const SpaceBetween: React.FC<SpaceBetweenProps> = ({ children, className, divider }) => {
+export function SpaceBetween({ children, className, divider }: SpaceBetweenProps) {
   let kids = children;
 
   if (children && (children as React.ReactElement).type === React.Fragment) {
@@ -49,4 +50,4 @@ export const SpaceBetween: React.FC<SpaceBetweenProps> = ({ children, className,
       })}
     </>
   );
-};
+}
