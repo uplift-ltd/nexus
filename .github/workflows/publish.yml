@@ -127,6 +127,8 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
+      - run: ls packages/**
+
       - name: Lerna version
         if:
           (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master') ||
