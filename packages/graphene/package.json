@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/graphene",
-  "version": "1.5.3",
+  "version": "2.0.0-alpha.0",
   "description": "Helpers for dealing with django graphene.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
