@@ -30,6 +30,11 @@ export type RouterQueryResult<
           }
     );
 
+interface NextTransitionOptions {
+  scroll?: boolean;
+  shallow?: boolean;
+}
+
 /**
  * Access to the routerQuery object as well as a callback that makes it easy to modify the
  * querystring from a component.
@@ -42,14 +47,30 @@ export function useRouterQuery<
   const routerNavigation = useRouterNavigation();
 
   const updateRouterQuery = useCallback(
-    (newQuery: UpdateQueryShape) => {
-      routerNavigation.replace({
-        pathname: routerNavigation.pathname,
-        query: {
-          ...routerNavigation.query,
-          ...newQuery,
-        },
+    (
+      newQuery: UpdateQueryShape,
+      { scroll = false, shallow = true }: NextTransitionOptions = {}
+    ) => {
+      const query = {
+        ...routerNavigation.query,
+        ...newQuery,
+      };
+      Object.keys(query).forEach((key) => {
+        if (query[key] === undefined) {
+          delete query[key];
+        }
       });
+      routerNavigation.replace(
+        {
+          pathname: routerNavigation.pathname,
+          query,
+        },
+        undefined,
+        {
+          scroll,
+          shallow,
+        }
+      );
     },
     [routerNavigation]
   );
