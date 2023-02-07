@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@2.0.0...@uplift-ltd/nextjs-use-react-navigation@3.0.0) (2023-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* add transition options to updateRouterQuery (#341)
+
+### Features
+
+* add transition options to updateRouterQuery ([#341](https://github.com/uplift-ltd/nexus/issues/341)) ([ac54a61](https://github.com/uplift-ltd/nexus/commit/ac54a615d94a94f26f1c947a15c18b186282bb85))
+
+
+
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nextjs-use-react-navigation@1.3.7...@uplift-ltd/nextjs-use-react-navigation@2.0.0) (2023-02-06)
 
 
