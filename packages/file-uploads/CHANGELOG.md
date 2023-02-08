@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@3.0.0...@uplift-ltd/file-uploads@3.0.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* remove react-native dependencies from file-uploads ([#342](https://github.com/uplift-ltd/nexus/issues/342)) ([cf8be6d](https://github.com/uplift-ltd/nexus/commit/cf8be6de824e26390fbcbbf0507cc72a5ad6c12a))
+
+
+
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@2.0.6...@uplift-ltd/file-uploads@3.0.0) (2023-02-06)
 
 
