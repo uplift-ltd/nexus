@@ -29,9 +29,7 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "expo-file-system": "^14.0.0",
-    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
-    "react-native": "*"
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
     "@uplift-ltd/apollo": "^4.0.0",
