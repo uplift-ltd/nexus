@@ -140,6 +140,19 @@ function defaultGetAbsoluteUrlHost() {
 }
 
 /**
+ * ensureHostOnly
+ *
+ * Make sure the URL doesn't have a protocol prefix
+ */
+function ensureHostOnly(url: string) {
+  if (url.startsWith("http")) {
+    return url.replace(/^https?:\/\//, "");
+  }
+
+  return url;
+}
+
+/**
  * Given an object of key/values, returns a properly encoded querystring for appending to a URL after
  * removing any falsey/missing values. Values as arrays will be appended multiple times. If you want to
  * add an array as comma separated, you will need to pass it as a string for the value.
@@ -298,9 +311,8 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
         typeof absoluteUrl === "boolean" ? DEFAULT_ABSOLUTE_URL_OPTIONS : absoluteUrl;
 
       // these settings can be defined as a constant or by the result of a callback
-      const hostUrl = typeof host === "function" ? host(baseUrl) : host;
+      const hostUrl = ensureHostOnly(typeof host === "function" ? host(baseUrl) : host);
       const shouldUseHttps = typeof https === "function" ? https(baseUrl, hostUrl) : https;
-
       const protocol = shouldUseHttps ? "https" : "http";
 
       baseUrl = url.startsWith(protocol) ? url : (`${protocol}://${hostUrl}${baseUrl}` as const);
