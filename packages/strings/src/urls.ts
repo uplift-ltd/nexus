@@ -112,10 +112,10 @@ export const replaceTokens = <
  * some common configurations, defaults to `true`
  *
  */
-function defaultGetAbsoluteUrlHttpSetting(url: string) {
-  if (url.includes("localhost")) return false;
-  if (url.includes("127.0.0.1")) return false;
-  if (url.includes("::1")) return false;
+function defaultGetAbsoluteUrlHttpSetting(_url: string, host: string) {
+  if (host.includes("localhost")) return false;
+  if (host.includes("127.0.0.1")) return false;
+  if (host.includes("::1")) return false;
   if (process.env.NODE_ENV !== "production") return false;
   if (process.env.ENV === "local") return false;
 
@@ -193,7 +193,7 @@ export type MakeUrlAbsoluteUrlOptions = {
    * the protocol will be https or http. Can define as a constant or
    * by passing a callback predicate
    */
-  https?: boolean | ((url: string) => boolean);
+  https?: boolean | ((url: string, host: string) => boolean);
 
   /**
    * What host should be used for the absolute URL? By default
@@ -294,12 +294,12 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
       // We're constructing an absoluteUrl,
       // https and host configuration will be determined by merging any provided options
       // on top of the default callbacks
-      const { https = defaultGetAbsoluteUrlHttpSetting, host = defaultGetAbsoluteUrlHost } =
+      const { host = defaultGetAbsoluteUrlHost, https = defaultGetAbsoluteUrlHttpSetting } =
         typeof absoluteUrl === "boolean" ? DEFAULT_ABSOLUTE_URL_OPTIONS : absoluteUrl;
 
       // these settings can be defined as a constant or by the result of a callback
-      const shouldUseHttps = typeof https === "function" ? https(baseUrl) : https;
       const hostUrl = typeof host === "function" ? host(baseUrl) : host;
+      const shouldUseHttps = typeof https === "function" ? https(baseUrl, hostUrl) : https;
 
       const protocol = shouldUseHttps ? "https" : "http";
 
