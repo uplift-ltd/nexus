@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.0...@uplift-ltd/strings@2.0.1) (2023-02-13)
+
+
+### Bug Fixes
+
+* Fix https resolution ([#345](https://github.com/uplift-ltd/nexus/issues/345)) ([d386abe](https://github.com/uplift-ltd/nexus/commit/d386abe6c6950fc8fed7d59cfd6a61a887344324))
+
+
+
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.9.2...@uplift-ltd/strings@2.0.0) (2023-02-06)
 
 
