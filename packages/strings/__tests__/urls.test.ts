@@ -247,6 +247,23 @@ test("Test absolute URLs", () => {
     "https://test.uplift.ltd/users/3213?term=test"
   );
 
+  expect(
+    makeAbsoluteUrl(
+      USERS_URL,
+      { userId: 3213 },
+      {},
+      { absoluteUrl: { host: "http://localhost:8000" } }
+    )
+  ).toBe("http://localhost:8000/users/3213");
+  expect(
+    makeAbsoluteUrl(
+      USERS_URL,
+      { userId: 3213 },
+      { term: "test" },
+      { absoluteUrl: { host: "http://localhost:8000" } }
+    )
+  ).toBe("http://localhost:8000/users/3213?term=test");
+
   const makeAbsoluteUrlWithFunctions = createMakeUrl({
     absoluteUrl: {
       https: (url) => url.length > 25,
