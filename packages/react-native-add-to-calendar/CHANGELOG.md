@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [4.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-add-to-calendar@4.0.0...@uplift-ltd/react-native-add-to-calendar@4.0.1) (2023-03-23)
+
+**Note:** Version bump only for package @uplift-ltd/react-native-add-to-calendar
+
+
+
+
+
 ## [4.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-add-to-calendar@3.0.3...@uplift-ltd/react-native-add-to-calendar@4.0.0) (2023-02-06)
 
 

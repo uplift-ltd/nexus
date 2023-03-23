@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.1...@uplift-ltd/strings@2.0.2) (2023-03-23)
+
+
+### Bug Fixes
+
+* polyfill process.env for non-node environments ([#349](https://github.com/uplift-ltd/nexus/issues/349)) ([65dd1a4](https://github.com/uplift-ltd/nexus/commit/65dd1a44ad7a091fc421a287336450d475b1fb66))
+
+
+
 ### [2.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.0...@uplift-ltd/strings@2.0.1) (2023-02-13)
 
 
