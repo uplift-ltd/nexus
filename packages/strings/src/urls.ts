@@ -3,6 +3,9 @@ import { notEmpty } from "@uplift-ltd/ts-helpers";
 import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
 
+// Polyfill process.env for non-node environments
+const process = "process" in globalThis ? globalThis.process : ({ env: {} } as NodeJS.Process);
+
 const safeJoinWithQuestionMark = safeJoin("?");
 
 /**

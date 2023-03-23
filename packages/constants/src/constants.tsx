@@ -1,3 +1,6 @@
+// Polyfill process.env for non-node environments
+const process = "process" in globalThis ? globalThis.process : ({ env: {} } as NodeJS.Process);
+
 // Environment
 export const IS_SSR = typeof window === "undefined";
 export const IS_REACT_NATIVE =
