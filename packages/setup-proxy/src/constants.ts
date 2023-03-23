@@ -1,5 +1,8 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 
+// Polyfill process.env for non-node environments
+const process = "process" in globalThis ? globalThis.process : ({ env: {} } as NodeJS.Process);
+
 export const DEFAULT_TARGET = GRAPHQL_HOST || "http://127.0.0.1:8000";
 
 export const LOGOUT_URL =
