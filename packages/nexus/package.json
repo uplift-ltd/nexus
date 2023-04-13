@@ -37,7 +37,7 @@
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
     "build:version": "nexus replace-program-version",
-    "version": "yarn build:version && git add cjs esm",
+    "version": "npm run build:version && git add cjs esm",
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests"
   },

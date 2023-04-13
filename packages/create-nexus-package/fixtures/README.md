@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/<%= PACKAGE_NAME %>
+    npm i --save @uplift-ltd/<%= PACKAGE_NAME %>
 
 ## API
 

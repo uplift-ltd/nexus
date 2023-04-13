@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/use-user-context
+    npm i --save @uplift-ltd/use-user-context
 
 ## API
 

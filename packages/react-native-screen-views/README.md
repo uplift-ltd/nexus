@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/react-native-screen-views
+    npm i --save @uplift-ltd/react-native-screen-views
 
 ## API
 

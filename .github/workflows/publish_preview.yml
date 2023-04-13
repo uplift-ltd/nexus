@@ -3,7 +3,7 @@ name: publish preview
 on:
   pull_request:
     paths:
-      - 'website/**'
+      - "website/**"
 
 jobs:
   publish-preview:
@@ -34,6 +34,6 @@ jobs:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           cd ./website
-          yarn install
-          yarn build
-          yarn surge ./build ${{ steps.create-preview-url.outputs.preview_url }}
+          npm ci
+          npm run build
+          npx surge ./build ${{ steps.create-preview-url.outputs.preview_url }}

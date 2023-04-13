@@ -4,7 +4,7 @@ title: strings
 
 ## Installation
 
-    yarn add @uplift-ltd/strings
+    npm i --save @uplift-ltd/strings
 
 ## API
 

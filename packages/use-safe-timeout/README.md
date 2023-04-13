@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/use-safe-timeout
+    npm i --save @uplift-ltd/use-safe-timeout
 
 ## API
 

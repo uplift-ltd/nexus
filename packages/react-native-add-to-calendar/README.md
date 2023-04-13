@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/react-native-add-to-calendar
+    npm i --save @uplift-ltd/react-native-add-to-calendar
 
 ## API
 

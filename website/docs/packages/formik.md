@@ -4,7 +4,7 @@ title: formik
 
 ## Installation
 
-    yarn add @uplift-ltd/formik
+    npm i --save @uplift-ltd/formik
 
 ## API
 

@@ -4,7 +4,7 @@ title: sass
 
 ## Installation
 
-    yarn add @uplift-ltd/sass
+    npm i --save @uplift-ltd/sass
 
 ## API
 

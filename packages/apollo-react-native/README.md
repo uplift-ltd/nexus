@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/apollo-react-native
+    npm i --save @uplift-ltd/apollo-react-native
 
 ## API
 

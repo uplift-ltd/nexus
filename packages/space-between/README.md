@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/space-between
+    npm i --save @uplift-ltd/space-between
 
 ## API
 

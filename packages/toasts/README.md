@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/toasts
+    npm i --save @uplift-ltd/toasts
 
 ## API
 
