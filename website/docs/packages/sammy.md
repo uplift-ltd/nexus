@@ -4,7 +4,7 @@ title: sammy
 
 ## Installation
 
-    yarn add @uplift-ltd/sammy
+    npm i --save @uplift-ltd/sammy
 
 ## Getting Started
 

@@ -4,7 +4,7 @@ title: sentry
 
 ## Installation
 
-    yarn add @uplift-ltd/sentry
+    npm i --save @uplift-ltd/sentry
 
 ## API
 

@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add -D @uplift-ltd/scripts
+    npm i --save -D @uplift-ltd/scripts
 
 Add this to package.json scripts:
 

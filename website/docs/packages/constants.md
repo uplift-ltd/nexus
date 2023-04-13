@@ -6,7 +6,7 @@ This package provides some common constants
 
 ## Installation
 
-    yarn add @uplift-ltd/constants
+    npm i --save @uplift-ltd/constants
 
 ## Provided Constants
 

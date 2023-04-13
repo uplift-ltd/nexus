@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/push-notifications
+    npm i --save @uplift-ltd/push-notifications
 
 ## Firebase Cloud Messaging (FCM)
 

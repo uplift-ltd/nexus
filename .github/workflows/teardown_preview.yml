@@ -24,9 +24,7 @@ jobs:
           path: |
             node_modules
             packages/*/node_modules
-          key:
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}-${{
-            hashFiles('packages/*/package.json') }}
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('**/package-lock.json')}}-${{hashFiles('packages/*/package.json')}}
 
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
@@ -41,5 +39,5 @@ jobs:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           cd website
-          yarn install
-          yarn surge --token $SURGE_TOKEN teardown ${{ steps.create-preview-url.outputs.preview_url }} || echo ""
+          npm ci
+          npx surge --token $SURGE_TOKEN teardown ${{ steps.create-preview-url.outputs.preview_url }} || echo ""

@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/use-after-delay
+    npm i --save @uplift-ltd/use-after-delay
 
 ## API
 

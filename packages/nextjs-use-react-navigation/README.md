@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/nextjs-use-react-navigation
+    npm i --save @uplift-ltd/nextjs-use-react-navigation
 
 ## API
 

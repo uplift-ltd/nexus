@@ -4,7 +4,7 @@ title: apollo
 
 ## Installation
 
-    yarn add @uplift-ltd/apollo
+    npm i --save @uplift-ltd/apollo
 
 ## API
 

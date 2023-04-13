@@ -4,7 +4,7 @@ title: react-native-updates
 
 ## Installation
 
-    yarn add @uplift-ltd/react-native-updates
+    npm i --save @uplift-ltd/react-native-updates
 
 ## API
 
