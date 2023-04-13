@@ -46,7 +46,7 @@ var commander_1 = require("commander");
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 var execa_1 = __importDefault(require("execa"));
-var replaceProgramVersion_1 = require("./replaceProgramVersion");
+var replaceProgramVersion_js_1 = require("./replaceProgramVersion.js");
 var program = new commander_1.Command();
 program.version("3.0.0");
 program
@@ -128,7 +128,7 @@ program.command("replace-program-version").action(function (script, options) { r
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, (0, replaceProgramVersion_1.replaceProgramVersion)()];
+                return [4 /*yield*/, (0, replaceProgramVersion_js_1.replaceProgramVersion)()];
             case 1:
                 result = _a.sent();
                 if (result.length) {

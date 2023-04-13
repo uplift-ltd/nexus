@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-import { Subscription } from "./types";
+import { Subscription } from "./types.js";
 import {
   usePushNotifications,
   UsePushNotificationsOptions,
   UsePushNotificationsResult,
-} from "./usePushNotifications";
+} from "./usePushNotifications.js";
 
 export const NotificationContext = React.createContext<UsePushNotificationsResult>({
   permissionStatus: null,

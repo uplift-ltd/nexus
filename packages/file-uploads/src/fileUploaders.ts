@@ -1,5 +1,5 @@
-import { FileUploadAction } from "./fileUploadReducer";
-import { S3FileAttachment } from "./types";
+import { FileUploadAction } from "./fileUploadReducer.js";
+import { S3FileAttachment } from "./types.js";
 
 export type FileUploaderOptions = {
   fileAttachment: S3FileAttachment;

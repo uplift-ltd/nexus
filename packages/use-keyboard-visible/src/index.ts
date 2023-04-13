@@ -1,1 +1,1 @@
-export * from "./useKeyboardVisible";
+export * from "./useKeyboardVisible.js";

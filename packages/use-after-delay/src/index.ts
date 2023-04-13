@@ -1,1 +1,1 @@
-export { useAfterDelay } from "./useAfterDelay";
+export { useAfterDelay } from "./useAfterDelay.js";

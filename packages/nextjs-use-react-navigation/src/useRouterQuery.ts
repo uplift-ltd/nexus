@@ -1,6 +1,6 @@
 import { QueryStringParametersMap, MultipleUrlsTokensMap } from "@uplift-ltd/strings";
 import { useCallback } from "react";
-import { useRouterNavigation } from "./useRouterNavigation";
+import { useRouterNavigation } from "./useRouterNavigation.js";
 
 export type RouterQueryResult<
   QueryStringParams extends never | string | Record<string, unknown> = never,

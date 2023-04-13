@@ -1,5 +1,5 @@
-import { parseGlobalId } from "./parseGlobalId";
-import { toGlobalId } from "./toGlobalId";
+import { parseGlobalId } from "./parseGlobalId.js";
+import { toGlobalId } from "./toGlobalId.js";
 
 export function bumpGlobalId(globalId: string, increment = 1): string {
   const { name, id } = parseGlobalId(globalId);

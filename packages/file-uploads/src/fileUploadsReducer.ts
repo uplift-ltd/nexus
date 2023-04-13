@@ -1,4 +1,4 @@
-import { S3FileAttachment } from "./types";
+import { S3FileAttachment } from "./types.js";
 
 interface FileSpecificAction {
   type: string;

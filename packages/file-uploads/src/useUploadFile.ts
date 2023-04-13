@@ -1,10 +1,10 @@
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { useCallback, useReducer } from "react";
-import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer";
-import { FileUploader, getAxiosFileUploader } from "./fileUploaders";
-import { getFileNameComponents, getFileType } from "./helpers";
-import { S3FileAttachment, UploadFileOptions } from "./types";
-import { useGetSignedRequest, UseGetSignedRequestOptions } from "./useGetSignedRequest";
+import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer.js";
+import { FileUploader, getAxiosFileUploader } from "./fileUploaders.js";
+import { getFileNameComponents, getFileType } from "./helpers.js";
+import { S3FileAttachment, UploadFileOptions } from "./types.js";
+import { useGetSignedRequest, UseGetSignedRequestOptions } from "./useGetSignedRequest.js";
 
 export interface UseUploadFileOptions<FileType = File, UploadResultData = unknown> {
   fileUploader?: FileUploader<FileType, UploadResultData>;

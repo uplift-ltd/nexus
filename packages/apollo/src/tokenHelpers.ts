@@ -1,4 +1,4 @@
-import { GRAPHQL_TOKEN } from "./constants";
+import { GRAPHQL_TOKEN } from "./constants.js";
 
 export const getToken = () => localStorage.getItem(GRAPHQL_TOKEN);
 

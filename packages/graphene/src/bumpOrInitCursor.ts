@@ -1,6 +1,6 @@
-import { ARRAY_CONNECTION_NAME } from "./constants";
-import { parseGlobalId } from "./parseGlobalId";
-import { toGlobalId } from "./toGlobalId";
+import { ARRAY_CONNECTION_NAME } from "./constants.js";
+import { parseGlobalId } from "./parseGlobalId.js";
+import { toGlobalId } from "./toGlobalId.js";
 
 export function bumpOrInitCursor(globalId: string | null | undefined, increment = 1): string {
   if (globalId) {

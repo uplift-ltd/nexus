@@ -1,1 +1,1 @@
-export { SpaceBetween } from "./SpaceBetween";
+export { SpaceBetween } from "./SpaceBetween.js";

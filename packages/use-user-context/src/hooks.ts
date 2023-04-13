@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { UserContext, UserContextShape } from "./context";
-import { CurrentUserShape } from "./types";
+import { UserContext, UserContextShape } from "./context.js";
+import { CurrentUserShape } from "./types.js";
 
 export function useUserContext<CurrentUser extends CurrentUserShape>() {
   const context = useContext<UserContextShape<CurrentUser>>(UserContext);

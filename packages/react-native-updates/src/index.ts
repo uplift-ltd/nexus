@@ -1,1 +1,1 @@
-export * from "./useExpoUpdates";
+export * from "./useExpoUpdates.js";

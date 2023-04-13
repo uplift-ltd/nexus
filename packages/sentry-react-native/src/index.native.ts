@@ -1,5 +1,5 @@
 import { init } from "sentry-expo";
-import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants";
+import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants.js";
 
 if (SENTRY_DSN) {
   init({
@@ -11,7 +11,7 @@ if (SENTRY_DSN) {
   });
 }
 
-export * from "./constants";
+export * from "./constants.js";
 
 export * from "sentry-expo";
 

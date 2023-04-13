@@ -1,4 +1,4 @@
-import { DebugScreens } from "./screens";
+import { DebugScreens } from "./screens.js";
 
 export type DebugNavigatorParamList = {
   [DebugScreens.DEBUG]: {

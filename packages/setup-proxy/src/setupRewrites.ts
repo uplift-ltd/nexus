@@ -1,4 +1,4 @@
-import { DEFAULT_PROXY_PATHS, DEFAULT_TARGET } from "./constants";
+import { DEFAULT_PROXY_PATHS, DEFAULT_TARGET } from "./constants.js";
 
 export function setupRewrites({ target = DEFAULT_TARGET, proxyPaths = DEFAULT_PROXY_PATHS } = {}) {
   return proxyPaths

@@ -1,4 +1,4 @@
-import { trim } from "./pointFree";
+import { trim } from "./pointFree.js";
 
 export type MakePluralizerParams = {
   singular: string;

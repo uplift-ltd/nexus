@@ -1,6 +1,6 @@
 import { Field, FieldAttributes, FieldProps, isFunction } from "formik";
 import React from "react";
-import { EnhancedFieldInputProps } from "./types";
+import { EnhancedFieldInputProps } from "./types.js";
 
 export type EnhancedFieldAttributes<T> = FieldAttributes<T> & {
   hideErrorsOnFocus?: boolean;

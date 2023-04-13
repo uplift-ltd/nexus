@@ -1,2 +1,2 @@
-export { useRouterNavigation } from "./useRouterNavigation";
-export { useRouterQuery, useRouterQueryForUrl } from "./useRouterQuery";
+export { useRouterNavigation } from "./useRouterNavigation.js";
+export { useRouterQuery, useRouterQueryForUrl } from "./useRouterQuery.js";

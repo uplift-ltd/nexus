@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
-import { FileUploader } from "./fileUploaders";
-import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer";
-import { S3FileAttachment, UploadFileOptions, UploadFilesOptions } from "./types";
-import { useUploadFile, UseUploadFileOptions } from "./useUploadFile";
+import { FileUploader } from "./fileUploaders.js";
+import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer.js";
+import { S3FileAttachment, UploadFileOptions, UploadFilesOptions } from "./types.js";
+import { useUploadFile, UseUploadFileOptions } from "./useUploadFile.js";
 
 export interface UseUploadFilesOptions<
   FileType = File,
