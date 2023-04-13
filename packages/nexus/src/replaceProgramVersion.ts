@@ -1,6 +1,6 @@
 import path from "path";
 import readPackageUp from "read-pkg-up";
-import { replaceInFile } from "replace-in-file";
+import replaceInFile from "replace-in-file";
 
 export async function replaceProgramVersion() {
   const pkg = await readPackageUp();
@@ -21,5 +21,5 @@ export async function replaceProgramVersion() {
     to: "program.version" + `(${JSON.stringify(pkg.packageJson.version)})`,
   };
 
-  return replaceInFile(options);
+  return replaceInFile.replaceInFile(options);
 }

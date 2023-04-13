@@ -1,4 +1,4 @@
-import { safeJoinWithSpace } from "./safeJoin";
+import { safeJoinWithSpace } from "./safeJoin.js";
 
 // capitalize :: String -> String'
 export const capitalize = (str: string) => (str ? `${str[0].toUpperCase()}${str.slice(1)}` : str);

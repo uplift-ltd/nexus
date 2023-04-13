@@ -14,7 +14,7 @@ import {
   ApolloCache,
   DocumentNode,
 } from "@apollo/client";
-import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants";
+import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants.js";
 
 export interface ExtraOptions {
   auth?: boolean;

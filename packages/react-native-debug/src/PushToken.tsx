@@ -3,9 +3,9 @@ import { useNotificationPermission } from "@uplift-ltd/push-notifications";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
-import { Button, Input } from "./common";
-import { DebugScreens } from "./screens";
-import { DebugNavigatorParamList } from "./types";
+import { Button, Input } from "./common.js";
+import { DebugScreens } from "./screens.js";
+import { DebugNavigatorParamList } from "./types.js";
 
 export type PushTokenProps = StackScreenProps<
   DebugNavigatorParamList,

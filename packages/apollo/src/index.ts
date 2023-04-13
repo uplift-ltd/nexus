@@ -1,17 +1,17 @@
-export * from "./batch";
+export * from "./batch.js";
 
-export * from "./configure";
+export * from "./configure.js";
 
-export * from "./constants";
+export * from "./constants.js";
 
-export * from "./helpers";
+export * from "./helpers.js";
 
-export * from "./hooks";
+export * from "./hooks.js";
 
-export * from "./useEnumValues";
+export * from "./useEnumValues.js";
 
-export * from "./useSkipVariables";
+export * from "./useSkipVariables.js";
 
-export * from "./tokenHelpers";
+export * from "./tokenHelpers.js";
 
 export * from "@apollo/client";

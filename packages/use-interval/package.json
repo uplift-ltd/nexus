@@ -6,6 +6,11 @@
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
+  "type": "module",
+  "exports": {
+    "require": "./cjs/index.js",
+    "import": "./esm/index.js"
+  },
   "files": [
     "cjs/",
     "esm/",

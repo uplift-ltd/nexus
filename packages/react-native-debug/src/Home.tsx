@@ -1,8 +1,8 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import { Button } from "./common";
-import { DebugScreens } from "./screens";
-import { DebugNavigatorParamList } from "./types";
+import { Button } from "./common.js";
+import { DebugScreens } from "./screens.js";
+import { DebugNavigatorParamList } from "./types.js";
 
 export type HomeProps = StackScreenProps<DebugNavigatorParamList, DebugScreens.DEBUG_MAGIC_LOGIN>;
 

@@ -1,1 +1,1 @@
-export { useSafeTimeout } from "./useSafeTimeout";
+export { useSafeTimeout } from "./useSafeTimeout.js";

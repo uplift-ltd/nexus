@@ -2,15 +2,15 @@ import { captureException } from "@uplift-ltd/sentry";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { Formik, FormikProps, FormikValues, isFunction } from "formik";
 import React, { useRef } from "react";
-import { getApplyErrorsToFields } from "./errors";
+import { getApplyErrorsToFields } from "./errors.js";
 import {
   DEFAULT_INITIAL_STATUS,
   getEnhancedSetStatus,
   getSetFormSuccess,
   getSetFormError,
   getSetSentryEventId,
-} from "./status";
-import { FormikConfigWithOverrides, EnhancedFormikExtraProps } from "./types";
+} from "./status.js";
+import { FormikConfigWithOverrides, EnhancedFormikExtraProps } from "./types.js";
 
 export function EnhancedFormik<
   Values extends FormikValues = FormikValues,

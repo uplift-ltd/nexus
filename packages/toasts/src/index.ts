@@ -1,3 +1,3 @@
-export * from "./hooks";
-export * from "./provider";
-export * from "./types";
+export * from "./hooks.js";
+export * from "./provider.js";
+export * from "./types.js";

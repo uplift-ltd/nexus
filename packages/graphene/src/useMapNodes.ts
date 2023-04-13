@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Connection, mapNodes } from "./mapNodes";
+import { Connection, mapNodes } from "./mapNodes.js";
 
 export function useMapNodes<Node>(connection: Connection<Node> | null | undefined): Node[];
 

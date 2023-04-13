@@ -18,7 +18,7 @@ import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
 import { captureException, captureMessage } from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
-import { GRAPHQL_AUTH_URL } from "./constants";
+import { GRAPHQL_AUTH_URL } from "./constants.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let globalApolloClient: ApolloClient<any>;

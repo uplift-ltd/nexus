@@ -1,2 +1,2 @@
-export { formatCurrency, formatCurrencyZero, formatCurrencyInteger } from "./formatCurrency";
-export { parseAmount } from "./parseAmount";
+export { formatCurrency, formatCurrencyZero, formatCurrencyInteger } from "./formatCurrency.js";
+export { parseAmount } from "./parseAmount.js";

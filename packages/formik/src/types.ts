@@ -7,8 +7,8 @@ import {
   FormikContextType,
 } from "formik";
 import { MutableRefObject } from "react";
-import { ErrorHelpers } from "./errors";
-import { StatusHelpers } from "./status";
+import { ErrorHelpers } from "./errors.js";
+import { StatusHelpers } from "./status.js";
 
 type ExtraHelpers = StatusHelpers & ErrorHelpers;
 

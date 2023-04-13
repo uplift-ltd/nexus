@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import path from "path";
 import readPackageUp from "read-pkg-up";
-import { replaceInFile } from "replace-in-file";
+import replaceInFile from "replace-in-file";
 export function replaceProgramVersion() {
     return __awaiter(this, void 0, void 0, function () {
         var pkg, dir, cjsPath, esmPath, options;
@@ -58,7 +58,7 @@ export function replaceProgramVersion() {
                         // eslint-disable-next-line no-useless-concat
                         to: "program.version" + "(".concat(JSON.stringify(pkg.packageJson.version), ")"),
                     };
-                    return [2 /*return*/, replaceInFile(options)];
+                    return [2 /*return*/, replaceInFile.replaceInFile(options)];
             }
         });
     });

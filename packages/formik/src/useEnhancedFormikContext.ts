@@ -1,12 +1,12 @@
 import { useFormikContext } from "formik";
-import { getApplyErrorsToFields } from "./errors";
+import { getApplyErrorsToFields } from "./errors.js";
 import {
   getEnhancedSetStatus,
   getSetFormSuccess,
   getSetFormError,
   getSetSentryEventId,
-} from "./status";
-import { EnhancedFormikContextType } from "./types";
+} from "./status.js";
+import { EnhancedFormikContextType } from "./types.js";
 
 export function useEnhancedFormikContext<FormikValues>(): EnhancedFormikContextType<FormikValues> {
   const context = useFormikContext<FormikValues>();

@@ -1,7 +1,7 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
-import { replaceAll } from "./formatters";
-import { safeJoin } from "./safeJoin";
+import { replaceAll } from "./formatters.js";
+import { safeJoin } from "./safeJoin.js";
 
 // Polyfill process.env for non-node environments
 const process = "process" in globalThis ? globalThis.process : ({ env: {} } as NodeJS.Process);

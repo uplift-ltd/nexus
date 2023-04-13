@@ -4,8 +4,14 @@
   "description": "Create a new nexus package.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "bin": "cjs/init.js",
-  "main": "cjs/init.js",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "type": "module",
+  "exports": {
+    "require": "./cjs/index.js",
+    "import": "./esm/index.js"
+  },
+  "bin": "esm/init.js",
   "files": [
     "fixtures/",
     "cjs/",

@@ -6,8 +6,8 @@ import {
   registerForPushNotifications as defaultRegisterForPushNotifications,
   RegisterForPushNotifications,
   RegisterForPushNotificationsResult,
-} from "./registerForPushNotifications";
-import { PermissionStatus } from "./types";
+} from "./registerForPushNotifications.js";
+import { PermissionStatus } from "./types.js";
 
 export type RegisterPushNotificationsResult = {
   token: string | null;
