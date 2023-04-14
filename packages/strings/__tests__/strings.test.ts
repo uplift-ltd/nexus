@@ -10,7 +10,7 @@ import {
   safeJoinWithEnDash,
   safeJoinWithEmDash,
   safeJsonParse,
-} from "../src";
+} from "../src/index.js";
 
 test("capitalize", () => {
   expect(capitalize("")).toBe("");

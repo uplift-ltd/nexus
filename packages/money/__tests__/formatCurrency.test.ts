@@ -1,4 +1,8 @@
-import { formatCurrency, formatCurrencyZero, formatCurrencyInteger } from "../src/formatCurrency";
+import {
+  formatCurrency,
+  formatCurrencyZero,
+  formatCurrencyInteger,
+} from "../src/formatCurrency.js";
 
 describe("formatCurrency", () => {
   it("should format $0.00", () => {
