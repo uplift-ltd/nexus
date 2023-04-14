@@ -1,13 +1,8 @@
-import atob from "atob";
-import { parseGlobalId } from "../src/parseGlobalId";
+import { parseGlobalId } from "../src/parseGlobalId.js";
 
 describe("parseGlobalId", () => {
   beforeAll(() => {
     global.atob = atob;
-  });
-
-  afterAll(() => {
-    delete global.atob;
   });
 
   it("should parse global id", () => {

@@ -1,23 +1,11 @@
-import atob from "atob";
-import btoa from "btoa";
-import { bumpGlobalId } from "../src/bumpGlobalId";
-import { toGlobalId } from "../src/toGlobalId";
+import { bumpGlobalId } from "../src/bumpGlobalId.js";
+import { toGlobalId } from "../src/toGlobalId.js";
 
 const USER_1 = "VXNlcjox";
 const USER_2 = "VXNlcjoy";
 const USER_5 = "VXNlcjo1";
 
 describe("fromGlobalId", () => {
-  beforeAll(() => {
-    global.atob = atob;
-    global.btoa = btoa;
-  });
-
-  afterAll(() => {
-    delete global.atob;
-    delete global.btoa;
-  });
-
   it("should incremenet by 1", () => {
     expect(bumpGlobalId(USER_1)).toEqual(USER_2);
   });

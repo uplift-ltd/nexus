@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { notEmpty } from "../src/notEmpty";
+import { notEmpty } from "../src/notEmpty.js";
 
 describe("notEmpty", () => {
   it("should not return null or undefined", () => {

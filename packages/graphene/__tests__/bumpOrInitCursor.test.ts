@@ -1,23 +1,11 @@
-import atob from "atob";
-import btoa from "btoa";
-import { bumpOrInitCursor } from "../src/bumpOrInitCursor";
-import { toGlobalId } from "../src/toGlobalId";
+import { bumpOrInitCursor } from "../src/bumpOrInitCursor.js";
+import { toGlobalId } from "../src/toGlobalId.js";
 
 const CURSOR_1 = "YXJyYXljb25uZWN0aW9uOjE=";
 const CURSOR_2 = "YXJyYXljb25uZWN0aW9uOjI=";
 const CURSOR_10 = "YXJyYXljb25uZWN0aW9uOjEw";
 
 describe("fromGlobalId", () => {
-  beforeAll(() => {
-    global.atob = atob;
-    global.btoa = btoa;
-  });
-
-  afterAll(() => {
-    delete global.atob;
-    delete global.btoa;
-  });
-
   it("should init if null or undefined", () => {
     expect(bumpOrInitCursor(null)).toEqual(CURSOR_1);
     expect(bumpOrInitCursor(undefined)).toEqual(CURSOR_1);

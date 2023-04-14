@@ -1,4 +1,4 @@
-import { getFileNameComponents } from "../src/helpers";
+import { getFileNameComponents } from "../src/helpers.js";
 
 describe("file-uploaders - Helpers", () => {
   it("should get correct file paths", () => {

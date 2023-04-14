@@ -1,4 +1,4 @@
-import { mapNodes } from "../src/mapNodes";
+import { mapNodes } from "../src/mapNodes.js";
 
 describe("mapNodes", () => {
   it("should return nodes from a relay connection", () => {

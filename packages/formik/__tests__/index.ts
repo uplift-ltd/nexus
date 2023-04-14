@@ -1,5 +1,5 @@
-// import { EnhancedFormik } from "../src/EnhancedFormik";
-import { useEnhancedFormik } from "../src/useEnhancedFormik";
+// import { EnhancedFormik } from "../src/EnhancedFormik.js";
+import { useEnhancedFormik } from "../src/useEnhancedFormik.js";
 
 // Getting error:
 // return <_formik.Formik onSubmit={async (values, formikHelpers) => {

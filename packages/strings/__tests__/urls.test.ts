@@ -1,4 +1,4 @@
-import { createMakeUrl, makeUrl, makeQueryString } from "../src/urls";
+import { createMakeUrl, makeUrl, makeQueryString } from "../src/urls.js";
 
 const EXPRESS_URL_TEST_CASES = [
   ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],

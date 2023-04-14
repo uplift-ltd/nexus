@@ -1,15 +1,6 @@
-import atob from "atob";
-import { fromGlobalId } from "../src/fromGlobalId";
+import { fromGlobalId } from "../src/fromGlobalId.js";
 
 describe("fromGlobalId", () => {
-  beforeAll(() => {
-    global.atob = atob;
-  });
-
-  afterAll(() => {
-    delete global.atob;
-  });
-
   it("should parse global id", () => {
     expect(fromGlobalId("VXNlcjox")).toEqual("1");
   });

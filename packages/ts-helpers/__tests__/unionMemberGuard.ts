@@ -1,4 +1,4 @@
-import { makeGraphqlUnionMemberGuard, makeUnionMemberGuard } from "../src/unionMemberGuard";
+import { makeGraphqlUnionMemberGuard, makeUnionMemberGuard } from "../src/unionMemberGuard.js";
 
 describe("unionMemberGuard", () => {
   describe("makeUnionMemberGuard", () => {

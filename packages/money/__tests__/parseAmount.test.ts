@@ -1,4 +1,4 @@
-import { parseAmount } from "../src/parseAmount";
+import { parseAmount } from "../src/parseAmount.js";
 
 describe("parseAmount", () => {
   it("should parse empty string as 0", () => {
