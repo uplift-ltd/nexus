@@ -49,8 +49,6 @@
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.10.4",
-    "@types/atob": "^2.1.2",
-    "@types/btoa": "^1.2.3",
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.9",
     "@types/react-native": "^0.63.9",
