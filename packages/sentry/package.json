@@ -6,12 +6,10 @@
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
-  "types": "./src/index.ts",
   "type": "module",
   "exports": {
     "require": "./cjs/index.js",
-    "import": "./esm/index.js",
-    "types": "./src/index.ts"
+    "import": "./esm/index.js"
   },
   "files": [
     "cjs/",
