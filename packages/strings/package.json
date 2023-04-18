@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/strings",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "strings",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -29,7 +29,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^2.0.0-alpha.1",
-    "@uplift-ltd/ts-helpers": "^3.0.0-alpha.1"
+    "@uplift-ltd/constants": "^2.0.0-alpha.2",
+    "@uplift-ltd/ts-helpers": "^3.0.0-alpha.2"
   }
 }
