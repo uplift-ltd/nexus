@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/push-notifications",
-  "version": "5.0.0-alpha.0",
+  "version": "5.0.0-alpha.1",
   "description": "push-notifications",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -40,7 +40,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "@uplift-ltd/sentry-react-native": "^4.0.0-alpha.0"
+    "@uplift-ltd/sentry-react-native": "^4.0.0-alpha.1"
   },
   "devDependencies": {
     "@types/react-native": "^0.63.9",

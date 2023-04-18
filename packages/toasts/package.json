@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/toasts",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "toasts",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -37,6 +37,6 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/use-safe-timeout": "^2.0.0-alpha.0"
+    "@uplift-ltd/use-safe-timeout": "^2.0.0-alpha.1"
   }
 }

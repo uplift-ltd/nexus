@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/nextjs-use-react-navigation",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.1",
   "description": "nextjs-use-react-navigation",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -34,7 +34,7 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@uplift-ltd/strings": "^3.0.0-alpha.0"
+    "@uplift-ltd/strings": "^3.0.0-alpha.1"
   },
   "peerDependencies": {
     "next": "^11.0.0 || ^12.0.0 || ^13.0.0",
