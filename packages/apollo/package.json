@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/apollo",
-  "version": "4.0.1",
+  "version": "5.0.0-alpha.0",
   "description": "Apollo helpers.",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -42,8 +42,8 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^1.8.6",
-    "@uplift-ltd/sentry": "^4.1.4"
+    "@uplift-ltd/constants": "^2.0.0-alpha.0",
+    "@uplift-ltd/sentry": "^5.0.0-alpha.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.7.6",

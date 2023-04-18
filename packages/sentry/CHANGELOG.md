@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.1.4...@uplift-ltd/sentry@5.0.0-alpha.0) (2023-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* switch to esm
+
+### Features
+
+* switch to esm ([0552e14](https://github.com/uplift-ltd/nexus/commit/0552e1405f9a92d7cf080b472d2bc01af645ebcd))
+* switch to npm ([1b554e0](https://github.com/uplift-ltd/nexus/commit/1b554e0463cf4575d6d68824507bafa8e4d6f7c5))
+
+
+### Bug Fixes
+
+* jest and eslint configs ([cd05ed5](https://github.com/uplift-ltd/nexus/commit/cd05ed5cdb8337ef081ecc8ef22a103a42c93eb8))
+
+
+
 ### [4.1.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.1.3...@uplift-ltd/sentry@4.1.4) (2023-03-23)
 
 
