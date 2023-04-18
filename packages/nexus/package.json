@@ -7,7 +7,7 @@
   "main": "./cjs/nexus.js",
   "module": "./esm/nexus.js",
   "bin": {
-    "nexus": "./esm/nexus.js"
+    "nexus": "./cjs/nexus.js"
   },
   "files": [
     "cjs/",

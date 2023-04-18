@@ -6,7 +6,7 @@
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
-  "bin": "esm/init.js",
+  "bin": "cjs/init.js",
   "files": [
     "fixtures/",
     "cjs/",

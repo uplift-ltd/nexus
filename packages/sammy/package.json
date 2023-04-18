@@ -7,7 +7,7 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "bin": {
-    "sammy": "./esm/sammy.js"
+    "sammy": "./cjs/sammy.js"
   },
   "files": [
     "cjs/",
