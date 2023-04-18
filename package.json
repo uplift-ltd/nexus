@@ -5,7 +5,6 @@
   "description": "Uplift's front end core library.",
   "license": "MIT",
   "homepage": "https://nexus.uplift.ltd/",
-  "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
     "access": "restricted"

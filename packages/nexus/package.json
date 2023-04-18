@@ -6,11 +6,6 @@
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
   "main": "./cjs/nexus.js",
   "module": "./esm/nexus.js",
-  "type": "module",
-  "exports": {
-    "require": "./cjs/nexus.js",
-    "import": "./esm/nexus.js"
-  },
   "bin": {
     "nexus": "./esm/nexus.js"
   },
