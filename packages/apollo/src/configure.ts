@@ -15,10 +15,9 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
-import { IS_SSR } from "@uplift-ltd/constants";
+import { GRAPHQL_AUTH_URL, GRAPHQL_BATCHING, IS_SSR } from "@uplift-ltd/constants";
 import { captureException, captureMessage } from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
-import { GRAPHQL_AUTH_URL } from "./constants";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let globalApolloClient: ApolloClient<any>;
@@ -54,7 +53,7 @@ export const configureClient = ({
   cache = new InMemoryCache(),
   fetch = defaultFetch,
   fetchOptions,
-  batch = true,
+  batch = GRAPHQL_BATCHING,
   batchInterval,
   batchKey,
   batchMax,
