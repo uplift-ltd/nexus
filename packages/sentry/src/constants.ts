@@ -1,6 +1,3 @@
-// Polyfill process.env for non-node environments
-const process = "process" in globalThis ? globalThis.process : ({ env: {} } as NodeJS.Process);
-
 export const SENTRY_DSN =
   process.env.SENTRY_DSN ||
   process.env.SENTRY_PUBLIC_DSN ||
