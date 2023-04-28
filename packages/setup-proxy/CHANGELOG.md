@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.3.11](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.10...@uplift-ltd/setup-proxy@1.3.11) (2023-04-28)
+
+
+### Bug Fixes
+
+* revert polyfill process.env for non-node environments ([#356](https://github.com/uplift-ltd/nexus/issues/356)) ([fa27cf7](https://github.com/uplift-ltd/nexus/commit/fa27cf79ce62f6eed2b41b8749923daf74df35ed))
+
+
+
 ### [1.3.10](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.9...@uplift-ltd/setup-proxy@1.3.10) (2023-03-23)
 
 

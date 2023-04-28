@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/save-on-navigate-back",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "save-on-navigate-back",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -35,6 +35,6 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/formik": "^3.0.2"
+    "@uplift-ltd/formik": "^3.0.3"
   }
 }
