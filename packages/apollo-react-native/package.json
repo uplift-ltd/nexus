@@ -35,7 +35,6 @@
     "@uplift-ltd/apollo": "^4.0.3"
   },
   "devDependencies": {
-    "@uplift-ltd/apollo": "^3.2.3",
     "expo": "^47.0.13",
     "expo-secure-store": "~11.2.0"
   }
