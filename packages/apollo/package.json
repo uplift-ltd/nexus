@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.7.6",
-    "@sentry/types": "^7.5.0",
+    "@sentry/types": "^7.47.0",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6"
   }
