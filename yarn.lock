@@ -3785,7 +3785,7 @@
     "@sentry/utils" "6.13.3"
     tslib "^1.9.3"
 
-"@sentry/browser@^6.12.0 || ^7.47.0":
+"@sentry/browser@^7.47.0":
   version "7.50.0"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-7.50.0.tgz#16c995c336322c8aec65570f90f50288678004ec"
   integrity sha512-a+UYbP89+SAvW47/p9wxEi9eWlyp/SkYl52OCdZNXnplQY4kQIOVyiaIs5nnCxIxZgXKrhAX4eo1E9ykleFuNQ==
@@ -3896,7 +3896,7 @@
     "@sentry/types" "6.13.3"
     tslib "^1.9.3"
 
-"@sentry/node@^6.12.0 || ^7.47.0":
+"@sentry/node@^7.47.0":
   version "7.50.0"
   resolved "https://registry.yarnpkg.com/@sentry/node/-/node-7.50.0.tgz#d6adab136d87f7dca614ea0d77944f902fa45626"
   integrity sha512-11UJBKoQFMp7f8sbzeO2gENsKIUkVCNBTzuPRib7l2K1HMjSfacXmwwma7ZEs0mc3ofIZ1UYuyONAXmI1lK9cQ==
