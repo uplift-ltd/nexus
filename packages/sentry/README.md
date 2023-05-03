@@ -6,6 +6,30 @@
 
 ## API
 
+Automatically register Sentry without configuration,
+
+```ts
+import "@uplift-ltd/sentry/browser-init";
+
+// OR
+
+import "@uplift-ltd/sentry/node-init";
+```
+
+Or manually register to control init or add options,
+
+```ts
+import { init } from "@uplift-ltd/sentry/browser";
+
+init({ ... })
+
+// OR
+
+import { init } from "@uplift-ltd/sentry/node";
+
+init({ ... })
+```
+
 ```ts
 import { captureException, captureMessage } from "@uplift-ltd/sentry";
 
