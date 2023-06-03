@@ -57,6 +57,7 @@ export const configureClient = ({
   batchInterval,
   batchKey,
   batchMax,
+  credentials = "same-origin",
   extraLinks = [],
   cookie,
   getToken,
@@ -167,7 +168,7 @@ export const configureClient = ({
     links.push(
       new BatchHttpLink({
         uri: GRAPHQL_AUTH_URL,
-        credentials: "same-origin",
+        credentials,
         fetch,
         fetchOptions,
         batchInterval,
@@ -179,7 +180,7 @@ export const configureClient = ({
     links.push(
       new HttpLink({
         uri: GRAPHQL_AUTH_URL,
-        credentials: "same-origin",
+        credentials,
         fetch,
         fetchOptions,
       })
@@ -188,6 +189,7 @@ export const configureClient = ({
 
   return new ApolloClient({
     ssrMode: IS_SSR,
+    credentials,
     link: ApolloLink.from(links),
     cache,
     ...otherOptions,
