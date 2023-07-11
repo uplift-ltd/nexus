@@ -67,14 +67,13 @@ type Item = ArrayElement<(ThisLineItem | ThatLineItem)[]>; // => (ThisLineItem |
 Ensures that the provided data is an array, and if it's not, wraps it in an array
 
 ```ts
-type Item = ThisLineItem | (ThisLineItem)[];
+type Item = ThisLineItem | ThisLineItem[];
 ```
 
 ```ts
 const itemOrItems: Item;
 const itemsArray: ThisLineItem[] = ensureArray(itemOrItems);
 ```
-
 
 ### ArrayToUnion
 

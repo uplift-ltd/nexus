@@ -4,7 +4,7 @@ import { useRouterNavigation } from "./useRouterNavigation";
 
 export type RouterQueryResult<
   QueryStringParams extends never | string | Record<string, unknown> = never,
-  Tokens extends never | string | Record<string, unknown> = never
+  Tokens extends never | string | Record<string, unknown> = never,
 > =
   // prettier-ignore
   (
@@ -42,7 +42,7 @@ interface NextTransitionOptions {
 export function useRouterQuery<
   QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
   QueryResult = RouterQueryResult<QueryStringShape>,
-  UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
+  UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>,
 >() {
   const routerNavigation = useRouterNavigation();
 
@@ -106,7 +106,7 @@ export function useRouterQueryForUrl<
   URL extends string,
   QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
   QueryResult = RouterQueryResult<QueryStringShape, RouterParamMapFromURLs<URL>>,
-  UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
+  UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>,
 >() {
   return useRouterQuery<QueryStringShape, QueryResult, UpdateQueryShape>();
 }

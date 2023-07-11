@@ -32,7 +32,7 @@ export type EnhancedQueryResult<TData, TVariables extends OperationVariables> = 
 export function useEnhancedQuery<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   TData = any,
-  TVariables extends OperationVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
@@ -57,7 +57,7 @@ export function useEnhancedQuery<
 export function useEnhancedLazyQuery<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   TData = any,
-  TVariables extends OperationVariables = OperationVariables
+  TVariables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
@@ -82,7 +82,7 @@ export function useEnhancedMutation<
   TVariables extends OperationVariables = OperationVariables,
   TContext extends EnhancedDefaultContext = EnhancedDefaultContext,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  TCache extends ApolloCache<any> = ApolloCache<any>
+  TCache extends ApolloCache<any> = ApolloCache<any>,
 >(
   mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: MutationHookOptions<TData, TVariables, TContext, TCache> = {},

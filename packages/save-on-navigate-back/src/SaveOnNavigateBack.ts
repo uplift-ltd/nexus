@@ -25,7 +25,7 @@ export interface SaveOnNavigateBackProps {
 
 export function SaveOnNavigateBack<
   FormValues,
-  StackParamList extends Record<string, Record<string, unknown>>
+  StackParamList extends Record<string, Record<string, unknown>>,
 >({ formSuccessful }: SaveOnNavigateBackProps) {
   const navigation = useNavigation<StackNavigationProp<StackParamList>>();
   const { dirty, isSubmitting, submitForm } = useFormikContext<FormValues>();
@@ -63,7 +63,7 @@ export function SaveOnNavigateBack<
 export type UseSaveOnNavigateBackResult = [
   typeof SaveOnNavigateBack,
   React.RefObject<boolean>,
-  (successful: boolean) => void
+  (successful: boolean) => void,
 ];
 
 // returns the component, the ref you need to pass to it as a prop and a fn to help update the status

@@ -23,5 +23,5 @@ export type GetConnectionNode<NullableConnectionType extends NullableRelayConnec
  * connection/edge/node is nullable
  */
 export type GetConnectionNodeArray<
-  NullableConnectionType extends NullableRelayConnection<unknown>
+  NullableConnectionType extends NullableRelayConnection<unknown>,
 > = Array<GetConnectionNode<NullableConnectionType>>;
