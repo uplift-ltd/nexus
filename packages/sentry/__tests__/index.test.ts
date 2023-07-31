@@ -1,8 +1,8 @@
-import * as Sentry from "../src";
+import { captureException, captureMessage } from "../src";
 
 describe("Sentry", () => {
   it("should have captureException and captureMessage", () => {
-    expect(Sentry.captureException).toBeDefined();
-    expect(Sentry.captureMessage).toBeDefined();
+    expect(captureException).toBeDefined();
+    expect(captureMessage).toBeDefined();
   });
 });
