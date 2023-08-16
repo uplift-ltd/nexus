@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/sentry",
-  "version": "4.1.5",
+  "version": "4.2.0",
   "description": "Helpers for dealing with sentry.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",

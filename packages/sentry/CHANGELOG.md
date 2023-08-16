@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.1.5...@uplift-ltd/sentry@4.2.0) (2023-08-16)
+
+
+### Features
+
+* add EXPO_PUBLIC prefixed env vars ([#365](https://github.com/uplift-ltd/nexus/issues/365)) ([fc379b3](https://github.com/uplift-ltd/nexus/commit/fc379b3dc60a2244b3e7c0b6d38ad412c0f3c195))
+
+
+
 ### [4.1.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.1.4...@uplift-ltd/sentry@4.1.5) (2023-04-28)
 
 

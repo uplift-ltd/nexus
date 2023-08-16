@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@2.0.0...@uplift-ltd/ts-helpers@2.1.0) (2023-08-16)
+
+
+### Features
+
+* Add ensureArray to ts-helpers ([#362](https://github.com/uplift-ltd/nexus/issues/362)) ([e568cdd](https://github.com/uplift-ltd/nexus/commit/e568cdd728d30724609320c2f16ee6e8f0eac459))
+
+
+
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/ts-helpers@1.3.1...@uplift-ltd/ts-helpers@2.0.0) (2023-02-06)
 
 

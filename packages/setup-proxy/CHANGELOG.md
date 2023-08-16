@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.11...@uplift-ltd/setup-proxy@1.4.0) (2023-08-16)
+
+
+### Features
+
+* add EXPO_PUBLIC prefixed env vars ([#365](https://github.com/uplift-ltd/nexus/issues/365)) ([fc379b3](https://github.com/uplift-ltd/nexus/commit/fc379b3dc60a2244b3e7c0b6d38ad412c0f3c195))
+
+
+
 ### [1.3.11](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@1.3.10...@uplift-ltd/setup-proxy@1.3.11) (2023-04-28)
 
 
