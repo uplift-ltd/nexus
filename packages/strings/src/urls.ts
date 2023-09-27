@@ -1,4 +1,3 @@
-import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
 import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
@@ -131,10 +130,6 @@ function defaultGetAbsoluteUrlHttpSetting(_url: string, host: string) {
  */
 function defaultGetAbsoluteUrlHost() {
   if (typeof window !== "undefined") return window.location.host;
-  if (GRAPHQL_HOST) {
-    const hostUrl = new URL(GRAPHQL_HOST);
-    return hostUrl.host;
-  }
 
   return "";
 }
