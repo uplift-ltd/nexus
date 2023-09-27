@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.0.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.4...@uplift-ltd/strings@2.0.5) (2023-09-27)
+
+
+### Bug Fixes
+
+* **strings:** remove constants dependency ([#367](https://github.com/uplift-ltd/nexus/issues/367)) ([6b6ca18](https://github.com/uplift-ltd/nexus/commit/6b6ca18ae831abde97295b380320d934cacf9169))
+
+
+
 ### [2.0.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.3...@uplift-ltd/strings@2.0.4) (2023-08-16)
 
 **Note:** Version bump only for package @uplift-ltd/strings
