@@ -1,34 +1,30 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [1.9.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.8.7...@uplift-ltd/constants@1.9.0) (2023-08-16)
 
-
 ### Features
 
-* add EXPO_PUBLIC prefixed env vars ([#365](https://github.com/uplift-ltd/nexus/issues/365)) ([fc379b3](https://github.com/uplift-ltd/nexus/commit/fc379b3dc60a2244b3e7c0b6d38ad412c0f3c195))
-
-
+- add EXPO_PUBLIC prefixed env vars ([#365](https://github.com/uplift-ltd/nexus/issues/365))
+  ([fc379b3](https://github.com/uplift-ltd/nexus/commit/fc379b3dc60a2244b3e7c0b6d38ad412c0f3c195))
 
 ### [1.8.7](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.8.6...@uplift-ltd/constants@1.8.7) (2023-04-28)
 
-
 ### Bug Fixes
 
-* revert polyfill process.env for non-node environments ([#356](https://github.com/uplift-ltd/nexus/issues/356)) ([fa27cf7](https://github.com/uplift-ltd/nexus/commit/fa27cf79ce62f6eed2b41b8749923daf74df35ed))
-
-
+- revert polyfill process.env for non-node environments
+  ([#356](https://github.com/uplift-ltd/nexus/issues/356))
+  ([fa27cf7](https://github.com/uplift-ltd/nexus/commit/fa27cf79ce62f6eed2b41b8749923daf74df35ed))
 
 ### [1.8.6](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/constants@1.8.5...@uplift-ltd/constants@1.8.6) (2023-03-23)
 
-
 ### Bug Fixes
 
-* polyfill process.env for non-node environments ([#349](https://github.com/uplift-ltd/nexus/issues/349)) ([65dd1a4](https://github.com/uplift-ltd/nexus/commit/65dd1a44ad7a091fc421a287336450d475b1fb66))
-
-
+- polyfill process.env for non-node environments
+  ([#349](https://github.com/uplift-ltd/nexus/issues/349))
+  ([65dd1a4](https://github.com/uplift-ltd/nexus/commit/65dd1a44ad7a091fc421a287336450d475b1fb66))
 
 # Change Log
 
