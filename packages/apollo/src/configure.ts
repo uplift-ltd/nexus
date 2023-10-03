@@ -15,8 +15,8 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
+import type { Hub } from "@sentry/types";
 import { GRAPHQL_AUTH_URL, GRAPHQL_BATCHING, IS_SSR } from "@uplift-ltd/constants";
-import { captureException, captureMessage } from "@uplift-ltd/sentry";
 import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,6 +44,7 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   onGraphqlErrors?: (errors: readonly GraphQLError[], operation: Operation) => void;
   onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
   onForbidden?: (err: ApolloError["networkError"], operation: Operation) => void;
+  sentryHub?: Hub;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
@@ -66,6 +67,7 @@ export const configureClient = ({
   onGraphqlErrors,
   onNotAuthorized,
   onForbidden,
+  sentryHub,
   ...otherOptions
 }: ConfigureClientOptions) => {
   cache.restore(initialState);
@@ -90,22 +92,23 @@ export const configureClient = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map?.((result: Record<string, any>) => result.errors);
 
-      captureException(networkError, {
-        extra: {
+      sentryHub?.withScope((scope) => {
+        scope.setExtras({
           operationName: operation.operationName,
           query: operation.query,
           errors,
-        },
+        });
+        sentryHub.captureException(networkError);
       });
 
-      onNetworkError && onNetworkError(networkError, operation);
+      onNetworkError?.(networkError, operation);
 
       // If we get a 401, we log out the user
       if ((networkError as ServerError).statusCode === 401) {
-        removeToken && removeToken();
-        onNotAuthorized && onNotAuthorized(networkError, operation);
+        removeToken?.();
+        onNotAuthorized?.(networkError, operation);
       } else if ((networkError as ServerError).statusCode === 403) {
-        onForbidden && onForbidden(networkError, operation);
+        onForbidden?.(networkError, operation);
       }
     }
 
@@ -125,12 +128,13 @@ export const configureClient = ({
         }
       });
 
-      captureMessage("GraphQL Errors", {
-        extra: {
+      sentryHub?.withScope((scope) => {
+        scope.setExtras({
           operationName: operation.operationName,
           query: operation.query,
           errors: graphQLErrors,
-        },
+        });
+        sentryHub.captureMessage("GraphQL Errors", "warning");
       });
 
       if (graphQLErrors.length > 0 && onGraphqlErrors) {
