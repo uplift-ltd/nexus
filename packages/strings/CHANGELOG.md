@@ -1,47 +1,52 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [2.0.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.4...@uplift-ltd/strings@2.0.5) (2023-09-27)
+
+### Bug Fixes
+
+- **strings:** remove constants dependency ([#367](https://github.com/uplift-ltd/nexus/issues/367))
+  ([6b6ca18](https://github.com/uplift-ltd/nexus/commit/6b6ca18ae831abde97295b380320d934cacf9169))
+
+### [2.0.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.3...@uplift-ltd/strings@2.0.4) (2023-08-16)
+
+**Note:** Version bump only for package @uplift-ltd/strings
 
 ### [2.0.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.2...@uplift-ltd/strings@2.0.3) (2023-04-28)
 
-
 ### Bug Fixes
 
-* revert polyfill process.env for non-node environments ([#356](https://github.com/uplift-ltd/nexus/issues/356)) ([fa27cf7](https://github.com/uplift-ltd/nexus/commit/fa27cf79ce62f6eed2b41b8749923daf74df35ed))
-
-
+- revert polyfill process.env for non-node environments
+  ([#356](https://github.com/uplift-ltd/nexus/issues/356))
+  ([fa27cf7](https://github.com/uplift-ltd/nexus/commit/fa27cf79ce62f6eed2b41b8749923daf74df35ed))
 
 ### [2.0.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.1...@uplift-ltd/strings@2.0.2) (2023-03-23)
 
-
 ### Bug Fixes
 
-* polyfill process.env for non-node environments ([#349](https://github.com/uplift-ltd/nexus/issues/349)) ([65dd1a4](https://github.com/uplift-ltd/nexus/commit/65dd1a44ad7a091fc421a287336450d475b1fb66))
-
-
+- polyfill process.env for non-node environments
+  ([#349](https://github.com/uplift-ltd/nexus/issues/349))
+  ([65dd1a4](https://github.com/uplift-ltd/nexus/commit/65dd1a44ad7a091fc421a287336450d475b1fb66))
 
 ### [2.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@2.0.0...@uplift-ltd/strings@2.0.1) (2023-02-13)
 
-
 ### Bug Fixes
 
-* Fix https resolution ([#345](https://github.com/uplift-ltd/nexus/issues/345)) ([d386abe](https://github.com/uplift-ltd/nexus/commit/d386abe6c6950fc8fed7d59cfd6a61a887344324))
-
-
+- Fix https resolution ([#345](https://github.com/uplift-ltd/nexus/issues/345))
+  ([d386abe](https://github.com/uplift-ltd/nexus/commit/d386abe6c6950fc8fed7d59cfd6a61a887344324))
 
 ## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@1.9.2...@uplift-ltd/strings@2.0.0) (2023-02-06)
 
-
 ### ⚠ BREAKING CHANGES
 
-* update graphql and react dev versions (#334)
+- update graphql and react dev versions (#334)
 
 ### Miscellaneous Chores
 
-* update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334)) ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
-
-
+- update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334))
+  ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
 
 # Change Log
 

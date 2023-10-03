@@ -1,44 +1,38 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [3.0.5](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@3.0.4...@uplift-ltd/formik@3.0.5) (2023-09-27)
+
+**Note:** Version bump only for package @uplift-ltd/formik
+
+### [3.0.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@3.0.3...@uplift-ltd/formik@3.0.4) (2023-08-16)
+
+**Note:** Version bump only for package @uplift-ltd/formik
 
 ### [3.0.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@3.0.2...@uplift-ltd/formik@3.0.3) (2023-04-28)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ### [3.0.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@3.0.1...@uplift-ltd/formik@3.0.2) (2023-03-23)
 
 **Note:** Version bump only for package @uplift-ltd/formik
-
-
-
-
 
 ### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@3.0.0...@uplift-ltd/formik@3.0.1) (2023-02-13)
 
 **Note:** Version bump only for package @uplift-ltd/formik
 
-
-
-
-
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@2.0.22...@uplift-ltd/formik@3.0.0) (2023-02-06)
-
 
 ### ⚠ BREAKING CHANGES
 
-* update graphql and react dev versions (#334)
+- update graphql and react dev versions (#334)
 
 ### Miscellaneous Chores
 
-* update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334)) ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
-
-
+- update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334))
+  ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
 
 # Change Log
 

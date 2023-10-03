@@ -1,44 +1,34 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### [3.0.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@3.0.3...@uplift-ltd/react-native-debug@3.0.4) (2023-08-16)
+
+**Note:** Version bump only for package @uplift-ltd/react-native-debug
 
 ### [3.0.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@3.0.2...@uplift-ltd/react-native-debug@3.0.3) (2023-06-03)
 
 **Note:** Version bump only for package @uplift-ltd/react-native-debug
 
-
-
-
-
 ### [3.0.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@3.0.1...@uplift-ltd/react-native-debug@3.0.2) (2023-04-28)
 
 **Note:** Version bump only for package @uplift-ltd/react-native-debug
-
-
-
-
 
 ### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@3.0.0...@uplift-ltd/react-native-debug@3.0.1) (2023-03-23)
 
 **Note:** Version bump only for package @uplift-ltd/react-native-debug
 
-
-
-
-
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/react-native-debug@2.0.5...@uplift-ltd/react-native-debug@3.0.0) (2023-02-06)
-
 
 ### ⚠ BREAKING CHANGES
 
-* update graphql and react dev versions (#334)
+- update graphql and react dev versions (#334)
 
 ### Miscellaneous Chores
 
-* update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334)) ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
-
-
+- update graphql and react dev versions ([#334](https://github.com/uplift-ltd/nexus/issues/334))
+  ([a23c02a](https://github.com/uplift-ltd/nexus/commit/a23c02a120dfde626c39c3dae392d36e874bd9cd))
 
 # Change Log
 
