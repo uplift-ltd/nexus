@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { ToastContext } from "./context";
-import { ToastDismiss } from "./dismiss";
-import { AddToast, DismissToast, ToastProviderProps, ToastShape } from "./types";
+import { ToastContext } from "./context.js";
+import { ToastDismiss } from "./dismiss.js";
+import { AddToast, DismissToast, ToastProviderProps, ToastShape } from "./types.js";
 
 export function ToastProvider({
   children,

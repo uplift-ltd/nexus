@@ -1,12 +1,15 @@
 import { RefObject } from "react";
-import { PermissionStatus, Subscription } from "./types";
-import { useNotificationHandler, UseNotificationHandlerOptions } from "./useNotificationHandler";
-import { useNotificationListener, UseNotificationListenerOptions } from "./useNotificationListener";
+import { PermissionStatus, Subscription } from "./types.js";
+import { useNotificationHandler, UseNotificationHandlerOptions } from "./useNotificationHandler.js";
+import {
+  useNotificationListener,
+  UseNotificationListenerOptions,
+} from "./useNotificationListener.js";
 import {
   useNotificationPermission,
   UseNotificationPermissionOptions,
   RegisterPushNotifications,
-} from "./useNotificationPermission";
+} from "./useNotificationPermission.js";
 
 export type UsePushNotificationsOptions = UseNotificationHandlerOptions &
   UseNotificationListenerOptions &

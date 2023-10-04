@@ -1,4 +1,4 @@
-import { notEmpty } from "./notEmpty";
+import { notEmpty } from "./notEmpty.js";
 
 /**
  * Ensures that the provided data is an array, and if it's not, wraps it in an array

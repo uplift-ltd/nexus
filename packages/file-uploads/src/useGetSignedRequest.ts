@@ -5,7 +5,7 @@ import {
   MutationHookOptions,
   useEnhancedMutation,
 } from "@uplift-ltd/apollo";
-import { GetSignedRequestMutation, GetSignedRequestMutationVariables } from "./types";
+import { GetSignedRequestMutation, GetSignedRequestMutationVariables } from "./types.js";
 
 export const GET_SIGNED_REQUEST = gql`
   mutation GetSignedRequest(

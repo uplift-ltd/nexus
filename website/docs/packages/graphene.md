@@ -4,7 +4,7 @@ title: graphene
 
 ## Installation
 
-    yarn add @uplift-ltd/graphene
+    npm i --save @uplift-ltd/graphene
 
 ## API
 

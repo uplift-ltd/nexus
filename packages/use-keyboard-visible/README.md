@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/use-keyboard-visible
+    npm i --save @uplift-ltd/use-keyboard-visible
 
 ## API
 

@@ -42,7 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.replaceProgramVersion = void 0;
 var path_1 = __importDefault(require("path"));
 var read_pkg_up_1 = __importDefault(require("read-pkg-up"));
-var replace_in_file_1 = require("replace-in-file");
+var replace_in_file_1 = __importDefault(require("replace-in-file"));
 function replaceProgramVersion() {
     return __awaiter(this, void 0, void 0, function () {
         var pkg, dir, cjsPath, esmPath, options;
@@ -64,7 +64,7 @@ function replaceProgramVersion() {
                         // eslint-disable-next-line no-useless-concat
                         to: "program.version" + "(".concat(JSON.stringify(pkg.packageJson.version), ")"),
                     };
-                    return [2 /*return*/, (0, replace_in_file_1.replaceInFile)(options)];
+                    return [2 /*return*/, replace_in_file_1.default.replaceInFile(options)];
             }
         });
     });

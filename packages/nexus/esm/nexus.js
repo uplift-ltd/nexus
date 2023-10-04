@@ -41,7 +41,7 @@ import { Command } from "commander";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import execa from "execa";
-import { replaceProgramVersion } from "./replaceProgramVersion";
+import { replaceProgramVersion } from "./replaceProgramVersion.js";
 var program = new Command();
 program.version("3.0.0");
 program

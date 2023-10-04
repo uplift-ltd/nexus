@@ -4,7 +4,7 @@ title: use-on-page-scroll
 
 ## Installation
 
-    yarn add @uplift-ltd/use-on-page-scroll
+    npm i --save @uplift-ltd/use-on-page-scroll
 
 ## API
 

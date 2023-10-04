@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/sentry-react-native
+    npm i --save @uplift-ltd/sentry-react-native
 
 ## API
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, NativeSafeAreaViewProps } from "react-native-safe-area-context";
-import { SCREEN_EDGES } from "./constants";
+import { SCREEN_EDGES } from "./constants.js";
 
 export type ScreenSafeAreaViewProps = NativeSafeAreaViewProps;
 

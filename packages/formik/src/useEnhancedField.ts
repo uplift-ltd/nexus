@@ -1,5 +1,5 @@
 import { useField, FieldHookConfig, FieldHelperProps, FieldMetaProps } from "formik";
-import { EnhancedFieldInputProps } from "./types";
+import { EnhancedFieldInputProps } from "./types.js";
 
 type EnhancedFieldHookConfig<T> = FieldHookConfig<T> & { hideErrorsOnFocus?: boolean };
 

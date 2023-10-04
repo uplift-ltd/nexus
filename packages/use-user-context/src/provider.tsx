@@ -1,8 +1,8 @@
 import { DocumentNode, useEnhancedQuery } from "@uplift-ltd/apollo";
 import { setUser } from "@uplift-ltd/sentry";
 import React, { useEffect, useMemo } from "react";
-import { UserContext } from "./context";
-import { CurrentUserShape } from "./types";
+import { UserContext } from "./context.js";
+import { CurrentUserShape } from "./types.js";
 
 interface CurrentUserQueryShape {
   isAuthenticated: boolean;

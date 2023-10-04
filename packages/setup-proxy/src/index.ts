@@ -1,3 +1,3 @@
-export * from "./constants";
-export * from "./setupProxy";
-export * from "./setupRewrites";
+export * from "./constants.js";
+export * from "./setupProxy.js";
+export * from "./setupRewrites.js";

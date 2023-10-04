@@ -1,10 +1,10 @@
 import { StackNavigationOptions, StackScreenProps } from "@react-navigation/stack";
 import React, { useCallback } from "react";
 import { StyleSheet, View } from "react-native";
-import { AddToCalendar } from "./AddToCalendar";
-import { AddToCalendarHeader } from "./AddToCalendarHeader";
-import { AddToCalendarScreens } from "./screens";
-import { AddToCalendarNavigatorParamList } from "./types";
+import { AddToCalendar } from "./AddToCalendar.js";
+import { AddToCalendarHeader } from "./AddToCalendarHeader.js";
+import { AddToCalendarScreens } from "./screens.js";
+import { AddToCalendarNavigatorParamList } from "./types.js";
 
 export type AddToCalendarScreenProps = StackScreenProps<
   AddToCalendarNavigatorParamList,

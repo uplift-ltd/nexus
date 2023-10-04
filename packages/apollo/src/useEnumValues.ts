@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { EnumDataDocument } from "./__generated__/EnumData";
-import { useEnhancedQuery } from "./hooks";
+import { EnumDataDocument } from "./__generated__/EnumData.js";
+import { useEnhancedQuery } from "./hooks.js";
 
 export type EnumDataMap<T> = {
   [K in keyof T]: string;

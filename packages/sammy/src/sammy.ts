@@ -7,7 +7,7 @@ import { Command } from "commander";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import execa from "execa";
-import { getAppId, getAppspecName, loadConfig } from "./config";
+import { getAppId, getAppspecName, loadConfig } from "./config.js";
 
 const program = new Command();
 

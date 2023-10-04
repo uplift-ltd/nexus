@@ -59,7 +59,7 @@ Additionally you may need to alias `@apollo/client` _and_ its own `react` versio
     cd node_modules/@apollo/client
     npm link ../../../myapp/node_modules/react
 
-Don't forget to run `yarn build` after every change.
+Don't forget to run `npm run build` after every change.
 
 You might have to wipe `node_modules/.cache` in your app if you ran into duplicate react issue.
 

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useCalendars } from "./useCalendars";
+import { useCalendars } from "./useCalendars.js";
 
 const reportAndDisplayError = (err: Error) => {
   captureException(err);

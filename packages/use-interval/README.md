@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/use-interval
+    npm i --save @uplift-ltd/use-interval
 
 ## API
 

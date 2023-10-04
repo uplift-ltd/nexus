@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/ts-helpers
+    npm i --save @uplift-ltd/ts-helpers
 
 ## API
 

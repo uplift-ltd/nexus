@@ -1,4 +1,4 @@
-import { trim } from "./pointFree";
+import { trim } from "./pointFree.js";
 
 const isStringOrNumber = (variableToCheck: unknown): variableToCheck is string | number => {
   return (

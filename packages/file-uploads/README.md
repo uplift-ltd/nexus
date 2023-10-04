@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/file-uploads
+    npm i --save @uplift-ltd/file-uploads
 
 ## API
 

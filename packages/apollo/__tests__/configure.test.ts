@@ -1,4 +1,4 @@
-import { initClient } from "../src/configure";
+import { initClient } from "../src/configure.js";
 
 describe("configure apollo", () => {
   it("should always return new client not in browser", () => {

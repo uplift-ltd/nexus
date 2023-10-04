@@ -1,4 +1,4 @@
-import { ArrayElement } from "./arrayElement";
+import { ArrayElement } from "./arrayElement.js";
 
 type NullableRelayConnection<N> = {
   edges?: NullableEdge<N>[] | null;

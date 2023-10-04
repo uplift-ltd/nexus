@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/money
+    npm i --save @uplift-ltd/money
 
 ## API
 

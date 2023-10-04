@@ -1,11 +1,11 @@
 import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
 import React from "react";
-import { Home } from "./Home";
-import { Info } from "./Info";
-import { MagicLogin } from "./MagicLogin";
-import { PushToken } from "./PushToken";
-import { DebugScreens } from "./screens";
-import { DebugNavigatorParamList } from "./types";
+import { Home } from "./Home.js";
+import { Info } from "./Info.js";
+import { MagicLogin } from "./MagicLogin.js";
+import { PushToken } from "./PushToken.js";
+import { DebugScreens } from "./screens.js";
+import { DebugNavigatorParamList } from "./types.js";
 
 export const DebugStackNavigator = createStackNavigator<DebugNavigatorParamList>();
 

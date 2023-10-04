@@ -1,1 +1,1 @@
-export { useOnPageScroll } from "./useOnPageScroll";
+export { useOnPageScroll } from "./useOnPageScroll.js";

@@ -4,7 +4,7 @@ title: use-debounce
 
 ## Installation
 
-    yarn add @uplift-ltd/use-debounce
+    npm i --save @uplift-ltd/use-debounce
 
 ## API
 

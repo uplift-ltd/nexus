@@ -3,12 +3,12 @@ export {
   useSyncedInterval,
   useSyncedIntervalCallback,
   useSyncedIntervalDelay,
-} from "./useSyncedInterval";
+} from "./useSyncedInterval.js";
 export type {
   SyncedIntervalCallback,
   SyncedIntervalDelay,
   SyncedIntervalChannel,
   RemoveSyncedIntervalCallback,
   RemoveSyncedIntervalDelay,
-} from "./useSyncedInterval";
-export { useInterval } from "./useInterval";
+} from "./useSyncedInterval.js";
+export { useInterval } from "./useInterval.js";

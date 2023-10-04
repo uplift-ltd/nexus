@@ -6,7 +6,7 @@ import React from "react";
 import { Alert, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useShareIcs } from "./useShareIcs";
+import { useShareIcs } from "./useShareIcs.js";
 
 export interface AddToCalendarHeaderProps {
   event: Calendar.Event;

@@ -10,9 +10,9 @@ import {
   BrowserClient,
 } from "@sentry/browser";
 import { BrowserClientOptions } from "@sentry/browser/types/client";
-import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants";
+import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants.js";
 
-export * from "./constants";
+export * from "./constants.js";
 export * from "@sentry/browser";
 
 export function init(options?: BrowserClientOptions) {

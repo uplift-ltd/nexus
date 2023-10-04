@@ -4,7 +4,7 @@ title: react-native-debug
 
 ## Installation
 
-    yarn add @uplift-ltd/react-native-debug
+    npm i --save @uplift-ltd/react-native-debug
 
 ## API
 

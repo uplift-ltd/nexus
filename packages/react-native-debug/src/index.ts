@@ -1,3 +1,3 @@
-export * from "./Navigator";
-export type { DebugNavigatorParamList } from "./types";
-export { DebugScreens } from "./screens";
+export * from "./Navigator.js";
+export type { DebugNavigatorParamList } from "./types.js";
+export { DebugScreens } from "./screens.js";

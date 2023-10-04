@@ -1,7 +1,7 @@
 import { useKeyboardVisible, UseKeyboardVisibleOptions } from "@uplift-ltd/use-keyboard-visible";
 import React from "react";
-import { ScreenSafeAreaView, ScreenSafeAreaViewProps } from "./ScreenSafeAreaView";
-import { KEYBOARD_SCREEN_EDGES } from "./constants";
+import { ScreenSafeAreaView, ScreenSafeAreaViewProps } from "./ScreenSafeAreaView.js";
+import { KEYBOARD_SCREEN_EDGES } from "./constants.js";
 
 type KeyboardScreenSafeAreaViewProps = ScreenSafeAreaViewProps &
   UseKeyboardVisibleOptions & {

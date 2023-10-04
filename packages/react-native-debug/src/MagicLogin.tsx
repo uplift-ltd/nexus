@@ -6,9 +6,9 @@ import { getStringAsync } from "expo-clipboard";
 import { reloadAsync } from "expo-updates";
 import React from "react";
 import { Alert, Text, StyleSheet } from "react-native";
-import { Button } from "./common";
-import { DebugScreens } from "./screens";
-import { DebugNavigatorParamList } from "./types";
+import { Button } from "./common.js";
+import { DebugScreens } from "./screens.js";
+import { DebugNavigatorParamList } from "./types.js";
 
 const getClipboardValue = async () => {
   let value = "";

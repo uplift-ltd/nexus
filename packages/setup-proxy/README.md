@@ -2,7 +2,7 @@
 
 ## Installation
 
-    yarn add @uplift-ltd/setup-proxy
+    npm i --save @uplift-ltd/setup-proxy
 
 ## API
 

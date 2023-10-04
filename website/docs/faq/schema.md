@@ -9,7 +9,7 @@ you want to run:
 
 And regenerate the schema:
 
-    yarn gql-schema
+    npm run gql-schema
 
 However this could be annoying when switching branches a lot. You might want to check out a known
 good version and push that up.
