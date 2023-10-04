@@ -9,7 +9,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  plugins: ["@typescript-eslint", "import"],
+  plugins: ["@typescript-eslint", "import", "require-extensions"],
   extends: [
     "airbnb",
     "react-app",
@@ -18,6 +18,7 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
+    "plugin:require-extensions/recommended",
   ],
   rules: {
     "no-console": ["error", { allow: ["info", "warn", "error"] }],
