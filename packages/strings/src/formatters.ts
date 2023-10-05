@@ -1,12 +1,12 @@
 import { trim } from "./pointFree.js";
 
 export type MakePluralizerParams = {
-  singular: string;
-  plural?: string;
   includeCount?: boolean;
+  plural?: string;
+  singular: string;
 };
 export const makePluralizer =
-  ({ singular, plural: providedPlural, includeCount = true }: MakePluralizerParams) =>
+  ({ includeCount = true, plural: providedPlural, singular }: MakePluralizerParams) =>
   (count: number) => {
     const plural = providedPlural ?? `${singular}s`;
     const word = count === 1 ? singular : plural;
@@ -18,17 +18,17 @@ export const makePluralizer =
  * @deprecated: use makePluralizer instead
  */
 export const pluralize = (singular: string, plural: string) =>
-  makePluralizer({ singular, plural, includeCount: true });
+  makePluralizer({ includeCount: true, plural, singular });
 
 export const formatUsCurrency = (dollars: number, hideCents = false) => {
   const hasCents = dollars % 1 !== 0;
   const digits = hasCents && hideCents ? 0 : 2;
 
   const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
     currency: "USD",
-    minimumFractionDigits: digits,
     maximumFractionDigits: digits,
+    minimumFractionDigits: digits,
+    style: "currency",
   });
 
   return formatter.format(dollars);

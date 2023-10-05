@@ -2,15 +2,15 @@ import { FormikHelpers } from "formik";
 
 export interface FormikStatus {
   allowResubmit?: boolean;
-  formSuccess?: string | null;
-  formError?: string | Error | null;
-  sentryEventId?: string | null;
+  formError?: Error | null | string;
+  formSuccess?: null | string;
+  sentryEventId?: null | string;
 }
 
 export const DEFAULT_INITIAL_STATUS: FormikStatus = {
   allowResubmit: true,
-  formSuccess: null,
   formError: null,
+  formSuccess: null,
   sentryEventId: null,
 };
 
@@ -21,7 +21,7 @@ export const getEnhancedSetStatus =
 
 export const getSetFormSuccess =
   (setStatus: FormikHelpers<unknown>["setStatus"]) => (formSuccess: FormikStatus["formSuccess"]) =>
-    setStatus({ formSuccess, formError: null });
+    setStatus({ formError: null, formSuccess });
 
 export const getSetFormError =
   (setStatus: FormikHelpers<unknown>["setStatus"]) =>
@@ -39,11 +39,11 @@ export const getSetSentryEventId =
     setStatus({ sentryEventId });
 
 export interface StatusHelpers {
-  setStatus: (status: FormikStatus) => void;
-  setFormSuccess: (formSuccess: FormikStatus["formSuccess"]) => void;
   setFormError: (
     formError: FormikStatus["formError"],
     sentryEventId?: FormikStatus["sentryEventId"]
   ) => void;
+  setFormSuccess: (formSuccess: FormikStatus["formSuccess"]) => void;
   setSentryEventId: (sentryEventId: FormikStatus["sentryEventId"]) => void;
+  setStatus: (status: FormikStatus) => void;
 }

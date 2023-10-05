@@ -8,9 +8,9 @@ export type DebugNavigatorParamList = {
   [DebugScreens.DEBUG_HOME]: undefined;
   [DebugScreens.DEBUG_INFO]: undefined;
   [DebugScreens.DEBUG_MAGIC_LOGIN]:
-    | undefined
     | {
         verifyScreen?: string;
-      };
+      }
+    | undefined;
   [DebugScreens.DEBUG_PUSH_TOKEN]: undefined;
 };

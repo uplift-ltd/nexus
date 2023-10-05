@@ -3,11 +3,11 @@ import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants.js"
 
 if (SENTRY_DSN) {
   init({
+    debug: typeof __DEV__ !== "undefined",
     dsn: SENTRY_DSN,
-    normalizeDepth: NORMALIZE_DEPTH,
     enableInExpoDevelopment: typeof __DEV__ !== "undefined",
     environment: SENTRY_ENVIRONMENT,
-    debug: typeof __DEV__ !== "undefined",
+    normalizeDepth: NORMALIZE_DEPTH,
   });
 }
 

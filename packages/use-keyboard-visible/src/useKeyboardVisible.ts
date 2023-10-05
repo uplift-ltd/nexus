@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { Keyboard, Platform } from "react-native";
 
 export enum KeyboardShowEvents {
-  keyboardWillShow = "keyboardWillShow",
   keyboardDidShow = "keyboardDidShow",
+  keyboardWillShow = "keyboardWillShow",
 }
 
 export enum KeyboardHideEvents {
-  keyboardWillHide = "keyboardWillHide",
   keyboardDidHide = "keyboardDidHide",
+  keyboardWillHide = "keyboardWillHide",
 }
 
 export interface UseKeyboardVisibleOptions {
-  showEvent?: KeyboardShowEvents;
   hideEvent?: KeyboardHideEvents;
+  showEvent?: KeyboardShowEvents;
 }
 
 // Android does not support "will" events, but it's likely better UX for iOS
@@ -24,8 +24,8 @@ const defaultHideEvent =
   Platform.OS === "ios" ? KeyboardHideEvents.keyboardWillHide : KeyboardHideEvents.keyboardDidHide;
 
 export function useKeyboardVisible({
-  showEvent = defaultShowEvent,
   hideEvent = defaultHideEvent,
+  showEvent = defaultShowEvent,
 }: UseKeyboardVisibleOptions = {}) {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 

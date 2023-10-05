@@ -1,5 +1,5 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import { GITHUB_SHA, GITHUB_RUN_NUMBER, GRAPHQL_HOST } from "@uplift-ltd/constants";
+import { GITHUB_RUN_NUMBER, GITHUB_SHA, GRAPHQL_HOST } from "@uplift-ltd/constants";
 import Constants from "expo-constants";
 import { createURL } from "expo-linking";
 import { fetchUpdateAsync, releaseChannel, reloadAsync, updateId } from "expo-updates";
@@ -22,12 +22,12 @@ export function Info(_props: InfoProps) {
       <InfoItem label="GQL Host" value={GRAPHQL_HOST} />
       <InfoItem label="Experience Id" value={Constants.manifest?.id} />
       <InfoItem
-        label="Identifier"
         value={
           Platform.OS === "ios"
             ? Constants.manifest?.ios?.bundleIdentifier
             : Constants.manifest?.android?.package
         }
+        label="Identifier"
       />
       <InfoItem label="Release Channel" value={releaseChannel} />
       <InfoItem label="Slug" value={Constants.manifest?.slug} />
@@ -38,11 +38,11 @@ export function Info(_props: InfoProps) {
       )}
       <InfoItem label="Update ID" value={updateId} />
       <Button
-        style={styles.reload}
         onPress={async () => {
           await fetchUpdateAsync();
           await reloadAsync();
         }}
+        style={styles.reload}
       >
         Update & Reload
       </Button>

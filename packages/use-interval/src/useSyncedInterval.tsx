@@ -8,7 +8,7 @@ export type SyncedIntervalCallback = () => void;
 type SyncedIntervalCallbacks = Record<SyncedIntervalId, SyncedIntervalCallback>;
 export type RemoveSyncedIntervalCallback = () => void;
 
-export type SyncedIntervalDelay = number | null;
+export type SyncedIntervalDelay = null | number;
 type SyncedIntervalDelays = Record<SyncedIntervalId, SyncedIntervalDelay>;
 export type RemoveSyncedIntervalDelay = () => void;
 
@@ -72,7 +72,7 @@ const SyncedIntervalContext = React.createContext<IntervalContextType>({
 
 interface SyncedIntervalProviderProps {
   children: React.ReactNode | React.ReactNode[];
-  defaultDelay?: number | null;
+  defaultDelay?: null | number;
 }
 
 export function SyncedIntervalProvider({

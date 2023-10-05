@@ -7,10 +7,10 @@ export function defaultBatchKey(
 ) {
   const context = operation.getContext();
   const contextConfig = {
-    http: context.http,
-    options: context.fetchOptions,
     credentials: context.credentials,
     headers: context.headers,
+    http: context.http,
+    options: context.fetchOptions,
   };
   return selectURI(operation, fallbackURI) + JSON.stringify(contextConfig);
 }

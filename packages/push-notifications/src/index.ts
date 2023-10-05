@@ -1,7 +1,7 @@
 export type {
   Notification,
-  NotificationResponse,
   NotificationPermissionsStatus,
+  NotificationResponse,
 } from "expo-notifications";
 
 export * from "./NotificationAlertPrompt.js";

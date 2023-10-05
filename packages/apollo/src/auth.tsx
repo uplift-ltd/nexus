@@ -77,24 +77,24 @@ import React, { useContext, useMemo, useReducer } from "react";
 // ```
 
 export const AuthContext = React.createContext<AuthContextShape>({
-  setToken: () => null,
   removeToken: () => null,
+  setToken: () => null,
   token: undefined,
 });
 
 export interface AuthContextShape {
-  setToken: (token: string) => void;
   removeToken: () => void;
-  token?: string | null;
+  setToken: (token: string) => void;
+  token?: null | string;
 }
 
 interface AuthState {
-  token: string | null;
+  token: null | string;
 }
 
-type AuthToken = string | null;
+type AuthToken = null | string;
 
-type AuthAction = { type: "SET_TOKEN"; token: AuthToken } | { type: "REMOVE_TOKEN" };
+type AuthAction = { token: AuthToken; type: "SET_TOKEN" } | { type: "REMOVE_TOKEN" };
 
 const reducer = (prevState: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
@@ -115,18 +115,18 @@ const reducer = (prevState: AuthState, action: AuthAction): AuthState => {
 
 interface AuthProviderProps {
   children: React.ReactNode | React.ReactNode[];
-  setToken: (token: string) => void | Promise<void>;
-  removeToken: () => void | Promise<void>;
-  onSetToken: (token: string | null) => void | Promise<void>;
-  onRemoveToken: () => void | Promise<void>;
+  onRemoveToken: () => Promise<void> | void;
+  onSetToken: (token: null | string) => Promise<void> | void;
+  removeToken: () => Promise<void> | void;
+  setToken: (token: string) => Promise<void> | void;
 }
 
 export function AuthProvider({
   children,
-  setToken,
-  removeToken,
-  onSetToken,
   onRemoveToken,
+  onSetToken,
+  removeToken,
+  setToken,
 }: AuthProviderProps) {
   const [state, dispatch] = useReducer(reducer, {
     token: null,
@@ -134,15 +134,15 @@ export function AuthProvider({
 
   const value = useMemo(
     () => ({
-      setToken: async (token: string) => {
-        await setToken(token);
-        onSetToken && (await onSetToken(token));
-        dispatch({ type: "SET_TOKEN", token });
-      },
       removeToken: async () => {
         await removeToken();
         onRemoveToken && (await onRemoveToken());
         dispatch({ type: "REMOVE_TOKEN" });
+      },
+      setToken: async (token: string) => {
+        await setToken(token);
+        onSetToken && (await onSetToken(token));
+        dispatch({ token, type: "SET_TOKEN" });
       },
       token: state.token,
     }),

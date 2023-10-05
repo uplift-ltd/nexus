@@ -1,14 +1,14 @@
 import { RefObject } from "react";
 import { PermissionStatus, Subscription } from "./types.js";
-import { useNotificationHandler, UseNotificationHandlerOptions } from "./useNotificationHandler.js";
+import { UseNotificationHandlerOptions, useNotificationHandler } from "./useNotificationHandler.js";
 import {
-  useNotificationListener,
   UseNotificationListenerOptions,
+  useNotificationListener,
 } from "./useNotificationListener.js";
 import {
-  useNotificationPermission,
-  UseNotificationPermissionOptions,
   RegisterPushNotifications,
+  UseNotificationPermissionOptions,
+  useNotificationPermission,
 } from "./useNotificationPermission.js";
 
 export type UsePushNotificationsOptions = UseNotificationHandlerOptions &
@@ -16,33 +16,33 @@ export type UsePushNotificationsOptions = UseNotificationHandlerOptions &
   UseNotificationPermissionOptions;
 
 export type UsePushNotificationsResult = {
-  permissionStatus: PermissionStatus | null;
-  setPermissionStatus: (status: PermissionStatus) => void;
   notificationReceivedListener: RefObject<Subscription | undefined>;
   notificationResponseReceivedListener: RefObject<Subscription | undefined>;
+  permissionStatus: PermissionStatus | null;
   registerPushNotifications: RegisterPushNotifications;
+  setPermissionStatus: (status: PermissionStatus) => void;
 };
 
 export function usePushNotifications({
   handler,
   onReceived,
+  onRegisterPushNotifications,
   onResponseReceived,
   registerForPushNotifications,
-  onRegisterPushNotifications,
 }: UsePushNotificationsOptions): UsePushNotificationsResult {
   useNotificationHandler({ handler });
 
   const { notificationReceivedListener, notificationResponseReceivedListener } =
     useNotificationListener({ onReceived, onResponseReceived });
 
-  const { permissionStatus, setPermissionStatus, registerPushNotifications } =
-    useNotificationPermission({ registerForPushNotifications, onRegisterPushNotifications });
+  const { permissionStatus, registerPushNotifications, setPermissionStatus } =
+    useNotificationPermission({ onRegisterPushNotifications, registerForPushNotifications });
 
   return {
     notificationReceivedListener,
     notificationResponseReceivedListener,
     permissionStatus,
-    setPermissionStatus,
     registerPushNotifications,
+    setPermissionStatus,
   };
 }

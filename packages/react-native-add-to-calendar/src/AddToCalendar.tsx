@@ -20,7 +20,7 @@ export interface AddToCalendarProps {
 }
 
 export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCalendarProps) {
-  const { writeableCalendars, primaryCalendar, addEventToCalendar } = useCalendars({
+  const { addEventToCalendar, primaryCalendar, writeableCalendars } = useCalendars({
     onPermissionsError: reportAndDisplayError,
   });
 
@@ -33,11 +33,11 @@ export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCale
 
   const dates = [event.startDate, event.endDate]
     .filter(Boolean)
-    .map((d) => new Date(d as string | Date));
+    .map((d) => new Date(d as Date | string));
 
   return (
     <View style={styles.root}>
-      <ScrollView style={styles.body} contentContainerStyle={styles.bodyContentContainer}>
+      <ScrollView contentContainerStyle={styles.bodyContentContainer} style={styles.body}>
         <View style={styles.eventMeta}>
           <Text style={styles.eventTitle}>{event.title}</Text>
           <Text style={styles.eventDates}>
@@ -54,17 +54,17 @@ export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCale
               style={[styles.calendar, i === writeableCalendars.length - 1 && styles.calendarLast]}
             >
               <TouchableOpacity
-                style={styles.calendarBody}
-                onPress={() => setSelectedCalendar(calendar)}
                 activeOpacity={0.7}
+                onPress={() => setSelectedCalendar(calendar)}
+                style={styles.calendarBody}
               >
                 <View style={[styles.calendarColor, { backgroundColor: calendar.color }]} />
                 <Text style={styles.calendarTitle}>{calendar.title}</Text>
                 <MaterialIcons
-                  style={styles.calendarSelectedIcon}
                   color={calendar === selectedCalendar ? "green" : "transparent"}
                   name="check"
                   size={24}
+                  style={styles.calendarSelectedIcon}
                 />
               </TouchableOpacity>
             </View>
@@ -72,8 +72,6 @@ export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCale
         </View>
       </ScrollView>
       <TouchableOpacity
-        style={styles.button}
-        disabled={!selectedCalendar}
         onPress={async () => {
           try {
             if (!selectedCalendar) {
@@ -87,6 +85,8 @@ export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCale
             reportAndDisplayError(ensureError(err));
           }
         }}
+        disabled={!selectedCalendar}
+        style={styles.button}
       >
         <SafeAreaView edges={["bottom", "left", "right"]}>
           <Text style={styles.buttonText}>Add to Calendar</Text>
@@ -97,23 +97,45 @@ export function AddToCalendar({ event, onEventAdded, onRequestClose }: AddToCale
 }
 
 const styles = StyleSheet.create({
-  root: {
-    backgroundColor: "white",
-    flex: 1,
-  },
-  middle: {
-    flex: 1,
-  },
+  body: {},
   bodyContentContainer: {
     flex: 1,
   },
-  body: {},
-  eventMeta: {
-    padding: 16,
+  button: {
+    backgroundColor: "#1a202c",
+    paddingHorizontal: 16,
+    paddingVertical: 16,
   },
-  eventTitle: {
-    fontSize: 24,
-    marginBottom: 10,
+  buttonText: {
+    color: "white",
+    textAlign: "center",
+  },
+  calendar: {
+    borderTopColor: "lightgray",
+    borderTopWidth: 1,
+  },
+  calendarBody: {
+    alignItems: "center",
+    flexDirection: "row",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  calendarColor: {
+    borderRadius: 100,
+    height: 12,
+    marginRight: 10,
+    width: 12,
+  },
+  calendarLast: {
+    borderBottomColor: "lightgray",
+    borderBottomWidth: 1,
+  },
+  calendarSelectedIcon: {
+    marginLeft: "auto",
+  },
+  calendarTitle: {},
+  calendars: {
+    marginTop: 20,
   },
   eventDates: {
     color: "gray",
@@ -123,47 +145,25 @@ const styles = StyleSheet.create({
     color: "gray",
     marginBottom: 10,
   },
-  eventUrl: {
-    color: "gray",
-    marginBottom: 10,
+  eventMeta: {
+    padding: 16,
   },
   eventNotes: {
     color: "gray",
   },
-  calendars: {
-    marginTop: 20,
+  eventTitle: {
+    fontSize: 24,
+    marginBottom: 10,
   },
-  calendar: {
-    borderTopWidth: 1,
-    borderTopColor: "lightgray",
+  eventUrl: {
+    color: "gray",
+    marginBottom: 10,
   },
-  calendarLast: {
-    borderBottomWidth: 1,
-    borderBottomColor: "lightgray",
+  middle: {
+    flex: 1,
   },
-  calendarBody: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-  calendarColor: {
-    borderRadius: 100,
-    height: 12,
-    width: 12,
-    marginRight: 10,
-  },
-  calendarTitle: {},
-  calendarSelectedIcon: {
-    marginLeft: "auto",
-  },
-  button: {
-    backgroundColor: "#1a202c",
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
+  root: {
+    backgroundColor: "white",
+    flex: 1,
   },
 });

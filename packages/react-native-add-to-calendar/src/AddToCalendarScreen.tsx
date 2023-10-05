@@ -24,8 +24,8 @@ export function AddToCalendarScreen({ navigation, route }: AddToCalendarScreenPr
 }
 
 export const AddToCalendarScreenOptions: StackNavigationOptions = {
-  title: "Add Event",
   headerShown: false,
+  title: "Add Event",
 };
 
 const styles = StyleSheet.create({

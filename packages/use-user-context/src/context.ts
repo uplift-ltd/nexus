@@ -4,18 +4,18 @@ import { CurrentUserShape } from "./types.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface UserContextShape<CurrentUser extends CurrentUserShape = any> {
-  loading: boolean;
+  currentUser: CurrentUser | null;
   error?: ApolloError;
   isAuthenticated: boolean;
-  currentUser: CurrentUser | null;
+  loading: boolean;
   refetch(): Promise<ApolloQueryResult<CurrentUser>>;
   refetching: boolean;
 }
 
 export const UserContext = createContext<UserContextShape>({
-  loading: true,
-  isAuthenticated: false,
   currentUser: null,
+  isAuthenticated: false,
+  loading: true,
   refetch: async () => {
     return {
       data: null,

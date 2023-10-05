@@ -7,7 +7,7 @@ export type EnumDataMap<T> = {
 };
 
 export const useEnumValues = <T>(enumName: string): EnumDataMap<T> => {
-  const { data, loading, error } = useEnhancedQuery(EnumDataDocument, {
+  const { data, error, loading } = useEnhancedQuery(EnumDataDocument, {
     variables: { enumName },
   });
 

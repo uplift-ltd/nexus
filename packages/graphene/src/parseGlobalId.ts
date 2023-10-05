@@ -1,4 +1,4 @@
-export function parseGlobalId(globalId: string): { name: string; id: string } {
+export function parseGlobalId(globalId: string): { id: string; name: string } {
   const [name, id] = atob(globalId).split(/:(.+)/);
-  return { name, id };
+  return { id, name };
 }

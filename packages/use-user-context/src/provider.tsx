@@ -5,8 +5,8 @@ import { UserContext } from "./context.js";
 import { CurrentUserShape } from "./types.js";
 
 interface CurrentUserQueryShape {
-  isAuthenticated: boolean;
   currentUser: CurrentUserShape | null;
+  isAuthenticated: boolean;
 }
 
 interface UserContextProviderProps {
@@ -20,7 +20,7 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
   currentUserQuery,
   skip = false,
 }: UserContextProviderProps) {
-  const { loading, error, data, refetch, refetching } = useEnhancedQuery<CurrentUserQueryResult>(
+  const { data, error, loading, refetch, refetching } = useEnhancedQuery<CurrentUserQueryResult>(
     currentUserQuery,
     { skip },
     { auth: false }
@@ -32,8 +32,8 @@ export function UserContextProvider<CurrentUserQueryResult extends CurrentUserQu
   useEffect(() => {
     if (currentUser) {
       setUser({
-        id: currentUser.id,
         email: currentUser.email,
+        id: currentUser.id,
       });
     }
   }, [currentUser]);

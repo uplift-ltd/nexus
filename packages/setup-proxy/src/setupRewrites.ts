@@ -1,6 +1,6 @@
 import { DEFAULT_PROXY_PATHS, DEFAULT_TARGET } from "./constants.js";
 
-export function setupRewrites({ target = DEFAULT_TARGET, proxyPaths = DEFAULT_PROXY_PATHS } = {}) {
+export function setupRewrites({ proxyPaths = DEFAULT_PROXY_PATHS, target = DEFAULT_TARGET } = {}) {
   return proxyPaths
     .map((path) => {
       const source = path;
@@ -15,8 +15,8 @@ export function setupRewrites({ target = DEFAULT_TARGET, proxyPaths = DEFAULT_PR
         destinationWild += "/:path*";
       }
       return [
-        { source, destination },
-        { source: sourceWild, destination: destinationWild },
+        { destination, source },
+        { destination: destinationWild, source: sourceWild },
       ];
     })
     .flat();

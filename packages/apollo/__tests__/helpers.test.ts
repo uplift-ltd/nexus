@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { getQueryName, getQueryBody } from "../src/helpers.js";
+import { getQueryBody, getQueryName } from "../src/helpers.js";
 
 const CURRENT_USER_QUERY = gql`
   query CurrentUser {

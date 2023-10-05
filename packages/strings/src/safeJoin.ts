@@ -1,6 +1,6 @@
 import { trim } from "./pointFree.js";
 
-const isStringOrNumber = (variableToCheck: unknown): variableToCheck is string | number => {
+const isStringOrNumber = (variableToCheck: unknown): variableToCheck is number | string => {
   return (
     (typeof variableToCheck === "string" && variableToCheck.length > 0) ||
     typeof variableToCheck === "number"

@@ -5,7 +5,7 @@ import { ensureError } from "@uplift-ltd/ts-helpers";
 import { getStringAsync } from "expo-clipboard";
 import { reloadAsync } from "expo-updates";
 import React from "react";
-import { Alert, Text, StyleSheet } from "react-native";
+import { Alert, StyleSheet, Text } from "react-native";
 import { Button } from "./common.js";
 import { DebugScreens } from "./screens.js";
 import { DebugNavigatorParamList } from "./types.js";

@@ -1,4 +1,4 @@
-import { createMakeUrl, makeUrl, makeQueryString } from "../src/urls.js";
+import { createMakeUrl, makeQueryString, makeUrl } from "../src/urls.js";
 
 const EXPRESS_URL_TEST_CASES = [
   ["/test-url/:tokenId", { tokenId: "654" }, undefined, undefined, "/test-url/654"],
@@ -117,7 +117,7 @@ const EXPRESS_URL_TEST_CASES = [
   [
     "/test-url/:tokenId/:userId/",
     { tokenId: "VGFza2xpc3Q6OTI=", userId: "ABC123" },
-    { msg: "Hello", null: null, id: "VGFza2xpc3Q6OTI=" },
+    { id: "VGFza2xpc3Q6OTI=", msg: "Hello", null: null },
     { trailingSlash: "remove" },
     "/test-url/VGFza2xpc3Q6OTI=/ABC123?msg=Hello&id=VGFza2xpc3Q6OTI%3D",
   ],
@@ -198,7 +198,7 @@ test.each([
     "/test-url/[tokenId]/",
     { tokenId: "654" },
     undefined,
-    { trailingSlash: "remove", dynamicUrlStyle: "nextjs" },
+    { dynamicUrlStyle: "nextjs", trailingSlash: "remove" },
     "/test-url/654",
   ],
 ])("createMakeUrl with trailing slash option", (url, tokens, params, options, expected) => {
@@ -234,8 +234,8 @@ test.each([
 test("Test absolute URLs", () => {
   const makeAbsoluteUrl = createMakeUrl({
     absoluteUrl: {
-      https: true,
       host: "test.uplift.ltd",
+      https: true,
     },
   });
 
@@ -266,8 +266,8 @@ test("Test absolute URLs", () => {
 
   const makeAbsoluteUrlWithFunctions = createMakeUrl({
     absoluteUrl: {
-      https: (url) => url.length > 25,
       host: (url) => `url-length-${url.length}.uplift.ltd`,
+      https: (url) => url.length > 25,
     },
   });
 
@@ -280,8 +280,8 @@ test("Test absolute URLs", () => {
 
   const makeAbsoluteUrlWithFunctionsAndSlash = createMakeUrl({
     absoluteUrl: {
-      https: (url) => url.length > 25,
       host: (url) => `url-length-${url.length}.uplift.ltd`,
+      https: (url) => url.length > 25,
     },
     trailingSlash: "ensure",
   });
@@ -310,12 +310,12 @@ test("Test absolute URLs", () => {
 });
 
 test.each([
-  [{ msg: "Hello", null: null, undefined, empty: "" }, "msg=Hello"],
+  [{ empty: "", msg: "Hello", null: null, undefined }, "msg=Hello"],
   [{}, ""],
   [{ terms: ["hello", "world"].join(",") }, "terms=hello%2Cworld"],
-  [{ userId: 1354, terms: ["hello", "world"].join(",") }, "userId=1354&terms=hello%2Cworld"],
+  [{ terms: ["hello", "world"].join(","), userId: 1354 }, "userId=1354&terms=hello%2Cworld"],
   [{ term: ["hello", "world"] }, "term=hello&term=world"],
-  [{ userId: 1354, term: ["hello", "world"] }, "userId=1354&term=hello&term=world"],
+  [{ term: ["hello", "world"], userId: 1354 }, "userId=1354&term=hello&term=world"],
 ])("makeQueryString (%s, %s)", (params, expected) => {
   expect(makeQueryString(params)).toBe(expected);
 });

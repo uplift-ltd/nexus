@@ -47,7 +47,7 @@ export type UrlTokens<T extends string> = T extends
 export type UrlTokensMap<Url extends string, K extends string = UrlTokens<Url>> = [K] extends [never]
   ? never
   : [K] extends [string]
-  ? { [P in K]: string | number }
+  ? { [P in K]: number | string }
   : never;
 
 /**
@@ -68,11 +68,11 @@ export type MultipleUrlsTokensMap<Urls extends string> = Urls extends infer U
     : never
   : never;
 
-type QueryStringParameterValue = string | number;
+type QueryStringParameterValue = number | string;
 
 export type QueryStringParametersMap = Record<
   string,
-  QueryStringParameterValue[] | QueryStringParameterValue | null | undefined
+  QueryStringParameterValue | QueryStringParameterValue[] | null | undefined
 >;
 
 // Used for express style URLs
@@ -90,7 +90,7 @@ export const getNextJsTokenForParamName = (paramName: string) => `\\[${paramName
  */
 export const replaceTokens = <
   UrlTemplate extends string,
-  TokensMap extends Record<string, string | number> = UrlTokensMap<UrlTemplate>
+  TokensMap extends Record<string, number | string> = UrlTokensMap<UrlTemplate>
 >(
   urlTemplate: UrlTemplate,
   tokens: TokensMap,
@@ -175,7 +175,7 @@ function ensureHostOnly(url: string) {
  *
  */
 export function makeQueryString<Params extends QueryStringParametersMap = QueryStringParametersMap>(
-  params: Params | undefined | null
+  params: Params | null | undefined
 ) {
   const searchParams = Object.entries(params ?? {}).reduce((qs, [key, value]) => {
     // skip falsey/empty values
@@ -197,17 +197,17 @@ export function makeQueryString<Params extends QueryStringParametersMap = QueryS
 
 export type MakeUrlAbsoluteUrlOptions = {
   /**
+   * What host should be used for the absolute URL? By default
+   * we will try to determine the host based on window.location
+   */
+  host?: ((url: string) => string) | string;
+
+  /**
    * If we're constructing absolute urls, this controls whether
    * the protocol will be https or http. Can define as a constant or
    * by passing a callback predicate
    */
-  https?: boolean | ((url: string, host: string) => boolean);
-
-  /**
-   * What host should be used for the absolute URL? By default
-   * we will try to determine the host based on window.location
-   */
-  host?: string | ((url: string) => string);
+  https?: ((url: string, host: string) => boolean) | boolean;
 };
 
 export type MakeUrlOptions = {
@@ -215,7 +215,7 @@ export type MakeUrlOptions = {
    *
    * passing `true` will enable absoluteUrls with default config
    */
-  absoluteUrl?: boolean | MakeUrlAbsoluteUrlOptions;
+  absoluteUrl?: MakeUrlAbsoluteUrlOptions | boolean;
 
   /**
    * Customize pathname replacement, defaults to express style params (:paramName)
@@ -228,12 +228,12 @@ export type MakeUrlOptions = {
    * - "ensure" will append a trailing slash if the slash is not already present
    * - "remove" will remove a trailing slash if it exists
    */
-  trailingSlash?: "ignore" | "ensure" | "remove";
+  trailingSlash?: "ensure" | "ignore" | "remove";
 };
 
 const DEFAULT_ABSOLUTE_URL_OPTIONS: MakeUrlAbsoluteUrlOptions = {
-  https: defaultGetAbsoluteUrlHttpSetting,
   host: defaultGetAbsoluteUrlHost,
+  https: defaultGetAbsoluteUrlHttpSetting,
 };
 
 /**
@@ -249,8 +249,8 @@ const DEFAULT_ABSOLUTE_URL_OPTIONS: MakeUrlAbsoluteUrlOptions = {
  */
 // prettier-ignore
 export type MakeUrlArgsList<Url extends string, TokensMap = UrlTokensMap<Url>> = [TokensMap] extends [never]
-  ? [(null | undefined)?, (null | QueryStringParametersMap)?, MakeUrlOptions?]
-  : [UrlTokensMap<Url>, (null | QueryStringParametersMap)?, MakeUrlOptions?];
+  ? [(null | undefined)?, (QueryStringParametersMap | null)?, MakeUrlOptions?]
+  : [UrlTokensMap<Url>, (QueryStringParametersMap | null)?, MakeUrlOptions?];
 
 /**
  * createMakeUrl

@@ -22,13 +22,12 @@ export function AddToCalendarHeader({
   const shareIcs = useShareIcs();
 
   return (
-    <SafeAreaView style={styles.header} edges={["top", "left", "right"]}>
-      <TouchableOpacity style={styles.headerClose} onPress={onRequestClose}>
-        <MaterialIcons style={styles.headerCloseIcon} name="arrow-back" size={24} />
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.header}>
+      <TouchableOpacity onPress={onRequestClose} style={styles.headerClose}>
+        <MaterialIcons name="arrow-back" size={24} style={styles.headerCloseIcon} />
       </TouchableOpacity>
       {!hideShareButton && (
         <TouchableOpacity
-          style={styles.headerShare}
           onPress={async () => {
             try {
               await shareIcs(event);
@@ -38,8 +37,9 @@ export function AddToCalendarHeader({
               Alert.alert(error.message);
             }
           }}
+          style={styles.headerShare}
         >
-          <MaterialIcons styles={styles.headerShareIcon} name="ios-share" size={24} />
+          <MaterialIcons name="ios-share" size={24} styles={styles.headerShareIcon} />
         </TouchableOpacity>
       )}
     </SafeAreaView>
@@ -48,11 +48,11 @@ export function AddToCalendarHeader({
 
 const styles = StyleSheet.create({
   header: {
+    alignItems: "center",
     backgroundColor: "white",
-    padding: 16,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    padding: 16,
   },
   headerClose: {},
   headerCloseIcon: {},

@@ -28,45 +28,45 @@ interface ExtraHeaders {
 }
 
 export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
-  initialState?: NormalizedCacheObject;
-  cache?: ApolloCache<unknown>;
-  fetch?: BatchHttpLink.Options["fetch"];
-  fetchOptions?: BatchHttpLink.Options["fetchOptions"];
   batch?: boolean;
   batchInterval?: BatchHttpLink.Options["batchInterval"];
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
-  extraLinks?: ApolloLink[];
+  cache?: ApolloCache<unknown>;
   cookie?: string;
-  getToken?: () => string | null | Promise<string | null>;
-  removeToken?: () => void;
-  onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
-  onGraphqlErrors?: (errors: readonly GraphQLError[], operation: Operation) => void;
-  onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
+  extraLinks?: ApolloLink[];
+  fetch?: BatchHttpLink.Options["fetch"];
+  fetchOptions?: BatchHttpLink.Options["fetchOptions"];
+  getToken?: () => Promise<null | string> | null | string;
+  initialState?: NormalizedCacheObject;
   onForbidden?: (err: ApolloError["networkError"], operation: Operation) => void;
+  onGraphqlErrors?: (errors: readonly GraphQLError[], operation: Operation) => void;
+  onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
+  onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
+  removeToken?: () => void;
   sentryHub?: Hub;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
 
 export const configureClient = ({
-  initialState = {},
-  cache = new InMemoryCache(),
-  fetch = defaultFetch,
-  fetchOptions,
   batch = GRAPHQL_BATCHING,
   batchInterval,
   batchKey,
   batchMax,
+  cache = new InMemoryCache(),
+  cookie,
   credentials = "same-origin",
   extraLinks = [],
-  cookie,
+  fetch = defaultFetch,
+  fetchOptions,
   getToken,
-  removeToken,
-  onNetworkError,
-  onGraphqlErrors,
-  onNotAuthorized,
+  initialState = {},
   onForbidden,
+  onGraphqlErrors,
+  onNetworkError,
+  onNotAuthorized,
+  removeToken,
   sentryHub,
   ...otherOptions
 }: ConfigureClientOptions) => {
@@ -94,9 +94,9 @@ export const configureClient = ({
 
       sentryHub?.withScope((scope) => {
         scope.setExtras({
+          errors,
           operationName: operation.operationName,
           query: operation.query,
-          errors,
         });
         sentryHub.captureException(networkError);
       });
@@ -121,7 +121,7 @@ export const configureClient = ({
         }
         // Default apollo handling
         else {
-          const { message, locations, path } = graphqlError;
+          const { locations, message, path } = graphqlError;
           console.warn(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
           );
@@ -130,9 +130,9 @@ export const configureClient = ({
 
       sentryHub?.withScope((scope) => {
         scope.setExtras({
+          errors: graphQLErrors,
           operationName: operation.operationName,
           query: operation.query,
-          errors: graphQLErrors,
         });
         sentryHub.captureMessage("GraphQL Errors", "warning");
       });
@@ -171,31 +171,31 @@ export const configureClient = ({
   if (batch) {
     links.push(
       new BatchHttpLink({
-        uri: GRAPHQL_AUTH_URL,
-        credentials,
-        fetch,
-        fetchOptions,
         batchInterval,
         batchKey,
         batchMax,
+        credentials,
+        fetch,
+        fetchOptions,
+        uri: GRAPHQL_AUTH_URL,
       })
     );
   } else {
     links.push(
       new HttpLink({
-        uri: GRAPHQL_AUTH_URL,
         credentials,
         fetch,
         fetchOptions,
+        uri: GRAPHQL_AUTH_URL,
       })
     );
   }
 
   return new ApolloClient({
-    ssrMode: IS_SSR,
+    cache,
     credentials,
     link: ApolloLink.from(links),
-    cache,
+    ssrMode: IS_SSR,
     ...otherOptions,
   });
 };

@@ -6,9 +6,9 @@ import { AddToast, DismissToast, ToastProviderProps, ToastShape } from "./types.
 export function ToastProvider({
   children,
   containerComponent: ContainerComponent,
-  toastComponent: ToastComponent,
   defaultTimeout = 5000,
   leaveDuration = 0,
+  toastComponent: ToastComponent,
 }: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastShape[]>([]);
 
@@ -16,9 +16,9 @@ export function ToastProvider({
     (toast) => {
       const newToast: ToastShape = {
         ...toast,
-        timeout: toast.timeout || defaultTimeout,
-        leaveDuration,
         id: Math.floor(Math.random() * 1000000000).toString(),
+        leaveDuration,
+        timeout: toast.timeout || defaultTimeout,
       };
       setToasts((existingToasts) => [...existingToasts, newToast]);
       return newToast.id;
@@ -33,7 +33,7 @@ export function ToastProvider({
   }, []);
 
   const value = useMemo(
-    () => ({ toasts, addToast, dismissToast }),
+    () => ({ addToast, dismissToast, toasts }),
     [toasts, addToast, dismissToast]
   );
 
@@ -43,10 +43,10 @@ export function ToastProvider({
       <ContainerComponent>
         {toasts.map((toast) => (
           <ToastDismiss
+            dismissToast={dismissToast}
             key={toast.id}
             toast={toast}
             toastComponent={ToastComponent}
-            dismissToast={dismissToast}
           />
         ))}
       </ContainerComponent>

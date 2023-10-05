@@ -1,13 +1,13 @@
 import {
-  getCurrentHub,
-  makeFetchTransport,
-  defaultStackParser,
   Breadcrumbs,
+  BrowserClient,
+  GlobalHandlers,
   HttpContext,
   LinkedErrors,
   TryCatch,
-  GlobalHandlers,
-  BrowserClient,
+  defaultStackParser,
+  getCurrentHub,
+  makeFetchTransport,
 } from "@sentry/browser";
 import { BrowserClientOptions } from "@sentry/browser/types/client";
 import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants.js";

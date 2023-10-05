@@ -48,11 +48,11 @@ export function useExpoUpdates() {
   }, []);
 
   return {
-    isEmergencyLaunch: Updates.isEmergencyLaunch,
-    updateId: Updates.updateId,
     canUpdate,
+    isEmergencyLaunch: Updates.isEmergencyLaunch,
+    reloadAsync: Updates.reloadAsync,
+    updateId: Updates.updateId,
     updateLoading,
     updateReady,
-    reloadAsync: Updates.reloadAsync,
   };
 }

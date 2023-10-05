@@ -1,5 +1,5 @@
-type Amount = string | number | null;
-type NumberFormatOptions = Omit<Intl.NumberFormatOptions, "style" | "currency">;
+type Amount = null | number | string;
+type NumberFormatOptions = Omit<Intl.NumberFormatOptions, "currency" | "style">;
 
 function parseNumberAndCurrency(amount: Amount, currencyCode: string) {
   const moneyFieldRegExp = /([0-9.]+) (\w+)/;
@@ -22,7 +22,7 @@ function parseNumberAndCurrency(amount: Amount, currencyCode: string) {
     }
   }
 
-  return { number, currency };
+  return { currency, number };
 }
 
 // NOTE: The args should stay in the current order for backwards compatibility reasons.
@@ -36,11 +36,11 @@ export function formatCurrency(
   optionsCallback?: (number: number, currency: string) => NumberFormatOptions
 ) {
   /* eslint-enable default-param-last */
-  const { number, currency } = parseNumberAndCurrency(amount, currencyCode);
+  const { currency, number } = parseNumberAndCurrency(amount, currencyCode);
 
   const formatterOptions = {
-    style: "currency",
     currency,
+    style: "currency",
     ...options,
   };
 

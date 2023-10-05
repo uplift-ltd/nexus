@@ -6,21 +6,21 @@ type ProxyTarget = string;
 type ProxyPaths = string[];
 
 export interface ProxyOptions {
-  target: ProxyTarget;
   proxyPaths: ProxyPaths;
+  target: ProxyTarget;
 }
 
 export const setupProxy = (
-  { target = DEFAULT_TARGET, proxyPaths = DEFAULT_PROXY_PATHS }: Partial<ProxyOptions> = {
-    target: DEFAULT_TARGET,
+  { proxyPaths = DEFAULT_PROXY_PATHS, target = DEFAULT_TARGET }: Partial<ProxyOptions> = {
     proxyPaths: DEFAULT_PROXY_PATHS,
+    target: DEFAULT_TARGET,
   }
 ) => {
   return (app: Express) =>
     app.use(
       createProxyMiddleware(proxyPaths, {
-        target,
         changeOrigin: true,
+        target,
       })
     );
 };

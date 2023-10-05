@@ -1,7 +1,7 @@
 import {
-  useQuery,
-  useLazyQuery,
-  useMutation,
+  ApolloCache,
+  DefaultContext,
+  DocumentNode,
   MutationHookOptions,
   MutationTuple,
   NetworkStatus,
@@ -10,9 +10,9 @@ import {
   QueryResult,
   QueryTuple,
   TypedDocumentNode,
-  DefaultContext,
-  ApolloCache,
-  DocumentNode,
+  useLazyQuery,
+  useMutation,
+  useQuery,
 } from "@apollo/client";
 import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants.js";
 
@@ -24,9 +24,9 @@ export type EnhancedQueryResult<TData, TVariables extends OperationVariables> = 
   TData,
   TVariables
 > & {
+  fetchingMore: boolean;
   initialLoading: boolean;
   refetching: boolean;
-  fetchingMore: boolean;
 };
 
 export function useEnhancedQuery<
@@ -48,9 +48,9 @@ export function useEnhancedQuery<
 
   return {
     ...result,
+    fetchingMore: result.networkStatus === NetworkStatus.fetchMore,
     initialLoading: result.networkStatus === NetworkStatus.loading,
     refetching: result.networkStatus === NetworkStatus.refetch,
-    fetchingMore: result.networkStatus === NetworkStatus.fetchMore,
   };
 }
 

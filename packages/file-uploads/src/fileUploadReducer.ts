@@ -1,31 +1,31 @@
 type FileUploadData = unknown;
 
 interface DataAction {
-  type: "SET_DATA";
   data: FileUploadData | null;
+  type: "SET_DATA";
 }
 
 interface LoadingAction {
-  type: "SET_LOADING";
   loading: boolean;
+  type: "SET_LOADING";
 }
 
 interface ErrorAction {
-  type: "SET_ERROR";
   error: Error;
+  type: "SET_ERROR";
 }
 
 interface ProgressAction {
-  type: "SET_PROGRESS";
   progress: number;
+  type: "SET_PROGRESS";
 }
 
-export type FileUploadAction = DataAction | LoadingAction | ErrorAction | ProgressAction;
+export type FileUploadAction = DataAction | ErrorAction | LoadingAction | ProgressAction;
 
 interface FileUploadState {
   data: FileUploadData | null;
-  loading: boolean;
   error: Error | null;
+  loading: boolean;
   progress: number;
 }
 
@@ -58,7 +58,7 @@ export function fileUploadReducer(prevState: FileUploadState, action: FileUpload
 
 export const initialFileUploadState: FileUploadState = {
   data: null,
-  loading: false,
   error: null,
+  loading: false,
   progress: 0,
 };
