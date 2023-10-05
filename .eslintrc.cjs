@@ -153,16 +153,14 @@ module.exports = {
         "react/prop-types": 0,
         "react/require-default-props": 0,
       },
+      parserOptions: {
+        project: ["./tsconfig.json"],
+      },
     },
     {
       files: ["*.test.ts", "*.test.tsx"],
       rules: {
         "@typescript-eslint/no-explicit-any": 0,
-      },
-    },
-    {
-      parserOptions: {
-        project: ["./tsconfig.json"],
       },
     },
   ],
