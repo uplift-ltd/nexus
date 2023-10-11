@@ -146,7 +146,7 @@ export function AuthProvider({
       },
       token: state.token,
     }),
-    [state.token]
+    [onRemoveToken, onSetToken, removeToken, setToken, state.token]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

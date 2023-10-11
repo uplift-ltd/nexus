@@ -15,6 +15,7 @@ export type RegisterForPushNotifications = (
 
 export const registerForPushNotifications: RegisterForPushNotifications = async ({
   channelId = "default",
+  // eslint-disable-next-line perfectionist/sort-objects
   channel = {
     importance: Notifications.AndroidImportance.MAX,
     lightColor: "#FF231F7C",
