@@ -24,8 +24,11 @@ test("Parsed params/tokens are always string", () => {
   };
 
   // These should all have type errors
+  //
+  // @ts-expect-error: companyId is not in TestRouterParams
   const invalidUrlParams: TestRouterParams = { companyId: "654564" };
 
+  // @ts-expect-error: userId should not be a number
   const userUrlParamsWithNumber: TestRouterParams = { userId: 654564 };
 
   // empty test
