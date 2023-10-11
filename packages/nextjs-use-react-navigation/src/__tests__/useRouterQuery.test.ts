@@ -24,11 +24,8 @@ test("Parsed params/tokens are always string", () => {
   };
 
   // These should all have type errors
-  //
-  // @ts-expect-error: companyId is not in TestRouterParams
   const invalidUrlParams: TestRouterParams = { companyId: "654564" };
 
-  // @ts-expect-error: userId should not be a number
   const userUrlParamsWithNumber: TestRouterParams = { userId: 654564 };
 
   // empty test
@@ -47,9 +44,9 @@ test("useRouterQuery returns record of key: string", () => {
   };
 
   const invalidUserUrlParams: DefaultRouterQueryResult = {
-    // @ts-expect-error: should only support strings as values
     otherId: "6546544",
     teamId: "654654",
+    // @ts-expect-error: should only support strings as values
     userId: 654564,
   };
 
