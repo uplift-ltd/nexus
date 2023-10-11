@@ -14,13 +14,13 @@ export type RegisterForPushNotifications = (
 ) => Promise<RegisterForPushNotificationsResult>;
 
 export const registerForPushNotifications: RegisterForPushNotifications = async ({
+  channelId = "default",
   channel = {
     importance: Notifications.AndroidImportance.MAX,
     lightColor: "#FF231F7C",
     name: channelId,
     vibrationPattern: [0, 250, 250, 250],
   },
-  channelId = "default",
 } = {}) => {
   let token = null;
 
