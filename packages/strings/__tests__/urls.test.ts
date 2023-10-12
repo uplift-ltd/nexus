@@ -119,7 +119,7 @@ const EXPRESS_URL_TEST_CASES = [
     { tokenId: "VGFza2xpc3Q6OTI=", userId: "ABC123" },
     { id: "VGFza2xpc3Q6OTI=", msg: "Hello", null: null },
     { trailingSlash: "remove" },
-    "/test-url/VGFza2xpc3Q6OTI=/ABC123?msg=Hello&id=VGFza2xpc3Q6OTI%3D",
+    "/test-url/VGFza2xpc3Q6OTI=/ABC123?id=VGFza2xpc3Q6OTI%3D&msg=Hello",
   ],
 ] as const;
 
@@ -313,9 +313,9 @@ test.each([
   [{ empty: "", msg: "Hello", null: null, undefined }, "msg=Hello"],
   [{}, ""],
   [{ terms: ["hello", "world"].join(",") }, "terms=hello%2Cworld"],
-  [{ terms: ["hello", "world"].join(","), userId: 1354 }, "userId=1354&terms=hello%2Cworld"],
+  [{ terms: ["hello", "world"].join(","), userId: 1354 }, "terms=hello%2Cworld&userId=1354"],
   [{ term: ["hello", "world"] }, "term=hello&term=world"],
-  [{ term: ["hello", "world"], userId: 1354 }, "userId=1354&term=hello&term=world"],
+  [{ term: ["hello", "world"], userId: 1354 }, "term=hello&term=world&userId=1354"],
 ])("makeQueryString (%s, %s)", (params, expected) => {
   expect(makeQueryString(params)).toBe(expected);
 });
