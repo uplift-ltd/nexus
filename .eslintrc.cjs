@@ -33,38 +33,6 @@ module.exports = {
     "import/order": 0,
     "sort-imports": 0,
     // perfectionist
-    "perfectionist/sort-imports": [
-      "error",
-      {
-        groups: [
-          ["builtin", "external", "type"],
-          ["internal", "internal-type"],
-          ["parent-type", "parent"],
-          ["index-type", "index"],
-          ["sibling-type", "sibling"],
-          "side-effect",
-          "style",
-          "object",
-          "unknown",
-        ],
-        "internal-pattern": [
-          "~/**",
-          "@/**",
-          "__generated__/**",
-          "constants/**",
-          "components/**",
-          "e2e/**",
-          "helpers/**",
-          "hooks/**",
-          "pages/**",
-          "styles/**",
-        ],
-        "newlines-between": "never",
-        order: "asc",
-        "read-tsconfig": true,
-        type: "natural",
-      },
-    ],
     "perfectionist/sort-objects": [
       "error",
       {
