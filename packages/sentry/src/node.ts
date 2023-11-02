@@ -1,4 +1,5 @@
 import { NodeOptions, init as nodeInit } from "@sentry/node";
+
 import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants.js";
 
 export * from "./constants.js";

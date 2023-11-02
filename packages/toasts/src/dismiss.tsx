@@ -1,5 +1,6 @@
 import { useSafeTimeout } from "@uplift-ltd/use-safe-timeout";
 import React, { useCallback, useEffect, useState } from "react";
+
 import { ToastDismissProps } from "./types.js";
 
 export function ToastDismiss({

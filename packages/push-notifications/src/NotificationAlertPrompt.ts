@@ -2,6 +2,7 @@ import { captureException } from "@uplift-ltd/sentry-react-native";
 import { IosAuthorizationStatus } from "expo-notifications";
 import { useContext, useEffect } from "react";
 import { Alert } from "react-native";
+
 import { NotificationContext } from "./NotificationContext.js";
 import { RegisterPushNotificationsResult } from "./useNotificationPermission.js";
 

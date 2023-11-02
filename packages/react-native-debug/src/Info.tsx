@@ -5,6 +5,7 @@ import { createURL } from "expo-linking";
 import { fetchUpdateAsync, releaseChannel, reloadAsync, updateId } from "expo-updates";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
+
 import { Button, InfoItem } from "./common.js";
 import { DebugScreens } from "./screens.js";
 import { DebugNavigatorParamList } from "./types.js";

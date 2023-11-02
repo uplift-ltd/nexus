@@ -2,6 +2,7 @@ import { captureException } from "@uplift-ltd/sentry-react-native";
 import Constants from "expo-constants";
 import { getPermissionsAsync } from "expo-notifications";
 import { useCallback, useEffect, useState } from "react";
+
 import {
   RegisterForPushNotifications,
   RegisterForPushNotificationsResult,

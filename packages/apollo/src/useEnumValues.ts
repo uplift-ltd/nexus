@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+
 import { EnumDataDocument } from "./__generated__/EnumData.js";
 import { useEnhancedQuery } from "./hooks.js";
 

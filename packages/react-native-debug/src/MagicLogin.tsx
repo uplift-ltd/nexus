@@ -6,6 +6,7 @@ import { getStringAsync } from "expo-clipboard";
 import { reloadAsync } from "expo-updates";
 import React from "react";
 import { Alert, StyleSheet, Text } from "react-native";
+
 import { Button } from "./common.js";
 import { DebugScreens } from "./screens.js";
 import { DebugNavigatorParamList } from "./types.js";

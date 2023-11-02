@@ -1,5 +1,6 @@
 import { StackScreenProps, createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+
 import { Home } from "./Home.js";
 import { Info } from "./Info.js";
 import { MagicLogin } from "./MagicLogin.js";

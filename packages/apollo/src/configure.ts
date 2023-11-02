@@ -1,3 +1,5 @@
+import type { Hub } from "@sentry/types";
+
 import {
   ApolloCache,
   ApolloClient,
@@ -15,7 +17,6 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
-import type { Hub } from "@sentry/types";
 import { GRAPHQL_AUTH_URL, GRAPHQL_BATCHING, IS_SSR } from "@uplift-ltd/constants";
 import { GraphQLError } from "graphql";
 

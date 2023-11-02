@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { NotificationContext } from "./NotificationContext.js";
 import { IosAuthorizationStatus, PermissionStatus } from "./types.js";
 import { UsePushNotificationsResult } from "./usePushNotifications.js";

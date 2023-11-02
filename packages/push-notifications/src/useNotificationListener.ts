@@ -1,5 +1,6 @@
 import * as Notifications from "expo-notifications";
 import { useEffect, useRef } from "react";
+
 import { Subscription } from "./types.js";
 
 export type NotificationReceivedListener = (event: Notifications.Notification) => void;

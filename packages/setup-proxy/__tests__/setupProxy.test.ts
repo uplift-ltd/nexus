@@ -1,4 +1,5 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
+
 import { DEFAULT_PROXY_PATHS, DEFAULT_TARGET } from "../src/constants.js";
 import { setupProxy } from "../src/setupProxy.js";
 

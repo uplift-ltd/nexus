@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { QueryStringParametersMap } from "@uplift-ltd/strings";
+
 import { RouterParamMapFromURLs, RouterQueryResult } from "../useRouterQuery.js";
 
 const USER_URL = "/users/:userId";

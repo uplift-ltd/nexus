@@ -1,5 +1,6 @@
-import { useRouter } from "next/router";
 import type { NextRouter } from "next/router";
+
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 
 type RouterNavigationMethods = Pick<

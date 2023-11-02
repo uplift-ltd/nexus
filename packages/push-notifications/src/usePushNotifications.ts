@@ -1,4 +1,5 @@
 import { RefObject } from "react";
+
 import { PermissionStatus, Subscription } from "./types.js";
 import { UseNotificationHandlerOptions, useNotificationHandler } from "./useNotificationHandler.js";
 import {

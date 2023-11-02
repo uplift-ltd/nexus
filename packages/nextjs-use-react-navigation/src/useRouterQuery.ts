@@ -1,5 +1,6 @@
 import { MultipleUrlsTokensMap, QueryStringParametersMap } from "@uplift-ltd/strings";
 import { useCallback } from "react";
+
 import { useRouterNavigation } from "./useRouterNavigation.js";
 
 export type RouterQueryResult<

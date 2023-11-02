@@ -1,5 +1,6 @@
 import { Express } from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
+
 import { DEFAULT_PROXY_PATHS, DEFAULT_TARGET } from "./constants.js";
 
 type ProxyTarget = string;

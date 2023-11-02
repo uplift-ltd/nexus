@@ -1,4 +1,5 @@
 import { createContext } from "react";
+
 import { ToastContextShape } from "./types.js";
 
 export const ToastContext = createContext<ToastContextShape>({

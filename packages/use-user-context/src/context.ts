@@ -1,5 +1,6 @@
 import { ApolloError, ApolloQueryResult, NetworkStatus } from "@uplift-ltd/apollo";
 import { createContext } from "react";
+
 import { CurrentUserShape } from "./types.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
