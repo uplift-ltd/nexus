@@ -1,8 +1,8 @@
 import { createContext } from "react";
+
 import { ToastContextShape } from "./types.js";
 
 export const ToastContext = createContext<ToastContextShape>({
-  toasts: [],
   addToast: () => {
     // noop
     return "";
@@ -10,4 +10,5 @@ export const ToastContext = createContext<ToastContextShape>({
   dismissToast: () => {
     // noop
   },
+  toasts: [],
 });

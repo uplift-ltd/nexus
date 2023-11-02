@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
+
 import { FileUploader } from "./fileUploaders.js";
 import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer.js";
 import { S3FileAttachment, UploadFileOptions, UploadFilesOptions } from "./types.js";
-import { useUploadFile, UseUploadFileOptions } from "./useUploadFile.js";
+import { UseUploadFileOptions, useUploadFile } from "./useUploadFile.js";
 
 export interface UseUploadFilesOptions<
   FileType = File,
@@ -33,47 +34,47 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
   const uploadFileOptions = useMemo(() => {
     const onProgress: UseUploadFileOptions["onProgress"] = (progress, fileAttachment) => {
       fileUploadsDispatch({
-        type: "SET_PROGRESS",
         fileAttachmentId: fileAttachment.id,
         progress,
+        type: "SET_PROGRESS",
       });
     };
 
     const onLoading: UseUploadFileOptions["onLoading"] = (loading, fileAttachment) => {
       fileUploadsDispatch({
-        type: "SET_LOADING",
         fileAttachmentId: fileAttachment.id,
         loading,
+        type: "SET_LOADING",
       });
     };
 
     const onComplete: UseUploadFileOptions["onComplete"] = (fileAttachment) => {
       fileUploadsDispatch({
-        type: "SET_DATA",
-        fileAttachmentId: fileAttachment.id,
         data: fileAttachment,
+        fileAttachmentId: fileAttachment.id,
+        type: "SET_DATA",
       });
       fileUploadsDispatch({
-        type: "SET_PROGRESS",
         fileAttachmentId: fileAttachment.id,
         progress: 100,
+        type: "SET_PROGRESS",
       });
     };
 
     const onError: UseUploadFileOptions["onError"] = (error, fileAttachment) => {
       fileUploadsDispatch({
-        type: "SET_ERROR",
-        fileAttachmentId: fileAttachment.id,
         error,
+        fileAttachmentId: fileAttachment.id,
+        type: "SET_ERROR",
       });
     };
 
     return {
       fileUploader,
-      onProgress,
-      onLoading,
       onComplete,
       onError,
+      onLoading,
+      onProgress,
     };
   }, [fileUploader]);
 
@@ -81,17 +82,17 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
     fileAttachments?.forEach((fileAttachment) => {
       if (fileUploadsState.fileAttachmentsById[fileAttachment.id] !== fileAttachment) {
         fileUploadsDispatch({
-          type: "SET_DATA",
-          fileAttachmentId: fileAttachment.id,
           data: fileAttachment,
+          fileAttachmentId: fileAttachment.id,
+          type: "SET_DATA",
         });
       }
     });
     fileUploadsState.fileAttachments.forEach((fileAttachment) => {
       if (!fileAttachments?.includes(fileAttachment)) {
         fileUploadsDispatch({
-          type: "REMOVE_FILE",
           fileAttachmentId: fileAttachment.id,
+          type: "REMOVE_FILE",
         });
       }
     });
@@ -116,14 +117,14 @@ export function useUploadFiles<FileType = File, UploadResultData = unknown, Uplo
 
   const onRequestRemove = useCallback((fileAttachmentId: string) => {
     fileUploadsDispatch({
-      type: "REMOVE_FILE",
       fileAttachmentId,
+      type: "REMOVE_FILE",
     });
   }, []);
 
   return {
-    uploadFiles,
     onRequestRemove,
+    uploadFiles,
     ...fileUploadsState,
   };
 }

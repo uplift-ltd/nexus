@@ -1,27 +1,27 @@
 export interface S3FileAttachment {
   id: string;
+  isDraft: boolean;
   key: string;
+  metadata: null | string;
   name: string;
   url: string;
-  isDraft: boolean;
-  metadata: string | null;
 }
 
 export interface GetSignedRequestMutationVariables {
-  grapheneId: string;
   appLabel: string;
   fileName: string;
   fileType: string;
+  grapheneId: string;
   isDraft?: boolean;
   metadata?: string;
 }
 
 export interface GetSignedRequestMutation {
   getSignedRequest: {
-    success: boolean;
-    message: string;
     errors: { field: string; messages: string[] }[];
     fileAttachment: S3FileAttachment;
+    message: string;
+    success: boolean;
     uploadUrl: string;
   };
 }
@@ -37,9 +37,9 @@ export type GetSignedRequestMutationProvidedVariables = Omit<
 export interface UploadFileOptions<FileType = File>
   extends GetSignedRequestMutationProvidedVariables {
   file: FileType;
-  rawFileName?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   metadata?: any;
+  rawFileName?: string;
 }
 
 export interface UploadFilesOptions<FileType = File>

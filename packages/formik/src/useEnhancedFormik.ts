@@ -1,14 +1,15 @@
 import { captureException } from "@uplift-ltd/sentry";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { FormikValues, useFormik } from "formik";
+
 import { getApplyErrorsToFields } from "./errors.js";
 import {
   DEFAULT_INITIAL_STATUS,
   FormikStatus,
-  getSetFormSuccess,
-  getSetFormError,
-  getSetSentryEventId,
   getEnhancedSetStatus,
+  getSetFormError,
+  getSetFormSuccess,
+  getSetSentryEventId,
 } from "./status.js";
 import { FormikConfigWithOverrides } from "./types.js";
 
@@ -36,10 +37,10 @@ export function useEnhancedFormik<TFormikValues extends FormikValues>({
         await options.onSubmit(values, {
           ...formikHelpers,
           applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
-          setStatus,
-          setFormSuccess: getSetFormSuccess(setStatus),
           setFormError: getSetFormError(setStatus),
+          setFormSuccess: getSetFormSuccess(setStatus),
           setSentryEventId: getSetSentryEventId(setStatus),
+          setStatus,
         });
       } catch (err) {
         const extra = captureValuesOnError ? { values } : {};

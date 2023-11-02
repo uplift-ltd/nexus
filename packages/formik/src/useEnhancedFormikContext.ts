@@ -1,9 +1,10 @@
 import { useFormikContext } from "formik";
+
 import { getApplyErrorsToFields } from "./errors.js";
 import {
   getEnhancedSetStatus,
-  getSetFormSuccess,
   getSetFormError,
+  getSetFormSuccess,
   getSetSentryEventId,
 } from "./status.js";
 import { EnhancedFormikContextType } from "./types.js";
@@ -16,9 +17,9 @@ export function useEnhancedFormikContext<FormikValues>(): EnhancedFormikContextT
   return {
     ...context,
     applyErrorsToFields: getApplyErrorsToFields(context.setErrors),
-    setStatus,
-    setFormSuccess: getSetFormSuccess(setStatus),
     setFormError: getSetFormError(setStatus),
+    setFormSuccess: getSetFormSuccess(setStatus),
     setSentryEventId: getSetSentryEventId(setStatus),
+    setStatus,
   };
 }

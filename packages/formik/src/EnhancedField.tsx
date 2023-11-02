@@ -1,5 +1,6 @@
 import { Field, FieldAttributes, FieldProps, isFunction } from "formik";
 import React from "react";
+
 import { EnhancedFieldInputProps } from "./types.js";
 
 export type EnhancedFieldAttributes<T> = FieldAttributes<T> & {
@@ -22,7 +23,7 @@ export function EnhancedField<T = any>({
 }: EnhancedFieldAttributes<T>) {
   return (
     <Field {...props}>
-      {({ field, meta, form }: FieldProps<T>) => {
+      {({ field, form, meta }: FieldProps<T>) => {
         if (isFunction(children)) {
           const onFocus = (e: React.FocusEvent) => {
             if (hideErrorsOnFocus) {
@@ -35,8 +36,8 @@ export function EnhancedField<T = any>({
               onFocus,
               ...field,
             },
-            meta,
             form,
+            meta,
           } as EnhancedFieldProps<T>);
         }
 

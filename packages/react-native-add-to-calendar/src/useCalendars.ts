@@ -9,18 +9,18 @@ const defaultOnPermissionsErrorHandler = (err: Error) => {
 };
 
 export type UseCalendarsParams = {
-  permissionsErrorText?: string;
   onPermissionsError?: (err: Error) => void;
+  permissionsErrorText?: string;
 };
 
 export type UseCalendarsResult = {
-  calendars: Calendar.Calendar[];
-  writeableCalendars: Calendar.Calendar[];
-  primaryCalendar: Calendar.Calendar | undefined;
   addEventToCalendar: (
     event: Calendar.Event,
     calendar: Calendar.Calendar
   ) => ReturnType<typeof Calendar.createEventAsync>;
+  calendars: Calendar.Calendar[];
+  primaryCalendar: Calendar.Calendar | undefined;
+  writeableCalendars: Calendar.Calendar[];
 };
 
 export const useCalendars = ({
@@ -52,10 +52,10 @@ export const useCalendars = ({
 
   return useMemo(
     () => ({
-      calendars,
-      writeableCalendars: calendars.filter((cal) => cal.allowsModifications),
-      primaryCalendar: calendars.filter((cal) => cal.isPrimary)[0],
       addEventToCalendar,
+      calendars,
+      primaryCalendar: calendars.filter((cal) => cal.isPrimary)[0],
+      writeableCalendars: calendars.filter((cal) => cal.allowsModifications),
     }),
     [calendars, addEventToCalendar]
   );

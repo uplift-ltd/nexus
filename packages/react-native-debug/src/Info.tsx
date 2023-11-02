@@ -1,10 +1,11 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import { GITHUB_SHA, GITHUB_RUN_NUMBER, GRAPHQL_HOST } from "@uplift-ltd/constants";
+import { GITHUB_RUN_NUMBER, GITHUB_SHA, GRAPHQL_HOST } from "@uplift-ltd/constants";
 import Constants from "expo-constants";
 import { createURL } from "expo-linking";
 import { fetchUpdateAsync, releaseChannel, reloadAsync, updateId } from "expo-updates";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
+
 import { Button, InfoItem } from "./common.js";
 import { DebugScreens } from "./screens.js";
 import { DebugNavigatorParamList } from "./types.js";
@@ -38,11 +39,11 @@ export function Info(_props: InfoProps) {
       )}
       <InfoItem label="Update ID" value={updateId} />
       <Button
-        style={styles.reload}
         onPress={async () => {
           await fetchUpdateAsync();
           await reloadAsync();
         }}
+        style={styles.reload}
       >
         Update & Reload
       </Button>

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+
 import { EnumDataDocument } from "./__generated__/EnumData.js";
 import { useEnhancedQuery } from "./hooks.js";
 
@@ -7,7 +8,7 @@ export type EnumDataMap<T> = {
 };
 
 export const useEnumValues = <T>(enumName: string): EnumDataMap<T> => {
-  const { data, loading, error } = useEnhancedQuery(EnumDataDocument, {
+  const { data, error, loading } = useEnhancedQuery(EnumDataDocument, {
     variables: { enumName },
   });
 

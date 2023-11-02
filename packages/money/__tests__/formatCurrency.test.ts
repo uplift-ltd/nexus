@@ -1,7 +1,7 @@
 import {
   formatCurrency,
-  formatCurrencyZero,
   formatCurrencyInteger,
+  formatCurrencyZero,
 } from "../src/formatCurrency.js";
 
 describe("formatCurrency", () => {

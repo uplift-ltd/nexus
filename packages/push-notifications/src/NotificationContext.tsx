@@ -1,19 +1,20 @@
 import React, { useMemo } from "react";
+
 import { Subscription } from "./types.js";
 import {
-  usePushNotifications,
   UsePushNotificationsOptions,
   UsePushNotificationsResult,
+  usePushNotifications,
 } from "./usePushNotifications.js";
 
 export const NotificationContext = React.createContext<UsePushNotificationsResult>({
+  notificationReceivedListener: React.createRef<Subscription | undefined>(),
+  notificationResponseReceivedListener: React.createRef<Subscription | undefined>(),
   permissionStatus: null,
+  registerPushNotifications: () => Promise.resolve({ status: null, token: null }),
   setPermissionStatus: () => {
     // do nothing
   },
-  notificationReceivedListener: React.createRef<Subscription | undefined>(),
-  notificationResponseReceivedListener: React.createRef<Subscription | undefined>(),
-  registerPushNotifications: () => Promise.resolve({ token: null, status: null }),
 });
 
 type NotificationProviderProps = {
@@ -24,31 +25,31 @@ export function NotificationProvider({
   children,
   handler,
   onReceived,
-  onResponseReceived,
   onRegisterPushNotifications,
+  onResponseReceived,
   registerForPushNotifications,
 }: NotificationProviderProps) {
   const {
-    permissionStatus,
-    setPermissionStatus,
-    registerPushNotifications,
     notificationReceivedListener,
     notificationResponseReceivedListener,
+    permissionStatus,
+    registerPushNotifications,
+    setPermissionStatus,
   } = usePushNotifications({
     handler,
     onReceived,
-    onResponseReceived,
     onRegisterPushNotifications,
+    onResponseReceived,
     registerForPushNotifications,
   });
 
   const value = useMemo(() => {
     return {
-      permissionStatus,
-      setPermissionStatus,
-      registerPushNotifications,
       notificationReceivedListener,
       notificationResponseReceivedListener,
+      permissionStatus,
+      registerPushNotifications,
+      setPermissionStatus,
     };
   }, [
     permissionStatus,

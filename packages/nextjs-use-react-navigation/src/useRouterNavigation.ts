@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
 import type { NextRouter } from "next/router";
+
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 
 type RouterNavigationMethods = Pick<
   NextRouter,
-  "asPath" | "pathname" | "isReady" | "query" | "back" | "push" | "reload" | "replace" | "events"
+  "asPath" | "back" | "events" | "isReady" | "pathname" | "push" | "query" | "reload" | "replace"
 >;
 
 /**
@@ -25,24 +26,24 @@ export const useRouterNavigation = (): RouterNavigationMethods => {
     get asPath() {
       return routerRef.current.asPath;
     },
-    get pathname() {
-      return routerRef.current.pathname;
+    back: (...args) => routerRef.current.back(...args),
+    events: {
+      emit: (...args) => routerRef.current.events.emit(...args),
+      off: (...args) => routerRef.current.events.off(...args),
+      on: (...args) => routerRef.current.events.on(...args),
     },
     get isReady() {
       return routerRef.current.isReady;
     },
+    get pathname() {
+      return routerRef.current.pathname;
+    },
+    push: (...args) => routerRef.current.push(...args),
     get query() {
       return routerRef.current.query;
     },
-    back: (...args) => routerRef.current.back(...args),
-    push: (...args) => routerRef.current.push(...args),
     reload: (...args) => routerRef.current.reload(...args),
     replace: (...args) => routerRef.current.replace(...args),
-    events: {
-      on: (...args) => routerRef.current.events.on(...args),
-      off: (...args) => routerRef.current.events.off(...args),
-      emit: (...args) => routerRef.current.events.emit(...args),
-    },
   });
 
   return routerNavigation;

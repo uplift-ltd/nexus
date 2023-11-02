@@ -1,6 +1,6 @@
 // expo-notifications doesn't export these
 
-import { NotificationPermissionsStatus, IosAuthorizationStatus } from "expo-notifications";
+import { IosAuthorizationStatus, NotificationPermissionsStatus } from "expo-notifications";
 
 export type PermissionStatus = NotificationPermissionsStatus;
 

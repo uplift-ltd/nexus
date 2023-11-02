@@ -1,10 +1,11 @@
-import { QueryStringParametersMap, MultipleUrlsTokensMap } from "@uplift-ltd/strings";
+import { MultipleUrlsTokensMap, QueryStringParametersMap } from "@uplift-ltd/strings";
 import { useCallback } from "react";
+
 import { useRouterNavigation } from "./useRouterNavigation.js";
 
 export type RouterQueryResult<
-  QueryStringParams extends never | string | Record<string, unknown> = never,
-  Tokens extends never | string | Record<string, unknown> = never
+  QueryStringParams extends Record<string, unknown> | never | string = never,
+  Tokens extends Record<string, unknown> | never | string = never
 > =
   // prettier-ignore
   (
@@ -40,7 +41,7 @@ interface NextTransitionOptions {
  * querystring from a component.
  */
 export function useRouterQuery<
-  QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
+  QueryStringShape extends QueryStringParametersMap | string = QueryStringParametersMap,
   QueryResult = RouterQueryResult<QueryStringShape>,
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {
@@ -104,7 +105,7 @@ export type RouterParamMapFromURLs<URLs extends string> = TokenMapToRouterParamM
  */
 export function useRouterQueryForUrl<
   URL extends string,
-  QueryStringShape extends string | QueryStringParametersMap = QueryStringParametersMap,
+  QueryStringShape extends QueryStringParametersMap | string = QueryStringParametersMap,
   QueryResult = RouterQueryResult<QueryStringShape, RouterParamMapFromURLs<URL>>,
   UpdateQueryShape = Partial<[QueryStringShape] extends [string] ? QueryResult : QueryStringShape>
 >() {

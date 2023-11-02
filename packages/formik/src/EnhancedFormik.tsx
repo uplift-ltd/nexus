@@ -2,15 +2,16 @@ import { captureException } from "@uplift-ltd/sentry";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { Formik, FormikProps, FormikValues, isFunction } from "formik";
 import React, { useRef } from "react";
+
 import { getApplyErrorsToFields } from "./errors.js";
 import {
   DEFAULT_INITIAL_STATUS,
   getEnhancedSetStatus,
-  getSetFormSuccess,
   getSetFormError,
+  getSetFormSuccess,
   getSetSentryEventId,
 } from "./status.js";
-import { FormikConfigWithOverrides, EnhancedFormikExtraProps } from "./types.js";
+import { EnhancedFormikExtraProps, FormikConfigWithOverrides } from "./types.js";
 
 export function EnhancedFormik<
   Values extends FormikValues = FormikValues,
@@ -21,9 +22,9 @@ export function EnhancedFormik<
   captureValuesOnError,
   children,
   initialStatus,
-  resetStatusOnSubmit,
-  onSubmit,
   innerRef,
+  onSubmit,
+  resetStatusOnSubmit,
   ...otherProps
 }: FormikConfigWithOverrides<Values> & ExtraProps) {
   const formikRef = useRef<FormikProps<Values> | null>(null);
@@ -36,8 +37,8 @@ export function EnhancedFormik<
 
   return (
     <Formik
-      innerRef={ref}
       initialStatus={initStatus}
+      innerRef={ref}
       onSubmit={async (values, formikHelpers) => {
         const setStatus = getEnhancedSetStatus(formikHelpers.setStatus, ref.current?.status);
 
@@ -49,10 +50,10 @@ export function EnhancedFormik<
           await onSubmit(values, {
             ...formikHelpers,
             applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
-            setStatus,
-            setFormSuccess: getSetFormSuccess(setStatus),
             setFormError: getSetFormError(setStatus),
+            setFormSuccess: getSetFormSuccess(setStatus),
             setSentryEventId: getSetSentryEventId(setStatus),
+            setStatus,
           });
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
@@ -73,10 +74,10 @@ export function EnhancedFormik<
           return children({
             ...formik,
             applyErrorsToFields: getApplyErrorsToFields(formik.setErrors),
-            setStatus,
-            setFormSuccess: getSetFormSuccess(setStatus),
             setFormError: getSetFormError(setStatus),
+            setFormSuccess: getSetFormSuccess(setStatus),
             setSentryEventId: getSetSentryEventId(setStatus),
+            setStatus,
           });
         }
         return children;

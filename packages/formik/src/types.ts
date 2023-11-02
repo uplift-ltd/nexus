@@ -1,12 +1,13 @@
 import {
-  FormikConfig,
-  FormikHelpers,
   FieldInputProps,
+  FormikConfig,
+  FormikContextType,
+  FormikHelpers,
   FormikProps,
   FormikValues,
-  FormikContextType,
 } from "formik";
 import { MutableRefObject } from "react";
+
 import { ErrorHelpers } from "./errors.js";
 import { StatusHelpers } from "./status.js";
 
@@ -27,7 +28,7 @@ interface FormikConfigOverrides<Values> extends EnhancedFormikExtraProps {
     formikHelpers: FormikHelpers<Values> & ExtraHelpers
     // Promise<any> mirrors Formik's definition for onSubmit
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ) => void | Promise<any>;
+  ) => Promise<any> | void;
 }
 
 export type FormikConfigWithOverrides<Values> = FormikConfigWithoutOverrides<Values> &

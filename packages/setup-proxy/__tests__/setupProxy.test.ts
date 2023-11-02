@@ -1,5 +1,6 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { DEFAULT_TARGET, DEFAULT_PROXY_PATHS } from "../src/constants.js";
+
+import { DEFAULT_PROXY_PATHS, DEFAULT_TARGET } from "../src/constants.js";
 import { setupProxy } from "../src/setupProxy.js";
 
 jest.mock("http-proxy-middleware", () => ({ createProxyMiddleware: jest.fn() }));
@@ -13,8 +14,8 @@ describe("setupProxy", () => {
     expect(app.use).toHaveBeenCalled();
 
     expect(createProxyMiddleware).toHaveBeenCalledWith(DEFAULT_PROXY_PATHS, {
-      target: DEFAULT_TARGET,
       changeOrigin: true,
+      target: DEFAULT_TARGET,
     });
   });
 
@@ -24,8 +25,8 @@ describe("setupProxy", () => {
     setupProxy({ target: "http://127.0.0.1:3000" })(app as any);
 
     expect(createProxyMiddleware).toHaveBeenCalledWith(DEFAULT_PROXY_PATHS, {
-      target: "http://127.0.0.1:3000",
       changeOrigin: true,
+      target: "http://127.0.0.1:3000",
     });
   });
 });

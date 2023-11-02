@@ -2,13 +2,13 @@ import {
   capitalize,
   formatPhoneNumber,
   formatUsCurrency,
-  pluralize,
   makePluralizer,
+  pluralize,
   safeJoin,
-  safeJoinWithSpace,
   safeJoinWithComma,
-  safeJoinWithEnDash,
   safeJoinWithEmDash,
+  safeJoinWithEnDash,
+  safeJoinWithSpace,
   safeJsonParse,
 } from "../src/index.js";
 
@@ -42,9 +42,9 @@ describe("pluralize", () => {
 
   test("makePluralizer with plural", () => {
     const hatsPluralizer = makePluralizer({
-      singular: "ax",
-      plural: "axes",
       includeCount: false,
+      plural: "axes",
+      singular: "ax",
     });
 
     expect(hatsPluralizer(0)).toBe("axes");
@@ -54,9 +54,9 @@ describe("pluralize", () => {
 
   test("makePluralizer with plural and count", () => {
     const hatsPluralizer = makePluralizer({
-      singular: "ax",
-      plural: "axes",
       includeCount: true,
+      plural: "axes",
+      singular: "ax",
     });
 
     expect(hatsPluralizer(0)).toBe("0 axes");
@@ -66,8 +66,8 @@ describe("pluralize", () => {
 
   test("makePluralizer with implied plural", () => {
     const hatsPluralizer = makePluralizer({
-      singular: "hat",
       includeCount: false,
+      singular: "hat",
     });
 
     expect(hatsPluralizer(0)).toBe("hats");
@@ -77,8 +77,8 @@ describe("pluralize", () => {
 
   test("makePluralizer with implied plural and count", () => {
     const hatsPluralizer = makePluralizer({
-      singular: "hat",
       includeCount: true,
+      singular: "hat",
     });
 
     expect(hatsPluralizer(0)).toBe("0 hats");

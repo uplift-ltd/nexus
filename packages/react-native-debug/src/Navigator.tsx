@@ -1,5 +1,6 @@
-import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
+import { StackScreenProps, createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+
 import { Home } from "./Home.js";
 import { Info } from "./Info.js";
 import { MagicLogin } from "./MagicLogin.js";
@@ -15,24 +16,24 @@ export function DebugNavigator({ route }: DebugNavigatorProps) {
   return (
     <DebugStackNavigator.Navigator screenOptions={{ headerShown: route.params.headerShown }}>
       <DebugStackNavigator.Screen
-        name={DebugScreens.DEBUG_HOME}
         component={Home}
+        name={DebugScreens.DEBUG_HOME}
         options={{ title: "Debug" }}
       />
       <DebugStackNavigator.Screen
-        name={DebugScreens.DEBUG_INFO}
         component={Info}
+        name={DebugScreens.DEBUG_INFO}
         options={{ title: "Info" }}
       />
       <DebugStackNavigator.Screen
-        name={DebugScreens.DEBUG_MAGIC_LOGIN}
         component={MagicLogin}
-        options={{ title: "Magic Login" }}
         initialParams={{ verifyScreen: route.params.verifyScreen }}
+        name={DebugScreens.DEBUG_MAGIC_LOGIN}
+        options={{ title: "Magic Login" }}
       />
       <DebugStackNavigator.Screen
-        name={DebugScreens.DEBUG_PUSH_TOKEN}
         component={PushToken}
+        name={DebugScreens.DEBUG_PUSH_TOKEN}
         options={{ title: "Push Token" }}
       />
     </DebugStackNavigator.Navigator>

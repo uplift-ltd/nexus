@@ -3,7 +3,7 @@ import * as Calendar from "expo-calendar";
 import * as FileSystem from "expo-file-system";
 import * as IntentLauncher from "expo-intent-launcher";
 import * as Sharing from "expo-sharing";
-import { createEvent, DateArray, EventAttributes } from "ics";
+import { DateArray, EventAttributes, createEvent } from "ics";
 import { useCallback } from "react";
 import { Platform } from "react-native";
 
@@ -39,22 +39,22 @@ export const useShareIcs = () => {
 };
 
 function calendarEventToEventAttributes({
-  startDate,
   endDate,
-  title,
   location,
-  url,
   notes,
+  startDate,
+  title,
+  url,
   ...event
 }: Calendar.Event): EventAttributes {
   return {
-    start: dateToDateArray(new Date(startDate)),
-    end: dateToDateArray(new Date(endDate)),
-    title,
     description: notes,
+    end: dateToDateArray(new Date(endDate)),
     location,
-    url,
+    start: dateToDateArray(new Date(startDate)),
     status: "CONFIRMED",
+    title,
+    url,
   };
 }
 

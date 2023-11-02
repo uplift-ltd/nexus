@@ -9,7 +9,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
-  plugins: ["@typescript-eslint", "import", "require-extensions"],
+  plugins: ["@typescript-eslint", "import", "require-extensions", "perfectionist"],
   extends: [
     "airbnb",
     "react-app",
@@ -19,6 +19,7 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:prettier/recommended",
     "plugin:require-extensions/recommended",
+    "plugin:perfectionist/recommended-natural",
   ],
   rules: {
     "no-console": ["error", { allow: ["info", "warn", "error"] }],
@@ -29,20 +30,15 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "react/jsx-wrap-multilines": 0,
     "react/prefer-stateless-function": 0,
-    "import/order": [
+    "import/order": 0,
+    "sort-imports": 0,
+    // perfectionist
+    "perfectionist/sort-objects": [
       "error",
       {
-        alphabetize: { order: "asc" },
-        groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
-        pathGroups: [
-          {
-            // CSS should be loaded last so that it can override components in common folder
-            pattern: "./*.module.css",
-            group: "sibling",
-            position: "after",
-          },
-        ],
-        "newlines-between": "never",
+        order: "asc",
+        "partition-by-comment": true,
+        type: "natural",
       },
     ],
     "import/prefer-default-export": 0,
@@ -102,7 +98,6 @@ module.exports = {
 
     camelcase: 0,
     "@typescript-eslint/camelcase": 0,
-
     "@typescript-eslint/indent": 0,
     "@typescript-eslint/member-delimiter-style": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
@@ -125,6 +120,9 @@ module.exports = {
       rules: {
         "react/prop-types": 0,
         "react/require-default-props": 0,
+      },
+      parserOptions: {
+        project: ["./tsconfig.json"],
       },
     },
     {

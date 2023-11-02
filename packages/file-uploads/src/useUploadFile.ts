@@ -1,18 +1,19 @@
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { useCallback, useReducer } from "react";
+
 import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer.js";
 import { FileUploader, getAxiosFileUploader } from "./fileUploaders.js";
 import { getFileNameComponents, getFileType } from "./helpers.js";
 import { S3FileAttachment, UploadFileOptions } from "./types.js";
-import { useGetSignedRequest, UseGetSignedRequestOptions } from "./useGetSignedRequest.js";
+import { UseGetSignedRequestOptions, useGetSignedRequest } from "./useGetSignedRequest.js";
 
 export interface UseUploadFileOptions<FileType = File, UploadResultData = unknown> {
   fileUploader?: FileUploader<FileType, UploadResultData>;
-  signedRequestOptions?: UseGetSignedRequestOptions;
-  onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
-  onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
   onComplete?: (fileAttachment: S3FileAttachment) => void;
   onError?: (error: Error, fileAttachment: S3FileAttachment) => void;
+  onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
+  onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
+  signedRequestOptions?: UseGetSignedRequestOptions;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,10 +21,10 @@ const defaultFileUploader = getAxiosFileUploader<any, any>();
 
 export function useUploadFile<FileType = File, UploadResultData = unknown>({
   fileUploader = defaultFileUploader,
-  onProgress,
-  onLoading,
   onComplete,
   onError,
+  onLoading,
+  onProgress,
   signedRequestOptions,
 }: UseUploadFileOptions<FileType, UploadResultData> = {}) {
   const [getSignedRequest, signedRequestState] = useGetSignedRequest(signedRequestOptions);
@@ -35,7 +36,7 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
 
   const uploadFile = useCallback(
     async ({ file, rawFileName, ...variables }: UploadFileOptions<FileType>) => {
-      fileUploadDispatch({ type: "SET_LOADING", loading: true });
+      fileUploadDispatch({ loading: true, type: "SET_LOADING" });
 
       let fileName = "";
       if (variables.fileName) {
@@ -87,17 +88,17 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
           }
         );
 
-        fileUploadDispatch({ type: "SET_DATA", data: uploadFileData });
-        fileUploadDispatch({ type: "SET_PROGRESS", progress: 100 });
+        fileUploadDispatch({ data: uploadFileData, type: "SET_DATA" });
+        fileUploadDispatch({ progress: 100, type: "SET_PROGRESS" });
         onComplete?.(signedRequestData.getSignedRequest.fileAttachment);
       } catch (err) {
         const error = ensureError(err);
 
-        fileUploadDispatch({ type: "SET_ERROR", error });
+        fileUploadDispatch({ error, type: "SET_ERROR" });
         onError?.(error, fileAttachment);
       }
 
-      fileUploadDispatch({ type: "SET_LOADING", loading: false });
+      fileUploadDispatch({ loading: false, type: "SET_LOADING" });
       onLoading?.(false, fileAttachment);
 
       return { signedRequestData, uploadFileData };
@@ -108,12 +109,12 @@ export function useUploadFile<FileType = File, UploadResultData = unknown>({
   const loading = signedRequestState.loading || fileUploadState.loading;
 
   return {
-    uploadFile,
     fileAttachment:
       signedRequestState.data && !loading
         ? signedRequestState.data.getSignedRequest.fileAttachment
         : null,
     loading,
     progress: fileUploadState.progress,
+    uploadFile,
   };
 }

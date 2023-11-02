@@ -2,7 +2,7 @@ import { ARRAY_CONNECTION_NAME } from "./constants.js";
 import { parseGlobalId } from "./parseGlobalId.js";
 import { toGlobalId } from "./toGlobalId.js";
 
-export function bumpOrInitCursor(globalId: string | null | undefined, increment = 1): string {
+export function bumpOrInitCursor(globalId: null | string | undefined, increment = 1): string {
   if (globalId) {
     const { id } = parseGlobalId(globalId);
     const num = Number(id);

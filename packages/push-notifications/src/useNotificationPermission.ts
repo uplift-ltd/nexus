@@ -1,17 +1,18 @@
 import { captureException } from "@uplift-ltd/sentry-react-native";
 import Constants from "expo-constants";
 import { getPermissionsAsync } from "expo-notifications";
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import {
-  registerForPushNotifications as defaultRegisterForPushNotifications,
   RegisterForPushNotifications,
   RegisterForPushNotificationsResult,
+  registerForPushNotifications as defaultRegisterForPushNotifications,
 } from "./registerForPushNotifications.js";
 import { PermissionStatus } from "./types.js";
 
 export type RegisterPushNotificationsResult = {
-  token: string | null;
   status: PermissionStatus | null;
+  token: null | string;
 };
 
 export type RegisterPushNotifications = () => Promise<RegisterPushNotificationsResult>;
@@ -19,19 +20,19 @@ export type RegisterPushNotifications = () => Promise<RegisterPushNotificationsR
 export type OnRegisterPushNotifications = (result: RegisterPushNotificationsResult) => void;
 
 export interface UseNotificationPermissionOptions {
-  registerForPushNotifications?: RegisterForPushNotifications;
   onRegisterPushNotifications?: OnRegisterPushNotifications;
+  registerForPushNotifications?: RegisterForPushNotifications;
 }
 
 export interface UseNotificationPermissionResult {
   permissionStatus: PermissionStatus | null;
-  setPermissionStatus: (status: PermissionStatus) => void;
   registerPushNotifications: RegisterPushNotifications;
+  setPermissionStatus: (status: PermissionStatus) => void;
 }
 
 export function useNotificationPermission({
-  registerForPushNotifications = defaultRegisterForPushNotifications,
   onRegisterPushNotifications,
+  registerForPushNotifications = defaultRegisterForPushNotifications,
 }: UseNotificationPermissionOptions = {}): UseNotificationPermissionResult {
   const [permissionStatus, setPermissionStatus] = useState<PermissionStatus | null>(null);
 
@@ -59,14 +60,14 @@ export function useNotificationPermission({
       token = await registerForPushNotifications();
       status = await updatePermissionStatus();
       if (onRegisterPushNotifications) {
-        await onRegisterPushNotifications({ token, status });
+        await onRegisterPushNotifications({ status, token });
       }
     } catch (err) {
       captureException(err);
       throw err;
     }
-    return { token, status };
+    return { status, token };
   }, [registerForPushNotifications, onRegisterPushNotifications, updatePermissionStatus]);
 
-  return { permissionStatus, setPermissionStatus, registerPushNotifications };
+  return { permissionStatus, registerPushNotifications, setPermissionStatus };
 }

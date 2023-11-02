@@ -1,10 +1,11 @@
 import {
-  gql,
-  OperationVariables,
   DocumentNode,
   MutationHookOptions,
+  OperationVariables,
+  gql,
   useEnhancedMutation,
 } from "@uplift-ltd/apollo";
+
 import { GetSignedRequestMutation, GetSignedRequestMutationVariables } from "./types.js";
 
 export const GET_SIGNED_REQUEST = gql`
@@ -48,13 +49,13 @@ export interface UseGetSignedRequestOptions<
   TMutation = GetSignedRequestMutation,
   TVariables extends OperationVariables = GetSignedRequestMutationVariables
 > {
-  query?: DocumentNode;
   options?: GetSignedRequestOptions<TMutation, TVariables>;
+  query?: DocumentNode;
 }
 
 export function useGetSignedRequest<
   TMutation = GetSignedRequestMutation,
   TVariables extends OperationVariables = GetSignedRequestMutationVariables
->({ query = GET_SIGNED_REQUEST, options }: UseGetSignedRequestOptions<TMutation, TVariables> = {}) {
+>({ options, query = GET_SIGNED_REQUEST }: UseGetSignedRequestOptions<TMutation, TVariables> = {}) {
   return useEnhancedMutation<TMutation, TVariables>(query, options);
 }

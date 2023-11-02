@@ -3,9 +3,9 @@ import { useEffect } from "react";
 
 const DEFAULT_HANDLER: Notifications.NotificationHandler = {
   handleNotification: async () => ({
-    shouldShowAlert: true,
     shouldPlaySound: false,
     shouldSetBadge: false,
+    shouldShowAlert: true,
   }),
 };
 

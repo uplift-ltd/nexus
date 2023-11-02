@@ -1,11 +1,12 @@
 import { useSafeTimeout } from "@uplift-ltd/use-safe-timeout";
 import React, { useCallback, useEffect, useState } from "react";
+
 import { ToastDismissProps } from "./types.js";
 
 export function ToastDismiss({
+  dismissToast,
   toast,
   toastComponent: ToastComponent,
-  dismissToast,
 }: ToastDismissProps) {
   const [show, setShow] = useState(false);
   const setSafeTimeout = useSafeTimeout();
@@ -27,5 +28,5 @@ export function ToastDismiss({
     }
   }, [timeout, setSafeTimeout, onRequestClose]);
 
-  return <ToastComponent show={show} toast={toast} onRequestClose={onRequestClose} />;
+  return <ToastComponent onRequestClose={onRequestClose} show={show} toast={toast} />;
 }

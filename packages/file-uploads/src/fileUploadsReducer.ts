@@ -1,44 +1,44 @@
 import { S3FileAttachment } from "./types.js";
 
 interface FileSpecificAction {
-  type: string;
   fileAttachmentId: string;
+  type: string;
 }
 
 interface DataAction extends FileSpecificAction {
-  type: "SET_DATA";
   data: S3FileAttachment;
+  type: "SET_DATA";
 }
 
 interface LoadingAction extends FileSpecificAction {
-  type: "SET_LOADING";
   loading: boolean;
+  type: "SET_LOADING";
 }
 
 interface ErrorAction extends FileSpecificAction {
-  type: "SET_ERROR";
   error: Error;
+  type: "SET_ERROR";
 }
 
 interface ProgressAction extends FileSpecificAction {
-  type: "SET_PROGRESS";
   progress: number;
+  type: "SET_PROGRESS";
 }
 
 interface RemoveAction extends FileSpecificAction {
   type: "REMOVE_FILE";
 }
 
-type FileUploadsAction = DataAction | LoadingAction | ErrorAction | ProgressAction | RemoveAction;
+type FileUploadsAction = DataAction | ErrorAction | LoadingAction | ProgressAction | RemoveAction;
 
 interface FileUploadsState {
-  fileAttachmentsById: Record<string, S3FileAttachment>;
-  fileAttachments: S3FileAttachment[];
-  loadingByFile: Record<string, boolean>;
   errorByFile: Record<string, Error | null>;
-  progressByFile: Record<string, number>;
-  progress: number;
+  fileAttachments: S3FileAttachment[];
+  fileAttachmentsById: Record<string, S3FileAttachment>;
   loading: boolean;
+  loadingByFile: Record<string, boolean>;
+  progress: number;
+  progressByFile: Record<string, number>;
 }
 
 export function fileUploadsReducer(prevState: FileUploadsState, action: FileUploadsAction) {
@@ -46,14 +46,14 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
     case "SET_DATA": {
       return {
         ...prevState,
-        fileAttachmentsById: {
-          ...prevState.fileAttachmentsById,
-          [action.fileAttachmentId]: action.data,
-        },
         fileAttachments: [
           ...prevState.fileAttachments.filter(({ id }) => id !== action.data.id),
           action.data,
         ],
+        fileAttachmentsById: {
+          ...prevState.fileAttachmentsById,
+          [action.fileAttachmentId]: action.data,
+        },
       };
     }
     case "SET_LOADING": {
@@ -63,8 +63,8 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
       };
       return {
         ...prevState,
-        loadingByFile,
         loading: Object.values(loadingByFile).some((x) => x),
+        loadingByFile,
       };
     }
     case "SET_ERROR":
@@ -83,8 +83,8 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
       const progressValues = Object.values(progressByFile);
       return {
         ...prevState,
-        progressByFile,
         progress: progressValues.reduce((acc, x) => acc + x, 0) / progressValues.length || 0,
+        progressByFile,
       };
     }
     case "REMOVE_FILE": {
@@ -109,13 +109,13 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
 
       return {
         ...prevState,
-        fileAttachmentsById,
-        fileAttachments,
-        loadingByFile,
         errorByFile,
-        progressByFile,
+        fileAttachments,
+        fileAttachmentsById,
         loading: loadingValues.some((x) => x),
+        loadingByFile,
         progress: progressValues.reduce((acc, x) => acc + x, 0) / progressValues.length || 0,
+        progressByFile,
       };
     }
     default:
@@ -133,12 +133,12 @@ export const getInitialFileUploadsState = (
   });
 
   return {
-    fileAttachmentsById,
-    fileAttachments,
-    loadingByFile: {},
     errorByFile: {},
-    progressByFile: {},
+    fileAttachments,
+    fileAttachmentsById,
     loading: false,
+    loadingByFile: {},
     progress: 0,
+    progressByFile: {},
   };
 };

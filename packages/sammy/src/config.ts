@@ -1,4 +1,5 @@
 import readPackageUp from "read-pkg-up";
+
 import { SammyConfig } from "./types.js";
 
 export async function loadConfig(): Promise<SammyConfig> {

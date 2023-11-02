@@ -30,9 +30,9 @@ export function getAxiosFileUploader<FileType, UploadResultData = unknown>(): Fi
       headers: {
         "Content-Type": fileContentType,
       },
-      onUploadProgress: ({ total, loaded }: { total: number; loaded: number }) => {
+      onUploadProgress: ({ loaded, total }: { loaded: number; total: number }) => {
         const progress = Math.ceil((loaded / total) * 100);
-        fileUploadDispatch?.({ type: "SET_PROGRESS", progress });
+        fileUploadDispatch?.({ progress, type: "SET_PROGRESS" });
         onProgress?.(progress, fileAttachment);
       },
     });
@@ -54,14 +54,14 @@ export function getFetchFileUploader<FileType, UploadResultData = unknown>(): Fi
     { fileAttachment, fileUploadDispatch, onProgress }
   ) => {
     const res = await fetch(uploadUrl, {
-      method: "PUT",
-      body: file as unknown as string | Blob | FormData,
+      body: file as unknown as Blob | FormData | string,
       headers: { "Content-Type": fileContentType },
+      method: "PUT",
     });
 
     const progress = 100;
 
-    fileUploadDispatch?.({ type: "SET_PROGRESS", progress });
+    fileUploadDispatch?.({ progress, type: "SET_PROGRESS" });
     onProgress?.(progress, fileAttachment);
 
     const data = await res.json();

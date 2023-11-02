@@ -11,15 +11,15 @@ import {
 
 interface InfoItemProps {
   label: string;
-  value: string | number | boolean | null | undefined;
+  value: boolean | null | number | string | undefined;
 }
 
 export function InfoItem({ label, value }: InfoItemProps) {
   return (
     <TouchableOpacity
-      style={styles.infoItem}
-      onPress={() => value && Clipboard.setString(value?.toString())}
       activeOpacity={value ? 0.6 : 1}
+      onPress={() => value && Clipboard.setString(value?.toString())}
+      style={styles.infoItem}
     >
       <Text style={styles.infoText}>
         <Text style={styles.infoLabel}>{label}: </Text>
@@ -35,9 +35,9 @@ interface ButtonProps {
   style?: ViewStyle;
 }
 
-export function Button({ children, style, onPress }: ButtonProps) {
+export function Button({ children, onPress, style }: ButtonProps) {
   return (
-    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
       <Text style={styles.buttonText}>{children}</Text>
     </TouchableOpacity>
   );
@@ -48,31 +48,31 @@ export function Input({ style, ...props }: TextInputProps) {
 }
 
 const styles = StyleSheet.create({
-  infoItem: {
-    paddingVertical: 5,
-    paddingHorizontal: 20,
-  },
-  infoText: {},
-  infoLabel: {
-    fontWeight: "bold",
-  },
-  infoValue: {},
   button: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginVertical: 10,
-    marginHorizontal: 20,
     backgroundColor: "#ddd",
+    marginHorizontal: 20,
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   buttonText: {
     textAlign: "center",
   },
+  infoItem: {
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+  },
+  infoLabel: {
+    fontWeight: "bold",
+  },
+  infoText: {},
+  infoValue: {},
   input: {
-    height: 40,
-    paddingHorizontal: 10,
-    marginVertical: 10,
-    marginHorizontal: 20,
     borderColor: "gray",
     borderWidth: 1,
+    height: 40,
+    marginHorizontal: 20,
+    marginVertical: 10,
+    paddingHorizontal: 10,
   },
 });

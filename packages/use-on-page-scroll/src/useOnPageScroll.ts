@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 
 export interface UseOnPageScrollParams {
-  onScrollUp: ([newYPosition, lastYPosition]: [number, number]) => void;
   onScrollDown: ([newYPosition, lastYPosition]: [number, number]) => void;
+  onScrollUp: ([newYPosition, lastYPosition]: [number, number]) => void;
 }
 
-export const useOnPageScroll = ({ onScrollUp, onScrollDown }: UseOnPageScrollParams) => {
+export const useOnPageScroll = ({ onScrollDown, onScrollUp }: UseOnPageScrollParams) => {
   const lastYPosition = useRef(0);
   const ticking = useRef(false);
 

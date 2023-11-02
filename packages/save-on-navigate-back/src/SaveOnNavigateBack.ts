@@ -9,12 +9,12 @@ type BeforeRemoveEvent = EventArg<
   true,
   {
     action: Readonly<{
-      type: string;
-      // This type is a copy from react-navigation
       // eslint-disable-next-line @typescript-eslint/ban-types
       payload?: object | undefined;
+      // This type is a copy from react-navigation
       source?: string | undefined;
       target?: string | undefined;
+      type: string;
     }>;
   }
 >;
