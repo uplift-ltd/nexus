@@ -23,12 +23,12 @@ export function Info(_props: InfoProps) {
       <InfoItem label="GQL Host" value={GRAPHQL_HOST} />
       <InfoItem label="Experience Id" value={Constants.manifest?.id} />
       <InfoItem
+        label="Identifier"
         value={
           Platform.OS === "ios"
             ? Constants.manifest?.ios?.bundleIdentifier
             : Constants.manifest?.android?.package
         }
-        label="Identifier"
       />
       <InfoItem label="Release Channel" value={releaseChannel} />
       <InfoItem label="Slug" value={Constants.manifest?.slug} />

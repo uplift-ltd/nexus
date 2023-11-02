@@ -37,6 +37,8 @@ export function EnhancedFormik<
 
   return (
     <Formik
+      initialStatus={initStatus}
+      innerRef={ref}
       onSubmit={async (values, formikHelpers) => {
         const setStatus = getEnhancedSetStatus(formikHelpers.setStatus, ref.current?.status);
 
@@ -64,8 +66,6 @@ export function EnhancedFormik<
           });
         }
       }}
-      initialStatus={initStatus}
-      innerRef={ref}
       {...otherProps}
     >
       {(formik) => {
