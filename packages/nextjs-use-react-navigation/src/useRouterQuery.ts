@@ -52,6 +52,7 @@ export function useRouterQuery<
       newQuery: UpdateQueryShape,
       { scroll = false, shallow = true }: NextTransitionOptions = {}
     ) => {
+      const hash = routerNavigation.asPath.split("#")[1];
       const query = {
         ...routerNavigation.query,
         ...newQuery,
@@ -64,6 +65,7 @@ export function useRouterQuery<
       routerNavigation.replace(
         {
           pathname: routerNavigation.pathname,
+          hash,
           query,
         },
         undefined,
