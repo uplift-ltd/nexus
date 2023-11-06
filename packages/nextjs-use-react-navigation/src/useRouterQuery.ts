@@ -64,8 +64,8 @@ export function useRouterQuery<
       });
       routerNavigation.replace(
         {
-          pathname: routerNavigation.pathname,
           hash,
+          pathname: routerNavigation.pathname,
           query,
         },
         undefined,
