@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/graphene
+```sh
+npm i --save @uplift-ltd/graphene
+```
 
 ## API
 

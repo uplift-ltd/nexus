@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/file-uploads
+```sh
+npm i --save @uplift-ltd/file-uploads
+```
 
 ## API
 

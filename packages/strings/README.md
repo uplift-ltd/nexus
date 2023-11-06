@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/strings
+```sh
+npm i --save @uplift-ltd/strings
+```
 
 ## API
 

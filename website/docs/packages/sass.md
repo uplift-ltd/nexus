@@ -4,7 +4,9 @@ title: sass
 
 ## Installation
 
-    npm i --save @uplift-ltd/sass
+```sh
+npm i --save @uplift-ltd/sass
+```
 
 ## API
 

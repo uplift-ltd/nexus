@@ -4,7 +4,9 @@ title: nextjs-use-react-navigation
 
 ## Installation
 
-    npm i --save @uplift-ltd/nextjs-use-react-navigation
+```sh
+npm i --save @uplift-ltd/nextjs-use-react-navigation
+```
 
 ## API
 

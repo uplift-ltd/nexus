@@ -8,8 +8,12 @@ Use this module to create new nexus packages.
 
 Create a new folder and `cd` to it.
 
-    mkdir packages/my-package && cd "$_"
+```sh
+mkdir packages/my-package && cd "$_"
+```
 
 Initialize a new package using the @uplit-ltd/create-nexus-package initializer.
 
-    npm init @uplift-ltd/nexus-package
+```sh
+npm init @uplift-ltd/nexus-package
+```

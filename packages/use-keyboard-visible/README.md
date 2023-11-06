@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-keyboard-visible
+```sh
+npm i --save @uplift-ltd/use-keyboard-visible
+```
 
 ## API
 

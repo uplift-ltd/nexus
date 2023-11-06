@@ -1,9 +1,13 @@
-const fs = require("fs");
-const globby = require("globby");
-const path = require("path");
-const _ = require("lodash");
+import { dirname } from "path";
+import fs from "fs";
+import { globby } from "globby";
+import path from "path";
+import _ from "lodash";
+import { fileURLToPath } from "url";
 
 (async () => {
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+
   const readmePaths = (await globby(path.resolve(__dirname, "../../packages/*/README.md"))).sort();
   const packageJsonPaths = readmePaths.map((readmePath) =>
     readmePath.replace("README.md", "package.json")

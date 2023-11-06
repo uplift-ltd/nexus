@@ -4,7 +4,9 @@ title: apollo
 
 ## Installation
 
-    npm i --save @uplift-ltd/apollo
+```sh
+npm i --save @uplift-ltd/apollo
+```
 
 ## API
 

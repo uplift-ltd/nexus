@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/sentry-react-native
+```sh
+npm i --save @uplift-ltd/sentry-react-native
+```
 
 ## API
 

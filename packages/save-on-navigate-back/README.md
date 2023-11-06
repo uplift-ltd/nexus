@@ -6,7 +6,9 @@ event to run your Formik onSubmit function before `navigation.pop`
 
 ## Installation
 
-    npm i --save @uplift-ltd/save-on-navigate-back
+```sh
+npm i --save @uplift-ltd/save-on-navigate-back
+```
 
 ## API
 

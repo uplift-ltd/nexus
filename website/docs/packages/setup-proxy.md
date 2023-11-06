@@ -4,7 +4,9 @@ title: setup-proxy
 
 ## Installation
 
-    npm i --save @uplift-ltd/setup-proxy
+```sh
+npm i --save @uplift-ltd/setup-proxy
+```
 
 ## API
 

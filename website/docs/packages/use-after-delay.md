@@ -4,7 +4,9 @@ title: use-after-delay
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-after-delay
+```sh
+npm i --save @uplift-ltd/use-after-delay
+```
 
 ## API
 

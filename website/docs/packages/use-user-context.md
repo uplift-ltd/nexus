@@ -4,7 +4,9 @@ title: use-user-context
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-user-context
+```sh
+npm i --save @uplift-ltd/use-user-context
+```
 
 ## API
 

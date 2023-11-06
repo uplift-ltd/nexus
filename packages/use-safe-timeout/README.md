@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-safe-timeout
+```sh
+npm i --save @uplift-ltd/use-safe-timeout
+```
 
 ## API
 

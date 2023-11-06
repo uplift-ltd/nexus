@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/toasts
+```sh
+npm i --save @uplift-ltd/toasts
+```
 
 ## API
 

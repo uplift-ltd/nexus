@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-debounce
+```sh
+npm i --save @uplift-ltd/use-debounce
+```
 
 ## API
 

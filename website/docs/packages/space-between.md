@@ -4,7 +4,9 @@ title: space-between
 
 ## Installation
 
-    npm i --save @uplift-ltd/space-between
+```sh
+npm i --save @uplift-ltd/space-between
+```
 
 ## API
 

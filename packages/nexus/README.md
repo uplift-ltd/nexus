@@ -2,9 +2,11 @@
 
 ## Installation
 
-    npx @uplift-ltd/nexus
+```sh
+npx @uplift-ltd/nexus
 
-    yarn global add @uplift-ltd/nexus
+yarn global add @uplift-ltd/nexus
+```
 
 ## API
 

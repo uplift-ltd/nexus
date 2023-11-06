@@ -4,7 +4,9 @@ This package provides some common constants
 
 ## Installation
 
-    npm i --save @uplift-ltd/constants
+```sh
+npm i --save @uplift-ltd/constants
+```
 
 ## Provided Constants
 

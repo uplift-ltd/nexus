@@ -4,7 +4,9 @@ title: push-notifications
 
 ## Installation
 
-    npm i --save @uplift-ltd/push-notifications
+```sh
+npm i --save @uplift-ltd/push-notifications
+```
 
 ## Firebase Cloud Messaging (FCM)
 

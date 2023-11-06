@@ -4,7 +4,9 @@ title: apollo-react-native
 
 ## Installation
 
-    npm i --save @uplift-ltd/apollo-react-native
+```sh
+npm i --save @uplift-ltd/apollo-react-native
+```
 
 ## API
 
