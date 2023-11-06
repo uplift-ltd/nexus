@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-on-page-scroll@1.2.4...@uplift-ltd/use-on-page-scroll@2.0.0) (2023-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* switch to esm
+
+### Features
+
+* switch to esm ([d9e6a35](https://github.com/uplift-ltd/nexus/commit/d9e6a35b04af3da5c8d595105d9266486af1d4dd))
+* switch to npm ([0dd941c](https://github.com/uplift-ltd/nexus/commit/0dd941cb72858a37d29336bedf403f580297e166))
+
+
+### Bug Fixes
+
+* jest and eslint configs ([d3cf497](https://github.com/uplift-ltd/nexus/commit/d3cf497ba25ccebeef4f17a6763868610be8b5e3))
+
+
+
 ### [1.2.4](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-on-page-scroll@1.2.3...@uplift-ltd/use-on-page-scroll@1.2.4) (2023-02-06)
 
 **Note:** Version bump only for package @uplift-ltd/use-on-page-scroll
