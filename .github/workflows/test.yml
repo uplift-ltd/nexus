@@ -113,6 +113,8 @@ jobs:
 
   docs:
     runs-on: ubuntu-latest
+    needs:
+      - dependencies
     steps:
       - uses: actions/checkout@v3
 
