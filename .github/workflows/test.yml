@@ -131,7 +131,9 @@ jobs:
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('website/package-lock.json')}}-${{hashFiles('website/package.json')}}
 
       - run: npm ci
+        working-directory: website
 
       - run: npm run update-docs
+        working-directory: website
 
       - run: git diff --exit-code
