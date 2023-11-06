@@ -14,7 +14,7 @@ And regenerate the schema:
 However this could be annoying when switching branches a lot. You might want to check out a known
 good version and push that up.
 
-    git checkout master schema.json
+    git checkout main schema.json
 
     git commit -m "Revert schema changes" --no-verify
 

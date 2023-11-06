@@ -117,7 +117,7 @@ jobs:
 
       - name: Lerna version
         if:
-          (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/master') ||
+          (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/main') ||
           github.event.inputs.distTag == 'prerelease'
         run: |
           if [ "${{ github.event.inputs.distTag }}" == "latest" ]; then

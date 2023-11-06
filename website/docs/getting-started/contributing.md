@@ -18,7 +18,7 @@ tsconfig.json     <== if the package supports typescript it needs to configure i
 
 Select the branch you want to publish from and enter `latest` or `prerelease` as the `distTag`.
 
-For production release use `master` branch and `latest`.
+For production release use `main` branch and `latest`.
 
 For prereleases use any branch and the `prerelease` dist tag.
 
