@@ -8,6 +8,12 @@ import { fileURLToPath } from "url";
 (async () => {
   const __dirname = dirname(fileURLToPath(import.meta.url));
 
+  await fs.promises.rm(path.resolve(__dirname, `../docs/packages`), {
+    recursive: true,
+    force: true,
+  });
+  await fs.promises.mkdir(path.resolve(__dirname, `../docs/packages`), { recursive: true });
+
   const readmePaths = (await globby(path.resolve(__dirname, "../../packages/*/README.md"))).sort();
   const packageJsonPaths = readmePaths.map((readmePath) =>
     readmePath.replace("README.md", "package.json")
@@ -22,11 +28,6 @@ import { fileURLToPath } from "url";
       const name = pkg.name.replace("@uplift-ltd/", "");
       const filename = _.kebabCase(name);
 
-      await fs.promises.rm(path.resolve(__dirname, `../docs/packages`), {
-        recursive: true,
-        force: true,
-      });
-      await fs.promises.mkdir(path.resolve(__dirname, `../docs/packages`), { recursive: true });
       await fs.promises.writeFile(
         path.resolve(__dirname, `../docs/packages/${filename}.md`),
         `---\ntitle: ${name}\n---\n\n` + readme.split("\n").slice(2).join("\n")
