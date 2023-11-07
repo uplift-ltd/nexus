@@ -10,6 +10,4 @@ export * from "./useEnumValues.js";
 
 export * from "./useSkipVariables.js";
 
-export * from "./tokenHelpers.js";
-
 export * from "@apollo/client";
