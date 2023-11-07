@@ -6,20 +6,20 @@ export function useSafeTimeout() {
   useEffect(() => {
     return () => {
       timeoutIds.current.forEach((timeoutId) => {
-        clearTimeout(timeoutId);
+        window.clearTimeout(timeoutId);
       });
       timeoutIds.current = [];
     };
   }, []);
 
   const startTimeout = useCallback((callback: () => void, ms = 0) => {
-    const timeoutId = setTimeout(callback, ms);
+    const timeoutId = window.setTimeout(callback, ms);
 
     timeoutIds.current = [...timeoutIds.current, timeoutId];
 
     const cancelTimeout = () => {
       if (timeoutIds.current.includes(timeoutId)) {
-        clearTimeout(timeoutId);
+        window.clearTimeout(timeoutId);
         timeoutIds.current = timeoutIds.current.filter((id) => id !== timeoutId);
       }
     };
