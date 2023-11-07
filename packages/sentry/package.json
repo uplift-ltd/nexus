@@ -12,12 +12,6 @@
     "esm/",
     "README.md"
   ],
-  "sideEffects": [
-    "cjs/browser-init.js",
-    "cjs/node-init.js",
-    "esm/browser-init.js",
-    "esm/node-init.js"
-  ],
   "publishConfig": {
     "access": "public"
   },

@@ -10,25 +10,24 @@ import {
   makeFetchTransport,
 } from "@sentry/browser";
 import { BrowserClientOptions } from "@sentry/browser/types/client";
-
-import { NORMALIZE_DEPTH, SENTRY_DSN, SENTRY_ENVIRONMENT } from "./constants.js";
+import { DEFAULT_NORMALIZE_DEPTH } from "./constants.js";
 
 export * from "./constants.js";
 export * from "@sentry/browser";
 
+const DEFAULT_SENTRY_INTEGRATIONS = [
+  new Breadcrumbs(),
+  new GlobalHandlers(),
+  new HttpContext(),
+  new LinkedErrors(),
+  new TryCatch(),
+];
+
 export function init(options?: BrowserClientOptions) {
   return getCurrentHub().bindClient(
     new BrowserClient({
-      dsn: SENTRY_DSN,
-      environment: SENTRY_ENVIRONMENT,
-      integrations: [
-        new Breadcrumbs(),
-        new GlobalHandlers(),
-        new HttpContext(),
-        new LinkedErrors(),
-        new TryCatch(),
-      ],
-      normalizeDepth: NORMALIZE_DEPTH,
+      integrations: DEFAULT_SENTRY_INTEGRATIONS,
+      normalizeDepth: DEFAULT_NORMALIZE_DEPTH,
       stackParser: defaultStackParser,
       transport: makeFetchTransport,
       ...options,

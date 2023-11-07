@@ -17,7 +17,7 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
-import { GRAPHQL_AUTH_URL, GRAPHQL_BATCHING, IS_SSR } from "@uplift-ltd/constants";
+import { IS_SSR } from "@uplift-ltd/constants";
 import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -51,7 +51,7 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
 
 export const configureClient = ({
-  batch = GRAPHQL_BATCHING,
+  batch = true,
   batchInterval,
   batchKey,
   batchMax,
@@ -69,6 +69,7 @@ export const configureClient = ({
   onNotAuthorized,
   removeToken,
   sentryHub,
+  uri,
   ...otherOptions
 }: ConfigureClientOptions) => {
   cache.restore(initialState);
@@ -178,7 +179,7 @@ export const configureClient = ({
         credentials,
         fetch,
         fetchOptions,
-        uri: GRAPHQL_AUTH_URL,
+        uri,
       })
     );
   } else {
@@ -187,7 +188,7 @@ export const configureClient = ({
         credentials,
         fetch,
         fetchOptions,
-        uri: GRAPHQL_AUTH_URL,
+        uri,
       })
     );
   }
@@ -197,6 +198,7 @@ export const configureClient = ({
     credentials,
     link: ApolloLink.from(links),
     ssrMode: IS_SSR,
+    uri,
     ...otherOptions,
   });
 };
