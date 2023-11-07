@@ -159,7 +159,7 @@ export function SyncedIntervalProvider({
       const lastDelayOrder = delaysOrder[delaysOrder.length - 1];
       const lastDelay = delays[lastDelayOrder];
       if (lastDelay !== null) {
-        const intervalId = setInterval(() => {
+        const intervalId = window.setInterval(() => {
           callbacksState.current[channel].callbacksOrder.forEach((callbackId) => {
             const callback = callbacksState.current[channel].callbacks[callbackId];
             callback();
@@ -170,7 +170,7 @@ export function SyncedIntervalProvider({
     });
     return () => {
       intervalIds.forEach((intervalId) => {
-        clearInterval(intervalId);
+        window.clearInterval(intervalId);
       });
     };
   }, [delaysState]);

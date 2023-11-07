@@ -8,6 +8,12 @@ import { fileURLToPath } from "url";
 (async () => {
   const __dirname = dirname(fileURLToPath(import.meta.url));
 
+  await fs.promises.rm(path.resolve(__dirname, `../docs/packages`), {
+    recursive: true,
+    force: true,
+  });
+  await fs.promises.mkdir(path.resolve(__dirname, `../docs/packages`), { recursive: true });
+
   const readmePaths = (await globby(path.resolve(__dirname, "../../packages/*/README.md"))).sort();
   const packageJsonPaths = readmePaths.map((readmePath) =>
     readmePath.replace("README.md", "package.json")
