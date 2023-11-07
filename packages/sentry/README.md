@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/sentry
+```sh
+npm i --save @uplift-ltd/sentry
+```
 
 ## API
 

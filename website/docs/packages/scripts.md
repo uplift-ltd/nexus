@@ -4,7 +4,9 @@ title: scripts
 
 ## Installation
 
-    npm i --save -D @uplift-ltd/scripts
+```sh
+npm i --save -D @uplift-ltd/scripts
+```
 
 Add this to package.json scripts:
 

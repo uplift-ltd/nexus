@@ -4,7 +4,9 @@ title: formik
 
 ## Installation
 
-    npm i --save @uplift-ltd/formik
+```sh
+npm i --save @uplift-ltd/formik
+```
 
 ## API
 

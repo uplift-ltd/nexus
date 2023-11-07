@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-interval
+```sh
+npm i --save @uplift-ltd/use-interval
+```
 
 ## API
 

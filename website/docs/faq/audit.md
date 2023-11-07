@@ -5,24 +5,34 @@ title: Fixing audit
 Yarn audit will tell you where the dependency is coming from. For example it could look something
 like this:
 
-    react-scripts -> react-dev-utils -> handlebars
+```
+react-scripts -> react-dev-utils -> handlebars
+```
 
 The easiest would be to upgrade the top level dependency to the latest:
 
-    yarn upgrade --latest react-scripts
+```sh
+yarn upgrade --latest react-scripts
+```
 
 If upgrading to latest isn't an option, you can try updating to a newer compatible version. First
 see what you can upgrade to by running:
 
-    yarn outdated
+```sh
+yarn outdated
+```
 
 Look for the Wanted or Latest version of `react-scripts` and update it in `package.json`.
 
-    yarn install
+```sh
+yarn install
+```
 
 Try yarn audit. Did that fix it? If that didn't work, try:
 
-    yarn upgrade react-scripts
+```sh
+yarn upgrade react-scripts
+```
 
 Try yarn audit. Did that fix it? If not, chances are we will have to use yarn resolutions. In
 `package.json` look for the `resolutions` field or create one if it doesn't exist:

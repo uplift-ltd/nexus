@@ -4,7 +4,9 @@ title: ts-helpers
 
 ## Installation
 
-    npm i --save @uplift-ltd/ts-helpers
+```sh
+npm i --save @uplift-ltd/ts-helpers
+```
 
 ## API
 

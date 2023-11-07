@@ -9,17 +9,8 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "run-s build deploy:surge:production",
     "serve": "docusaurus serve",
-    "update-docs": "node ./scripts/update-docs.js && ../node_modules/.bin/prettier --write sidebars.js",
+    "update-docs": "node ./scripts/update-docs.mjs && ../node_modules/.bin/prettier --write sidebars.js",
     "deploy:surge:production": "surge ./build $(cat CNAME)"
-  },
-  "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.74",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.74",
-    "@mdx-js/react": "^1.6.22",
-    "clsx": "^1.1.1",
-    "globby": "^11.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
   },
   "browserslist": {
     "production": [
@@ -32,6 +23,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.0.0",
+    "@docusaurus/preset-classic": "3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "globby": "^13.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "lodash": "^4.17.21",

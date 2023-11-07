@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/react-native-updates
+```sh
+npm i --save @uplift-ltd/react-native-updates
+```
 
 ## API
 

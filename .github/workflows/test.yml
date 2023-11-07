@@ -15,7 +15,7 @@ jobs:
       - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version: "20.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Cache node_modules
@@ -27,7 +27,7 @@ jobs:
           path: |
             node_modules
             packages/*/node_modules
-          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('**/package-lock.json')}}-${{hashFiles('packages/*/package.json')}}
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
 
       # Always run this, so it throws if the package and lockfile don't match
       - name: Install dependencies
@@ -44,7 +44,7 @@ jobs:
       - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version: "20.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
@@ -55,7 +55,7 @@ jobs:
           path: |
             node_modules
             packages/*/node_modules
-          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('**/package-lock.json')}}-${{hashFiles('packages/*/package.json')}}
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
 
       - run: npm run build
 
@@ -87,7 +87,7 @@ jobs:
       - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version: "20.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
@@ -98,7 +98,7 @@ jobs:
           path: |
             node_modules
             packages/*/node_modules
-          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('**/package-lock.json')}}-${{hashFiles('packages/*/package.json')}}
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
 
       - uses: actions/download-artifact@v3
         with:
@@ -113,14 +113,15 @@ jobs:
 
   docs:
     runs-on: ubuntu-latest
-    needs: dependencies
+    needs:
+      - dependencies
     steps:
       - uses: actions/checkout@v3
 
       - name: Use Node.js with GitHub Packages
         uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
+          node-version: "20.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
@@ -131,8 +132,20 @@ jobs:
           path: |
             node_modules
             packages/*/node_modules
-          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('**/package-lock.json')}}-${{hashFiles('packages/*/package.json')}}
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
+
+      - name: Restore website dependencies
+        uses: actions/cache@v3
+        env:
+          cache-name: npm-cache
+        with:
+          path: website/node_modules
+          key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('website/package-lock.json')}}-${{hashFiles('website/package.json')}}
+
+      - run: npm ci
+        working-directory: website
 
       - run: npm run update-docs
+        working-directory: website
 
       - run: git diff --exit-code

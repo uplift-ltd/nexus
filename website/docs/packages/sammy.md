@@ -4,7 +4,9 @@ title: sammy
 
 ## Installation
 
-    npm i --save @uplift-ltd/sammy
+```sh
+npm i --save @uplift-ltd/sammy
+```
 
 ## Getting Started
 
@@ -14,30 +16,34 @@ Install [doctl](https://github.com/digitalocean/doctl#installing-doctl)
 
 MacOS:
 
-    brew install doctl
+```sh
+brew install doctl
+```
 
 Ubuntu:
 
-    sudo snap install doctl
+```sh
+sudo snap install doctl
+```
 
 ### Authenticating with DigitalOcean
 
 [Generate an API](https://cloud.digitalocean.com/account/api/tokens) token for the team you want to
 use.
 
-```
+```sh
 doctl auth init --context uplift
 ```
 
 You can log into multiple teams.
 
-```
+```sh
 doctl auth init --context runbook
 ```
 
 And switch between them:
 
-```
+```sh
 doctl auth switch --context uplift
 ```
 
@@ -72,7 +78,7 @@ appspec.staging.yml
 
 Download and write the appspec yaml file for the specified environment.
 
-```
+```sh
 sammy appspec:get --env production
 ```
 
@@ -80,7 +86,7 @@ sammy appspec:get --env production
 
 Upload the appspec yaml file for the specified environment to DigitalOcean.
 
-```
+```sh
 sammy appspec:update --env production
 ```
 
@@ -88,6 +94,6 @@ sammy appspec:update --env production
 
 Trigger a new deployment.
 
-```
+```sh
 sammy create-deployment --env production
 ```

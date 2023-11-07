@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/react-native-screen-views
+```sh
+npm i --save @uplift-ltd/react-native-screen-views
+```
 
 ## API
 

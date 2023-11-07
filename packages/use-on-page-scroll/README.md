@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/use-on-page-scroll
+```sh
+npm i --save @uplift-ltd/use-on-page-scroll
+```
 
 ## API
 

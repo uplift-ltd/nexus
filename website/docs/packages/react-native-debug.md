@@ -4,7 +4,9 @@ title: react-native-debug
 
 ## Installation
 
-    npm i --save @uplift-ltd/react-native-debug
+```sh
+npm i --save @uplift-ltd/react-native-debug
+```
 
 ## API
 

@@ -42,22 +42,26 @@ There's some weirdness with `yarn link`. The most reliable way seems to be to us
 if the package depends on `react` you may have to alias that to the app `react` to avoid duplicate
 react versions (and hooks failing).
 
-    cd packages/formik
-    npm link
-    cd ../..
-    npm link ../../../myapp/node_modules/react
-    cd myapp
-    npm link @uplift-ltd/formik
+```sh
+cd packages/formik
+npm link
+cd ../..
+npm link ../../../myapp/node_modules/react
+cd myapp
+npm link @uplift-ltd/formik
+```
 
 Additionally you may need to alias `@apollo/client` _and_ its own `react` version to the app.
 
-    cd packages/apollo
-    npm link
-    cd ../..
-    npm link ../myapp/node_modules/react
-    npm link ../myapp/node_modules/@apollo/client
-    cd node_modules/@apollo/client
-    npm link ../../../myapp/node_modules/react
+```sh
+cd packages/apollo
+npm link
+cd ../..
+npm link ../myapp/node_modules/react
+npm link ../myapp/node_modules/@apollo/client
+cd node_modules/@apollo/client
+npm link ../../../myapp/node_modules/react
+```
 
 Don't forget to run `npm run build` after every change.
 

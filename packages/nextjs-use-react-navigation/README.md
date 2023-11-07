@@ -2,7 +2,9 @@
 
 ## Installation
 
-    npm i --save @uplift-ltd/nextjs-use-react-navigation
+```sh
+npm i --save @uplift-ltd/nextjs-use-react-navigation
+```
 
 ## API
 
