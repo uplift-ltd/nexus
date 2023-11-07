@@ -50,7 +50,6 @@
     "@babel/preset-typescript": "^7.10.4",
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.9",
-    "@types/react-native": "^0.63.9",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "babel-jest": "^29.4.1",
