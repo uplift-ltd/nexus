@@ -14,7 +14,7 @@ npm i --save @uplift-ltd/formik
 
 These wrappers do a few things:
 
-- handle reporting errors via @uplift-ltd/nexus-errors
+- handle reporting errors
 - adds `initialStatus` for form errors
 - adds `setFormSuccess` and `setFormError` helpers
 - adds `applyErrorsToFields` helper
@@ -26,6 +26,7 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 
 <EnhancedFormik<FormValues>
   resetStatusOnSubmit
+  captureException={captureException}
   onSubmit={() => {
     throw new Error("I get reported through @uplift-ltd/nexus-errors and set to status.formError");
   }}

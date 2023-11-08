@@ -40,18 +40,22 @@ registerMessageHandler(captureMessage);
 
 ### Override Types
 
+Here's an example for using Sentry types.
+
 ```ts
 import "@uplift-ltd/nexus-errors";
 
 declare module "@uplift-ltd/nexus-errors" {
+  import { type CaptureContext } from "@sentry/types";
+
   export interface NexusExceptionHandlerProps {
-    error: MyError;
-    context: MyContext;
+    error: any;
+    context: CaptureContext;
   }
 
   export interface NexusMessageHndlerProps {
     message: string;
-    context: MyContext;
+    context: CaptureContext;
   }
 }
 ```
