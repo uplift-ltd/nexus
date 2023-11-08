@@ -12,7 +12,7 @@ npm i --save @uplift-ltd/formik
 
 These wrappers do a few things:
 
-- handle reporting errors to Sentry
+- handle reporting errors via @uplift-ltd/nexus-errors
 - adds `initialStatus` for form errors
 - adds `setFormSuccess` and `setFormError` helpers
 - adds `applyErrorsToFields` helper
@@ -25,7 +25,7 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 <EnhancedFormik<FormValues>
   resetStatusOnSubmit
   onSubmit={() => {
-    throw new Error("I get submitted to sentry and set to status.formError");
+    throw new Error("I get reported through @uplift-ltd/nexus-errors and set to status.formError");
   }}
 />;
 ```
@@ -55,11 +55,11 @@ const formik = useEnhancedFormik<FormValues>({
 
 #### setFormSuccess / setFormError
 
-Note that setFormError accepts a `sentryEventId` as the second property, which will be available on
-form status.
+Note that setFormError accepts a `captureExceptionReturn` as the second property, which will be
+available on form status.
 
-You can use `Sentry.showReportDialog(status.sentryEventId)` to show a report error dialog to the
-user.
+You can use `Sentry.showReportDialog(status.captureExceptionReturn)` to show a report error dialog
+to the user.
 
 ```tsx
 import { EnhancedFormik } from "@uplift-ltd/formik";
@@ -79,7 +79,25 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
       setFormError(err.message, sentryEventId);
     }
   }}
-/>;
+>
+  {({ status }) => (
+    <>
+      {status.formError && (
+        <div>
+          {status.formError}
+          {status.captureExceptionReturn && (
+            <button
+              type="button"
+              onClick={() => Sentry.showReportDialog(status.captureExceptionReturn)}
+            >
+              Report Error
+            </button>
+          )}
+        </div>
+      )}
+    </>
+  )}
+</EnhancedFormik>;
 ```
 
 #### applyErrorsToFields

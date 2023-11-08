@@ -32,7 +32,6 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/apollo": "^6.0.0-alpha.0",
-    "@uplift-ltd/sentry": "^6.0.0-alpha.0"
+    "@uplift-ltd/apollo": "^6.0.0-alpha.0"
   }
 }

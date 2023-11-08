@@ -1,17 +1,18 @@
+import { type NexusExceptionHandlerProps } from "@uplift-ltd/nexus-errors";
 import { FormikHelpers } from "formik";
 
 export interface FormikStatus {
   allowResubmit?: boolean;
+  captureExceptionReturn?: NexusExceptionHandlerProps["returnType"] | null;
   formError?: Error | null | string;
   formSuccess?: null | string;
-  sentryEventId?: null | string;
 }
 
 export const DEFAULT_INITIAL_STATUS: FormikStatus = {
   allowResubmit: true,
+  captureExceptionReturn: null,
   formError: null,
   formSuccess: null,
-  sentryEventId: null,
 };
 
 export const getEnhancedSetStatus =
@@ -25,25 +26,30 @@ export const getSetFormSuccess =
 
 export const getSetFormError =
   (setStatus: FormikHelpers<unknown>["setStatus"]) =>
-  (formError: FormikStatus["formError"], sentryEventId?: FormikStatus["sentryEventId"]) => {
+  (
+    formError: FormikStatus["formError"],
+    captureExceptionReturn?: FormikStatus["captureExceptionReturn"]
+  ) => {
     const status: FormikStatus = { formError, formSuccess: null };
-    if (typeof sentryEventId !== "undefined") {
-      status.sentryEventId = sentryEventId;
+    if (typeof captureExceptionReturn !== "undefined") {
+      status.captureExceptionReturn = captureExceptionReturn;
     }
     return setStatus(status);
   };
 
-export const getSetSentryEventId =
+export const getSetCaptureExceptionReturn =
   (setStatus: FormikHelpers<unknown>["setStatus"]) =>
-  (sentryEventId: FormikStatus["sentryEventId"]) =>
-    setStatus({ sentryEventId });
+  (captureExceptionReturn: FormikStatus["captureExceptionReturn"]) =>
+    setStatus({ captureExceptionReturn });
 
 export interface StatusHelpers {
+  setCaptureExceptionReturn: (
+    captureExceptionReturn: FormikStatus["captureExceptionReturn"]
+  ) => void;
   setFormError: (
     formError: FormikStatus["formError"],
-    sentryEventId?: FormikStatus["sentryEventId"]
+    captureExceptionReturn?: FormikStatus["captureExceptionReturn"]
   ) => void;
   setFormSuccess: (formSuccess: FormikStatus["formSuccess"]) => void;
-  setSentryEventId: (sentryEventId: FormikStatus["sentryEventId"]) => void;
   setStatus: (status: FormikStatus) => void;
 }

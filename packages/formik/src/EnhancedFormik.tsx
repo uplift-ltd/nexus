@@ -1,4 +1,4 @@
-import { captureException } from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/nexus-errors";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { Formik, FormikProps, FormikValues, isFunction } from "formik";
 import React, { useRef } from "react";
@@ -7,9 +7,9 @@ import { getApplyErrorsToFields } from "./errors.js";
 import {
   DEFAULT_INITIAL_STATUS,
   getEnhancedSetStatus,
+  getSetCaptureExceptionReturn,
   getSetFormError,
   getSetFormSuccess,
-  getSetSentryEventId,
 } from "./status.js";
 import { EnhancedFormikExtraProps, FormikConfigWithOverrides } from "./types.js";
 
@@ -50,19 +50,19 @@ export function EnhancedFormik<
           await onSubmit(values, {
             ...formikHelpers,
             applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
+            setCaptureExceptionReturn: getSetCaptureExceptionReturn(setStatus),
             setFormError: getSetFormError(setStatus),
             setFormSuccess: getSetFormSuccess(setStatus),
-            setSentryEventId: getSetSentryEventId(setStatus),
             setStatus,
           });
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
-          const sentryEventId = captureException(err, { extra });
+          const captureExceptionReturn = await captureException(err as Error, { extra });
 
           setStatus({
+            captureExceptionReturn,
             formError: ensureError(err),
             formSuccess: null,
-            sentryEventId,
           });
         }
       }}
@@ -74,9 +74,9 @@ export function EnhancedFormik<
           return children({
             ...formik,
             applyErrorsToFields: getApplyErrorsToFields(formik.setErrors),
+            setCaptureExceptionReturn: getSetCaptureExceptionReturn(setStatus),
             setFormError: getSetFormError(setStatus),
             setFormSuccess: getSetFormSuccess(setStatus),
-            setSentryEventId: getSetSentryEventId(setStatus),
             setStatus,
           });
         }

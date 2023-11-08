@@ -8,8 +8,8 @@ import {
 } from "formik";
 import { MutableRefObject } from "react";
 
-import { ErrorHelpers } from "./errors.js";
-import { StatusHelpers } from "./status.js";
+import { type ErrorHelpers } from "./errors.js";
+import { type StatusHelpers } from "./status.js";
 
 type ExtraHelpers = StatusHelpers & ErrorHelpers;
 

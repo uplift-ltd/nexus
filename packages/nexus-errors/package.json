@@ -1,7 +1,7 @@
 {
-  "name": "@uplift-ltd/sentry",
-  "version": "6.0.0-alpha.0",
-  "description": "Helpers for dealing with sentry.",
+  "name": "@uplift-ltd/nexus-errors",
+  "version": "1.0.0",
+  "description": "Helpers for dealing with nexus-errors.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./cjs/index.js",
@@ -18,18 +18,14 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uplift-ltd/nexus.git",
-    "directory": "packages/sentry"
+    "directory": "packages/nexus-errors"
   },
   "bugs": {
-    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:sentry"
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:nexus-errors"
   },
-  "homepage": "https://nexus.uplift.ltd/docs/packages/sentry",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/nexus-errors",
   "scripts": {
     "build": "nexus build-library",
     "test": "jest"
-  },
-  "dependencies": {
-    "@sentry/browser": "^7.47.0",
-    "@sentry/node": "^7.47.0"
   }
 }

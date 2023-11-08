@@ -1,1 +1,0 @@
-export const DEFAULT_NORMALIZE_DEPTH = 10;

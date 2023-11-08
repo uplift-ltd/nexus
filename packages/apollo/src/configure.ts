@@ -1,5 +1,3 @@
-import type { Hub } from "@sentry/types";
-
 import {
   ApolloCache,
   ApolloClient,
@@ -18,6 +16,7 @@ import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
+import { captureException, captureMessage } from "@uplift-ltd/nexus-errors";
 import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,7 +44,6 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
   onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
   removeToken?: () => void;
-  sentryHub?: Hub;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
@@ -68,7 +66,6 @@ export const configureClient = ({
   onNetworkError,
   onNotAuthorized,
   removeToken,
-  sentryHub,
   uri,
   ...otherOptions
 }: ConfigureClientOptions) => {
@@ -94,13 +91,12 @@ export const configureClient = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map?.((result: Record<string, any>) => result.errors);
 
-      sentryHub?.withScope((scope) => {
-        scope.setExtras({
+      captureException(networkError, {
+        extra: {
           errors,
           operationName: operation.operationName,
           query: operation.query,
-        });
-        sentryHub.captureException(networkError);
+        },
       });
 
       onNetworkError?.(networkError, operation);
@@ -130,13 +126,13 @@ export const configureClient = ({
         }
       });
 
-      sentryHub?.withScope((scope) => {
-        scope.setExtras({
+      captureMessage("GraphQL Errors", {
+        extra: {
           errors: graphQLErrors,
           operationName: operation.operationName,
           query: operation.query,
-        });
-        sentryHub.captureMessage("GraphQL Errors", "warning");
+        },
+        level: "warning",
       });
 
       if (graphQLErrors.length > 0 && onGraphqlErrors) {
