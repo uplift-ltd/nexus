@@ -1,15 +1,15 @@
-import { captureException } from "@uplift-ltd/sentry";
+import { captureException } from "@uplift-ltd/nexus-errors";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { FormikValues, useFormik } from "formik";
 
 import { getApplyErrorsToFields } from "./errors.js";
 import {
   DEFAULT_INITIAL_STATUS,
-  FormikStatus,
+  type FormikStatus,
   getEnhancedSetStatus,
+  getSetCaptureExceptionReturn,
   getSetFormError,
   getSetFormSuccess,
-  getSetSentryEventId,
 } from "./status.js";
 import { FormikConfigWithOverrides } from "./types.js";
 
@@ -37,15 +37,15 @@ export function useEnhancedFormik<TFormikValues extends FormikValues>({
         await options.onSubmit(values, {
           ...formikHelpers,
           applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
+          setCaptureExceptionReturn: getSetCaptureExceptionReturn(setStatus),
           setFormError: getSetFormError(setStatus),
           setFormSuccess: getSetFormSuccess(setStatus),
-          setSentryEventId: getSetSentryEventId(setStatus),
           setStatus,
         });
       } catch (err) {
         const extra = captureValuesOnError ? { values } : {};
-        const sentryEventId = captureException(err, { extra });
-        setStatus({ formError: ensureError(err), formSuccess: null, sentryEventId });
+        const captureExceptionReturn = await captureException(err as Error, { extra });
+        setStatus({ captureExceptionReturn, formError: ensureError(err), formSuccess: null });
       }
     },
   });
