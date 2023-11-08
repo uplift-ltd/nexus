@@ -15,9 +15,6 @@ import {
   useQuery,
 } from "@apollo/client";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ExtraOptions {}
-
 export type EnhancedQueryResult<TData, TVariables extends OperationVariables> = QueryResult<
   TData,
   TVariables
@@ -33,8 +30,7 @@ export function useEnhancedQuery<
   TVariables extends OperationVariables = OperationVariables
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: QueryHookOptions<TData, TVariables> = {},
-  _extraOptions: ExtraOptions = {}
+  options: QueryHookOptions<TData, TVariables> = {}
 ): EnhancedQueryResult<TData, TVariables> {
   const result = useQuery(query, {
     ...options,
@@ -54,8 +50,7 @@ export function useEnhancedLazyQuery<
   TVariables extends OperationVariables = OperationVariables
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: QueryHookOptions<TData, TVariables> = {},
-  _extraOptions: ExtraOptions = {}
+  options: QueryHookOptions<TData, TVariables> = {}
 ): QueryTuple<TData, TVariables> {
   return useLazyQuery(query, {
     ...options,
@@ -75,8 +70,7 @@ export function useEnhancedMutation<
   TCache extends ApolloCache<any> = ApolloCache<any>
 >(
   mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: MutationHookOptions<TData, TVariables, TContext, TCache> = {},
-  _extraOptions: ExtraOptions = {}
+  options: MutationHookOptions<TData, TVariables, TContext, TCache> = {}
 ): MutationTuple<TData, TVariables, TContext, TCache> {
   return useMutation(mutation, {
     ...options,
