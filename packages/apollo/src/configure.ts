@@ -13,9 +13,10 @@ import {
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import { HttpLink, ServerParseError } from "@apollo/client/link/http";
+import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
+import { type CaptureExceptionHandler, type CaptureMessageHandler } from "@uplift-ltd/nexus-types";
 import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,19 +33,8 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
   cache?: ApolloCache<unknown>;
-  captureException?: (
-    error: Error | ServerError | ServerParseError,
-    captureContext: {
-      extra: Record<string, unknown>;
-    }
-  ) => void;
-  captureMessage?: (
-    message: string,
-    captureContext: {
-      extra: Record<string, unknown>;
-      level: "debug" | "error" | "fatal" | "info" | "log" | "warning";
-    }
-  ) => void;
+  captureException?: CaptureExceptionHandler;
+  captureMessage?: CaptureMessageHandler;
   cookie?: string;
   extraLinks?: ApolloLink[];
   fetch?: BatchHttpLink.Options["fetch"];

@@ -28,7 +28,7 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
   resetStatusOnSubmit
   captureException={captureException}
   onSubmit={() => {
-    throw new Error("I get reported through @uplift-ltd/nexus-errors and set to status.formError");
+    throw new Error("I get reported through captureException and set to status.formError");
   }}
 />;
 ```
@@ -58,10 +58,10 @@ const formik = useEnhancedFormik<FormValues>({
 
 #### setFormSuccess / setFormError
 
-Note that setFormError accepts a `captureExceptionReturn` as the second property, which will be
+Note that setFormError accepts a `captureExceptionResult` as the second property, which will be
 available on form status.
 
-You can use `Sentry.showReportDialog(status.captureExceptionReturn)` to show a report error dialog
+You can use `Sentry.showReportDialog(status.captureExceptionResult)` to show a report error dialog
 to the user.
 
 ```tsx
@@ -88,10 +88,10 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
       {status.formError && (
         <div>
           {status.formError}
-          {status.captureExceptionReturn && (
+          {status.captureExceptionResult && (
             <button
               type="button"
-              onClick={() => Sentry.showReportDialog(status.captureExceptionReturn)}
+              onClick={() => Sentry.showReportDialog(status.captureExceptionResult)}
             >
               Report Error
             </button>

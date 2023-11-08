@@ -32,6 +32,7 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
+    "@uplift-ltd/nexus-types": "^1.0.0",
     "@uplift-ltd/strings": "^4.0.0-alpha.0",
     "@uplift-ltd/ts-helpers": "^3.0.0"
   },

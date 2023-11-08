@@ -3,9 +3,9 @@ import { useFormikContext } from "formik";
 import { getApplyErrorsToFields } from "./errors.js";
 import {
   getEnhancedSetStatus,
-  getSetCaptureExceptionReturn,
   getSetFormError,
   getSetFormSuccess,
+  getSetcaptureExceptionResult,
 } from "./status.js";
 import { EnhancedFormikContextType } from "./types.js";
 
@@ -17,9 +17,9 @@ export function useEnhancedFormikContext<FormikValues>(): EnhancedFormikContextT
   return {
     ...context,
     applyErrorsToFields: getApplyErrorsToFields(context.setErrors),
-    setCaptureExceptionReturn: getSetCaptureExceptionReturn(setStatus),
     setFormError: getSetFormError(setStatus),
     setFormSuccess: getSetFormSuccess(setStatus),
     setStatus,
+    setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
   };
 }
