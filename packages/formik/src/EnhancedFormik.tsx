@@ -1,4 +1,3 @@
-import { captureException } from "@uplift-ltd/nexus-errors";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { Formik, FormikProps, FormikValues, isFunction } from "formik";
 import React, { useRef } from "react";
@@ -19,6 +18,7 @@ export function EnhancedFormik<
   // eslint-disable-next-line @typescript-eslint/ban-types
   ExtraProps extends EnhancedFormikExtraProps<Values> = {}
 >({
+  captureException,
   captureValuesOnError,
   children,
   initialStatus,
@@ -57,7 +57,7 @@ export function EnhancedFormik<
           });
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
-          const captureExceptionReturn = await captureException(err as Error, { extra });
+          const captureExceptionReturn = await captureException?.(err, { extra });
 
           setStatus({
             captureExceptionReturn,
