@@ -1,4 +1,3 @@
-import { captureException } from "@uplift-ltd/nexus-errors";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { FormikValues, useFormik } from "formik";
 
@@ -14,6 +13,7 @@ import {
 import { FormikConfigWithOverrides } from "./types.js";
 
 export function useEnhancedFormik<TFormikValues extends FormikValues>({
+  captureException,
   captureValuesOnError,
   resetStatusOnSubmit,
   ...options
@@ -44,7 +44,7 @@ export function useEnhancedFormik<TFormikValues extends FormikValues>({
         });
       } catch (err) {
         const extra = captureValuesOnError ? { values } : {};
-        const captureExceptionReturn = await captureException(err as Error, { extra });
+        const captureExceptionReturn = await captureException?.(err as Error, { extra });
         setStatus({ captureExceptionReturn, formError: ensureError(err), formSuccess: null });
       }
     },

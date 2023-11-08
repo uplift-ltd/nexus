@@ -14,6 +14,12 @@ import { type StatusHelpers } from "./status.js";
 type ExtraHelpers = StatusHelpers & ErrorHelpers;
 
 export interface EnhancedFormikExtraProps<Values extends FormikValues = FormikValues> {
+  captureException?: (
+    error: unknown,
+    captureContext: {
+      extra: Record<string, unknown>;
+    }
+  ) => Promise<void> | void;
   captureValuesOnError?: boolean;
   innerRef?: MutableRefObject<FormikProps<Values>>;
   resetStatusOnSubmit?: boolean;

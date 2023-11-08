@@ -13,10 +13,9 @@ import {
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import { HttpLink } from "@apollo/client/link/http";
+import { HttpLink, ServerParseError } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
-import { captureException, captureMessage } from "@uplift-ltd/nexus-errors";
 import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,6 +32,19 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
   cache?: ApolloCache<unknown>;
+  captureException?: (
+    error: Error | ServerError | ServerParseError,
+    captureContext: {
+      extra: Record<string, unknown>;
+    }
+  ) => void;
+  captureMessage?: (
+    message: string,
+    captureContext: {
+      extra: Record<string, unknown>;
+      level: "debug" | "error" | "fatal" | "info" | "log" | "warning";
+    }
+  ) => void;
   cookie?: string;
   extraLinks?: ApolloLink[];
   fetch?: BatchHttpLink.Options["fetch"];
@@ -54,6 +66,8 @@ export const configureClient = ({
   batchKey,
   batchMax,
   cache = new InMemoryCache(),
+  captureException,
+  captureMessage,
   cookie,
   credentials = "same-origin",
   extraLinks = [],
@@ -91,7 +105,7 @@ export const configureClient = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map?.((result: Record<string, any>) => result.errors);
 
-      captureException(networkError, {
+      captureException?.(networkError, {
         extra: {
           errors,
           operationName: operation.operationName,
@@ -126,7 +140,7 @@ export const configureClient = ({
         }
       });
 
-      captureMessage("GraphQL Errors", {
+      captureMessage?.("GraphQL Errors", {
         extra: {
           errors: graphQLErrors,
           operationName: operation.operationName,
