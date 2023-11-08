@@ -1,6 +1,5 @@
 import {
   Breadcrumbs,
-  BrowserClient,
   GlobalHandlers,
   HttpContext,
   LinkedErrors,
@@ -25,13 +24,11 @@ const DEFAULT_SENTRY_INTEGRATIONS = [
 ];
 
 export function init(options?: BrowserClientOptions) {
-  return browserInit(
-    new BrowserClient({
-      integrations: DEFAULT_SENTRY_INTEGRATIONS,
-      normalizeDepth: DEFAULT_NORMALIZE_DEPTH,
-      stackParser: defaultStackParser,
-      transport: makeFetchTransport,
-      ...options,
-    })
-  );
+  return browserInit({
+    integrations: DEFAULT_SENTRY_INTEGRATIONS,
+    normalizeDepth: DEFAULT_NORMALIZE_DEPTH,
+    stackParser: defaultStackParser,
+    transport: makeFetchTransport,
+    ...options,
+  });
 }
