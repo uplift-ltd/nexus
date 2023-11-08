@@ -1,26 +1,36 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.2.0...@uplift-ltd/sentry@5.0.0) (2023-11-06)
-
+## [6.0.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@5.0.0...@uplift-ltd/sentry@6.0.0-alpha.0) (2023-11-08)
 
 ### ⚠ BREAKING CHANGES
 
-* switch to esm
+- remove environment variables
+
+### Miscellaneous Chores
+
+- remove environment variables
+  ([5e06b7e](https://github.com/uplift-ltd/nexus/commit/5e06b7e47ba092d2a1599497d7dd33e10480a2de))
+
+## [5.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.2.0...@uplift-ltd/sentry@5.0.0) (2023-11-06)
+
+### ⚠ BREAKING CHANGES
+
+- switch to esm
 
 ### Features
 
-* switch to esm ([d9e6a35](https://github.com/uplift-ltd/nexus/commit/d9e6a35b04af3da5c8d595105d9266486af1d4dd))
-* switch to npm ([0dd941c](https://github.com/uplift-ltd/nexus/commit/0dd941cb72858a37d29336bedf403f580297e166))
-
+- switch to esm
+  ([d9e6a35](https://github.com/uplift-ltd/nexus/commit/d9e6a35b04af3da5c8d595105d9266486af1d4dd))
+- switch to npm
+  ([0dd941c](https://github.com/uplift-ltd/nexus/commit/0dd941cb72858a37d29336bedf403f580297e166))
 
 ### Bug Fixes
 
-* jest and eslint configs ([d3cf497](https://github.com/uplift-ltd/nexus/commit/d3cf497ba25ccebeef4f17a6763868610be8b5e3))
-
-
+- jest and eslint configs
+  ([d3cf497](https://github.com/uplift-ltd/nexus/commit/d3cf497ba25ccebeef4f17a6763868610be8b5e3))
 
 # Change Log
 
