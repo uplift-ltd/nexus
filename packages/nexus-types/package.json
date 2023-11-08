@@ -1,7 +1,7 @@
 {
-  "name": "@uplift-ltd/nexus-errors",
+  "name": "@uplift-ltd/nexus-types",
   "version": "1.0.0",
-  "description": "Helpers for dealing with nexus-errors.",
+  "description": "Helpers for dealing with nexus-types.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
   "main": "./cjs/index.js",
@@ -18,12 +18,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uplift-ltd/nexus.git",
-    "directory": "packages/nexus-errors"
+    "directory": "packages/nexus-types"
   },
   "bugs": {
-    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:nexus-errors"
+    "url": "https://github.com/uplift-ltd/nexus/issues?q=is:open+is:issue+label:nexus-types"
   },
-  "homepage": "https://nexus.uplift.ltd/docs/packages/nexus-errors",
+  "homepage": "https://nexus.uplift.ltd/docs/packages/nexus-types",
   "scripts": {
     "build": "nexus build-library",
     "test": "jest"

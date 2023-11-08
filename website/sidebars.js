@@ -11,7 +11,7 @@ module.exports = {
       "packages/formik",
       "packages/graphene",
       "packages/money",
-      "packages/nexus-errors",
+      "packages/nexus-types",
       "packages/nexus",
       "packages/sammy",
       "packages/scripts",
