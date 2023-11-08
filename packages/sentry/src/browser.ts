@@ -5,8 +5,8 @@ import {
   HttpContext,
   LinkedErrors,
   TryCatch,
+  init as browserInit,
   defaultStackParser,
-  getCurrentHub,
   makeFetchTransport,
 } from "@sentry/browser";
 import { BrowserClientOptions } from "@sentry/browser/types/client";
@@ -25,7 +25,7 @@ const DEFAULT_SENTRY_INTEGRATIONS = [
 ];
 
 export function init(options?: BrowserClientOptions) {
-  return getCurrentHub().bindClient(
+  return browserInit(
     new BrowserClient({
       integrations: DEFAULT_SENTRY_INTEGRATIONS,
       normalizeDepth: DEFAULT_NORMALIZE_DEPTH,
