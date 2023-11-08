@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@5.0.0...@uplift-ltd/sentry@6.0.0-alpha.0) (2023-11-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove environment variables
+
+### Miscellaneous Chores
+
+* remove environment variables ([5e06b7e](https://github.com/uplift-ltd/nexus/commit/5e06b7e47ba092d2a1599497d7dd33e10480a2de))
+
+
+
 ## [5.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sentry@4.2.0...@uplift-ltd/sentry@5.0.0) (2023-11-06)
 
 
