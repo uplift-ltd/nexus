@@ -15,6 +15,7 @@ import {
   useQuery,
 } from "@apollo/client";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ExtraOptions {}
 
 export type EnhancedQueryResult<TData, TVariables extends OperationVariables> = QueryResult<
@@ -54,7 +55,7 @@ export function useEnhancedLazyQuery<
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: QueryHookOptions<TData, TVariables> = {},
-  _extraOptions: ExtraOptions
+  _extraOptions: ExtraOptions = {}
 ): QueryTuple<TData, TVariables> {
   return useLazyQuery(query, {
     ...options,
