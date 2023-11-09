@@ -26,6 +26,6 @@
   "homepage": "https://nexus.uplift.ltd/docs/packages/nexus-types",
   "scripts": {
     "build": "nexus build-library",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   }
 }
