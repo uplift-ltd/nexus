@@ -64,8 +64,10 @@ to the user.
 
 ```tsx
 import { EnhancedFormik } from "@uplift-ltd/formik";
+import { captureException } from "@sentry/remix";
 
 <EnhancedFormik<FormValues>
+  captureException={captureException}
   onSubmit={async (values, { setFormSuccess, setFormError }) => {
     try {
       const { data } = await someMutation();
