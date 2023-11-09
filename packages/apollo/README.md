@@ -12,8 +12,6 @@ npm i --save @uplift-ltd/apollo
 
 Same API as Apollo useQuery except:
 
-- It accepts a third parameter for setting the auth/unauth endpoints for you. Defaults to auth
-  endpoint.
 - It returns `initialLoading`, `refetching`, and `fetchingMore` (pass in
   `notifyOnNetworkStatusChange: true`)
 
@@ -31,13 +29,12 @@ const { data, initialLoading, refetching, fetchingMore } = useEnhancedQuery(MY_Q
 
 ### useEnhancedLazyQuery
 
-Same as Apollo useLazyQuery except it accepted a third parameter for setting the auth/unauth
-endpoints for you. Defaults to auth endpoint.
+Same as Apollo useLazyQuery.
 
 ```ts
 import { useEnhancedLazyQuery } from "@uplift-ltd/apollo";
 
-useEnhancedLazyQuery<MyQuery, MyQueryVariables>(MY_QUERY, { variables }, { auth: false });
+useEnhancedLazyQuery<MyQuery, MyQueryVariables>(MY_QUERY, { variables });
 ```
 
 See
@@ -45,8 +42,7 @@ See
 
 ### useEnhancedMutation
 
-Same as Apollo useMutation except it accepted a third parameter for setting the auth/unauth
-endpoints for you. Defaults to auth endpoint.
+Same as Apollo useMutation.
 
 ```ts
 import { useEnhancedMutation } from "@uplift-ltd/apollo";
@@ -60,6 +56,8 @@ useEnhancedMutation<MyMutation, MyMutationVariables>(MY_MUTATION, { variables },
 
 Fetch key and descriptions for an enum from the gql server. Providing a type for the enum will give
 correct data on the response type.
+
+Note that introspection needs to be enabled for this to work.
 
 ```ts
 import { useEnumValues } from "@uplift-ltd/apollo";
@@ -81,6 +79,7 @@ const cache = new InMemoryCache();
 
 const client = initClient({
   cache,
+  uri: `/api/graphql`,
 });
 ```
 
