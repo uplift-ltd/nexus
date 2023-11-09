@@ -37,6 +37,6 @@
     "@uplift-ltd/ts-helpers": "^3.0.0"
   },
   "devDependencies": {
-    "formik": "^2.2.9"
+    "formik": "^2.4.5"
   }
 }
