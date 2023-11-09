@@ -1,5 +1,3 @@
-import { OperationVariables } from "@uplift-ltd/apollo";
-
 export interface CurrentUser {
   email?: string;
   id: string;
@@ -11,5 +9,4 @@ export interface CurrentUserQuery {
 
 export interface CurrentUserQueryOptions {
   query: CurrentUserQuery;
-  variables: OperationVariables;
 }

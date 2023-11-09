@@ -1,28 +1,30 @@
-import { TypedDocumentNode, useEnhancedQuery } from "@uplift-ltd/apollo";
+import {
+  OperationVariables,
+  QueryHookOptions,
+  TypedDocumentNode,
+  useEnhancedQuery,
+} from "@uplift-ltd/apollo";
 import React, { useEffect, useMemo } from "react";
 
 import { UserContext } from "./context.js";
 import { CurrentUser, CurrentUserQueryOptions } from "./types.js";
 
-type UserContextProviderProps = {
+type UserContextProviderProps<TVariables extends OperationVariables> = {
   children: React.ReactNode;
-  currentUserQuery: TypedDocumentNode<
-    CurrentUserQueryOptions["query"],
-    CurrentUserQueryOptions["variables"]
-  >;
-  currentUserQueryOptions: CurrentUserQueryOptions["variables"];
+  currentUserQuery: TypedDocumentNode<CurrentUserQueryOptions["query"], TVariables>;
+  currentUserQueryOptions: QueryHookOptions<CurrentUserQueryOptions["query"], TVariables>;
   setUser?: (user: CurrentUser) => void;
 };
 
-export function UserContextProvider({
+export function UserContextProvider<TVariables extends OperationVariables>({
   children,
   currentUserQuery,
   currentUserQueryOptions,
   setUser,
-}: UserContextProviderProps) {
+}: UserContextProviderProps<TVariables>) {
   const { data, error, loading, refetch, refetching } = useEnhancedQuery<
     CurrentUserQueryOptions["query"],
-    CurrentUserQueryOptions["variables"]
+    TVariables
   >(currentUserQuery, currentUserQueryOptions);
 
   const currentUser = data ? data.currentUser : null;
