@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.0-alpha.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@5.0.0...@uplift-ltd/apollo@6.0.0-alpha.1) (2023-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* add nexus-errors and replace sentry
+* remove environment variables
+
+### Features
+
+* add nexus-errors and replace sentry ([4b69f40](https://github.com/uplift-ltd/nexus/commit/4b69f4002e63fc39133c568a608d352fcf8537e2))
+
+
+### Miscellaneous Chores
+
+* remove environment variables ([5e06b7e](https://github.com/uplift-ltd/nexus/commit/5e06b7e47ba092d2a1599497d7dd33e10480a2de))
+
+
+
 ## [6.0.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@5.0.0...@uplift-ltd/apollo@6.0.0-alpha.0) (2023-11-08)
 
 

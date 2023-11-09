@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@4.0.0...@uplift-ltd/formik@5.0.0-alpha.0) (2023-11-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* add nexus-errors and replace sentry
+
+### Features
+
+* add nexus-errors and replace sentry ([4b69f40](https://github.com/uplift-ltd/nexus/commit/4b69f4002e63fc39133c568a608d352fcf8537e2))
+
+
+
 ### [4.0.1-alpha.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/formik@4.0.0...@uplift-ltd/formik@4.0.1-alpha.0) (2023-11-08)
 
 **Note:** Version bump only for package @uplift-ltd/formik
