@@ -29,7 +29,7 @@ const CURRENT_USER_QUERY = gql`
 
 function MyApp() {
   return (
-    <UserContextProvider<CurrentUser> getToken={getToken} currentUserQuery={CURRENT_USER_QUERY}>
+    <UserContextProvider getToken={getToken} currentUserQuery={CURRENT_USER_QUERY}>
       <div />
     </UserContextProvider>
   );
@@ -68,12 +68,11 @@ function MyComponent() {
 
 ```ts
 import "@uplift-ltd/use-user-context";
+import { UserContextCurrentUserFragment } from "~/hooks/__generated__/useUserContext";
 
 declare module "@uplift-ltd/use-user-context" {
-  export interface CurrentUser {
-    id: string;
-    fullName: string;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface CurrentUser extends UserContextCurrentUserFragment {}
 }
 ```
 
@@ -90,32 +89,6 @@ declare module "@uplift-ltd/use-user-context" {
 
   export interface CurrentUserQuery {
     me: CurrentUser | null;
-  }
-}
-```
-
-#### Override Variables Type
-
-```ts
-import "@uplift-ltd/use-user-context";
-
-declare module "@uplift-ltd/use-user-context" {
-  export interface CurrentUser {
-    id: string;
-    fullName: string;
-  }
-
-  export interface CurrentUserQuery {
-    me: CurrentUser | null;
-  }
-
-  interface CurrentUserQueryVariables {
-    userId: string;
-  }
-
-  export interface CurrentUserQueryOptions {
-    query: CurrentUserQuery;
-    variables: CurrentUserQueryVariables;
   }
 }
 ```

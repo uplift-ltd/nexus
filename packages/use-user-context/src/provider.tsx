@@ -7,12 +7,12 @@ import {
 import React, { useEffect, useMemo } from "react";
 
 import { UserContext } from "./context.js";
-import { CurrentUser, CurrentUserQueryOptions } from "./types.js";
+import { CurrentUser, CurrentUserQuery } from "./types.js";
 
 type UserContextProviderProps<TVariables extends OperationVariables> = {
   children: React.ReactNode;
-  currentUserQuery: TypedDocumentNode<CurrentUserQueryOptions["query"], TVariables>;
-  currentUserQueryOptions: QueryHookOptions<CurrentUserQueryOptions["query"], TVariables>;
+  currentUserQuery: TypedDocumentNode<CurrentUserQuery, TVariables>;
+  currentUserQueryOptions: QueryHookOptions<CurrentUserQuery, TVariables>;
   setUser?: (user: CurrentUser) => void;
 };
 
@@ -23,7 +23,7 @@ export function UserContextProvider<TVariables extends OperationVariables>({
   setUser,
 }: UserContextProviderProps<TVariables>) {
   const { data, error, loading, refetch, refetching } = useEnhancedQuery<
-    CurrentUserQueryOptions["query"],
+    CurrentUserQuery,
     TVariables
   >(currentUserQuery, currentUserQueryOptions);
 

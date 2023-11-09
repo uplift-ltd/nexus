@@ -6,7 +6,3 @@ export interface CurrentUser {
 export interface CurrentUserQuery {
   currentUser: CurrentUser | null;
 }
-
-export interface CurrentUserQueryOptions {
-  query: CurrentUserQuery;
-}
