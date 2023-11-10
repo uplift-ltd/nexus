@@ -30,8 +30,8 @@ export function getAxiosFileUploader<FileType, UploadResultData = unknown>(): Fi
       headers: {
         "Content-Type": fileContentType,
       },
-      onUploadProgress: ({ loaded, total }: { loaded: number; total: number }) => {
-        const progress = Math.ceil((loaded / total) * 100);
+      onUploadProgress: ({ loaded, total }) => {
+        const progress = total ? Math.ceil((loaded / total) * 100) : 0;
         fileUploadDispatch?.({ progress, type: "SET_PROGRESS" });
         onProgress?.(progress, fileAttachment);
       },
