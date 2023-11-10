@@ -29,7 +29,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^2.0.0",
     "http-proxy-middleware": "^1.0.5"
   },
   "devDependencies": {

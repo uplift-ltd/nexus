@@ -36,11 +36,10 @@
   },
   "dependencies": {
     "@uplift-ltd/constants": "^2.0.0",
-    "@uplift-ltd/sentry": "^5.0.0"
+    "@uplift-ltd/nexus-types": "^1.0.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.7.6",
-    "@sentry/types": "^7.47.0",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6"
   }

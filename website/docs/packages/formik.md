@@ -14,7 +14,7 @@ npm i --save @uplift-ltd/formik
 
 These wrappers do a few things:
 
-- handle reporting errors to Sentry
+- handle reporting errors
 - adds `initialStatus` for form errors
 - adds `setFormSuccess` and `setFormError` helpers
 - adds `applyErrorsToFields` helper
@@ -26,8 +26,9 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
 
 <EnhancedFormik<FormValues>
   resetStatusOnSubmit
+  captureException={captureException}
   onSubmit={() => {
-    throw new Error("I get submitted to sentry and set to status.formError");
+    throw new Error("I get reported through captureException and set to status.formError");
   }}
 />;
 ```
@@ -57,16 +58,18 @@ const formik = useEnhancedFormik<FormValues>({
 
 #### setFormSuccess / setFormError
 
-Note that setFormError accepts a `sentryEventId` as the second property, which will be available on
-form status.
+Note that setFormError accepts a `captureExceptionResult` as the second property, which will be
+available on form status.
 
-You can use `Sentry.showReportDialog(status.sentryEventId)` to show a report error dialog to the
-user.
+You can use `Sentry.showReportDialog(status.captureExceptionResult)` to show a report error dialog
+to the user.
 
 ```tsx
 import { EnhancedFormik } from "@uplift-ltd/formik";
+import { captureException } from "@sentry/remix";
 
 <EnhancedFormik<FormValues>
+  captureException={captureException}
   onSubmit={async (values, { setFormSuccess, setFormError }) => {
     try {
       const { data } = await someMutation();
@@ -81,7 +84,25 @@ import { EnhancedFormik } from "@uplift-ltd/formik";
       setFormError(err.message, sentryEventId);
     }
   }}
-/>;
+>
+  {({ status }) => (
+    <>
+      {status.formError && (
+        <div>
+          {status.formError}
+          {status.captureExceptionResult && (
+            <button
+              type="button"
+              onClick={() => Sentry.showReportDialog(status.captureExceptionResult)}
+            >
+              Report Error
+            </button>
+          )}
+        </div>
+      )}
+    </>
+  )}
+</EnhancedFormik>;
 ```
 
 #### applyErrorsToFields

@@ -116,8 +116,6 @@ function defaultGetAbsoluteUrlHttpSetting(_url: string, host: string) {
   if (host.includes("localhost")) return false;
   if (host.includes("127.0.0.1")) return false;
   if (host.includes("::1")) return false;
-  if (process.env.NODE_ENV !== "production") return false;
-  if (process.env.ENV === "local") return false;
 
   return true;
 }

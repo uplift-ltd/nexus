@@ -1,5 +1,3 @@
-import type { Hub } from "@sentry/types";
-
 import {
   ApolloCache,
   ApolloClient,
@@ -17,7 +15,8 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
-import { GRAPHQL_AUTH_URL, GRAPHQL_BATCHING, IS_SSR } from "@uplift-ltd/constants";
+import { IS_SSR } from "@uplift-ltd/constants";
+import { type CaptureExceptionHandler, type CaptureMessageHandler } from "@uplift-ltd/nexus-types";
 import { GraphQLError } from "graphql";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,6 +33,8 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
   cache?: ApolloCache<unknown>;
+  captureException?: CaptureExceptionHandler;
+  captureMessage?: CaptureMessageHandler;
   cookie?: string;
   extraLinks?: ApolloLink[];
   fetch?: BatchHttpLink.Options["fetch"];
@@ -45,17 +46,18 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
   onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
   removeToken?: () => void;
-  sentryHub?: Hub;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
 
 export const configureClient = ({
-  batch = GRAPHQL_BATCHING,
+  batch = true,
   batchInterval,
   batchKey,
   batchMax,
   cache = new InMemoryCache(),
+  captureException,
+  captureMessage,
   cookie,
   credentials = "same-origin",
   extraLinks = [],
@@ -68,7 +70,7 @@ export const configureClient = ({
   onNetworkError,
   onNotAuthorized,
   removeToken,
-  sentryHub,
+  uri,
   ...otherOptions
 }: ConfigureClientOptions) => {
   cache.restore(initialState);
@@ -93,13 +95,12 @@ export const configureClient = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         serverError.result?.map?.((result: Record<string, any>) => result.errors);
 
-      sentryHub?.withScope((scope) => {
-        scope.setExtras({
+      captureException?.(networkError, {
+        extra: {
           errors,
           operationName: operation.operationName,
           query: operation.query,
-        });
-        sentryHub.captureException(networkError);
+        },
       });
 
       onNetworkError?.(networkError, operation);
@@ -129,13 +130,13 @@ export const configureClient = ({
         }
       });
 
-      sentryHub?.withScope((scope) => {
-        scope.setExtras({
+      captureMessage?.("GraphQL Errors", {
+        extra: {
           errors: graphQLErrors,
           operationName: operation.operationName,
           query: operation.query,
-        });
-        sentryHub.captureMessage("GraphQL Errors", "warning");
+        },
+        level: "warning",
       });
 
       if (graphQLErrors.length > 0 && onGraphqlErrors) {
@@ -178,7 +179,7 @@ export const configureClient = ({
         credentials,
         fetch,
         fetchOptions,
-        uri: GRAPHQL_AUTH_URL,
+        uri,
       })
     );
   } else {
@@ -187,7 +188,7 @@ export const configureClient = ({
         credentials,
         fetch,
         fetchOptions,
-        uri: GRAPHQL_AUTH_URL,
+        uri,
       })
     );
   }
@@ -197,6 +198,7 @@ export const configureClient = ({
     credentials,
     link: ApolloLink.from(links),
     ssrMode: IS_SSR,
+    uri,
     ...otherOptions,
   });
 };

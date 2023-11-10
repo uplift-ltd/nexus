@@ -1,15 +1,14 @@
 import { ApolloError, ApolloQueryResult, NetworkStatus } from "@uplift-ltd/apollo";
 import { createContext } from "react";
 
-import { CurrentUserShape } from "./types.js";
+import { type CurrentUser, type CurrentUserQuery } from "./types.js";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface UserContextShape<CurrentUser extends CurrentUserShape = any> {
+export interface UserContextShape {
   currentUser: CurrentUser | null;
   error?: ApolloError;
   isAuthenticated: boolean;
   loading: boolean;
-  refetch(): Promise<ApolloQueryResult<CurrentUser>>;
+  refetch(): Promise<ApolloQueryResult<CurrentUserQuery | null>>;
   refetching: boolean;
 }
 

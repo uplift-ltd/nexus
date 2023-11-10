@@ -15,12 +15,6 @@ import {
   useQuery,
 } from "@apollo/client";
 
-import { GRAPHQL_AUTH_URL, GRAPHQL_UNAUTH_URL } from "./constants.js";
-
-export interface ExtraOptions {
-  auth?: boolean;
-}
-
 export type EnhancedQueryResult<TData, TVariables extends OperationVariables> = QueryResult<
   TData,
   TVariables
@@ -36,15 +30,10 @@ export function useEnhancedQuery<
   TVariables extends OperationVariables = OperationVariables
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: QueryHookOptions<TData, TVariables> = {},
-  extraOptions: ExtraOptions = { auth: true }
+  options: QueryHookOptions<TData, TVariables> = {}
 ): EnhancedQueryResult<TData, TVariables> {
   const result = useQuery(query, {
     ...options,
-    context: {
-      uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
-      ...options.context,
-    },
   });
 
   return {
@@ -61,15 +50,10 @@ export function useEnhancedLazyQuery<
   TVariables extends OperationVariables = OperationVariables
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: QueryHookOptions<TData, TVariables> = {},
-  extraOptions: ExtraOptions = { auth: true }
+  options: QueryHookOptions<TData, TVariables> = {}
 ): QueryTuple<TData, TVariables> {
   return useLazyQuery(query, {
     ...options,
-    context: {
-      uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
-      ...options.context,
-    },
   });
 }
 
@@ -86,15 +70,13 @@ export function useEnhancedMutation<
   TCache extends ApolloCache<any> = ApolloCache<any>
 >(
   mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: MutationHookOptions<TData, TVariables, TContext, TCache> = {},
-  extraOptions: ExtraOptions = { auth: true }
+  options: MutationHookOptions<TData, TVariables, TContext, TCache> = {}
 ): MutationTuple<TData, TVariables, TContext, TCache> {
   return useMutation(mutation, {
     ...options,
-    context: {
-      uri: extraOptions.auth ? GRAPHQL_AUTH_URL : GRAPHQL_UNAUTH_URL,
-      ...options.context,
-    } as TContext,
+    // context: {
+    //   ...options.context,
+    // } as TContext,
     // TODO: figure out a way to remove this cast
   });
 }

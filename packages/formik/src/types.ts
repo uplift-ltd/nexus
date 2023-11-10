@@ -1,3 +1,4 @@
+import { CaptureExceptionHandler } from "@uplift-ltd/nexus-types";
 import {
   FieldInputProps,
   FormikConfig,
@@ -8,12 +9,13 @@ import {
 } from "formik";
 import { MutableRefObject } from "react";
 
-import { ErrorHelpers } from "./errors.js";
-import { StatusHelpers } from "./status.js";
+import { type ErrorHelpers } from "./errors.js";
+import { type StatusHelpers } from "./status.js";
 
 type ExtraHelpers = StatusHelpers & ErrorHelpers;
 
 export interface EnhancedFormikExtraProps<Values extends FormikValues = FormikValues> {
+  captureException?: CaptureExceptionHandler;
   captureValuesOnError?: boolean;
   innerRef?: MutableRefObject<FormikProps<Values>>;
   resetStatusOnSubmit?: boolean;

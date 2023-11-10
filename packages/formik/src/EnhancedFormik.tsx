@@ -1,4 +1,3 @@
-import { captureException } from "@uplift-ltd/sentry";
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { Formik, FormikProps, FormikValues, isFunction } from "formik";
 import React, { useRef } from "react";
@@ -9,7 +8,7 @@ import {
   getEnhancedSetStatus,
   getSetFormError,
   getSetFormSuccess,
-  getSetSentryEventId,
+  getSetcaptureExceptionResult,
 } from "./status.js";
 import { EnhancedFormikExtraProps, FormikConfigWithOverrides } from "./types.js";
 
@@ -19,6 +18,7 @@ export function EnhancedFormik<
   // eslint-disable-next-line @typescript-eslint/ban-types
   ExtraProps extends EnhancedFormikExtraProps<Values> = {}
 >({
+  captureException,
   captureValuesOnError,
   children,
   initialStatus,
@@ -52,17 +52,19 @@ export function EnhancedFormik<
             applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
             setFormError: getSetFormError(setStatus),
             setFormSuccess: getSetFormSuccess(setStatus),
-            setSentryEventId: getSetSentryEventId(setStatus),
             setStatus,
+            setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
           });
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
-          const sentryEventId = captureException(err, { extra });
+          const captureExceptionResult = (await captureException?.(err, { extra })) as
+            | string
+            | undefined;
 
           setStatus({
+            captureExceptionResult,
             formError: ensureError(err),
             formSuccess: null,
-            sentryEventId,
           });
         }
       }}
@@ -76,8 +78,8 @@ export function EnhancedFormik<
             applyErrorsToFields: getApplyErrorsToFields(formik.setErrors),
             setFormError: getSetFormError(setStatus),
             setFormSuccess: getSetFormSuccess(setStatus),
-            setSentryEventId: getSetSentryEventId(setStatus),
             setStatus,
+            setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
           });
         }
         return children;

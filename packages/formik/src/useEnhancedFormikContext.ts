@@ -5,7 +5,7 @@ import {
   getEnhancedSetStatus,
   getSetFormError,
   getSetFormSuccess,
-  getSetSentryEventId,
+  getSetcaptureExceptionResult,
 } from "./status.js";
 import { EnhancedFormikContextType } from "./types.js";
 
@@ -19,7 +19,7 @@ export function useEnhancedFormikContext<FormikValues>(): EnhancedFormikContextT
     applyErrorsToFields: getApplyErrorsToFields(context.setErrors),
     setFormError: getSetFormError(setStatus),
     setFormSuccess: getSetFormSuccess(setStatus),
-    setSentryEventId: getSetSentryEventId(setStatus),
     setStatus,
+    setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
   };
 }

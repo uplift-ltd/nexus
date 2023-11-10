@@ -27,7 +27,7 @@ const CURRENT_USER_QUERY = gql`
 
 function MyApp() {
   return (
-    <UserContextProvider<CurrentUser> getToken={getToken} currentUserQuery={CURRENT_USER_QUERY}>
+    <UserContextProvider getToken={getToken} currentUserQuery={CURRENT_USER_QUERY}>
       <div />
     </UserContextProvider>
   );
@@ -40,15 +40,9 @@ Note: Create wrapper so you don't have to pass in types all the time.
 
 ```tsx
 import { useUserContext } from "@uplift-ltd/use-user-context";
-import {
-  CurrentUser,
-  CurrentUser_currentUser as CurrentUserShape,
-} from "./__generated__/CurrentUser";
-
-const useTypedUserContext = () => useUserContext<CurrentUserShape>();
 
 function MyComponent() {
-  const { loading, currentUser } = useTypedUserContext();
+  const { loading, currentUser } = useUserContext();
   return <div>{currentUser?.id}</div>;
 }
 ```
@@ -59,15 +53,40 @@ Note: Create wrapper so you don't have to pass in types all the time.
 
 ```tsx
 import { useAssertUserContext } from "@uplift-ltd/use-user-context";
-import {
-  CurrentUser,
-  CurrentUser_currentUser as CurrentUserShape,
-} from "./__generated__/CurrentUser";
-
-const useTypedAssertUserContext = () => useAssertUserContext<CurrentUserShape>();
 
 function MyComponent() {
-  const currentUser = useTypedAssertUserContext();
+  const currentUser = useAssertUserContext();
   return <div>{currentUser.id}</div>;
+}
+```
+
+### Override Types
+
+#### Override User Type
+
+```ts
+import "@uplift-ltd/use-user-context";
+import { UserContextCurrentUserFragment } from "~/hooks/__generated__/useUserContext";
+
+declare module "@uplift-ltd/use-user-context" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface CurrentUser extends UserContextCurrentUserFragment {}
+}
+```
+
+#### Override Query Type
+
+```ts
+import "@uplift-ltd/use-user-context";
+
+declare module "@uplift-ltd/use-user-context" {
+  export interface CurrentUser {
+    id: string;
+    fullName: string;
+  }
+
+  export interface CurrentUserQuery {
+    me: CurrentUser | null;
+  }
 }
 ```

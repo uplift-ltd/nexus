@@ -2,16 +2,16 @@ import { FormikHelpers } from "formik";
 
 export interface FormikStatus {
   allowResubmit?: boolean;
+  captureExceptionResult?: null | string;
   formError?: Error | null | string;
   formSuccess?: null | string;
-  sentryEventId?: null | string;
 }
 
 export const DEFAULT_INITIAL_STATUS: FormikStatus = {
   allowResubmit: true,
+  captureExceptionResult: null,
   formError: null,
   formSuccess: null,
-  sentryEventId: null,
 };
 
 export const getEnhancedSetStatus =
@@ -25,25 +25,30 @@ export const getSetFormSuccess =
 
 export const getSetFormError =
   (setStatus: FormikHelpers<unknown>["setStatus"]) =>
-  (formError: FormikStatus["formError"], sentryEventId?: FormikStatus["sentryEventId"]) => {
+  (
+    formError: FormikStatus["formError"],
+    captureExceptionResult?: FormikStatus["captureExceptionResult"]
+  ) => {
     const status: FormikStatus = { formError, formSuccess: null };
-    if (typeof sentryEventId !== "undefined") {
-      status.sentryEventId = sentryEventId;
+    if (typeof captureExceptionResult !== "undefined") {
+      status.captureExceptionResult = captureExceptionResult;
     }
     return setStatus(status);
   };
 
-export const getSetSentryEventId =
+export const getSetcaptureExceptionResult =
   (setStatus: FormikHelpers<unknown>["setStatus"]) =>
-  (sentryEventId: FormikStatus["sentryEventId"]) =>
-    setStatus({ sentryEventId });
+  (captureExceptionResult: FormikStatus["captureExceptionResult"]) =>
+    setStatus({ captureExceptionResult });
 
 export interface StatusHelpers {
   setFormError: (
     formError: FormikStatus["formError"],
-    sentryEventId?: FormikStatus["sentryEventId"]
+    captureExceptionResult?: FormikStatus["captureExceptionResult"]
   ) => void;
   setFormSuccess: (formSuccess: FormikStatus["formSuccess"]) => void;
-  setSentryEventId: (sentryEventId: FormikStatus["sentryEventId"]) => void;
   setStatus: (status: FormikStatus) => void;
+  setcaptureExceptionResult: (
+    captureExceptionResult: FormikStatus["captureExceptionResult"]
+  ) => void;
 }

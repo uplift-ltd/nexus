@@ -127,7 +127,7 @@ jobs:
               npx lerna version --yes --create-release github
             fi
           elif [ "${{ github.event.inputs.distTag }}" == "prerelease" ]; then
-            npx lerna version --yes --conventional-prerelease
+            npx lerna version --yes --conventional-prerelease --force-git-tag
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
