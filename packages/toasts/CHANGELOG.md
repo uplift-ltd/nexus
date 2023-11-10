@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/toasts@3.0.0...@uplift-ltd/toasts@3.0.1) (2023-11-10)
+
+**Note:** Version bump only for package @uplift-ltd/toasts
+
+
+
+
+
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/toasts@2.0.0...@uplift-ltd/toasts@3.0.0) (2023-11-06)
 
 
