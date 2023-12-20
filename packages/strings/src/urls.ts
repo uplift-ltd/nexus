@@ -1,6 +1,5 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
-import { encodeURL } from "./encodeURL";
 import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
 
@@ -97,13 +96,17 @@ export const replaceTokens = <
   urlTemplate: UrlTemplate,
   tokens: TokensMap,
   getTokenStringForParamName = getExpressTokenForParamName,
-  encodeUrl: boolean
+  encodeTokens: boolean
 ) => {
   return Object.entries(tokens).reduce((url, [key, value]) => {
     if (!notEmpty(value)) return url;
 
     const paramName = getTokenStringForParamName(key);
-    return replaceAll(url, paramName, encodeUrl ? encodeURL(value.toString()) : value.toString());
+    return replaceAll(
+      url,
+      paramName,
+      encodeTokens ? encodeURIComponent(value.toString()) : value.toString()
+    );
   }, urlTemplate as string);
 };
 
@@ -228,7 +231,7 @@ export type MakeUrlOptions = {
    * Customize pathname replacement, defaults to express style params (:paramName)
    */
   dynamicUrlStyle?: "express" | "nextjs";
-
+  encodeTokens?: boolean;
   /**
    * Controls how the trailing slash on our URLs will be handled,
    * - "ignore" will leave the URL as-is
@@ -284,7 +287,7 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
       absoluteUrl = false,
       dynamicUrlStyle = "express",
       trailingSlash = "ignore",
-      encodedUrl = false,
+      encodeTokens = false,
     } = {
       ...defaultOptions,
       ...optionOverrides,
@@ -295,7 +298,9 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
 
     // construct the main portion of our URL by replacing tokens, if provided
 
-    let baseUrl = tokens ? replaceTokens(url, tokens, getDynamicPathnameForParam, encodedUrl) : url;
+    let baseUrl = tokens
+      ? replaceTokens(url, tokens, getDynamicPathnameForParam, encodeTokens)
+      : url;
 
     if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
       // Ensure we have a trailing slash
