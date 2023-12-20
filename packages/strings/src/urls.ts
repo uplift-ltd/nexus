@@ -1,5 +1,6 @@
 import { GRAPHQL_HOST } from "@uplift-ltd/constants";
 import { notEmpty } from "@uplift-ltd/ts-helpers";
+import { encodeURL } from "./encodeURL";
 import { replaceAll } from "./formatters";
 import { safeJoin } from "./safeJoin";
 
@@ -91,17 +92,18 @@ export const getNextJsTokenForParamName = (paramName: string) => `\\[${paramName
  */
 export const replaceTokens = <
   UrlTemplate extends string,
-  TokensMap extends Record<string, string | number> = UrlTokensMap<UrlTemplate>,
+  TokensMap extends Record<string, string | number> = UrlTokensMap<UrlTemplate>
 >(
   urlTemplate: UrlTemplate,
   tokens: TokensMap,
-  getTokenStringForParamName = getExpressTokenForParamName
+  getTokenStringForParamName = getExpressTokenForParamName,
+  encodeUrl: boolean
 ) => {
   return Object.entries(tokens).reduce((url, [key, value]) => {
     if (!notEmpty(value)) return url;
 
     const paramName = getTokenStringForParamName(key);
-    return replaceAll(url, paramName, value.toString());
+    return replaceAll(url, paramName, encodeUrl ? encodeURL(value.toString()) : value.toString());
   }, urlTemplate as string);
 };
 
@@ -282,6 +284,7 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
       absoluteUrl = false,
       dynamicUrlStyle = "express",
       trailingSlash = "ignore",
+      encodedUrl = false,
     } = {
       ...defaultOptions,
       ...optionOverrides,
@@ -291,7 +294,8 @@ export function createMakeUrl(defaultOptions: MakeUrlOptions = {}) {
       dynamicUrlStyle === "nextjs" ? getNextJsTokenForParamName : getExpressTokenForParamName;
 
     // construct the main portion of our URL by replacing tokens, if provided
-    let baseUrl = tokens ? replaceTokens(url, tokens, getDynamicPathnameForParam) : url;
+
+    let baseUrl = tokens ? replaceTokens(url, tokens, getDynamicPathnameForParam, encodedUrl) : url;
 
     if (trailingSlash === "ensure" && !baseUrl.endsWith("/")) {
       // Ensure we have a trailing slash
