@@ -1,4 +1,4 @@
-import { ComponentType } from "react";
+import { ComponentType, ReactNode } from "react";
 
 export type ToastTheme = "danger" | "default" | "success" | "warning";
 
@@ -11,7 +11,7 @@ export interface ToastOptions {
   description?: string;
   theme?: ToastTheme;
   timeout?: number;
-  title: string;
+  title: string | ReactNode;
 }
 
 export type ToastShape = ToastOptions & ToastInternalState;
