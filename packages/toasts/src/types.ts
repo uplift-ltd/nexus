@@ -8,10 +8,10 @@ export interface ToastInternalState {
 }
 
 export interface ToastOptions {
-  description?: string;
+  description?: ReactNode | string;
   theme?: ToastTheme;
   timeout?: number;
-  title: string | ReactNode;
+  title: ReactNode | string;
 }
 
 export type ToastShape = ToastOptions & ToastInternalState;
