@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/toasts@3.0.1...@uplift-ltd/toasts@3.1.0) (2024-01-05)
+
+
+### Features
+
+* **toasts:** extend title and description types to support ReactNode ([#391](https://github.com/uplift-ltd/nexus/issues/391)) ([7716323](https://github.com/uplift-ltd/nexus/commit/7716323da89d9ac71fdd46930da614e1bd857cdd))
+
+
+
 ### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/toasts@3.0.0...@uplift-ltd/toasts@3.0.1) (2023-11-10)
 
 **Note:** Version bump only for package @uplift-ltd/toasts
