@@ -172,30 +172,30 @@ export const configureClient = ({
 
   const links: ApolloLink[] = [errorLink, retryLink, authLink, ...extraLinks];
 
-  let lastLink: ApolloLink;
-
   if (terminatingLink) {
-    lastLink = terminatingLink;
+    links.push(terminatingLink);
   } else if (batch) {
-    lastLink = new BatchHttpLink({
-      batchInterval,
-      batchKey,
-      batchMax,
-      credentials,
-      fetch,
-      fetchOptions,
-      uri,
-    });
+    links.push(
+      new BatchHttpLink({
+        batchInterval,
+        batchKey,
+        batchMax,
+        credentials,
+        fetch,
+        fetchOptions,
+        uri,
+      })
+    );
   } else {
-    lastLink = new HttpLink({
-      credentials,
-      fetch,
-      fetchOptions,
-      uri,
-    });
+    links.push(
+      new HttpLink({
+        credentials,
+        fetch,
+        fetchOptions,
+        uri,
+      })
+    );
   }
-
-  links.push(lastLink);
 
   return new ApolloClient({
     cache,
