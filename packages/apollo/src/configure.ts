@@ -46,6 +46,7 @@ export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown
   onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
   onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
   removeToken?: () => void;
+  terminatingLink?: ApolloLink;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
@@ -70,6 +71,7 @@ export const configureClient = ({
   onNetworkError,
   onNotAuthorized,
   removeToken,
+  terminatingLink,
   uri,
   ...otherOptions
 }: ConfigureClientOptions) => {
@@ -170,28 +172,30 @@ export const configureClient = ({
 
   const links: ApolloLink[] = [errorLink, retryLink, authLink, ...extraLinks];
 
-  if (batch) {
-    links.push(
-      new BatchHttpLink({
-        batchInterval,
-        batchKey,
-        batchMax,
-        credentials,
-        fetch,
-        fetchOptions,
-        uri,
-      })
-    );
+  let lastLink: ApolloLink;
+
+  if (terminatingLink) {
+    lastLink = terminatingLink;
+  } else if (batch) {
+    lastLink = new BatchHttpLink({
+      batchInterval,
+      batchKey,
+      batchMax,
+      credentials,
+      fetch,
+      fetchOptions,
+      uri,
+    });
   } else {
-    links.push(
-      new HttpLink({
-        credentials,
-        fetch,
-        fetchOptions,
-        uri,
-      })
-    );
+    lastLink = new HttpLink({
+      credentials,
+      fetch,
+      fetchOptions,
+      uri,
+    });
   }
+
+  links.push(lastLink);
 
   return new ApolloClient({
     cache,
