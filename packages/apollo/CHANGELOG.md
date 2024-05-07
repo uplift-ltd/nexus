@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@6.0.0...@uplift-ltd/apollo@6.1.0) (2024-05-07)
+
+
+### Features
+
+* add option to set terminating link ([#402](https://github.com/uplift-ltd/nexus/issues/402)) ([806f331](https://github.com/uplift-ltd/nexus/commit/806f331661fac469b9e67de684fc0d9223ac7f0f))
+
+
+
 ## [6.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@5.0.0...@uplift-ltd/apollo@6.0.0) (2023-11-10)
 
 

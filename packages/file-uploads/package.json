@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/file-uploads",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "file-uploads",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -32,7 +32,7 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/apollo": "^6.0.0",
+    "@uplift-ltd/apollo": "^6.1.0",
     "@uplift-ltd/ts-helpers": "^3.0.0",
     "axios": "^1.6.0",
     "lodash": "^4.17.20",
