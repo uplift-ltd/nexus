@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@3.0.0...@uplift-ltd/setup-proxy@3.1.0) (2024-11-12)
+
+
+### Features
+
+* **setup-proxy:** remove http-proxy-middleware ([#405](https://github.com/uplift-ltd/nexus/issues/405)) ([845349f](https://github.com/uplift-ltd/nexus/commit/845349fd0d2494d4340d656df5d6ef4cebf6f1f3))
+
+
+
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/setup-proxy@2.0.0...@uplift-ltd/setup-proxy@3.0.0) (2023-11-10)
 
 
