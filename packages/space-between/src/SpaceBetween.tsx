@@ -16,7 +16,7 @@ export function SpaceBetween({ children, className, divider }: SpaceBetweenProps
   let kids = children;
 
   if (children && (children as React.ReactElement).type === React.Fragment) {
-    kids = (children as React.ReactElement).props.children;
+    kids = (children as React.ReactElement<any>).props.children;
   }
 
   if (Array.isArray(kids)) {
@@ -37,8 +37,8 @@ export function SpaceBetween({ children, className, divider }: SpaceBetweenProps
         let kid = child;
 
         if (i !== 0 && React.isValidElement(child)) {
-          kid = React.cloneElement(child as React.ReactElement, {
-            className: cx(child.props.className, className),
+          kid = React.cloneElement(child as React.ReactElement<any>, {
+            className: cx((child as React.ReactElement<any>).props?.className, className),
           });
         }
 
