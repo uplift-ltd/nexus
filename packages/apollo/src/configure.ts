@@ -93,9 +93,11 @@ export const configureClient = ({
       // typing says result is an object but since we use batch http link it's actually an array
       const serverError = networkError as ServerError;
       const errors =
-        serverError.result?.errors ||
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        serverError.result?.map?.((result: Record<string, any>) => result.errors);
+        typeof serverError.result === "string"
+          ? [serverError.result]
+          : serverError.result?.errors ||
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            serverError.result?.map?.((result: Record<string, any>) => result.errors);
 
       captureException?.(networkError, {
         extra: {
@@ -141,7 +143,7 @@ export const configureClient = ({
         level: "warning",
       });
 
-      if (graphQLErrors.length > 0 && onGraphqlErrors) {
+      if (Array.isArray(graphQLErrors) && graphQLErrors.length > 0 && onGraphqlErrors) {
         onGraphqlErrors(graphQLErrors, operation);
       }
     }
