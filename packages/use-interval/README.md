@@ -25,6 +25,8 @@ function MyComponent() {
 
 ### useSyncedInterval
 
+> Note: This is only available in React 18+
+
 A hook for setting synced intervals. Use this if you have intervals in different parts of the app
 that should execute at the same time.
 

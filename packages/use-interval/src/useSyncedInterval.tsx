@@ -1,6 +1,5 @@
 import { IS_SSR } from "@uplift-ltd/constants";
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { useUID } from "react-uid";
+import React, { useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 
 type SyncedIntervalId = string;
 
@@ -189,7 +188,7 @@ export const useSyncedIntervalCallback = (
   channel: SyncedIntervalChannel = "default"
 ) => {
   const { setCallback } = useContext(SyncedIntervalContext);
-  const id = useUID();
+  const id = useId();
 
   useEffect(() => {
     const removeCallback = setCallback(callback, id, channel);
@@ -202,7 +201,7 @@ export const useSyncedIntervalDelay = (
   channel: SyncedIntervalChannel = "default"
 ) => {
   const { setDelay } = useContext(SyncedIntervalContext);
-  const id = useUID();
+  const id = useId();
 
   useEffect(() => {
     const removeDelay = setDelay(delay, id, channel);
@@ -216,7 +215,7 @@ export const useSyncedInterval = (
   channel: SyncedIntervalChannel = "default"
 ) => {
   const { setCallback, setDelay } = useContext(SyncedIntervalContext);
-  const id = useUID();
+  const id = useId();
 
   useEffect(() => {
     const removeCallback = setCallback(callback, id, channel);
