@@ -38,7 +38,7 @@ export function formatCurrency(
   /* eslint-enable default-param-last */
   const { currency, number } = parseNumberAndCurrency(amount, currencyCode);
 
-  const formatterOptions = {
+  const formatterOptions: Intl.NumberFormatOptions = {
     currency,
     style: "currency",
     ...options,
