@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/use-user-context",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "use-user-context",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -32,6 +32,6 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/apollo": "^6.1.0"
+    "@uplift-ltd/apollo": "^6.1.1"
   }
 }

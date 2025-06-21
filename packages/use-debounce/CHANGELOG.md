@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [3.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-debounce@3.0.0...@uplift-ltd/use-debounce@3.0.1) (2025-06-21)
+
+**Note:** Version bump only for package @uplift-ltd/use-debounce
+
+
+
+
+
 ## [3.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-debounce@2.0.0...@uplift-ltd/use-debounce@3.0.0) (2023-11-06)
 
 
