@@ -7,7 +7,7 @@ import {
   FormikProps,
   FormikValues,
 } from "formik";
-import { MutableRefObject } from "react";
+import { RefObject } from "react";
 
 import { type ErrorHelpers } from "./errors.js";
 import { type StatusHelpers } from "./status.js";
@@ -17,7 +17,7 @@ type ExtraHelpers = StatusHelpers & ErrorHelpers;
 export interface EnhancedFormikExtraProps<Values extends FormikValues = FormikValues> {
   captureException?: CaptureExceptionHandler;
   captureValuesOnError?: boolean;
-  innerRef?: MutableRefObject<FormikProps<Values>>;
+  innerRef?: RefObject<FormikProps<Values>>;
   resetStatusOnSubmit?: boolean;
 }
 

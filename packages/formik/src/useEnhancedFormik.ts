@@ -1,5 +1,5 @@
 import { ensureError } from "@uplift-ltd/ts-helpers";
-import { FormikValues, useFormik } from "formik";
+import { FormikConfig, FormikValues, useFormik } from "formik";
 
 import { getApplyErrorsToFields } from "./errors.js";
 import {
@@ -23,8 +23,11 @@ export function useEnhancedFormik<TFormikValues extends FormikValues>({
     ...options.initialStatus,
   } as FormikStatus;
 
+  // cast so typescript doesn't infer the enhanced type from options
+  const formikOptions = options as FormikConfig<TFormikValues>;
+
   const formik = useFormik<TFormikValues>({
-    ...options,
+    ...formikOptions,
     initialStatus: initStatus,
     onSubmit: async (values, formikHelpers) => {
       const setStatus = getEnhancedSetStatus(formikHelpers.setStatus, formik.status);
