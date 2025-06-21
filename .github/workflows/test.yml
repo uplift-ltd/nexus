@@ -100,7 +100,7 @@ jobs:
             packages/*/node_modules
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: build
           path: packages/
