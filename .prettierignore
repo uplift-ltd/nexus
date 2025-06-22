@@ -5,3 +5,5 @@ esm/
 package-lock.json
 schema.json
 CHANGELOG.md
+
+/.nx/workspace-data
