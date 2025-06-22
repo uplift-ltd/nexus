@@ -8,7 +8,7 @@ import { UseUploadFileOptions, useUploadFile } from "./useUploadFile.js";
 export interface UseUploadFilesOptions<
   FileType = File,
   UploadResultData = unknown,
-  UploadType = FileType
+  UploadType = FileType,
 > {
   fileAttachments?: S3FileAttachment[];
   fileUploader?: FileUploader<UploadType, UploadResultData>;

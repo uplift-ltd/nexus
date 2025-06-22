@@ -10,7 +10,7 @@ export function useEnhancedField<FieldValue>({
 }: EnhancedFieldHookConfig<FieldValue>): [
   EnhancedFieldInputProps<FieldValue>,
   FieldMetaProps<FieldValue>,
-  FieldHelperProps<FieldValue>
+  FieldHelperProps<FieldValue>,
 ] {
   const [field, meta, formik] = useField<FieldValue>(fieldOptions);
 

@@ -16,7 +16,7 @@ export function EnhancedFormik<
   Values extends FormikValues = FormikValues,
   // Formik uses {} type so we disable the eslint rule
   // eslint-disable-next-line @typescript-eslint/ban-types
-  ExtraProps extends EnhancedFormikExtraProps<Values> = {}
+  ExtraProps extends EnhancedFormikExtraProps<Values> = {},
 >({
   captureException,
   captureValuesOnError,

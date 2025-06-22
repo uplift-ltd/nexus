@@ -20,7 +20,7 @@
     "build:packages": "lerna run --ignore @uplift-ltd/nexus build",
     "test": "lerna run test",
     "check-types": "lerna run check-types",
-    "prettier:check": "prettier --list-different \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
+    "prettier:check": "prettier --check \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "prettier:write": "prettier --write \"packages/*/*.md\" \"packages/*/src/**/*.{js,jsx,ts,tsx,json,md,css,scss}\"",
     "eslint:check": "eslint packages --ext .js,.jsx,.ts,.tsx --cache",
     "eslint:fix": "eslint packages --ext .js,.jsx,.ts,.tsx --cache --fix",
