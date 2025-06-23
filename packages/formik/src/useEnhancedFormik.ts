@@ -8,7 +8,7 @@ import {
   getEnhancedSetStatus,
   getSetFormError,
   getSetFormSuccess,
-  getSetcaptureExceptionResult,
+  getSetCaptureExceptionResult,
 } from "./status.js";
 import { FormikConfigWithOverrides } from "./types.js";
 
@@ -40,10 +40,10 @@ export function useEnhancedFormik<TFormikValues extends FormikValues>({
         await options.onSubmit(values, {
           ...formikHelpers,
           applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
+          setCaptureExceptionResult: getSetCaptureExceptionResult(setStatus),
           setFormError: getSetFormError(setStatus),
           setFormSuccess: getSetFormSuccess(setStatus),
           setStatus,
-          setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
         });
       } catch (err) {
         const extra = captureValuesOnError ? { values } : {};

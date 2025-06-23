@@ -16,6 +16,7 @@ export function SpaceBetween({ children, className, divider }: SpaceBetweenProps
   let kids = children;
 
   if (children && (children as React.ReactElement).type === React.Fragment) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     kids = (children as React.ReactElement<any>).props.children;
   }
 
@@ -37,7 +38,9 @@ export function SpaceBetween({ children, className, divider }: SpaceBetweenProps
         let kid = child;
 
         if (i !== 0 && React.isValidElement(child)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           kid = React.cloneElement(child as React.ReactElement<any>, {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             className: cx((child as React.ReactElement<any>).props?.className, className),
           });
         }

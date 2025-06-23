@@ -1,6 +1,0 @@
-/lib/
-/website/
-packages/*/dest/*
-packages/*/cjs/*
-packages/*/esm/*
-packages/create-nexus-package/fixtures/*

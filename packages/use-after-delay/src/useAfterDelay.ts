@@ -8,7 +8,6 @@ export const useAfterDelay = (delayMs?: number) => {
   // the loader when waiting a long time. Studies show that a loader that flashes
   // for just a split second will make the app feel slower than not showing a loader
   // during a very small wait
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (delayMs) {
       const timeoutId = setTimeout(() => {
