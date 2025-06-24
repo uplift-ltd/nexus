@@ -8,15 +8,15 @@ import {
   getEnhancedSetStatus,
   getSetFormError,
   getSetFormSuccess,
-  getSetcaptureExceptionResult,
+  getSetCaptureExceptionResult,
 } from "./status.js";
 import { EnhancedFormikExtraProps, FormikConfigWithOverrides } from "./types.js";
 
 export function EnhancedFormik<
   Values extends FormikValues = FormikValues,
   // Formik uses {} type so we disable the eslint rule
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  ExtraProps extends EnhancedFormikExtraProps<Values> = {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  ExtraProps extends EnhancedFormikExtraProps<Values> = {},
 >({
   captureException,
   captureValuesOnError,
@@ -50,10 +50,10 @@ export function EnhancedFormik<
           await onSubmit(values, {
             ...formikHelpers,
             applyErrorsToFields: getApplyErrorsToFields(formikHelpers.setErrors),
+            setCaptureExceptionResult: getSetCaptureExceptionResult(setStatus),
             setFormError: getSetFormError(setStatus),
             setFormSuccess: getSetFormSuccess(setStatus),
             setStatus,
-            setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
           });
         } catch (err) {
           const extra = captureValuesOnError ? { values } : {};
@@ -76,10 +76,10 @@ export function EnhancedFormik<
           return children({
             ...formik,
             applyErrorsToFields: getApplyErrorsToFields(formik.setErrors),
+            setCaptureExceptionResult: getSetCaptureExceptionResult(setStatus),
             setFormError: getSetFormError(setStatus),
             setFormSuccess: getSetFormSuccess(setStatus),
             setStatus,
-            setcaptureExceptionResult: getSetcaptureExceptionResult(setStatus),
           });
         }
         return children;

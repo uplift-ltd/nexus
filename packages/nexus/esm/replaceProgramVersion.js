@@ -55,7 +55,6 @@ export function replaceProgramVersion() {
                         files: [cjsPath, esmPath],
                         from: /program\.version\((.+)\)/,
                         // format differently so we don't replace in this file (the compiled one)
-                        // eslint-disable-next-line no-useless-concat
                         to: "program.version" + "(".concat(JSON.stringify(pkg.packageJson.version), ")"),
                     };
                     return [2 /*return*/, replaceInFile.replaceInFile(options)];

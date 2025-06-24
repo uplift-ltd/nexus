@@ -42,12 +42,12 @@ export const GET_SIGNED_REQUEST = gql`
 
 export type GetSignedRequestOptions<
   TMutation = GetSignedRequestMutation,
-  TVariables extends OperationVariables = GetSignedRequestMutationVariables
+  TVariables extends OperationVariables = GetSignedRequestMutationVariables,
 > = MutationHookOptions<TMutation, TVariables>;
 
 export interface UseGetSignedRequestOptions<
   TMutation = GetSignedRequestMutation,
-  TVariables extends OperationVariables = GetSignedRequestMutationVariables
+  TVariables extends OperationVariables = GetSignedRequestMutationVariables,
 > {
   options?: GetSignedRequestOptions<TMutation, TVariables>;
   query?: DocumentNode;
@@ -55,7 +55,7 @@ export interface UseGetSignedRequestOptions<
 
 export function useGetSignedRequest<
   TMutation = GetSignedRequestMutation,
-  TVariables extends OperationVariables = GetSignedRequestMutationVariables
+  TVariables extends OperationVariables = GetSignedRequestMutationVariables,
 >({ options, query = GET_SIGNED_REQUEST }: UseGetSignedRequestOptions<TMutation, TVariables> = {}) {
   return useEnhancedMutation<TMutation, TVariables>(query, options);
 }

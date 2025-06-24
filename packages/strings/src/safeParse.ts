@@ -18,7 +18,7 @@ export function safeJsonParse<Shape>(
 ) {
   try {
     return JSON.parse(jsonStr, reviver);
-  } catch (err) {
+  } catch (_err: unknown) {
     return fallback;
   }
 }

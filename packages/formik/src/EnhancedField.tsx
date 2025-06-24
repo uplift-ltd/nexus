@@ -25,7 +25,7 @@ export function EnhancedField<T = any>({
     <Field {...props}>
       {({ field, form, meta }: FieldProps<T>) => {
         if (isFunction(children)) {
-          const onFocus = (e: React.FocusEvent) => {
+          const onFocus = (_e: React.FocusEvent) => {
             if (hideErrorsOnFocus) {
               form.setFieldTouched(field.name, false, false);
             }

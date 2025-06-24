@@ -91,7 +91,7 @@ export const getNextJsTokenForParamName = (paramName: string) => `\\[${paramName
  */
 export const replaceTokens = <
   UrlTemplate extends string,
-  TokensMap extends Record<string, number | string> = UrlTokensMap<UrlTemplate>
+  TokensMap extends Record<string, number | string> = UrlTokensMap<UrlTemplate>,
 >(
   urlTemplate: UrlTemplate,
   tokens: TokensMap,

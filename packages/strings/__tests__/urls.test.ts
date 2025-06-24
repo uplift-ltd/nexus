@@ -208,11 +208,11 @@ test.each([
 
   const overriddenOptions = !!options;
 
-  // @ts-expect-error
+  // @ts-expect-error test
   const baseUrl = myMakeUrl(url, tokens, params, options);
-  // @ts-expect-error
+  // @ts-expect-error test
   const urlWithSlash = withTrailingSlash(url, tokens, params, options);
-  // @ts-expect-error
+  // @ts-expect-error test
   const urlWithoutSlash = withoutTrailingSlash(url, tokens, params, options);
 
   // should be created, unmodified

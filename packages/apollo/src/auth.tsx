@@ -136,12 +136,16 @@ export function AuthProvider({
     () => ({
       removeToken: async () => {
         await removeToken();
-        onRemoveToken && (await onRemoveToken());
+        if (onRemoveToken) {
+          await onRemoveToken();
+        }
         dispatch({ type: "REMOVE_TOKEN" });
       },
       setToken: async (token: string) => {
         await setToken(token);
-        onSetToken && (await onSetToken(token));
+        if (onSetToken) {
+          await onSetToken(token);
+        }
         dispatch({ token, type: "SET_TOKEN" });
       },
       token: state.token,

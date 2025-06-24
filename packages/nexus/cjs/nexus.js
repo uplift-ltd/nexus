@@ -52,7 +52,7 @@ program.version("4.0.0");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")
-    .action(function (script, options) { return __awaiter(void 0, void 0, void 0, function () {
+    .action(function (script, _options) { return __awaiter(void 0, void 0, void 0, function () {
     var cjs, esm, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -97,7 +97,7 @@ program
         }
     });
 }); });
-program.command("clean-library").action(function (script, options) { return __awaiter(void 0, void 0, void 0, function () {
+program.command("clean-library").action(function (_script, _options) { return __awaiter(void 0, void 0, void 0, function () {
     var clean, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -122,7 +122,7 @@ program.command("clean-library").action(function (script, options) { return __aw
         }
     });
 }); });
-program.command("replace-program-version").action(function (script, options) { return __awaiter(void 0, void 0, void 0, function () {
+program.command("replace-program-version").action(function (_script, _options) { return __awaiter(void 0, void 0, void 0, function () {
     var result, err_3;
     return __generator(this, function (_a) {
         switch (_a.label) {

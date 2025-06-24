@@ -22,7 +22,7 @@ describe("formatCurrency", () => {
   });
 
   it("should format undefined as $0.00", () => {
-    // @ts-expect-error
+    // @ts-expect-error undefined not allowed by types but could happen
     expect(formatCurrency(undefined, "USD")).toEqual("$0.00");
   });
 });
@@ -45,7 +45,7 @@ describe("formatCurrencyZero", () => {
   });
 
   it("should format undefined as $0", () => {
-    // @ts-expect-error
+    // @ts-expect-error undefined not allowed by types but could happen
     expect(formatCurrencyZero(undefined, "USD")).toEqual("$0");
   });
 });
@@ -68,7 +68,7 @@ describe("formatCurrencyInteger", () => {
   });
 
   it("should format undefined as $0", () => {
-    // @ts-expect-error
+    // @ts-expect-error undefined not allowed by types but could happen
     expect(formatCurrencyInteger(undefined, "USD")).toEqual("$0");
   });
 });

@@ -77,7 +77,6 @@ export const configureClient = ({
 }: ConfigureClientOptions) => {
   cache.restore(initialState);
 
-  // eslint-disable-next-line consistent-return
   const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
     if (networkError) {
       if (operation.operationName === "CurrentUser") {

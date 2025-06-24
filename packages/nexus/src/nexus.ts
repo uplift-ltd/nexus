@@ -16,7 +16,7 @@ program.version("1.0.0");
 program
   .command("build-library")
   .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")
-  .action(async (script, options) => {
+  .action(async (script, _options) => {
     try {
       const cjs = await execa("tsc", [
         "-p",
@@ -49,7 +49,7 @@ program
     }
   });
 
-program.command("clean-library").action(async (script, options) => {
+program.command("clean-library").action(async (_script, _options) => {
   try {
     const clean = await execa("git", ["clean", "-dfx", "cjs", "esm"]);
     if (clean.all) {
@@ -63,7 +63,7 @@ program.command("clean-library").action(async (script, options) => {
   }
 });
 
-program.command("replace-program-version").action(async (script, options) => {
+program.command("replace-program-version").action(async (_script, _options) => {
   try {
     const result = await replaceProgramVersion();
     if (result.length) {

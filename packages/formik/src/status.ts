@@ -36,19 +36,19 @@ export const getSetFormError =
     return setStatus(status);
   };
 
-export const getSetcaptureExceptionResult =
+export const getSetCaptureExceptionResult =
   (setStatus: FormikHelpers<unknown>["setStatus"]) =>
   (captureExceptionResult: FormikStatus["captureExceptionResult"]) =>
     setStatus({ captureExceptionResult });
 
 export interface StatusHelpers {
+  setCaptureExceptionResult: (
+    captureExceptionResult: FormikStatus["captureExceptionResult"]
+  ) => void;
   setFormError: (
     formError: FormikStatus["formError"],
     captureExceptionResult?: FormikStatus["captureExceptionResult"]
   ) => void;
   setFormSuccess: (formSuccess: FormikStatus["formSuccess"]) => void;
   setStatus: (status: FormikStatus) => void;
-  setcaptureExceptionResult: (
-    captureExceptionResult: FormikStatus["captureExceptionResult"]
-  ) => void;
 }
