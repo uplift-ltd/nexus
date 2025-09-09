@@ -5,5 +5,3 @@ export * from "./configure.js";
 export * from "./helpers.js";
 
 export * from "./useSkipVariables.js";
-
-export * from "@apollo/client";

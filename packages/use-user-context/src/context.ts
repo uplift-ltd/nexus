@@ -1,14 +1,14 @@
-import { ApolloError, ApolloQueryResult, NetworkStatus } from "@uplift-ltd/apollo";
+import { ApolloClient, ErrorLike, OperationVariables } from "@apollo/client";
 import { createContext } from "react";
 
 import { type CurrentUser, type CurrentUserQuery } from "./types.js";
 
 export interface UserContextShape {
   currentUser: CurrentUser | null;
-  error?: ApolloError;
+  error?: ErrorLike;
   isAuthenticated: boolean;
   loading: boolean;
-  refetch(): Promise<ApolloQueryResult<CurrentUserQuery | null>>;
+  refetch(variables?: OperationVariables): Promise<ApolloClient.QueryResult<CurrentUserQuery>>;
   refetching: boolean;
 }
 
@@ -17,11 +17,7 @@ export const UserContext = createContext<UserContextShape>({
   isAuthenticated: false,
   loading: true,
   refetch: async () => {
-    return {
-      data: null,
-      loading: false,
-      networkStatus: NetworkStatus.ready,
-    };
+    throw new Error("refetch called before context initialized");
   },
   refetching: false,
 });
