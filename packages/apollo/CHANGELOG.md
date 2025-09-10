@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>6.1.2-alpha.0 (2025-09-10)</small>
+
+* feat(apollo)!: upgrade to apollo v4! ([5421aee](https://github.com/uplift-ltd/nexus/commit/5421aee))
+* Update related packages ([ecb08f9](https://github.com/uplift-ltd/nexus/commit/ecb08f9))
+* chore: update dev dependencies (#416) ([97284e0](https://github.com/uplift-ltd/nexus/commit/97284e0)), closes [#416](https://github.com/uplift-ltd/nexus/issues/416)
+
+
+
+
+
 ### [6.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@6.1.0...@uplift-ltd/apollo@6.1.1) (2025-06-21)
 
 **Note:** Version bump only for package @uplift-ltd/apollo
