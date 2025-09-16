@@ -1,5 +1,20 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## <small>1.0.5-alpha.0 (2025-09-10)</small>
+
+* chore: update dev dependencies (#416) ([97284e0](https://github.com/uplift-ltd/nexus/commit/97284e0)), closes [#416](https://github.com/uplift-ltd/nexus/issues/416)
+* chore: update node and docusaurus (#385) ([ed6e4b1](https://github.com/uplift-ltd/nexus/commit/ed6e4b1)), closes [#385](https://github.com/uplift-ltd/nexus/issues/385)
+* feat: switch to npm ([0dd941c](https://github.com/uplift-ltd/nexus/commit/0dd941c))
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

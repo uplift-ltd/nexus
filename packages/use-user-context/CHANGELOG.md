@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.0.3-alpha.0 (2025-09-10)</small>
+
+* Update related packages ([ecb08f9](https://github.com/uplift-ltd/nexus/commit/ecb08f9))
+
+
+
+
+
 ### [4.0.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@4.0.1...@uplift-ltd/use-user-context@4.0.2) (2025-06-21)
 
 **Note:** Version bump only for package @uplift-ltd/use-user-context

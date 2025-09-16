@@ -1,6 +1,6 @@
 {
   "name": "@uplift-ltd/apollo",
-  "version": "6.1.1",
+  "version": "6.1.2-alpha.0",
   "description": "Apollo helpers.",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -29,18 +29,16 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.0.0",
+    "@apollo/client": "^4.0.0",
     "graphql": "^16.0.0",
-    "graphql-tag": "^2.12.5",
-    "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "@uplift-ltd/constants": "^3.0.0",
     "@uplift-ltd/nexus-types": "^2.0.0"
   },
   "devDependencies": {
-    "@apollo/client": "^3.13.8",
-    "graphql": "^16.11.0",
-    "graphql-tag": "^2.12.6"
+    "@apollo/client": "^4.0.0",
+    "graphql": "^16.11.0"
   }
 }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>4.0.1-alpha.0 (2025-09-10)</small>
+
+* chore: update dev dependencies (#416) ([97284e0](https://github.com/uplift-ltd/nexus/commit/97284e0)), closes [#416](https://github.com/uplift-ltd/nexus/issues/416)
+
+
+
+
+
 ## [4.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/strings@3.0.0...@uplift-ltd/strings@4.0.0) (2023-11-10)
 
 

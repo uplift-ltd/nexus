@@ -1,52 +1,70 @@
 import {
   ApolloCache,
   ApolloClient,
-  ApolloClientOptions,
-  ApolloError,
   ApolloLink,
+  CombinedGraphQLErrors,
   InMemoryCache,
   NormalizedCacheObject,
-  Observable,
-  Operation,
   ServerError,
 } from "@apollo/client";
+import { of } from "rxjs";
 import { BatchHttpLink } from "@apollo/client/link/batch-http";
-import { setContext } from "@apollo/client/link/context";
-import { onError } from "@apollo/client/link/error";
+import { SetContextLink } from "@apollo/client/link/context";
+import { ErrorLink } from "@apollo/client/link/error";
 import { HttpLink } from "@apollo/client/link/http";
 import { RetryLink } from "@apollo/client/link/retry";
 import { IS_SSR } from "@uplift-ltd/constants";
 import { type CaptureExceptionHandler, type CaptureMessageHandler } from "@uplift-ltd/nexus-types";
-import { GraphQLError } from "graphql";
+import { FormattedExecutionResult, GraphQLFormattedError } from "graphql";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let globalApolloClient: ApolloClient<any>;
+let globalApolloClient: ApolloClient;
 
 interface ExtraHeaders {
   authorization?: string;
   cookie?: string;
 }
 
-export interface ConfigureClientOptions extends Omit<ApolloClientOptions<unknown>, "cache"> {
+export interface ConfigureClientOptions extends Omit<ApolloClient.Options, "cache" | "link"> {
   batch?: boolean;
   batchInterval?: BatchHttpLink.Options["batchInterval"];
   batchKey?: BatchHttpLink.Options["batchKey"];
   batchMax?: BatchHttpLink.Options["batchMax"];
-  cache?: ApolloCache<unknown>;
+  cache?: ApolloCache;
   captureException?: CaptureExceptionHandler;
   captureMessage?: CaptureMessageHandler;
   cookie?: string;
+  credentials?: HttpLink.Options["credentials"];
   extraLinks?: ApolloLink[];
   fetch?: BatchHttpLink.Options["fetch"];
   fetchOptions?: BatchHttpLink.Options["fetchOptions"];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getServerResultErrors?: (result: ApolloLink.Result | undefined) => any;
   getToken?: () => Promise<null | string> | null | string;
   initialState?: NormalizedCacheObject;
-  onForbidden?: (err: ApolloError["networkError"], operation: Operation) => void;
-  onGraphqlErrors?: (errors: readonly GraphQLError[], operation: Operation) => void;
-  onNetworkError?: (err: ApolloError["networkError"], operation: Operation) => void;
-  onNotAuthorized?: (err: ApolloError["networkError"], operation: Operation) => void;
+  link?: ApolloLink;
+  onForbidden?: (err: ServerError, operation: ApolloLink.Operation) => void;
+  onGraphqlErrors?: (
+    errors: readonly GraphQLFormattedError[],
+    operation: ApolloLink.Operation
+  ) => void;
+  onNotAuthorized?: (err: ServerError, operation: ApolloLink.Operation) => void;
+  onServerError?: (err: ServerError, operation: ApolloLink.Operation) => void;
   removeToken?: () => void;
   terminatingLink?: ApolloLink;
+  uri?: HttpLink.Options["uri"];
+}
+
+function defaultGetServerResultErrors(serverErrorResult: ApolloLink.Result | undefined) {
+  // if (typeof serverErrorResult === "string") {
+  //   return [serverErrorResult];
+  // }
+  // typing says result is an object but when batch http link is used it's actually an array
+  if (Array.isArray(serverErrorResult)) {
+    return (serverErrorResult as unknown as FormattedExecutionResult[])?.map?.(
+      (result) => result.errors
+    );
+  }
+  return serverErrorResult?.errors;
 }
 
 const defaultFetch = typeof window !== "undefined" ? window.fetch : undefined;
@@ -64,12 +82,13 @@ export const configureClient = ({
   extraLinks = [],
   fetch = defaultFetch,
   fetchOptions,
+  getServerResultErrors = defaultGetServerResultErrors,
   getToken,
   initialState = {},
   onForbidden,
   onGraphqlErrors,
-  onNetworkError,
   onNotAuthorized,
+  onServerError,
   removeToken,
   terminatingLink,
   uri,
@@ -77,28 +96,22 @@ export const configureClient = ({
 }: ConfigureClientOptions) => {
   cache.restore(initialState);
 
-  const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
-    if (networkError) {
+  const errorLink = new ErrorLink(({ error, operation, result }) => {
+    if (ServerError.is(error)) {
+      const serverError = error;
       if (operation.operationName === "CurrentUser") {
         // response.errors = null;
         // response is undefined for networkError so we return a fake store
         // https://github.com/apollographql/apollo-link/issues/855
-        return Observable.of({ data: { currentUser: null } });
+        return of({ data: { currentUser: null } });
       }
 
-      console.warn(`[Network error]: ${networkError}`);
+      console.warn(`[Server error]: ${serverError}`);
 
       // pluck errors out of the result and send to sentry
-      // typing says result is an object but since we use batch http link it's actually an array
-      const serverError = networkError as ServerError;
-      const errors =
-        typeof serverError.result === "string"
-          ? [serverError.result]
-          : serverError.result?.errors ||
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            serverError.result?.map?.((result: Record<string, any>) => result.errors);
+      const errors = getServerResultErrors(result);
 
-      captureException?.(networkError, {
+      captureException?.(serverError, {
         extra: {
           errors,
           operationName: operation.operationName,
@@ -106,18 +119,19 @@ export const configureClient = ({
         },
       });
 
-      onNetworkError?.(networkError, operation);
+      onServerError?.(serverError, operation);
 
       // If we get a 401, we log out the user
-      if ((networkError as ServerError).statusCode === 401) {
+      if (serverError.statusCode === 401) {
         removeToken?.();
-        onNotAuthorized?.(networkError, operation);
-      } else if ((networkError as ServerError).statusCode === 403) {
-        onForbidden?.(networkError, operation);
+        onNotAuthorized?.(serverError, operation);
+      } else if (serverError.statusCode === 403) {
+        onForbidden?.(serverError, operation);
       }
     }
 
-    if (graphQLErrors) {
+    if (CombinedGraphQLErrors.is(error)) {
+      const graphQLErrors = error.errors;
       graphQLErrors.forEach((graphqlError) => {
         // This is not supposed to be a string, but it is sometimes?
         // Maybe it's a graphene thang? Anyway, we'll handle it.
@@ -148,7 +162,7 @@ export const configureClient = ({
     }
   });
 
-  const authLink = setContext(async (_, { headers }) => {
+  const authLink = new SetContextLink(async ({ headers }) => {
     const extraHeaders: ExtraHeaders = {};
     const token = getToken && (await getToken());
     if (token) {
@@ -200,10 +214,8 @@ export const configureClient = ({
 
   return new ApolloClient({
     cache,
-    credentials,
     link: ApolloLink.from(links),
     ssrMode: IS_SSR,
-    uri,
     ...otherOptions,
   });
 };
