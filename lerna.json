@@ -8,10 +8,6 @@
     },
     "version": {
       "conventionalCommits": true,
-      "changelogPreset": {
-        "name": "conventionalcommits",
-        "issueUrlFormat": "{{host}}/{{owner}}/{{repository}}/issues/{{id}}"
-      },
       "message": "chore(release): publish",
       "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"]
     },
