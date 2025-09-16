@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/apollo@6.1.3...@uplift-ltd/apollo@7.0.0) (2025-09-16)
+
+
+### Features
+
+* upgrade to apollo v4 ([7ca75ef](https://github.com/uplift-ltd/nexus/commit/7ca75ef71eb3abf63d7dc45b9df8e491dc8126e3))
+
+
+### BREAKING CHANGES
+
+* upgrade to apollo client v4
+
+
+
+
+
 ## <small>6.1.3 (2025-09-16)</small>
 
 * Revert "feat(apollo)!: upgrade to apollo v4 (#420)" ([cfeb8d8](https://github.com/uplift-ltd/nexus/commit/cfeb8d8)), closes [#420](https://github.com/uplift-ltd/nexus/issues/420)
