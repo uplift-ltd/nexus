@@ -1,6 +1,6 @@
-import { ApolloLink, selectURI } from "@apollo/client";
+import { Operation, selectURI } from "@apollo/client";
 
-export function defaultBatchKey(operation: ApolloLink.Operation, fallbackURI: string) {
+export function defaultBatchKey(operation: Operation, fallbackURI: string) {
   const context = operation.getContext();
   const contextConfig = {
     credentials: context.credentials,
@@ -12,7 +12,7 @@ export function defaultBatchKey(operation: ApolloLink.Operation, fallbackURI: st
 }
 
 export function getDefaultBatchKey(fallbackURI: string) {
-  return function batchKey(operation: ApolloLink.Operation) {
+  return function batchKey(operation: Operation) {
     return defaultBatchKey(operation, fallbackURI);
   };
 }

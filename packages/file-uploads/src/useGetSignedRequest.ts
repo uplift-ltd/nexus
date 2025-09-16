@@ -1,5 +1,10 @@
-import { ApolloCache, DocumentNode, OperationVariables, gql } from "@apollo/client";
-import { useMutation } from "@apollo/client/react";
+import {
+  DocumentNode,
+  MutationHookOptions,
+  OperationVariables,
+  gql,
+  useEnhancedMutation,
+} from "@uplift-ltd/apollo";
 
 import { GetSignedRequestMutation, GetSignedRequestMutationVariables } from "./types.js";
 
@@ -38,17 +43,13 @@ export const GET_SIGNED_REQUEST = gql`
 export type GetSignedRequestOptions<
   TMutation = GetSignedRequestMutation,
   TVariables extends OperationVariables = GetSignedRequestMutationVariables,
-  TCache extends ApolloCache = ApolloCache,
-  TConfiguredVariables extends Partial<TVariables> = Partial<TVariables>,
-> = useMutation.Options<TMutation, TVariables, TCache, TConfiguredVariables>;
+> = MutationHookOptions<TMutation, TVariables>;
 
 export interface UseGetSignedRequestOptions<
   TMutation = GetSignedRequestMutation,
   TVariables extends OperationVariables = GetSignedRequestMutationVariables,
-  TCache extends ApolloCache = ApolloCache,
-  TConfiguredVariables extends Partial<TVariables> = Partial<TVariables>,
 > {
-  options?: GetSignedRequestOptions<TMutation, TVariables, TCache, TConfiguredVariables>;
+  options?: GetSignedRequestOptions<TMutation, TVariables>;
   query?: DocumentNode;
 }
 
@@ -56,5 +57,5 @@ export function useGetSignedRequest<
   TMutation = GetSignedRequestMutation,
   TVariables extends OperationVariables = GetSignedRequestMutationVariables,
 >({ options, query = GET_SIGNED_REQUEST }: UseGetSignedRequestOptions<TMutation, TVariables> = {}) {
-  return useMutation<TMutation, TVariables>(query, options);
+  return useEnhancedMutation<TMutation, TVariables>(query, options);
 }

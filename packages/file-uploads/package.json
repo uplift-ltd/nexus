@@ -29,16 +29,16 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "@apollo/client": "^4.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "@uplift-ltd/ts-helpers": "^3.0.1",
     "axios": "^1.6.0",
+    "lodash": "^4.17.20",
     "mime": "^2.5.2"
   },
   "devDependencies": {
-    "@apollo/client": "^4.0.0",
+    "@types/lodash": "^4.14.160",
     "@types/mime": "^2.0.3"
   }
 }
