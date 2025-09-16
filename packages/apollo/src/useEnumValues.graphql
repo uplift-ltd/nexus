@@ -1,9 +1,0 @@
-query EnumData($enumName: String!) {
-  enumData: __type(name: $enumName) {
-    name
-    enumValues {
-      name
-      description
-    }
-  }
-}
