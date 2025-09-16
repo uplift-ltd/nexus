@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>3.0.1 (2025-09-16)</small>
+
+* feat(apollo)!: upgrade to apollo v4 (#420) ([d47078b](https://github.com/uplift-ltd/nexus/commit/d47078b)), closes [#420](https://github.com/uplift-ltd/nexus/issues/420)
+* chore: update dev dependencies (#416) ([97284e0](https://github.com/uplift-ltd/nexus/commit/97284e0)), closes [#416](https://github.com/uplift-ltd/nexus/issues/416)
+* chore: update node and docusaurus (#385) ([ed6e4b1](https://github.com/uplift-ltd/nexus/commit/ed6e4b1)), closes [#385](https://github.com/uplift-ltd/nexus/issues/385)
+
+
+
+
+
 ## <small>3.0.1-alpha.0 (2025-09-10)</small>
 
 * chore: update dev dependencies (#416) ([97284e0](https://github.com/uplift-ltd/nexus/commit/97284e0)), closes [#416](https://github.com/uplift-ltd/nexus/issues/416)
