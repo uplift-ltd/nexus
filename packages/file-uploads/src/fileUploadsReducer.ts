@@ -1,121 +1,155 @@
-import { S3FileAttachment } from "./types.js";
-
-interface FileSpecificAction {
-  fileAttachmentId: string;
+interface FileSpecificAction<TFile = File> {
+  file: TFile;
   type: string;
 }
 
-interface DataAction extends FileSpecificAction {
-  data: S3FileAttachment;
+interface DataAction<TFile = File, TUploadData = unknown> extends FileSpecificAction<TFile> {
+  data: TUploadData;
   type: "SET_DATA";
 }
 
-interface LoadingAction extends FileSpecificAction {
+interface LoadingAction<TFile = File> extends FileSpecificAction<TFile> {
   loading: boolean;
   type: "SET_LOADING";
 }
 
-interface ErrorAction extends FileSpecificAction {
+interface ErrorAction<TFile = File> extends FileSpecificAction<TFile> {
   error: Error;
   type: "SET_ERROR";
 }
 
-interface ProgressAction extends FileSpecificAction {
+interface ProgressAction<TFile = File> extends FileSpecificAction<TFile> {
   progress: number;
   type: "SET_PROGRESS";
 }
 
-interface RemoveAction extends FileSpecificAction {
+interface AddAction<TFile = File> extends FileSpecificAction<TFile> {
+  type: "ADD_FILE";
+}
+
+interface RemoveAction<TFile = File> extends FileSpecificAction<TFile> {
   type: "REMOVE_FILE";
 }
 
-type FileUploadsAction = DataAction | ErrorAction | LoadingAction | ProgressAction | RemoveAction;
-
-interface FileUploadsState {
-  errorByFile: Record<string, Error | null>;
-  fileAttachments: S3FileAttachment[];
-  fileAttachmentsById: Record<string, S3FileAttachment>;
-  loading: boolean;
-  loadingByFile: Record<string, boolean>;
-  progress: number;
-  progressByFile: Record<string, number>;
+interface ResetAction {
+  type: "RESET";
 }
 
-export function fileUploadsReducer(prevState: FileUploadsState, action: FileUploadsAction) {
+type FileUploadsAction<TFile, TUploadData> =
+  | AddAction<TFile>
+  | DataAction<TFile, TUploadData>
+  | ErrorAction<TFile>
+  | LoadingAction<TFile>
+  | ProgressAction<TFile>
+  | RemoveAction<TFile>
+  | ResetAction;
+
+export interface FileUploadsState<TFile = File, TUploadData = unknown> {
+  datas: Array<TUploadData | null>;
+  errors: Array<Error | null>;
+  files: TFile[];
+  loading: boolean;
+  loadings: boolean[];
+  progress: number;
+  progresses: number[];
+}
+
+export function fileUploadsReducer<TFile = File, TUploadData = unknown>(
+  prevState: FileUploadsState<TFile, TUploadData>,
+  action: FileUploadsAction<TFile, TUploadData>
+): FileUploadsState<TFile, TUploadData> {
   switch (action.type) {
-    case "SET_DATA": {
+    case "ADD_FILE": {
+      const datas = [...prevState.datas, null];
+      const errors = [...prevState.errors, null];
+      const files = [...prevState.files, action.file];
+      const loadings = [...prevState.loadings, true];
+      const progresses = [...prevState.progresses, 0];
+
       return {
         ...prevState,
-        fileAttachments: [
-          ...prevState.fileAttachments.filter(({ id }) => id !== action.data.id),
-          action.data,
-        ],
-        fileAttachmentsById: {
-          ...prevState.fileAttachmentsById,
-          [action.fileAttachmentId]: action.data,
-        },
-      };
-    }
-    case "SET_LOADING": {
-      const loadingByFile = {
-        ...prevState.loadingByFile,
-        [action.fileAttachmentId]: action.loading,
-      };
-      return {
-        ...prevState,
-        loading: Object.values(loadingByFile).some((x) => x),
-        loadingByFile,
-      };
-    }
-    case "SET_ERROR":
-      return {
-        ...prevState,
-        errorByFile: {
-          ...prevState.errorByFile,
-          [action.fileAttachmentId]: action.error,
-        },
-      };
-    case "SET_PROGRESS": {
-      const progressByFile = {
-        ...prevState.progressByFile,
-        [action.fileAttachmentId]: action.progress,
-      };
-      const progressValues = Object.values(progressByFile);
-      return {
-        ...prevState,
-        progress: progressValues.reduce((acc, x) => acc + x, 0) / progressValues.length || 0,
-        progressByFile,
+        datas,
+        errors,
+        files,
+        loading: loadings.some((x) => x),
+        loadings,
+        progress: progresses.reduce((acc, x) => acc + x, 0) / progresses.length || 0,
+        progresses,
       };
     }
     case "REMOVE_FILE": {
-      const fileAttachmentsById = { ...prevState.fileAttachmentsById };
-      delete fileAttachmentsById[action.fileAttachmentId];
+      const idx = prevState.files.indexOf(action.file);
 
-      const fileAttachments = prevState.fileAttachments.filter(
-        ({ id }) => id !== action.fileAttachmentId
-      );
-
-      const loadingByFile = { ...prevState.loadingByFile };
-      delete loadingByFile[action.fileAttachmentId];
-
-      const errorByFile = { ...prevState.errorByFile };
-      delete errorByFile[action.fileAttachmentId];
-
-      const progressByFile = { ...prevState.progressByFile };
-      delete progressByFile[action.fileAttachmentId];
-
-      const progressValues = Object.values(prevState.progressByFile);
-      const loadingValues = Object.values(prevState.loadingByFile);
+      const datas = prevState.datas.filter((_data, i) => i !== idx);
+      const errors = prevState.errors.filter((_error, i) => i !== idx);
+      const files = prevState.files.filter((_file, i) => i !== idx);
+      const loadings = prevState.loadings.filter((_loading, i) => i !== idx);
+      const progresses = prevState.progresses.filter((_progress, i) => i !== idx);
 
       return {
         ...prevState,
-        errorByFile,
-        fileAttachments,
-        fileAttachmentsById,
-        loading: loadingValues.some((x) => x),
-        loadingByFile,
-        progress: progressValues.reduce((acc, x) => acc + x, 0) / progressValues.length || 0,
-        progressByFile,
+        datas,
+        errors,
+        files,
+        loading: loadings.some((x) => x),
+        loadings,
+        progress: progresses.reduce((acc, x) => acc + x, 0) / progresses.length || 0,
+        progresses,
+      };
+    }
+    case "RESET": {
+      return {
+        ...getInitialFileUploadsState(),
+      };
+    }
+    case "SET_DATA": {
+      const idx = prevState.files.indexOf(action.file);
+
+      return {
+        ...prevState,
+        datas: prevState.datas.map((data, i) => {
+          if (i !== idx) return data;
+          return action.data;
+        }),
+      };
+    }
+    case "SET_ERROR": {
+      const idx = prevState.files.indexOf(action.file);
+
+      return {
+        ...prevState,
+        errors: prevState.errors.map((error, i) => {
+          if (i !== idx) return error;
+          return action.error;
+        }),
+      };
+    }
+    case "SET_LOADING": {
+      const idx = prevState.files.indexOf(action.file);
+
+      const loadings = prevState.loadings.map((loading, i) => {
+        if (i !== idx) return loading;
+        return action.loading;
+      });
+
+      return {
+        ...prevState,
+        loading: loadings.some((loading) => loading),
+        loadings,
+      };
+    }
+    case "SET_PROGRESS": {
+      const idx = prevState.files.indexOf(action.file);
+
+      const progresses = prevState.progresses.map((progress, i) => {
+        if (i !== idx) return progress;
+        return action.progress;
+      });
+
+      return {
+        ...prevState,
+        progress: progresses.reduce((acc, x) => acc + x, 0) / progresses.length || 0,
+        progresses,
       };
     }
     default:
@@ -123,22 +157,17 @@ export function fileUploadsReducer(prevState: FileUploadsState, action: FileUplo
   }
 }
 
-export const getInitialFileUploadsState = (
-  fileAttachments: S3FileAttachment[] = []
-): FileUploadsState => {
-  const fileAttachmentsById: FileUploadsState["fileAttachmentsById"] = {};
-
-  fileAttachments.forEach((fileAttachment) => {
-    fileAttachmentsById[fileAttachment.id] = fileAttachment;
-  });
-
+export function getInitialFileUploadsState<TFile = File, TUploadData = unknown>(): FileUploadsState<
+  TFile,
+  TUploadData
+> {
   return {
-    errorByFile: {},
-    fileAttachments,
-    fileAttachmentsById,
+    datas: [],
+    errors: [],
+    files: [],
     loading: false,
-    loadingByFile: {},
+    loadings: [],
     progress: 0,
-    progressByFile: {},
+    progresses: [],
   };
-};
+}

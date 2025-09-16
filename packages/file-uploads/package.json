@@ -11,6 +11,20 @@
     "esm/",
     "README.md"
   ],
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js"
+    },
+    "./axios": {
+      "require": "./cjs/fileUploaderAxios.js",
+      "import": "./esm/fileUploaderAxios.js"
+    },
+    "./fetch": {
+      "require": "./cjs/fileUploaderFetch.js",
+      "import": "./esm/fileUploaderFetch.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -29,16 +43,16 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "@apollo/client": "^4.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "axios": "^1.6.0"
   },
   "dependencies": {
     "@uplift-ltd/ts-helpers": "^3.0.1",
-    "axios": "^1.6.0",
     "mime": "^2.5.2"
   },
   "devDependencies": {
     "@apollo/client": "^4.0.0",
-    "@types/mime": "^2.0.3"
+    "@types/mime": "^2.0.3",
+    "axios": "^1.6.0"
   }
 }

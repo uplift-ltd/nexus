@@ -10,22 +10,89 @@ npm i --save @uplift-ltd/file-uploads
 
 File upload related functionalities for web and React Native.
 
+### helpers
+
+You likely want to add helpers like this to your project.
+
+```graphql
+# GetUploadUrl.graphql
+mutation GetUploadUrl($input: GetUploadUrlInput!) {
+  getUploadUrl(input: $input) {
+    __typename
+    ... on GetUploadUrlSuccess {
+      originalFileName
+      uploadConfig {
+        key
+        uploadUrl
+        url
+      }
+    }
+  }
+}
+```
+
+```tsx
+// helpers/files.tsx
+import { getFetchFileUploader } from "@uplift-ltd/file-uploads/fetch";
+// OR
+import { getAxiosFileUploader } from "@uplift-ltd/file-uploads/axios";
+
+type GetUploadUrlInputProps = Pick<GetUploadUrlInput, "objectId" | "uploadType">;
+
+export const useGetFileUploaderProps = (uploadUrlInput: GetUploadUrlInputProps) => {
+  const graphQLClient = useGraphQLClient();
+
+  return useCallback(
+    async (file: File) => {
+      const signedRequest = await graphQLClient.request(GetUploadUrlDocument, {
+        input: { fileName: file.name, ...uploadUrlInput },
+      });
+
+      if (signedRequest.getUploadUrl.__typename !== "GetUploadUrlSuccess") {
+        throw new Error("Failed to fetch signed request!");
+      }
+
+      return {
+        file,
+        key: signedRequest.getUploadUrl.uploadConfig.key,
+        uploadUrl: signedRequest.getUploadUrl.uploadConfig.uploadUrl,
+      };
+    },
+    [graphQLClient, uploadUrlInput]
+  );
+};
+
+export type FileUploaderProps = {
+  file: File;
+} & Pick<GetUploadUrlSuccess["uploadConfig"], "key" | "uploadUrl">;
+
+export const fileUploader = getFetchFileUploader<File, FileUploaderProps>();
+// OR
+export const fileUploader = getAxiosFileUploader<File, FileUploaderProps>();
+```
+
+Note: To use the axios file uploader you must have axios listed in your dependencies. The axios
+uploader reports progress whereas the default fetch does not (it goes straight to 100% when the file
+is uploaded.)
+
 ### useUploadFile
 
 Upload a single file.
 
 ```tsx
+// MyComponent.tsx
 import { useUploadFile } from "@uplift-ltd/file-uploads";
 
-interface UseUploadFileOptions {
-  onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
-  onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
-  onComplete?: (fileAttachment: S3FileAttachment) => void;
-  onError?: (error: Error, fileAttachment: S3FileAttachment) => void;
-}
-
 function MyComponent() {
-  const { uploadFile, fileAttachment, loading, error } = useUploadFile();
+  const getFileUploaderProps = useGetFileUploaderProps({
+    objectId: geojsonConfig?.id,
+    uploadType: "GEOJSON",
+  });
+
+  const { data, error, loading, progress, uploadFile, reset } = useUploadFile({
+    fileUploader,
+    getFileUploaderProps,
+  });
 
   <input
     type="file"
@@ -34,13 +101,7 @@ function MyComponent() {
         return;
       }
       Array.from(e.target.files).forEach((file) => {
-        uploadFile({
-          file,
-          grapheneId: "VXNlcjox",
-          appLabel: "runbook",
-          isDraft: true,
-          metadata: { caption: "Brooo" },
-        });
+        uploadFile(file);
       });
     }}
   />;
@@ -52,20 +113,31 @@ function MyComponent() {
 Upload multiple files.
 
 ```tsx
+// MyComponent.tsx
 import { useUploadFiles } from "@uplift-ltd/file-uploads";
 
 function MyComponent() {
+  const getFileUploaderProps = useGetFileUploaderProps({
+    objectId: geojsonConfig?.id,
+    uploadType: "GEOJSON",
+  });
+
   const {
+    datas,
+    errors,
+    files,
+    loading,
+    loadings,
+    progress,
+    progresses,
+    removeFile,
+    reset,
+    uploadFile,
     uploadFiles,
-    onRequestRemove,
-    fileAttachments,
-    fileAttachmentsById,
-    loadingById,
-    errorById,
-    progressById,
-    progress, // total / num files
-    loading, // any loading
-  } = useUploadFiles();
+  } = useUploadFiles({
+    fileUploader,
+    getFileUploaderProps,
+  });
 
   <input
     type="file"
@@ -76,26 +148,5 @@ function MyComponent() {
       uploadFiles(Array.from(e.target.files));
     }}
   />;
-}
-```
-
-#### Custom signed request
-
-To use a custom signed request:
-
-```tsx
-// MyComponent.tsx
-
-useUploadFile({ signedRequestOptions: { query: MY_SIGNED_REQUEST_MUTATION } });
-// OR
-useUploadFiles({ signedRequestOptions: { query: MY_SIGNED_REQUEST_MUTATION } });
-
-// file-uploads.d.ts
-import "@uplift-ltd/file-uploads";
-
-declare module "@uplift-ltd/file-uploads" {
-  export interface GetSignedRequestMutationVariables {
-    recaptchaToken: string;
-  }
 }
 ```
