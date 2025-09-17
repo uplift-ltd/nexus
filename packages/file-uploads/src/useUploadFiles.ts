@@ -24,7 +24,7 @@ export interface UseUploadFilesOptions<
     results: Array<{
       file: TUploadFileProps;
       fileUploaderData: TFileUploaderReturn | null;
-      fileUploaderProps: TFileUploaderProps;
+      fileUploaderProps: TFileUploaderProps | null;
     }>;
   }) => void;
   onFileComplete?: (data: TFileUploaderReturn, options: TUploadFileProps) => void;
@@ -46,14 +46,14 @@ export type FileUploadsReturn<
   uploadFile: (file: TUploadFileProps) => Promise<{
     file: TUploadFileProps;
     fileUploaderData: TFileUploaderReturn | null;
-    fileUploaderProps: TFileUploaderProps;
+    fileUploaderProps: TFileUploaderProps | null;
   }>;
   uploadFiles: (files: TUploadFileProps[]) => Promise<{
     files: TUploadFileProps[];
     results: Array<{
       file: TUploadFileProps;
       fileUploaderData: TFileUploaderReturn | null;
-      fileUploaderProps: TFileUploaderProps;
+      fileUploaderProps: TFileUploaderProps | null;
     }>;
   }>;
 } & FileUploadsState<TUploadFileProps, TFileUploaderReturn>;
@@ -108,7 +108,7 @@ export function useUploadFiles<
     ): Promise<{
       file: TUploadFileProps;
       fileUploaderData: TFileUploaderReturn | null;
-      fileUploaderProps: TFileUploaderProps;
+      fileUploaderProps: TFileUploaderProps | null;
     }> => {
       filesUploadDispatch({
         file: file,
@@ -124,11 +124,12 @@ export function useUploadFiles<
         type: "SET_LOADING",
       });
 
-      const fileUploaderProps = await getFileUploaderProps(file);
-
+      let fileUploaderProps = null;
       let fileUploaderData = null;
 
       try {
+        fileUploaderProps = await getFileUploaderProps(file);
+
         fileUploaderData = await fileUploader(fileUploaderProps, {
           onProgress: (progress) => {
             filesUploadDispatch({
