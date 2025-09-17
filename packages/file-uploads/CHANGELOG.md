@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@5.0.0...@uplift-ltd/file-uploads@6.0.0) (2025-09-17)
+
+
+* feat(file-uploads)!: remove apollo from file-uploads (#422) ([6e6aeb6](https://github.com/uplift-ltd/nexus/commit/6e6aeb65446d05563f6fcba2c6db1789d257c535)), closes [#422](https://github.com/uplift-ltd/nexus/issues/422)
+
+
+### BREAKING CHANGES
+
+* Removes apollo integration from file-uploads, making it
+compatible with any fetch library.
+
+Example usage:
+```graphql
+mutation GetUploadUrl($input: GetUploadUrlInput!) {
+  getUploadUrl(input: $input) {
+    __typename
+    ... on GetUploadUrlSuccess {
+      originalFileName
+      uploadConfig {
+        key
+        uploadUrl
+        url
+      }
+    }
+  }
+}
+```
+
+```tsx
+// helpers/files.tsx
+import { getFetchFileUploader } from "@uplift-ltd/file-uploads/fetch";
+// OR
+import { getAxiosFileUploader } from "@uplift-ltd/file-uploads/axios";
+
+type GetUploadUrlInputProps = Pick<GetUploadUrlInput, "objectId" | "uploadType">;
+
+export const useGetFileUploaderProps = (uploadUrlInput: GetUploadUrlInputProps) => {
+  const graphQLClient = useGraphQLClient();
+
+  return useCallback(
+    async (file: File) => {
+      const signedRequest = await graphQLClient.request(GetUploadUrlDocument, {
+        input: { fileName: file.name, ...uploadUrlInput },
+      });
+
+      if (signedRequest.getUploadUrl.__typename !== "GetUploadUrlSuccess") {
+        throw new Error("Failed to fetch signed request!");
+      }
+
+      return {
+        file,
+        key: signedRequest.getUploadUrl.uploadConfig.key,
+        uploadUrl: signedRequest.getUploadUrl.uploadConfig.uploadUrl,
+      };
+    },
+    [graphQLClient, uploadUrlInput]
+  );
+};
+
+export type FileUploaderProps = {
+  file: File;
+} & Pick<GetUploadUrlSuccess["uploadConfig"], "key" | "uploadUrl">;
+
+export const fileUploader = getFetchFileUploader<File, FileUploaderProps>();
+// OR
+export const fileUploader = getAxiosFileUploader<File, FileUploaderProps>();
+```
+
+```tsx
+// MyComponent.tsx
+import { useUploadFiles } from "@uplift-ltd/file-uploads";
+
+function MyComponent() {
+  const getFileUploaderProps = useGetFileUploaderProps({
+    objectId: geojsonConfig?.id,
+    uploadType: "GEOJSON",
+  });
+
+  const {
+    datas,
+    errors,
+    files,
+    loading,
+    loadings,
+    progress,
+    progresses,
+    removeFile,
+    reset,
+    uploadFile,
+    uploadFiles,
+  } = useUploadFiles({
+    fileUploader,
+    getFileUploaderProps,
+  });
+
+  <input
+    type="file"
+    onChange={(e) => {
+      if (!e.target.files) {
+        return;
+      }
+      uploadFiles(Array.from(e.target.files));
+    }}
+  />;
+}
+```
+
+* restore getFileNameComponents
+
+
+
+
+
 # [5.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@4.0.5...@uplift-ltd/file-uploads@5.0.0) (2025-09-16)
 
 
