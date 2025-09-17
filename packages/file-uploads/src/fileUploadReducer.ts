@@ -1,7 +1,5 @@
-type FileUploadData = unknown;
-
-interface DataAction {
-  data: FileUploadData | null;
+interface DataAction<TUploadData = unknown> {
+  data: TUploadData | null;
   type: "SET_DATA";
 }
 
@@ -20,31 +18,47 @@ interface ProgressAction {
   type: "SET_PROGRESS";
 }
 
-export type FileUploadAction = DataAction | ErrorAction | LoadingAction | ProgressAction;
+interface ResetAction {
+  type: "RESET";
+}
 
-interface FileUploadState {
-  data: FileUploadData | null;
+export type FileUploadAction<TUploadData = unknown> =
+  | DataAction<TUploadData>
+  | ErrorAction
+  | LoadingAction
+  | ProgressAction
+  | ResetAction;
+
+export interface FileUploadState<TUploadData> {
+  data: TUploadData | null;
   error: Error | null;
   loading: boolean;
   progress: number;
 }
 
-export function fileUploadReducer(prevState: FileUploadState, action: FileUploadAction) {
+export function fileUploadReducer<TUploadData = unknown>(
+  prevState: FileUploadState<TUploadData>,
+  action: FileUploadAction<TUploadData>
+) {
   switch (action.type) {
+    case "RESET":
+      return {
+        ...initialFileUploadState,
+      };
     case "SET_DATA":
       return {
         ...prevState,
         data: action.data,
       };
-    case "SET_LOADING":
-      return {
-        ...prevState,
-        loading: action.loading,
-      };
     case "SET_ERROR":
       return {
         ...prevState,
         error: action.error,
+      };
+    case "SET_LOADING":
+      return {
+        ...prevState,
+        loading: action.loading,
       };
     case "SET_PROGRESS":
       return {
@@ -56,7 +70,7 @@ export function fileUploadReducer(prevState: FileUploadState, action: FileUpload
   }
 }
 
-export const initialFileUploadState: FileUploadState = {
+export const initialFileUploadState: FileUploadState<unknown> = {
   data: null,
   error: null,
   loading: false,

@@ -1,120 +1,108 @@
 import { ensureError } from "@uplift-ltd/ts-helpers";
 import { useCallback, useReducer } from "react";
-
 import { fileUploadReducer, initialFileUploadState } from "./fileUploadReducer.js";
-import { FileUploader, getAxiosFileUploader } from "./fileUploaders.js";
-import { getFileNameComponents, getFileType } from "./helpers.js";
-import { S3FileAttachment, UploadFileOptions } from "./types.js";
-import { UseGetSignedRequestOptions, useGetSignedRequest } from "./useGetSignedRequest.js";
+import { FileUploader } from "./fileUploader.js";
+import { getFetchFileUploader } from "./fileUploaderFetch.js";
+import { FileUploaderOptions, UploadFileOptions } from "./types.js";
 
-export interface UseUploadFileOptions<FileType = File, UploadResultData = unknown> {
-  fileUploader?: FileUploader<FileType, UploadResultData>;
-  onComplete?: (fileAttachment: S3FileAttachment) => void;
-  onError?: (error: Error, fileAttachment: S3FileAttachment) => void;
-  onLoading?: (loading: boolean, fileAttachment: S3FileAttachment) => void;
-  onProgress?: (progress: number, fileAttachment: S3FileAttachment) => void;
-  signedRequestOptions?: UseGetSignedRequestOptions;
+export interface UseUploadFileOptions<
+  TFile = File,
+  TUploadFileProps = UploadFileOptions<TFile>,
+  TFileUploaderProps = FileUploaderOptions<TFile>,
+  TFileUploaderReturn = unknown,
+> {
+  fileUploader: FileUploader<TFile, TFileUploaderProps, TFileUploaderReturn>;
+  getFileUploaderProps: (
+    props: TUploadFileProps
+  ) => Promise<TFileUploaderProps> | TFileUploaderProps;
+  onComplete?: (data: TFileUploaderReturn, options: TUploadFileProps) => void;
+  onError?: (error: Error, options: TUploadFileProps) => void;
+  onLoading?: (loading: boolean, options: TUploadFileProps) => void;
+  onProgress?: (progress: number, options: TUploadFileProps) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const defaultFileUploader = getAxiosFileUploader<any, any>();
+const defaultFileUploader = getFetchFileUploader<any, any, any>();
+const defaultGetUploaderData = () => {
+  throw new Error("No getUploaderData provided");
+};
+const defaultOnProgress = () => {
+  // noop
+};
 
-export function useUploadFile<FileType = File, UploadResultData = unknown>({
-  fileUploader = defaultFileUploader,
-  onComplete,
-  onError,
-  onLoading,
-  onProgress,
-  signedRequestOptions,
-}: UseUploadFileOptions<FileType, UploadResultData> = {}) {
-  const [getSignedRequest, signedRequestState] = useGetSignedRequest(signedRequestOptions);
-
+export function useUploadFile<
+  TFile = File,
+  TUploadFileProps = UploadFileOptions<TFile>,
+  TFileUploaderProps = FileUploaderOptions<TFile>,
+  TFileUploaderReturn = unknown,
+>(
+  {
+    fileUploader,
+    getFileUploaderProps,
+    onComplete,
+    onError,
+    onLoading,
+    onProgress = defaultOnProgress,
+  }: UseUploadFileOptions<TFile, TUploadFileProps, TFileUploaderProps, TFileUploaderReturn> = {
+    fileUploader: defaultFileUploader,
+    getFileUploaderProps: defaultGetUploaderData,
+  }
+) {
   const [fileUploadState, fileUploadDispatch] = useReducer(
     fileUploadReducer,
     initialFileUploadState
   );
 
   const uploadFile = useCallback(
-    async ({ file, rawFileName, ...variables }: UploadFileOptions<FileType>) => {
+    async (
+      file: TUploadFileProps
+    ): Promise<{
+      file: TUploadFileProps;
+      fileUploaderData: TFileUploaderReturn | null;
+      fileUploaderProps: TFileUploaderProps;
+    }> => {
       fileUploadDispatch({ loading: true, type: "SET_LOADING" });
 
-      let fileName = "";
-      if (variables.fileName) {
-        fileName = variables.fileName;
-      } else if (rawFileName) {
-        fileName = rawFileName;
-      } else if (typeof file === "string") {
-        fileName = file;
-      } else if (file instanceof File) {
-        fileName = file.name;
-      } else if (Object.prototype.hasOwnProperty.call(file || {}, "name")) {
-        fileName = (file as unknown as File).name;
-      } else {
-        throw new Error("Unable to get file name");
-      }
+      onLoading?.(true, file);
 
-      const [processedFileName, extension] = getFileNameComponents(fileName);
-      const fileType = variables.fileType || (await getFileType(extension));
+      const fileUploaderProps = await getFileUploaderProps(file);
 
-      const { data: signedRequestData } = await getSignedRequest({
-        variables: {
-          ...variables,
-          fileName: variables.fileName || processedFileName,
-          fileType,
-          metadata: variables.metadata && JSON.stringify(variables.metadata),
-        },
-      });
-
-      if (!signedRequestData?.getSignedRequest?.uploadUrl) {
-        throw new Error("No uploadUrl returned");
-      }
-
-      const { fileAttachment } = signedRequestData.getSignedRequest;
-
-      // This is here mainly to support the useUploadFiles hook
-      onLoading?.(true, fileAttachment);
-
-      let uploadFileData = null;
+      let fileUploaderData = null;
 
       try {
-        uploadFileData = await fileUploader(
-          signedRequestData.getSignedRequest.uploadUrl,
-          file,
-          fileType,
-          {
-            fileAttachment,
-            fileUploadDispatch,
-            onProgress,
-          }
-        );
+        fileUploaderData = await fileUploader(fileUploaderProps, {
+          onProgress: (progress) => {
+            fileUploadDispatch({ progress: progress, type: "SET_PROGRESS" });
+            onProgress?.(progress, file);
+          },
+        });
 
-        fileUploadDispatch({ data: uploadFileData, type: "SET_DATA" });
+        fileUploadDispatch({ data: fileUploaderData, type: "SET_DATA" });
         fileUploadDispatch({ progress: 100, type: "SET_PROGRESS" });
-        onComplete?.(signedRequestData.getSignedRequest.fileAttachment);
+        onComplete?.(fileUploaderData, file);
       } catch (err) {
         const error = ensureError(err);
 
         fileUploadDispatch({ error, type: "SET_ERROR" });
-        onError?.(error, fileAttachment);
+        onError?.(error, file);
       }
 
       fileUploadDispatch({ loading: false, type: "SET_LOADING" });
-      onLoading?.(false, fileAttachment);
+      onLoading?.(false, file);
 
-      return { signedRequestData, uploadFileData };
+      return { file, fileUploaderData, fileUploaderProps };
     },
-    [fileUploader, getSignedRequest, onProgress, onLoading, onComplete, onError]
+    [fileUploader, getFileUploaderProps, onProgress, onLoading, onComplete, onError]
   );
 
-  const loading = signedRequestState.loading || fileUploadState.loading;
+  const reset = useCallback(() => {
+    fileUploadDispatch({ type: "RESET" });
+  }, []);
 
   return {
-    fileAttachment:
-      signedRequestState.data && !loading
-        ? signedRequestState.data.getSignedRequest.fileAttachment
-        : null,
-    loading,
-    progress: fileUploadState.progress,
+    ...fileUploadState,
+    data: fileUploadState.data as TFileUploaderReturn | null,
+    reset,
     uploadFile,
   };
 }

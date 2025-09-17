@@ -11,8 +11,3 @@ export function getFileNameComponents(
 
   return [fileName, extension, baseName];
 }
-
-export async function getFileType(extension: string) {
-  const mime = await import("mime");
-  return mime.getType(extension) || "";
-}

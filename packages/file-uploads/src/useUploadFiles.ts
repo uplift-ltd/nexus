@@ -1,130 +1,195 @@
-import { useCallback, useEffect, useMemo, useReducer } from "react";
-
-import { FileUploader } from "./fileUploaders.js";
-import { fileUploadsReducer, getInitialFileUploadsState } from "./fileUploadsReducer.js";
-import { S3FileAttachment, UploadFileOptions, UploadFilesOptions } from "./types.js";
-import { UseUploadFileOptions, useUploadFile } from "./useUploadFile.js";
+import { ensureError } from "@uplift-ltd/ts-helpers";
+import { useCallback, useReducer } from "react";
+import { FileUploader } from "./fileUploader.js";
+import { getFetchFileUploader } from "./fileUploaderFetch.js";
+import {
+  fileUploadsReducer,
+  FileUploadsState,
+  getInitialFileUploadsState,
+} from "./fileUploadsReducer.js";
+import { FileUploaderOptions, UploadFilesOptions } from "./types.js";
 
 export interface UseUploadFilesOptions<
-  FileType = File,
-  UploadResultData = unknown,
-  UploadType = FileType,
+  TFile = File,
+  TUploadFileProps = UploadFilesOptions<TFile>,
+  TFileUploaderProps = FileUploaderOptions<TFile>,
+  TFileUploaderReturn = unknown,
 > {
-  fileAttachments?: S3FileAttachment[];
-  fileUploader?: FileUploader<UploadType, UploadResultData>;
-  mapFileUpload?: (options: UploadFileOptions<FileType>) => UploadFileOptions<UploadType>;
-  signedRequestOptions?: UseUploadFileOptions["signedRequestOptions"];
+  fileUploader: FileUploader<TFile, TFileUploaderProps, TFileUploaderReturn>;
+  getFileUploaderProps: (
+    props: TUploadFileProps
+  ) => Promise<TFileUploaderProps> | TFileUploaderProps;
+  onAllComplete?: (data: {
+    files: TUploadFileProps[];
+    results: Array<{
+      file: TUploadFileProps;
+      fileUploaderData: TFileUploaderReturn | null;
+      fileUploaderProps: TFileUploaderProps;
+    }>;
+  }) => void;
+  onFileComplete?: (data: TFileUploaderReturn, options: TUploadFileProps) => void;
+  onFileError?: (error: Error, options: TUploadFileProps) => void;
+  onFileLoading?: (loading: boolean, options: TUploadFileProps) => void;
+  onFileProgress?: (progress: number, options: TUploadFileProps) => void;
 }
 
-const defaultMapFileUpload = <FileType = File, UploadType = FileType>(
-  options: UploadFileOptions<FileType>
-) => options as unknown as UploadType;
+export type FileUploadsReturn<
+  TFile = File,
+  TUploadFileProps = UploadFilesOptions<TFile>,
+  TFileUploaderProps = FileUploaderOptions<TFile>,
+  TFileUploaderReturn = unknown,
+> = {
+  datas: TFileUploaderReturn[];
+  files: TUploadFileProps[];
+  removeFile: (file: TUploadFileProps) => void;
+  reset: () => void;
+  uploadFile: (file: TUploadFileProps) => Promise<{
+    file: TUploadFileProps;
+    fileUploaderData: TFileUploaderReturn | null;
+    fileUploaderProps: TFileUploaderProps;
+  }>;
+  uploadFiles: (files: TUploadFileProps[]) => Promise<{
+    files: TUploadFileProps[];
+    results: Array<{
+      file: TUploadFileProps;
+      fileUploaderData: TFileUploaderReturn | null;
+      fileUploaderProps: TFileUploaderProps;
+    }>;
+  }>;
+} & FileUploadsState<TUploadFileProps, TFileUploaderReturn>;
 
-export function useUploadFiles<FileType = File, UploadResultData = unknown, UploadType = FileType>({
-  fileAttachments,
-  fileUploader,
-  mapFileUpload = defaultMapFileUpload,
-  signedRequestOptions,
-}: UseUploadFilesOptions<FileType, UploadResultData, UploadType> = {}) {
-  const [fileUploadsState, fileUploadsDispatch] = useReducer(
-    fileUploadsReducer,
-    getInitialFileUploadsState(fileAttachments)
-  );
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const defaultFileUploader = getFetchFileUploader<any, any, any>();
+const defaultGetUploaderData = () => {
+  throw new Error("No getUploaderData provided");
+};
+const defaultOnFileProgress = () => {
+  // noop
+};
 
-  const uploadFileOptions = useMemo(() => {
-    const onProgress: UseUploadFileOptions["onProgress"] = (progress, fileAttachment) => {
-      fileUploadsDispatch({
-        fileAttachmentId: fileAttachment.id,
-        progress,
-        type: "SET_PROGRESS",
-      });
-    };
+export function useUploadFiles<
+  TFile = File,
+  TUploadFileProps = UploadFilesOptions<TFile>,
+  TFileUploaderProps = FileUploaderOptions<TFile>,
+  TFileUploaderReturn = unknown,
+>(
+  {
+    fileUploader,
+    getFileUploaderProps,
+    onAllComplete,
+    onFileComplete,
+    onFileError,
+    onFileLoading,
+    onFileProgress = defaultOnFileProgress,
+  }: UseUploadFilesOptions<TFile, TUploadFileProps, TFileUploaderProps, TFileUploaderReturn> = {
+    fileUploader: defaultFileUploader,
+    getFileUploaderProps: defaultGetUploaderData,
+  }
+): FileUploadsReturn<TFile, TUploadFileProps, TFileUploaderProps, TFileUploaderReturn> {
+  const initialState = getInitialFileUploadsState<TUploadFileProps, TFileUploaderReturn>();
+  const [filesUploadsState, filesUploadDispatch] = useReducer(fileUploadsReducer, initialState);
 
-    const onLoading: UseUploadFileOptions["onLoading"] = (loading, fileAttachment) => {
-      fileUploadsDispatch({
-        fileAttachmentId: fileAttachment.id,
-        loading,
-        type: "SET_LOADING",
-      });
-    };
-
-    const onComplete: UseUploadFileOptions["onComplete"] = (fileAttachment) => {
-      fileUploadsDispatch({
-        data: fileAttachment,
-        fileAttachmentId: fileAttachment.id,
-        type: "SET_DATA",
-      });
-      fileUploadsDispatch({
-        fileAttachmentId: fileAttachment.id,
-        progress: 100,
-        type: "SET_PROGRESS",
-      });
-    };
-
-    const onError: UseUploadFileOptions["onError"] = (error, fileAttachment) => {
-      fileUploadsDispatch({
-        error,
-        fileAttachmentId: fileAttachment.id,
-        type: "SET_ERROR",
-      });
-    };
-
-    return {
-      fileUploader,
-      onComplete,
-      onError,
-      onLoading,
-      onProgress,
-    };
-  }, [fileUploader]);
-
-  useEffect(() => {
-    fileAttachments?.forEach((fileAttachment) => {
-      if (fileUploadsState.fileAttachmentsById[fileAttachment.id] !== fileAttachment) {
-        fileUploadsDispatch({
-          data: fileAttachment,
-          fileAttachmentId: fileAttachment.id,
-          type: "SET_DATA",
-        });
-      }
+  const reset = useCallback(() => {
+    filesUploadDispatch({
+      type: "RESET",
     });
-    fileUploadsState.fileAttachments.forEach((fileAttachment) => {
-      if (!fileAttachments?.includes(fileAttachment)) {
-        fileUploadsDispatch({
-          fileAttachmentId: fileAttachment.id,
-          type: "REMOVE_FILE",
-        });
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fileAttachments]);
+  }, []);
 
-  const { uploadFile } = useUploadFile<UploadType, UploadResultData>({
-    ...uploadFileOptions,
-    signedRequestOptions,
-  });
-
-  const uploadFiles = useCallback(
-    async ({ files, ...variables }: UploadFilesOptions<FileType>) => {
-      return Promise.all(
-        files.map((file) => {
-          return uploadFile(mapFileUpload({ file, ...variables }));
-        })
-      );
-    },
-    [uploadFile, mapFileUpload]
-  );
-
-  const onRequestRemove = useCallback((fileAttachmentId: string) => {
-    fileUploadsDispatch({
-      fileAttachmentId,
+  const removeFile = useCallback((file: TUploadFileProps) => {
+    filesUploadDispatch({
+      file,
       type: "REMOVE_FILE",
     });
   }, []);
 
+  const uploadFile = useCallback(
+    async (
+      file: TUploadFileProps
+    ): Promise<{
+      file: TUploadFileProps;
+      fileUploaderData: TFileUploaderReturn | null;
+      fileUploaderProps: TFileUploaderProps;
+    }> => {
+      filesUploadDispatch({
+        file: file,
+        type: "REMOVE_FILE",
+      });
+      filesUploadDispatch({
+        file: file,
+        type: "ADD_FILE",
+      });
+      filesUploadDispatch({
+        file: file,
+        loading: true,
+        type: "SET_LOADING",
+      });
+
+      const fileUploaderProps = await getFileUploaderProps(file);
+
+      let fileUploaderData = null;
+
+      try {
+        fileUploaderData = await fileUploader(fileUploaderProps, {
+          onProgress: (progress) => {
+            filesUploadDispatch({
+              file: file,
+              progress: progress,
+              type: "SET_PROGRESS",
+            });
+            onFileProgress?.(progress, file);
+          },
+        });
+
+        filesUploadDispatch({
+          data: fileUploaderData,
+          file: file,
+          type: "SET_DATA",
+        });
+        filesUploadDispatch({
+          file: file,
+          progress: 100,
+          type: "SET_PROGRESS",
+        });
+        onFileComplete?.(fileUploaderData, file);
+      } catch (err) {
+        const error = ensureError(err);
+
+        filesUploadDispatch({
+          error,
+          file: file,
+          type: "SET_ERROR",
+        });
+        onFileError?.(error, file);
+      }
+
+      filesUploadDispatch({
+        file: file,
+        loading: false,
+        type: "SET_LOADING",
+      });
+      onFileLoading?.(false, file);
+
+      return { file, fileUploaderData, fileUploaderProps };
+    },
+    [fileUploader, getFileUploaderProps, onFileProgress, onFileLoading, onFileComplete, onFileError]
+  );
+
+  const uploadFiles = useCallback(
+    async (files: TUploadFileProps[]) => {
+      const results = await Promise.all(files.map((file) => uploadFile(file)));
+      onAllComplete?.({ files, results });
+      return { files, results };
+    },
+    [onAllComplete, uploadFile]
+  );
+
   return {
-    onRequestRemove,
+    ...filesUploadsState,
+    datas: filesUploadsState.datas as TFileUploaderReturn[],
+    files: filesUploadsState.files as TUploadFileProps[],
+    removeFile,
+    reset,
+    uploadFile,
     uploadFiles,
-    ...fileUploadsState,
   };
 }
