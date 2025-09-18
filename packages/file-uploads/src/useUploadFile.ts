@@ -59,17 +59,17 @@ export function useUploadFile<
     ): Promise<{
       file: TUploadFileProps;
       fileUploaderData: TFileUploaderReturn | null;
-      fileUploaderProps: TFileUploaderProps;
+      fileUploaderProps: TFileUploaderProps | null;
     }> => {
       fileUploadDispatch({ loading: true, type: "SET_LOADING" });
 
       onLoading?.(true, file);
 
-      const fileUploaderProps = await getFileUploaderProps(file);
-
+      let fileUploaderProps = null;
       let fileUploaderData = null;
 
       try {
+        fileUploaderProps = await getFileUploaderProps(file);
         fileUploaderData = await fileUploader(fileUploaderProps, {
           onProgress: (progress) => {
             fileUploadDispatch({ progress: progress, type: "SET_PROGRESS" });
