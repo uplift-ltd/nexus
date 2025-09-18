@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@6.0.0...@uplift-ltd/file-uploads@6.0.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **file-uploads:** handle if getting props errors ([#423](https://github.com/uplift-ltd/nexus/issues/423)) ([52d63db](https://github.com/uplift-ltd/nexus/commit/52d63db571747531b39dae40807cd81d2cd0a3ca))
+
+
+
+
+
 # [6.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@5.0.0...@uplift-ltd/file-uploads@6.0.0) (2025-09-17)
 
 
