@@ -7,7 +7,7 @@ export function getFetchFileUploader<
     headers?: HeadersInit;
     uploadUrl: string;
   } = { file: TFile; headers?: HeadersInit; uploadUrl: string },
-  TFileUploaderReturn = unknown,
+  TFileUploaderReturn extends Response = Response,
 >(): FileUploader<TFile, TFileUploaderProps, TFileUploaderReturn> {
   const fetchFileUploader: FileUploader<TFile, TFileUploaderProps, TFileUploaderReturn> = async (
     props,
@@ -25,9 +25,7 @@ export function getFetchFileUploader<
 
     onProgress?.(progress, props);
 
-    const data = await res.json();
-
-    return data;
+    return res as TFileUploaderReturn;
   };
 
   return fetchFileUploader;
