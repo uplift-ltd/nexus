@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@5.0.0...@uplift-ltd/use-user-context@5.1.0) (2026-02-02)
+
+
+### Features
+
+* define esm exports ([#431](https://github.com/uplift-ltd/nexus/issues/431)) ([acb6515](https://github.com/uplift-ltd/nexus/commit/acb651518443164729b49cf2049bb5dca0d9d04a))
+
+
+
+
+
 # [5.0.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/use-user-context@4.0.4...@uplift-ltd/use-user-context@5.0.0) (2025-09-16)
 
 

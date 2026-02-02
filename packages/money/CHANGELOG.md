@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/money@3.0.2...@uplift-ltd/money@3.1.0) (2026-02-02)
+
+
+### Features
+
+* define esm exports ([#431](https://github.com/uplift-ltd/nexus/issues/431)) ([acb6515](https://github.com/uplift-ltd/nexus/commit/acb651518443164729b49cf2049bb5dca0d9d04a))
+
+
+
+
+
 ## <small>3.0.2 (2025-09-16)</small>
 
 * feat(apollo)!: upgrade to apollo v4 (#420) ([d47078b](https://github.com/uplift-ltd/nexus/commit/d47078b)), closes [#420](https://github.com/uplift-ltd/nexus/issues/420)
