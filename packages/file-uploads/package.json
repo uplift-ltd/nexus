@@ -11,18 +11,22 @@
     "esm/",
     "README.md"
   ],
+  "types": "./esm/index.d.ts",
   "exports": {
     ".": {
-      "require": "./cjs/index.js",
-      "import": "./esm/index.js"
+      "types": "./esm/index.d.ts",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
     },
     "./axios": {
-      "require": "./cjs/fileUploaderAxios.js",
-      "import": "./esm/fileUploaderAxios.js"
+      "types": "./esm/fileUploaderAxios.d.ts",
+      "import": "./esm/fileUploaderAxios.js",
+      "require": "./cjs/fileUploaderAxios.js"
     },
     "./fetch": {
-      "require": "./cjs/fileUploaderFetch.js",
-      "import": "./esm/fileUploaderFetch.js"
+      "types": "./esm/fileUploaderFetch.d.ts",
+      "import": "./esm/fileUploaderFetch.js",
+      "require": "./cjs/fileUploaderFetch.js"
     }
   },
   "publishConfig": {
