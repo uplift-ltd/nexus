@@ -14,6 +14,10 @@ on:
         type: boolean
         description: "graduate (true or false)"
         default: false
+      forcePublish:
+        type: boolean
+        description: "force publish even if versions are already tagged"
+        default: false
 
 jobs:
   dependencies:
@@ -133,9 +137,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lerna publish npm
-        run:
-          npx lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }}
-          --registry https://registry.npmjs.org
+        run: |
+          FORCE_FLAG=""
+          if [ "${{ github.event.inputs.forcePublish }}" == "true" ]; then
+            FORCE_FLAG="--force-publish"
+          fi
+          npx lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} \
+            --registry https://registry.npmjs.org $FORCE_FLAG
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -145,8 +153,12 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
 
       - name: Lerna publish ghp
-        run:
-          npx lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }}
-          --registry https://npm.pkg.github.com
+        run: |
+          FORCE_FLAG=""
+          if [ "${{ github.event.inputs.forcePublish }}" == "true" ]; then
+            FORCE_FLAG="--force-publish"
+          fi
+          npx lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} \
+            --registry https://npm.pkg.github.com $FORCE_FLAG
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
