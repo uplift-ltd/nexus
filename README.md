@@ -10,22 +10,27 @@ View docs [nexus.uplift.ltd](https://nexus.uplift.ltd/).
 
 ### Semantic Versioning
 
-We use [conventional commits](https://www.conventionalcommits.org/) to manage version updates. The
-title of your PR needs to have a valid prefix.
+We use [conventional commits](https://www.conventionalcommits.org/) to manage version updates. Lerna
+determines version bumps from the squash commit message when PRs are merged to main.
 
-Note that changing the PR title won't re-run the job so you have to re-run the workflow jobs
-yourself.
-
-Quick reference:
+**Patch** (`fix`):
 
     fix: Correct typo.
+    fix(apollo): Handle null response.
+
+**Minor** (`feat`):
+
     feat: Add support for Node 12.
     feat(apollo): Add useEnhancedQuery hook.
-    refactor!: Drop support for Node 6.
-    feat!: Breaking change feature.
 
-Note that since PR titles only have a single line, you have to use the ! syntax for breaking
-changes.
+**Major** (breaking change) — use the `BREAKING CHANGE:` footer in the commit body:
+
+    feat: set type module in package.json
+
+    BREAKING CHANGE: packages now use ESM module format
+
+> **Note:** The `!` syntax (e.g. `feat!:`) is part of the conventional commits spec but is **not**
+> recognized by lerna's default changelog preset. Always use the `BREAKING CHANGE:` footer instead.
 
 ### What are the files in each package?
 

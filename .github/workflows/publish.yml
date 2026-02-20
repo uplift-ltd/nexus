@@ -18,6 +18,10 @@ on:
         type: boolean
         description: "force publish even if versions are already tagged"
         default: false
+      dryRun:
+        type: boolean
+        description: "dry run (skip actual publish)"
+        default: false
 
 jobs:
   dependencies:
@@ -124,41 +128,55 @@ jobs:
           (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/main') ||
           github.event.inputs.distTag == 'prerelease'
         run: |
-          if [ "${{ github.event.inputs.distTag }}" == "latest" ]; then
-            if [ "${{ github.event.inputs.graduate }}" == "true" ]; then
-              npx lerna version --yes --create-release github --conventional-graduate
+          DRY_RUN_FLAG=""
+          if [ "$DRY_RUN" == "true" ]; then
+            DRY_RUN_FLAG="--no-push"
+          fi
+          if [ "$DIST_TAG" == "latest" ]; then
+            if [ "$GRADUATE" == "true" ]; then
+              npx lerna version --yes --create-release github --conventional-graduate $DRY_RUN_FLAG
             else
-              npx lerna version --yes --create-release github
+              npx lerna version --yes --create-release github $DRY_RUN_FLAG
             fi
-          elif [ "${{ github.event.inputs.distTag }}" == "prerelease" ]; then
-            npx lerna version --yes --conventional-prerelease --no-git-tag-version
+          elif [ "$DIST_TAG" == "prerelease" ]; then
+            npx lerna version --yes --conventional-prerelease --no-git-tag-version $DRY_RUN_FLAG
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dryRun }}
+          DIST_TAG: ${{ github.event.inputs.distTag }}
+          GRADUATE: ${{ github.event.inputs.graduate }}
 
       - name: Lerna publish npm
+        if: github.event.inputs.dryRun != 'true'
         run: |
           FORCE_FLAG=""
-          if [ "${{ github.event.inputs.forcePublish }}" == "true" ]; then
+          if [ "$FORCE_PUBLISH" == "true" ]; then
             FORCE_FLAG="--force-publish"
           fi
-          npx lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} \
+          npx lerna publish from-package --yes --dist-tag "$DIST_TAG" \
             --registry https://registry.npmjs.org $FORCE_FLAG
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DIST_TAG: ${{ github.event.inputs.distTag }}
+          FORCE_PUBLISH: ${{ github.event.inputs.forcePublish }}
 
       - name: Use ghp registry
+        if: github.event.inputs.dryRun != 'true'
         uses: actions/setup-node@v4
         with:
           registry-url: "https://npm.pkg.github.com"
 
       - name: Lerna publish ghp
+        if: github.event.inputs.dryRun != 'true'
         run: |
           FORCE_FLAG=""
-          if [ "${{ github.event.inputs.forcePublish }}" == "true" ]; then
+          if [ "$FORCE_PUBLISH" == "true" ]; then
             FORCE_FLAG="--force-publish"
           fi
-          npx lerna publish from-package --yes --dist-tag ${{ github.event.inputs.distTag }} \
+          npx lerna publish from-package --yes --dist-tag "$DIST_TAG" \
             --registry https://npm.pkg.github.com $FORCE_FLAG
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DIST_TAG: ${{ github.event.inputs.distTag }}
+          FORCE_PUBLISH: ${{ github.event.inputs.forcePublish }}
