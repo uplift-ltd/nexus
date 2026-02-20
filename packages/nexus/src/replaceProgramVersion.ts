@@ -10,7 +10,7 @@ export async function replaceProgramVersion() {
   }
 
   const dir = path.dirname(pkg.path);
-  const cjsPath = path.join(dir, "./cjs/*.js");
+  const cjsPath = path.join(dir, "./cjs/*.cjs");
   const esmPath = path.join(dir, "./esm/*.js");
 
   const options = {

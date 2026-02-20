@@ -1,10 +1,11 @@
 {
   "name": "@uplift-ltd/<%= PACKAGE_NAME %>",
+  "type": "module",
   "version": "1.0.0",
   "description": "<%= PACKAGE_NAME %>",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./cjs/index.js",
+  "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "files": [
     "cjs/",

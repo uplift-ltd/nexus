@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@uplift-ltd/nexus-workspace",
+  "type": "module",
   "version": "0.1.0",
   "description": "Uplift's front end core library.",
   "license": "MIT",

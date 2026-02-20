@@ -1,17 +1,18 @@
 {
   "name": "@uplift-ltd/use-on-page-scroll",
+  "type": "module",
   "version": "2.1.0",
   "description": "use-on-page-scroll",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./cjs/index.js",
+  "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./esm/index.d.ts",
       "import": "./esm/index.js",
-      "require": "./cjs/index.js"
+      "require": "./cjs/index.cjs"
     }
   },
   "files": [

@@ -1,17 +1,18 @@
 {
   "name": "@uplift-ltd/use-user-context",
+  "type": "module",
   "version": "5.1.0",
   "description": "use-user-context",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./cjs/index.js",
+  "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./esm/index.d.ts",
       "import": "./esm/index.js",
-      "require": "./cjs/index.js"
+      "require": "./cjs/index.cjs"
     }
   },
   "files": [

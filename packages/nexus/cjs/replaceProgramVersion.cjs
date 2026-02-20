@@ -55,7 +55,7 @@ function replaceProgramVersion() {
                         throw new Error("Could not find package.json");
                     }
                     dir = path_1.default.dirname(pkg.path);
-                    cjsPath = path_1.default.join(dir, "./cjs/*.js");
+                    cjsPath = path_1.default.join(dir, "./cjs/*.cjs");
                     esmPath = path_1.default.join(dir, "./esm/*.js");
                     options = {
                         files: [cjsPath, esmPath],
