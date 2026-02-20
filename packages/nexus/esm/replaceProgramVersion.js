@@ -49,7 +49,7 @@ export function replaceProgramVersion() {
                         throw new Error("Could not find package.json");
                     }
                     dir = path.dirname(pkg.path);
-                    cjsPath = path.join(dir, "./cjs/*.js");
+                    cjsPath = path.join(dir, "./cjs/*.cjs");
                     esmPath = path.join(dir, "./esm/*.js");
                     options = {
                         files: [cjsPath, esmPath],

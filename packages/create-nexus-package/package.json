@@ -1,20 +1,21 @@
 {
   "name": "@uplift-ltd/create-nexus-package",
+  "type": "module",
   "version": "2.1.0",
   "description": "Create a new nexus package.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
-  "main": "./cjs/index.js",
+  "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./esm/index.d.ts",
       "import": "./esm/index.js",
-      "require": "./cjs/index.js"
+      "require": "./cjs/index.cjs"
     }
   },
-  "bin": "cjs/init.js",
+  "bin": "cjs/init.cjs",
   "files": [
     "fixtures/",
     "cjs/",

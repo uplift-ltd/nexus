@@ -1,21 +1,22 @@
 {
   "name": "@uplift-ltd/nexus",
+  "type": "module",
   "version": "4.1.0",
   "description": "nexus",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./cjs/nexus.js",
+  "main": "./cjs/nexus.cjs",
   "module": "./esm/nexus.js",
   "types": "./esm/nexus.d.ts",
   "exports": {
     ".": {
       "types": "./esm/nexus.d.ts",
       "import": "./esm/nexus.js",
-      "require": "./cjs/nexus.js"
+      "require": "./cjs/nexus.cjs"
     }
   },
   "bin": {
-    "nexus": "./cjs/nexus.js"
+    "nexus": "./cjs/nexus.cjs"
   },
   "files": [
     "cjs/",
@@ -36,9 +37,10 @@
   "homepage": "https://nexus.uplift.ltd/docs/packages/nexus",
   "scripts": {
     "clean": "git clean -dfx cjs esm",
-    "build": "run-s clean build:cjs build:esm build:version",
+    "build": "run-s clean build:cjs build:cjs-rename build:esm build:version",
     "build:esm": "tsc --outDir ./esm --module es2020",
     "build:cjs": "tsc --outDir ./cjs --module commonjs",
+    "build:cjs-rename": "mv ./cjs/renameCjsExtensions.js ./cjs/renameCjsExtensions.cjs && node ./cjs/renameCjsExtensions.cjs ./cjs",
     "build:version": "nexus replace-program-version",
     "version": "npm run build:version && git add cjs esm",
     "check-types": "tsc --noEmit",

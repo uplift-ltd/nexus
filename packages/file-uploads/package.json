@@ -1,10 +1,11 @@
 {
   "name": "@uplift-ltd/file-uploads",
+  "type": "module",
   "version": "6.1.0",
   "description": "file-uploads",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./cjs/index.js",
+  "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "files": [
     "cjs/",
@@ -16,7 +17,7 @@
     ".": {
       "types": "./esm/index.d.ts",
       "import": "./esm/index.js",
-      "require": "./cjs/index.js"
+      "require": "./cjs/index.cjs"
     },
     "./axios": {
       "types": "./esm/fileUploaderAxios.d.ts",

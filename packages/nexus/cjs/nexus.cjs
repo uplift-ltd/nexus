@@ -46,7 +46,8 @@ var commander_1 = require("commander");
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 var execa_1 = __importDefault(require("execa"));
-var replaceProgramVersion_js_1 = require("./replaceProgramVersion.js");
+var renameCjsExtensions_js_1 = require("./renameCjsExtensions.cjs");
+var replaceProgramVersion_js_1 = require("./replaceProgramVersion.cjs");
 var program = new commander_1.Command();
 program.version("4.1.0");
 program
@@ -84,6 +85,7 @@ program
                 if (esm.all) {
                     console.info(esm.all);
                 }
+                (0, renameCjsExtensions_js_1.renameCjsExtensions)("./cjs");
                 if (!cjs.all && !esm.all) {
                     console.info("Nexus build-library done!");
                 }

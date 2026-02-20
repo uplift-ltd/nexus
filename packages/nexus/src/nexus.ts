@@ -7,6 +7,7 @@ import { Command } from "commander";
 // @ts-ignore
 import execa from "execa";
 
+import { renameCjsExtensions } from "./renameCjsExtensions.js";
 import { replaceProgramVersion } from "./replaceProgramVersion.js";
 
 const program = new Command();
@@ -40,6 +41,7 @@ program
       if (esm.all) {
         console.info(esm.all);
       }
+      renameCjsExtensions("./cjs");
       if (!cjs.all && !esm.all) {
         console.info("Nexus build-library done!");
       }

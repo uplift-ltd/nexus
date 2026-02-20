@@ -41,6 +41,7 @@ import { Command } from "commander";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import execa from "execa";
+import { renameCjsExtensions } from "./renameCjsExtensions.js";
 import { replaceProgramVersion } from "./replaceProgramVersion.js";
 var program = new Command();
 program.version("4.1.0");
@@ -79,6 +80,7 @@ program
                 if (esm.all) {
                     console.info(esm.all);
                 }
+                renameCjsExtensions("./cjs");
                 if (!cjs.all && !esm.all) {
                     console.info("Nexus build-library done!");
                 }

@@ -1,21 +1,22 @@
 {
   "name": "@uplift-ltd/sammy",
+  "type": "module",
   "version": "2.1.0",
   "description": "sammy",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
-  "main": "./cjs/index.js",
+  "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./esm/index.d.ts",
       "import": "./esm/index.js",
-      "require": "./cjs/index.js"
+      "require": "./cjs/index.cjs"
     }
   },
   "bin": {
-    "sammy": "./cjs/sammy.js"
+    "sammy": "./cjs/sammy.cjs"
   },
   "files": [
     "cjs/",
