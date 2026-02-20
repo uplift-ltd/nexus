@@ -1,37 +1,51 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 
-export function renameCjsExtensions(dir: string): void {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+// Longest extensions first so ".d.ts" and ".js.map" match before ".js"
+const REPLACEMENTS: [string, string, RegExp | null][] = [
+  [".d.ts", ".d.cts", /(?:from|import\()"(\.[^"]*?)\.js"/g],
+  [".js.map", ".cjs.map", null],
+  [".js", ".cjs", /require\("(\.[^"]*?)\.js"\)/g],
+];
 
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
+const SOURCE_MAP_URL_REGEX = /(\/\/# sourceMappingURL=.*?)\.js\.map(\s*$)/gm;
+const CLI_BASENAME_REGEX = /^renameCjsExtensions\.(?:ts|js|cjs|mjs)$/;
 
-    if (entry.isDirectory()) {
-      renameCjsExtensions(fullPath);
-    } else if (entry.name.endsWith(".d.ts")) {
-      let content = fs.readFileSync(fullPath, "utf8");
-      content = content.replace(/from "(\.[^"]*?)\.js"/g, 'from "$1.cjs"');
-      content = content.replace(/import\("(\.[^"]*?)\.js"\)/g, 'import("$1.cjs")');
-      const newPath = fullPath.slice(0, -5) + ".d.cts";
-      fs.writeFileSync(newPath, content);
-      fs.unlinkSync(fullPath);
-    } else if (entry.name.endsWith(".js.map")) {
-      const newPath = fullPath.slice(0, -7) + ".cjs.map";
-      fs.renameSync(fullPath, newPath);
-    } else if (entry.name.endsWith(".js")) {
-      let content = fs.readFileSync(fullPath, "utf8");
-      content = content.replace(/require\("(\.[^"]*?)\.js"\)/g, 'require("$1.cjs")');
-      const newPath = fullPath.slice(0, -3) + ".cjs";
-      fs.writeFileSync(newPath, content);
-      fs.unlinkSync(fullPath);
-    }
-  }
+export async function renameCjsExtensions(dir: string): Promise<void> {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+
+  await Promise.all(
+    entries.map(async (entry) => {
+      const fullPath = path.join(dir, entry.name);
+
+      if (entry.isDirectory()) {
+        return renameCjsExtensions(fullPath);
+      }
+
+      const match = REPLACEMENTS.find(([ext]) => entry.name.endsWith(ext));
+      if (!match) return;
+
+      const [oldExt, newExt, rewrite] = match;
+      const newPath = fullPath.slice(0, -oldExt.length) + newExt;
+
+      if (rewrite) {
+        const content = await fs.readFile(fullPath, "utf8");
+        await fs.writeFile(
+          newPath,
+          content
+            .replace(rewrite, (m) => m.replace(".js", ".cjs"))
+            .replace(SOURCE_MAP_URL_REGEX, "$1.cjs.map$2")
+        );
+        await fs.unlink(fullPath);
+      } else {
+        await fs.rename(fullPath, newPath);
+      }
+    })
+  );
 }
 
 // CLI entry point
-if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(__filename)) {
+if (process.argv[1] && CLI_BASENAME_REGEX.test(path.basename(process.argv[1]))) {
   const dir = process.argv[2] || "./cjs";
-  renameCjsExtensions(dir);
-  console.info("Renamed CJS extensions in", dir);
+  renameCjsExtensions(dir).then(() => console.info("Renamed CJS extensions in", dir));
 }

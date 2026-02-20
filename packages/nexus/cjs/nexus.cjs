@@ -58,7 +58,7 @@ program
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 4, , 5]);
                 return [4 /*yield*/, (0, execa_1.default)("tsc", [
                         "-p",
                         script.tsconfig,
@@ -85,17 +85,19 @@ program
                 if (esm.all) {
                     console.info(esm.all);
                 }
-                (0, renameCjsExtensions_js_1.renameCjsExtensions)("./cjs");
+                return [4 /*yield*/, (0, renameCjsExtensions_js_1.renameCjsExtensions)("./cjs")];
+            case 3:
+                _a.sent();
                 if (!cjs.all && !esm.all) {
                     console.info("Nexus build-library done!");
                 }
-                return [3 /*break*/, 4];
-            case 3:
+                return [3 /*break*/, 5];
+            case 4:
                 err_1 = _a.sent();
                 console.error(err_1);
                 process.exitCode = 1;
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                return [3 /*break*/, 5];
+            case 5: return [2 /*return*/];
         }
     });
 }); });

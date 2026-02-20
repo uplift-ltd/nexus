@@ -41,7 +41,7 @@ program
       if (esm.all) {
         console.info(esm.all);
       }
-      renameCjsExtensions("./cjs");
+      await renameCjsExtensions("./cjs");
       if (!cjs.all && !esm.all) {
         console.info("Nexus build-library done!");
       }

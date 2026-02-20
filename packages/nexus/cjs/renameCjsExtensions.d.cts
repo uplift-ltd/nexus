@@ -1,1 +1,1 @@
-export declare function renameCjsExtensions(dir: string): void;
+export declare function renameCjsExtensions(dir: string): Promise<void>;
