@@ -91,33 +91,33 @@ jobs:
 
       - name: Create test fixtures
         run: |
-          mkdir -p /tmp/module-test
-          cat > /tmp/module-test/test.ts <<'EOF'
+          mkdir -p .module-test
+          cat > .module-test/test.ts <<'EOF'
           import { IS_SSR } from "@uplift-ltd/constants";
           if (typeof IS_SSR !== "boolean") throw new Error("unexpected type " + typeof IS_SSR);
           console.log("OK");
           EOF
-          cat > /tmp/module-test/tsconfig.json <<'EOF'
+          cat > .module-test/tsconfig.json <<'EOF'
           { "compilerOptions": { "module": "ESNext", "moduleResolution": "node", "esModuleInterop": true, "skipLibCheck": true } }
           EOF
-          cat > /tmp/module-test/webpack.config.cjs <<'EOF'
+          cat > .module-test/webpack.config.cjs <<'EOF'
           const path = require("path");
           module.exports = {
             mode: "production",
             entry: path.resolve(__dirname, "test.ts"),
             output: { path: path.resolve(__dirname, "dist"), filename: "bundle.js" },
-            resolve: { extensions: [".ts", ".js"], modules: [path.resolve(__dirname, "../../node_modules"), "node_modules"] },
+            resolve: { extensions: [".ts", ".js"] },
             module: { rules: [{ test: /\.ts$/, use: "ts-loader", exclude: /node_modules/ }] },
           };
           EOF
 
       - name: Test tsx
-        run: npx tsx /tmp/module-test/test.ts
+        run: npx tsx .module-test/test.ts
 
       - name: Test ts-node
-        run: npx ts-node --esm -P /tmp/module-test/tsconfig.json /tmp/module-test/test.ts
+        run: npx ts-node --esm -P .module-test/tsconfig.json .module-test/test.ts
 
       - name: Test webpack
         run: |
-          npx webpack --config /tmp/module-test/webpack.config.cjs
-          node /tmp/module-test/dist/bundle.js
+          npx webpack --config .module-test/webpack.config.cjs
+          node .module-test/dist/bundle.js
