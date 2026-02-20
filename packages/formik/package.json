@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/formik",
   "type": "module",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Helpers for dealing with formik.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",
@@ -41,9 +41,9 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/nexus-types": "^2.1.0",
-    "@uplift-ltd/strings": "^4.1.0",
-    "@uplift-ltd/ts-helpers": "^3.1.0"
+    "@uplift-ltd/nexus-types": "^2.1.1",
+    "@uplift-ltd/strings": "^4.1.1",
+    "@uplift-ltd/ts-helpers": "^3.1.1"
   },
   "devDependencies": {
     "formik": "^2.4.5"

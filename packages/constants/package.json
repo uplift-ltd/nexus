@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/constants",
   "type": "module",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "constants",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",

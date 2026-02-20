@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/use-interval",
   "type": "module",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "use-interval",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -41,6 +41,6 @@
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/constants": "^3.1.0"
+    "@uplift-ltd/constants": "^3.1.1"
   }
 }

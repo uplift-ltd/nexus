@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/scripts",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Common scripts for doing stuff.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",

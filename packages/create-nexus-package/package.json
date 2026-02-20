@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/create-nexus-package",
   "type": "module",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Create a new nexus package.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",

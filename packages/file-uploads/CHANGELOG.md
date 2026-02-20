@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@6.1.0...@uplift-ltd/file-uploads@6.1.1) (2026-02-20)
+
+**Note:** Version bump only for package @uplift-ltd/file-uploads
+
+
+
+
+
 # [6.1.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@6.0.1...@uplift-ltd/file-uploads@6.1.0) (2026-02-02)
 
 

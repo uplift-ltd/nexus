@@ -49,7 +49,7 @@ var execa_1 = __importDefault(require("execa"));
 var renameCjsExtensions_js_1 = require("./renameCjsExtensions.cjs");
 var replaceProgramVersion_js_1 = require("./replaceProgramVersion.cjs");
 var program = new commander_1.Command();
-program.version("4.1.0");
+program.version("4.1.1");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")

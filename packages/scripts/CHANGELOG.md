@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/scripts@1.0.5...@uplift-ltd/scripts@1.0.6) (2026-02-20)
+
+**Note:** Version bump only for package @uplift-ltd/scripts
+
+
+
+
+
 ## <small>1.0.5 (2025-09-16)</small>
 
 * feat(apollo)!: upgrade to apollo v4 (#420) ([d47078b](https://github.com/uplift-ltd/nexus/commit/d47078b)), closes [#420](https://github.com/uplift-ltd/nexus/issues/420)

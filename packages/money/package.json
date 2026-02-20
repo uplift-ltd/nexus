@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/money",
   "type": "module",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Helpers for dealing with django money.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",

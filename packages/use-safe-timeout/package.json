@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/use-safe-timeout",
   "type": "module",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Hook to set a timeout and clear it on unmount.",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
