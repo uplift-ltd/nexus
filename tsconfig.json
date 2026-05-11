@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "ignoreDeprecations": "6.0",
+    "target": "es2025",
     "rootDir": "${configDir}/src",
     "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "skipLibCheck": true,
     "strict": true,
