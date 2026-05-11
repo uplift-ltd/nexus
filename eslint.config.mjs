@@ -74,7 +74,7 @@ export default defineConfig([
       },
     },
   },
-  reactHooks.configs["recommended-latest"],
+  reactHooks.configs.flat["recommended-latest"],
   jsxA11y.flatConfigs.recommended,
   {
     plugins: {

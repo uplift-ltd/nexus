@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -39,16 +39,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.replaceProgramVersion = void 0;
+exports.replaceProgramVersion = replaceProgramVersion;
 var path_1 = __importDefault(require("path"));
-var read_pkg_up_1 = __importDefault(require("read-pkg-up"));
-var replace_in_file_1 = __importDefault(require("replace-in-file"));
+var read_pkg_up_1 = require("read-pkg-up");
+var replace_in_file_1 = require("replace-in-file");
 function replaceProgramVersion() {
     return __awaiter(this, void 0, void 0, function () {
         var pkg, dir, cjsPath, esmPath, options;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, read_pkg_up_1.default)()];
+                case 0: return [4 /*yield*/, (0, read_pkg_up_1.readPackageUp)()];
                 case 1:
                     pkg = _a.sent();
                     if (!pkg) {
@@ -63,9 +63,8 @@ function replaceProgramVersion() {
                         // format differently so we don't replace in this file (the compiled one)
                         to: "program.version" + "(".concat(JSON.stringify(pkg.packageJson.version), ")"),
                     };
-                    return [2 /*return*/, replace_in_file_1.default.replaceInFile(options)];
+                    return [2 /*return*/, (0, replace_in_file_1.replaceInFile)(options)];
             }
         });
     });
 }
-exports.replaceProgramVersion = replaceProgramVersion;

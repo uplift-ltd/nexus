@@ -47,12 +47,13 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "commander": "^8.0.0",
-    "execa": "^5.1.1",
-    "read-pkg-up": "^7.0.1",
-    "typescript": "^4.9.5"
+    "commander": "^14.0.3",
+    "execa": "^9.6.1",
+    "read-pkg-up": "^11.0.0",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "replace-in-file": "^6.3.5"
+    "@types/node": "^24.0.3",
+    "replace-in-file": "^8.4.0"
   }
 }

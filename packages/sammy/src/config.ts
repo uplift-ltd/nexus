@@ -1,4 +1,4 @@
-import readPackageUp from "read-pkg-up";
+import { readPackageUp } from "read-pkg-up";
 
 import { SammyConfig } from "./types.js";
 

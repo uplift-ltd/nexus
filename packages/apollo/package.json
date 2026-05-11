@@ -47,7 +47,7 @@
     "@uplift-ltd/nexus-types": "^2.1.1"
   },
   "devDependencies": {
-    "@apollo/client": "^4.0.0",
-    "graphql": "^16.11.0"
+    "@apollo/client": "^4.1.9",
+    "graphql": "^16.13.2"
   }
 }

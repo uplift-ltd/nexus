@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.renameCjsExtensions = void 0;
+exports.renameCjsExtensions = renameCjsExtensions;
 var promises_1 = __importDefault(require("fs/promises"));
 var path_1 = __importDefault(require("path"));
 // Longest extensions first so ".d.ts" and ".js.map" match before ".js"
@@ -104,7 +104,6 @@ function renameCjsExtensions(dir) {
         });
     });
 }
-exports.renameCjsExtensions = renameCjsExtensions;
 // CLI entry point
 if (process.argv[1] && CLI_BASENAME_REGEX.test(path_1.default.basename(process.argv[1]))) {
     var dir_1 = process.argv[2] || "./cjs";

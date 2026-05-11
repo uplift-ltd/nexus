@@ -39,14 +39,14 @@
     "test": "tsc -p tsconfig.fixtures.json"
   },
   "dependencies": {
-    "ejs": "^3.1.5",
-    "globby": "^11.0.1",
-    "lodash": "^4.17.20",
-    "mkdirp": "^1.0.4"
+    "ejs": "^5.0.2",
+    "globby": "^16.2.0",
+    "lodash": "^4.18.1",
+    "mkdirp": "^3.0.1"
   },
   "devDependencies": {
-    "@types/ejs": "^3.0.4",
-    "@types/lodash": "^4.14.160",
-    "@types/mkdirp": "^1.0.1"
+    "@types/ejs": "^3.1.5",
+    "@types/lodash": "^4.17.24",
+    "@types/mkdirp": "^2.0.0"
   }
 }

@@ -3,8 +3,8 @@ type StringableType = { toString: () => string };
 const isStringable = (variableToCheck: unknown): variableToCheck is StringableType => {
   return Boolean(
     variableToCheck &&
-      typeof variableToCheck === "object" &&
-      typeof variableToCheck.toString === "function"
+    typeof variableToCheck === "object" &&
+    typeof variableToCheck.toString === "function"
   );
 };
 
