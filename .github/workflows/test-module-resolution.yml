@@ -18,11 +18,8 @@ jobs:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
-      - name: Upgrade npm
-        run: npm install -g npm@latest
-
       - name: Install dependencies
-        run: npm ci
+        run: npx --yes npm@latest ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -51,11 +48,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://npm.pkg.github.com"
 
-      - name: Upgrade npm
-        run: npm install -g npm@latest
-
       - name: Install dependencies
-        run: npm ci
+        run: npx --yes npm@latest ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -82,11 +76,8 @@ jobs:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
-      - name: Upgrade npm
-        run: npm install -g npm@latest
-
       - name: Install dependencies
-        run: npm ci
+        run: npx --yes npm@latest ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -96,7 +87,7 @@ jobs:
           path: packages/
 
       - name: Install test tools
-        run: npm install --no-save webpack webpack-cli ts-loader ts-node tsx
+        run: npx --yes npm@latest install --no-save webpack webpack-cli ts-loader ts-node tsx
 
       - name: Create test fixtures
         run: |
