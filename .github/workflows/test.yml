@@ -12,19 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
-
-      # Install npm@latest into a fresh prefix so min-release-age (npm 11.5+)
-      # is honored. Avoids in-place `npm i -g npm@latest`, which crashes on
-      # Node 22's bundled npm 10 because the running process overwrites itself.
-      - name: Install npm
-        run: |
-          npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
-          echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"
+      - uses: ./.github/actions/setup
 
       - name: Cache node_modules
         uses: actions/cache@v5
@@ -49,11 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
+      - uses: ./.github/actions/setup
 
       - name: Restore dependencies
         uses: actions/cache@v5
@@ -92,11 +76,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
+      - uses: ./.github/actions/setup
 
       - name: Restore dependencies
         uses: actions/cache@v5
@@ -126,16 +106,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
-
-      - name: Install npm
-        run: |
-          npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
-          echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"
+      - uses: ./.github/actions/setup
 
       - name: Restore dependencies
         uses: actions/cache@v5

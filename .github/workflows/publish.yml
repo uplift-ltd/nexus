@@ -29,16 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
-
-      - name: Install npm
-        run: |
-          npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
-          echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"
+      - uses: ./.github/actions/setup
 
       - name: Cache node_modules
         uses: actions/cache@v5
@@ -63,11 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24.x"
-          registry-url: "https://npm.pkg.github.com"
+      - uses: ./.github/actions/setup
 
       - name: Restore dependencies
         uses: actions/cache@v5
@@ -102,10 +89,8 @@ jobs:
           fetch-depth: "0"
           token: ${{ secrets.PUBLISH_TOKEN }}
 
-      - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v6
+      - uses: ./.github/actions/setup
         with:
-          node-version: "24.x"
           registry-url: "https://registry.npmjs.org"
 
       - name: Restore dependencies
