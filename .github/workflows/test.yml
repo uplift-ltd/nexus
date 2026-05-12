@@ -10,16 +10,16 @@ jobs:
   dependencies:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache-node
         env:
           cache-name: npm-cache
@@ -41,16 +41,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: dependencies
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: npm-cache
         with:
@@ -70,7 +70,7 @@ jobs:
             exit 1
           fi
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: build
           path: |
@@ -84,16 +84,16 @@ jobs:
       - dependencies
       - build
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: npm-cache
         with:
@@ -102,7 +102,7 @@ jobs:
             packages/*/node_modules
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: build
           path: packages/
@@ -118,16 +118,16 @@ jobs:
     needs:
       - dependencies
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Use Node.js with GitHub Packages
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Restore dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: npm-cache
         with:
@@ -137,7 +137,7 @@ jobs:
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
 
       - name: Restore website dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: npm-cache
         with:
