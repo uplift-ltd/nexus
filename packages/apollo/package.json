@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/apollo",
   "type": "module",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "description": "Apollo helpers.",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",

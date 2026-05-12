@@ -4,7 +4,7 @@ import { execa } from "execa";
 import { renameCjsExtensions } from "./renameCjsExtensions.js";
 import { replaceProgramVersion } from "./replaceProgramVersion.js";
 const program = new Command();
-program.version("4.1.1");
+program.version("4.1.2");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")

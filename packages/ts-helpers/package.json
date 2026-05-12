@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/ts-helpers",
   "type": "module",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Helpers for dealing with typescript.",
   "license": "MIT",
   "author": "Marius Craciunoiu <marius@uplift.ltd>",

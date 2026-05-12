@@ -1,7 +1,7 @@
 {
   "name": "@uplift-ltd/file-uploads",
   "type": "module",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "file-uploads",
   "license": "MIT",
   "author": "Uplift Agency Ltd. <npm@uplift.ltd>",
@@ -52,7 +52,7 @@
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@uplift-ltd/ts-helpers": "^3.1.1"
+    "@uplift-ltd/ts-helpers": "^3.1.2"
   },
   "devDependencies": {
     "axios": "^1.16.0"
