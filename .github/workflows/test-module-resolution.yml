@@ -18,8 +18,13 @@ jobs:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Install npm
+        run: |
+          npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
+          echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"
+
       - name: Install dependencies
-        run: npx --yes npm@latest ci
+        run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -48,8 +53,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Install npm
+        run: |
+          npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
+          echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"
+
       - name: Install dependencies
-        run: npx --yes npm@latest ci
+        run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -76,8 +86,13 @@ jobs:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Install npm
+        run: |
+          npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
+          echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"
+
       - name: Install dependencies
-        run: npx --yes npm@latest ci
+        run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -87,7 +102,7 @@ jobs:
           path: packages/
 
       - name: Install test tools
-        run: npx --yes npm@latest install --no-save webpack webpack-cli ts-loader ts-node tsx
+        run: npm install --no-save webpack webpack-cli ts-loader ts-node tsx
 
       - name: Create test fixtures
         run: |
