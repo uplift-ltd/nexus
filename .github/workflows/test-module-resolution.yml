@@ -98,7 +98,7 @@ jobs:
           console.log("OK");
           EOF
           cat > .module-test/tsconfig.json <<'EOF'
-          { "compilerOptions": { "module": "ESNext", "moduleResolution": "node", "esModuleInterop": true, "skipLibCheck": true, "ignoreDeprecations": "6.0" } }
+          { "compilerOptions": { "module": "ESNext", "moduleResolution": "bundler", "esModuleInterop": true, "skipLibCheck": true } }
           EOF
           cat > .module-test/webpack.config.cjs <<'EOF'
           const path = require("path");
