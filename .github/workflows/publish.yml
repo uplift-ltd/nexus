@@ -22,6 +22,10 @@ on:
         type: boolean
         description: "dry run (skip actual publish)"
         default: false
+      skipVersion:
+        type: boolean
+        description: "skip lerna version (re-publish current package.json versions)"
+        default: false
 
 jobs:
   dependencies:
@@ -115,8 +119,9 @@ jobs:
 
       - name: Lerna version
         if:
-          (github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/main') ||
-          github.event.inputs.distTag == 'prerelease'
+          github.event.inputs.skipVersion != 'true' &&
+          ((github.event.inputs.distTag == 'latest' && github.ref == 'refs/heads/main') ||
+          github.event.inputs.distTag == 'prerelease')
         run: |
           DRY_RUN_FLAG=""
           if [ "$DRY_RUN" == "true" ]; then
