@@ -1,0 +1,31 @@
+name: Setup Node.js with up-to-date npm
+description: |
+  Sets up Node.js and installs npm@latest into a fresh prefix on PATH so
+  `min-release-age` (npm 11.5+) is honored. Installing into a separate
+  prefix avoids the self-overwrite that breaks `npm i -g npm@latest` on
+  Node 22's bundled npm 10.
+
+inputs:
+  node-version:
+    description: Node.js version spec (e.g. "24.x")
+    required: false
+    default: "24.x"
+  registry-url:
+    description: npm registry URL to authenticate against
+    required: false
+    default: "https://npm.pkg.github.com"
+
+runs:
+  using: composite
+  steps:
+    - name: Use Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+        registry-url: ${{ inputs.registry-url }}
+
+    - name: Install npm
+      shell: bash
+      run: |
+        npm install --prefix "$RUNNER_TEMP/npm-cli" npm@latest
+        echo "$RUNNER_TEMP/npm-cli/node_modules/.bin" >> "$GITHUB_PATH"

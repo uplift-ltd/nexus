@@ -2,9 +2,9 @@
 
 import ejs from "ejs";
 import fs from "fs";
-import globby from "globby";
+import { globby } from "globby";
 import zip from "lodash/zip";
-import mkdirp from "mkdirp";
+import { mkdirp } from "mkdirp";
 import path from "path";
 
 export async function initFiles() {

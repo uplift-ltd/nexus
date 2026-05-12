@@ -22,6 +22,7 @@ export function ToastDismiss({
   }, [toast, dismissToast, leaveDuration, setSafeTimeout]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- mount transition: re-render after mount to trigger CSS enter animation
     setShow(true);
     if (timeout) {
       setSafeTimeout(onRequestClose, timeout);

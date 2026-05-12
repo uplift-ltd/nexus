@@ -43,8 +43,11 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "commander": "^8.0.0",
-    "execa": "^5.1.1",
-    "read-pkg-up": "^7.0.1"
+    "commander": "^14.0.3",
+    "execa": "^9.6.1",
+    "read-pkg-up": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3"
   }
 }
