@@ -40,6 +40,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Restore dependencies
+        id: cache-node
         uses: actions/cache@v5
         env:
           cache-name: npm-cache
@@ -48,6 +49,14 @@ jobs:
             node_modules
             packages/*/node_modules
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
+
+      # Fall back to a fresh install if the cache from the dependencies job
+      # was missed (e.g. cache save/restore race within the same run).
+      - name: Install dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: npm run build
 
@@ -79,6 +88,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Restore dependencies
+        id: cache-node
         uses: actions/cache@v5
         env:
           cache-name: npm-cache
@@ -87,6 +97,14 @@ jobs:
             node_modules
             packages/*/node_modules
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
+
+      # Fall back to a fresh install if the cache from the dependencies job
+      # was missed (e.g. cache save/restore race within the same run).
+      - name: Install dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/download-artifact@v8
         with:
@@ -109,6 +127,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Restore dependencies
+        id: cache-node
         uses: actions/cache@v5
         env:
           cache-name: npm-cache
@@ -117,6 +136,14 @@ jobs:
             node_modules
             packages/*/node_modules
           key: ${{runner.os}}-build-${{env.cache-name}}-${{hashFiles('package-lock.json')}}-${{hashFiles('package.json')}}-${{hashFiles('packages/*/package.json')}}
+
+      # Fall back to a fresh install if the cache from the dependencies job
+      # was missed. update-docs invokes the root-installed prettier.
+      - name: Install dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Restore website dependencies
         uses: actions/cache@v5
