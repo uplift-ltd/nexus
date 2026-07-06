@@ -26,7 +26,7 @@ const DPRINT_CONFIG_FILES = ["dprint.json", "dprint.jsonc", ".dprint.json", ".dp
 // Oxide is intentionally omitted — its formatter config is still stabilizing.
 const INCAPABLE_CONFIG_FILES = ["biome.json", "biome.jsonc"];
 
-function hasAny(dir: string, files: string[]): boolean {
+function dirHasAnyFile(dir: string, files: string[]): boolean {
   return files.some((file) => existsSync(path.join(dir, file)));
 }
 
@@ -59,13 +59,13 @@ export function resolveFormatCommand(projectDir: string, configFormat?: string):
 
   let sawIncapable = false;
   for (const dir of dirsUpward(projectDir)) {
-    if (hasAny(dir, PRETTIER_CONFIG_FILES) || hasPrettierPackageJsonKey(dir)) {
+    if (dirHasAnyFile(dir, PRETTIER_CONFIG_FILES) || hasPrettierPackageJsonKey(dir)) {
       return { command: "prettier --write {file}" };
     }
-    if (hasAny(dir, DPRINT_CONFIG_FILES)) {
+    if (dirHasAnyFile(dir, DPRINT_CONFIG_FILES)) {
       return { command: "dprint fmt {file}" };
     }
-    if (hasAny(dir, INCAPABLE_CONFIG_FILES)) {
+    if (dirHasAnyFile(dir, INCAPABLE_CONFIG_FILES)) {
       sawIncapable = true;
     }
   }
@@ -73,7 +73,7 @@ export function resolveFormatCommand(projectDir: string, configFormat?: string):
   return { skip: sawIncapable ? "incapable" : "none" };
 }
 
-const SET_FORMAT_HINT = 'Set "sammy.format" in package.json';
+const SET_FORMAT_HINT = 'Set "sammy.formatCmd" in package.json';
 
 export function formatSkipMessage(skip: "none" | "incapable", appspecName: string): string {
   return skip === "incapable"

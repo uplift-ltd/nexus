@@ -62,7 +62,7 @@ program
 
       await fs.writeFile(appspecName, appspec.stdout, "utf-8");
 
-      await formatAppspec(root, config.format, appspecName);
+      await formatAppspec(root, config.formatCmd, appspecName);
     } catch (err) {
       console.error(err);
       process.exitCode = 1;

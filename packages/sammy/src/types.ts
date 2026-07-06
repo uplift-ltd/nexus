@@ -6,5 +6,5 @@ export interface SammyConfig {
    * with the appspec filename; if omitted, the command runs unchanged (no
    * filename is appended). When unset, sammy auto-detects prettier/dprint.
    */
-  format?: string;
+  formatCmd?: string;
 }

@@ -69,22 +69,22 @@ After `appspec:get` downloads the YAML, sammy formats it in place. By default it
 YAML-capable formatter (prettier or dprint) from your project's config files, walking up to the repo
 root — so monorepos work without setup.
 
-To use a specific command, set `format`. `{file}` is replaced with the appspec filename; if you omit
-it, the command runs unchanged:
+To use a specific command, set `formatCmd`. `{file}` is replaced with the appspec filename; if you
+omit it, the command runs unchanged:
 
 ```json
 {
   "sammy": {
-    "format": "prettier --write {file}"
+    "formatCmd": "prettier --write {file}"
   }
 }
 ```
 
 If no YAML-capable formatter is found (e.g. a biome- or oxide-only project, since those can't format
 YAML), sammy logs a notice and writes the file unformatted — `appspec:get` still succeeds. Set
-`format` to override detection.
+`formatCmd` to override detection.
 
-> Note: yarn Plug'n'Play is not supported for auto-detection; set an explicit `format` command (e.g.
+> Note: yarn Plug'n'Play is not supported for auto-detection; set an explicit `formatCmd` (e.g.
 > `yarn exec prettier --write {file}`) in a PnP project.
 
 ### File Structure

@@ -55,18 +55,18 @@ targets, and prettier remains the only sensible zero-config default.
 Yarn Plug'n'Play has no `node_modules`, so `preferLocal` cannot resolve a bin. Supporting it would
 require detecting the PM and prefixing `yarn exec`. **We are not supporting yarn PnP.** In a PnP
 project the formatter simply won't resolve and sammy takes the graceful-skip path (logs, writes the
-file unformatted, exits 0). If needed later, users can set an explicit `format` command that
+file unformatted, exits 0). If needed later, users can set an explicit `formatCmd` command that
 includes the `yarn exec` prefix.
 
 ## Design
 
 ### Config
 
-Add an optional `format` field to the sammy config (in `package.json`):
+Add an optional `formatCmd` field to the sammy config (in `package.json`):
 
 ```jsonc
 "sammy": {
-  "format": "biome format --write {file}"  // optional
+  "formatCmd": "biome format --write {file}"  // optional
 }
 ```
 
@@ -74,13 +74,13 @@ Add an optional `format` field to the sammy config (in `package.json`):
   wherever `{file}` appears. If `{file}` is **absent, nothing is appended** — the command runs
   exactly as written (some formatters take no file argument, e.g. `biome format --write .` or a
   wrapper script).
-- `SammyConfig` gains `format?: string` (`packages/sammy/src/types.ts`).
+- `SammyConfig` gains `formatCmd?: string` (`packages/sammy/src/types.ts`).
 
 ### Resolution order — `resolveFormatCommand(projectDir)`
 
 Returns `{ command: string } | { skip: "none" | "incapable" }`.
 
-1. `config.format` present → `{ command }` (use it verbatim).
+1. `config.formatCmd` present → `{ command }` (use it verbatim).
 2. else detect by **config file only** in `projectDir` (the dir of the `package.json` that
    `read-pkg-up` resolved) — no dependency-list sniffing, to avoid false positives from transitive
    deps that aren't wired up:
@@ -100,12 +100,12 @@ if ("skip" in resolved) {
   if (resolved.skip === "incapable") {
     console.info(
       `⚠ Detected a formatter that can't format YAML (biome/oxide). ` +
-        `Wrote ${appspecName} unformatted. Set "sammy.format" in package.json to use prettier/dprint.`
+        `Wrote ${appspecName} unformatted. Set "sammy.formatCmd" in package.json to use prettier/dprint.`
     );
   } else {
     console.info(
       `⚠ No YAML-capable formatter detected (prettier/dprint). ` +
-        `Wrote ${appspecName} unformatted. Set "sammy.format" in package.json to configure one.`
+        `Wrote ${appspecName} unformatted. Set "sammy.formatCmd" in package.json to configure one.`
     );
   }
 } else {
@@ -135,11 +135,11 @@ Notes:
 
 ### Graceful skip — always exit 0, always log
 
-| Situation                             | Log                                                                                                          |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| No formatter config detected (`none`) | `⚠ No YAML-capable formatter detected (prettier/dprint). Wrote <file> unformatted. Set "sammy.format"…`      |
-| biome/oxide detected (`incapable`)    | `⚠ Detected a formatter that can't format YAML (biome/oxide). Wrote <file> unformatted. Set "sammy.format"…` |
-| Formatter resolved but errored        | `⚠ Formatter "<cmd>" failed: <msg>. Wrote <file> unformatted.`                                               |
+| Situation                             | Log                                                                                                             |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| No formatter config detected (`none`) | `⚠ No YAML-capable formatter detected (prettier/dprint). Wrote <file> unformatted. Set "sammy.formatCmd"…`      |
+| biome/oxide detected (`incapable`)    | `⚠ Detected a formatter that can't format YAML (biome/oxide). Wrote <file> unformatted. Set "sammy.formatCmd"…` |
+| Formatter resolved but errored        | `⚠ Formatter "<cmd>" failed: <msg>. Wrote <file> unformatted.`                                                  |
 
 ## Testing
 
