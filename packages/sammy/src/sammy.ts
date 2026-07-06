@@ -5,17 +5,49 @@ import { execa } from "execa";
 import fs from "fs/promises";
 
 import { getAppId, getAppspecName, loadConfig } from "./config.js";
+import { buildFormatArgv, formatSkipMessage, resolveFormatCommand } from "./formatter.js";
 
 const program = new Command();
 
 program.version("1.0.0");
+
+/**
+ * Format the downloaded appspec in-place. Never throws: a missing or failing
+ * formatter logs a warning and leaves the (already-written) file unformatted,
+ * so `appspec:get` still succeeds.
+ */
+async function formatAppspec(
+  projectDir: string,
+  configFormat: string | undefined,
+  appspecName: string
+) {
+  const resolved = resolveFormatCommand(projectDir, configFormat);
+
+  if ("skip" in resolved) {
+    console.info(formatSkipMessage(resolved.skip, appspecName));
+    return;
+  }
+
+  const [cmd, args] = buildFormatArgv(resolved.command, appspecName);
+
+  try {
+    const res = await execa(cmd, args, { preferLocal: true });
+    console.info(res.stdout || `Wrote ${appspecName}`);
+  } catch (err) {
+    const message =
+      err && typeof err === "object" && "shortMessage" in err
+        ? (err as { shortMessage: string }).shortMessage
+        : String(err);
+    console.warn(`⚠ Formatter "${cmd}" failed: ${message}. Wrote ${appspecName} unformatted.`);
+  }
+}
 
 program
   .command("appspec:get")
   .requiredOption("-e, --env <env>", "environment (key from package.json)")
   .action(async (options) => {
     try {
-      const config = await loadConfig();
+      const { config, root } = await loadConfig();
       const APP_ID = getAppId(config, options.env);
       const appspecName = getAppspecName(options.env);
 
@@ -30,13 +62,7 @@ program
 
       await fs.writeFile(appspecName, appspec.stdout, "utf-8");
 
-      const prettier = await execa("./node_modules/.bin/prettier", ["--write", appspecName]);
-
-      if (prettier.stdout) {
-        console.info(prettier.stdout);
-      } else {
-        console.info(`Wrote ${appspecName}`);
-      }
+      await formatAppspec(root, config.format, appspecName);
     } catch (err) {
       console.error(err);
       process.exitCode = 1;
@@ -48,7 +74,7 @@ program
   .requiredOption("-e, --env <env>", "environment (key from package.json)")
   .action(async (options) => {
     try {
-      const config = await loadConfig();
+      const { config } = await loadConfig();
       const APP_ID = getAppId(config, options.env);
       const appspecName = getAppspecName(options.env);
 
@@ -78,7 +104,7 @@ program
   .requiredOption("-e, --env <env>", "environment (key from package.json)")
   .action(async (options) => {
     try {
-      const config = await loadConfig();
+      const { config } = await loadConfig();
       const APP_ID = getAppId(config, options.env);
 
       const appspec = await execa("doctl", [

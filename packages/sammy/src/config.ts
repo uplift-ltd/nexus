@@ -1,8 +1,15 @@
+import path from "path";
 import { readPackageUp } from "read-pkg-up";
 
 import { SammyConfig } from "./types.js";
 
-export async function loadConfig(): Promise<SammyConfig> {
+export interface LoadedConfig {
+  config: SammyConfig;
+  /** Directory of the package.json that provided the config. */
+  root: string;
+}
+
+export async function loadConfig(): Promise<LoadedConfig> {
   const pkg = await readPackageUp();
 
   if (!pkg) {
@@ -15,7 +22,7 @@ export async function loadConfig(): Promise<SammyConfig> {
     throw new Error(`Could not find config in ${pkg.path}`);
   }
 
-  return config;
+  return { config, root: path.dirname(pkg.path) };
 }
 
 export function getAppId(config: SammyConfig, env: string) {

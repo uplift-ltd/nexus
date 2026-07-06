@@ -1,6 +1,6 @@
 # Sammy: Configurable / Auto-detected Formatter
 
-**Date:** 2026-07-06 **Status:** Design agreed, not yet implemented
+**Date:** 2026-07-06 **Status:** Implemented
 
 ## Problem
 
