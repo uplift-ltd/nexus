@@ -70,32 +70,48 @@ Add an optional `format` field to the sammy config (in `package.json`):
 }
 ```
 
-- A **command string** with a `{file}` placeholder. Sammy substitutes the appspec filename; if
-  `{file}` is absent, the filename is appended as the last arg.
+- A **command string** with an optional `{file}` placeholder. Sammy substitutes the appspec filename
+  wherever `{file}` appears. If `{file}` is **absent, nothing is appended** — the command runs
+  exactly as written (some formatters take no file argument, e.g. `biome format --write .` or a
+  wrapper script).
 - `SammyConfig` gains `format?: string` (`packages/sammy/src/types.ts`).
 
 ### Resolution order — `resolveFormatCommand(projectDir): string | null`
 
-1. `config.format` present → use it verbatim.
-2. else detect a YAML-capable formatter in `projectDir` (the dir of the `package.json` that
-   `read-pkg-up` resolved):
-   - prettier config or dependency present → `prettier --write {file}`
-   - else dprint config (`dprint.json` / `dprint.jsonc`) → `dprint fmt {file}`
-3. else → `null` (skip).
+Returns `{ command: string } | { skip: "none" | "incapable" }`.
+
+1. `config.format` present → `{ command }` (use it verbatim).
+2. else detect by **config file only** in `projectDir` (the dir of the `package.json` that
+   `read-pkg-up` resolved) — no dependency-list sniffing, to avoid false positives from transitive
+   deps that aren't wired up:
+   - prettier config (`.prettierrc*`, `prettier.config.*`) →
+     `{ command: "prettier --write {file}" }`
+   - else dprint config (`dprint.json` / `dprint.jsonc`) → `{ command: "dprint fmt {file}" }`
+   - else biome (`biome.json` / `biome.jsonc`) or oxide config present → `{ skip: "incapable" }`
+     (drives the distinct message — the project has a formatter, it just can't do YAML)
+3. else → `{ skip: "none" }`.
 
 ### Invocation
 
 ```ts
-const command = resolveFormatCommand(projectDir);
-if (!command) {
-  console.info(
-    `⚠ No YAML-capable formatter detected (prettier/dprint). ` +
-      `Wrote ${appspecName} unformatted. Set "sammy.format" in package.json to configure one.`
-  );
+const resolved = resolveFormatCommand(projectDir);
+
+if ("skip" in resolved) {
+  if (resolved.skip === "incapable") {
+    console.info(
+      `⚠ Detected a formatter that can't format YAML (biome/oxide). ` +
+        `Wrote ${appspecName} unformatted. Set "sammy.format" in package.json to use prettier/dprint.`
+    );
+  } else {
+    console.info(
+      `⚠ No YAML-capable formatter detected (prettier/dprint). ` +
+        `Wrote ${appspecName} unformatted. Set "sammy.format" in package.json to configure one.`
+    );
+  }
 } else {
-  const parts = command.split(/\s+/);
+  const parts = resolved.command.split(/\s+/);
   const args = parts.slice(1).map((a) => (a === "{file}" ? appspecName : a));
-  if (!command.includes("{file}")) args.push(appspecName);
+  // No auto-append: if the command has no {file}, it runs exactly as written.
   try {
     const res = await execa(parts[0], args, { preferLocal: true });
     console.info(res.stdout || `Wrote ${appspecName}`);
@@ -112,16 +128,18 @@ Notes:
 
 - Whitespace `split` is sufficient: `appspecName` (`appspec.<env>.yml`) has no spaces, and the
   command comes from trusted local config. No shell is invoked.
+- The filename is passed **only** via `{file}`; it is never auto-appended, so commands that take no
+  file argument work unchanged.
 - Formatting runs in its **own** try/catch so a formatter failure never aborts `appspec:get` — the
   YAML is already written and the download succeeded.
 
 ### Graceful skip — always exit 0, always log
 
-| Situation                                  | Log                                                                                                     |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| No YAML-capable formatter detected         | `⚠ No YAML-capable formatter detected (prettier/dprint). Wrote <file> unformatted. Set "sammy.format"…` |
-| biome/oxide detected, nothing YAML-capable | same skip, optionally hinting biome/oxide can't format YAML                                             |
-| Formatter resolved but errored             | `⚠ Formatter "<cmd>" failed: <msg>. Wrote <file> unformatted.`                                          |
+| Situation                             | Log                                                                                                          |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| No formatter config detected (`none`) | `⚠ No YAML-capable formatter detected (prettier/dprint). Wrote <file> unformatted. Set "sammy.format"…`      |
+| biome/oxide detected (`incapable`)    | `⚠ Detected a formatter that can't format YAML (biome/oxide). Wrote <file> unformatted. Set "sammy.format"…` |
+| Formatter resolved but errored        | `⚠ Formatter "<cmd>" failed: <msg>. Wrote <file> unformatted.`                                               |
 
 ## Testing
 
@@ -132,10 +150,16 @@ Notes:
   `node_modules/.bin`) resolves via `preferLocal`.
 - Integration: formatter-failure and no-formatter paths both exit 0 and log.
 
+## Resolved decisions
+
+- **No auto-append of the filename** — the appspec name is injected only where `{file}` appears, so
+  file-less commands work.
+- **Config-file-only detection** — no dependency-list sniffing.
+- **Distinct `incapable` skip message** — biome/oxide projects get a message pointing them at
+  prettier/dprint, separate from the "nothing detected" case.
+
 ## Open questions
 
-- Detect prettier by config file only, or also by presence in `dependencies`? (Config-file-only is
-  simpler and avoids a false positive when prettier is a transitive dep that isn't actually wired
-  up.)
-- Should the skip message for a detected-but-incapable formatter (biome/oxide) be distinct, or is
-  one generic message enough? Distinct adds detection code for no functional gain.
+- Which oxide config file(s) to detect for the `incapable` message (`oxlintrc.json`? `.oxlintrc`?
+  oxc's formatter config is still stabilizing) — confirm before implementing, or drop oxide from
+  detection and let it fall into the generic `none` message.
