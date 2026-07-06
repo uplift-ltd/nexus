@@ -76,7 +76,7 @@ Add an optional `format` field to the sammy config (in `package.json`):
   wrapper script).
 - `SammyConfig` gains `format?: string` (`packages/sammy/src/types.ts`).
 
-### Resolution order — `resolveFormatCommand(projectDir): string | null`
+### Resolution order — `resolveFormatCommand(projectDir)`
 
 Returns `{ command: string } | { skip: "none" | "incapable" }`.
 
@@ -143,9 +143,9 @@ Notes:
 
 ## Testing
 
-- Unit: `resolveFormatCommand` returns explicit config, detected prettier, detected dprint, and
-  `null` in a bare dir.
-- Unit: `{file}` substitution and append-when-absent.
+- Unit: `resolveFormatCommand` returns explicit config, detected prettier, detected dprint,
+  `{ skip: "incapable" }` for a biome/oxide project, and `{ skip: "none" }` in a bare dir.
+- Unit: `{file}` substitution, and that a command without `{file}` runs unchanged (no append).
 - Integration: `appspec:get` in a monorepo-style fixture (nested package, bin at a parent
   `node_modules/.bin`) resolves via `preferLocal`.
 - Integration: formatter-failure and no-formatter paths both exit 0 and log.
