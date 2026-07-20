@@ -55,6 +55,6 @@
     "@uplift-ltd/ts-helpers": "^3.1.2"
   },
   "devDependencies": {
-    "axios": "^1.16.0"
+    "axios": "^1.18.0"
   }
 }
