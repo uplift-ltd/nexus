@@ -85,6 +85,11 @@ jobs:
       name: Production
       url: "https://github.com/uplift-ltd/nexus/releases"
     runs-on: ubuntu-latest
+    # contents: write — lerna version pushes tags / creates GitHub releases
+    # id-token: write — OIDC token for npm provenance attestations
+    permissions:
+      contents: write
+      id-token: write
     needs:
       - build
     steps:
@@ -142,6 +147,8 @@ jobs:
           DIST_TAG: ${{ github.event.inputs.distTag }}
           GRADUATE: ${{ github.event.inputs.graduate }}
 
+      # Provenance is only generated for the public npm registry; GitHub
+      # Packages does not support sigstore attestations, so it stays off below.
       - name: Lerna publish npm
         if: github.event.inputs.dryRun != 'true'
         run: |
@@ -153,6 +160,7 @@ jobs:
             --registry https://registry.npmjs.org $FORCE_FLAG
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"
           DIST_TAG: ${{ github.event.inputs.distTag }}
           FORCE_PUBLISH: ${{ github.event.inputs.forcePublish }}
 
