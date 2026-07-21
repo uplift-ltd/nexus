@@ -87,9 +87,11 @@ jobs:
     runs-on: ubuntu-latest
     # contents: write — lerna version pushes tags / creates GitHub releases
     # id-token: write — OIDC token for npm provenance attestations
+    # packages: write — GITHUB_TOKEN publishes to GitHub Packages
     permissions:
       contents: write
       id-token: write
+      packages: write
     needs:
       - build
     steps:
