@@ -48,13 +48,13 @@
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
-    "axios": "^1.6.0",
+    "axios": "^1.18.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
     "@uplift-ltd/ts-helpers": "^3.1.2"
   },
   "devDependencies": {
-    "axios": "^1.16.0"
+    "axios": "^1.18.0"
   }
 }
