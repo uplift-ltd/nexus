@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@6.1.2...@uplift-ltd/file-uploads@6.1.3) (2026-07-21)
+
+
+### Bug Fixes
+
+* **file-uploads:** bump axios to ^1.18.0 (dev + peer) ([#463](https://github.com/uplift-ltd/nexus/issues/463)) ([a0e006e](https://github.com/uplift-ltd/nexus/commit/a0e006e799362f177aa450662af5f43c75795629))
+
+
+
+
+
 ## [6.1.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/file-uploads@6.1.1...@uplift-ltd/file-uploads@6.1.2) (2026-05-12)
 
 **Note:** Version bump only for package @uplift-ltd/file-uploads

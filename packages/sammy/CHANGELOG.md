@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sammy@2.1.2...@uplift-ltd/sammy@2.2.0) (2026-07-21)
+
+
+### Features
+
+* **sammy:** configurable & auto-detected appspec formatter ([#460](https://github.com/uplift-ltd/nexus/issues/460)) ([fcf6937](https://github.com/uplift-ltd/nexus/commit/fcf6937a1a9e0601d98a955a06a7d30563d652e9))
+
+
+
+
+
 ## [2.1.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/sammy@2.1.1...@uplift-ltd/sammy@2.1.2) (2026-05-12)
 
 **Note:** Version bump only for package @uplift-ltd/sammy
