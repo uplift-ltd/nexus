@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.replaceProgramVersion = replaceProgramVersion;
 const path_1 = __importDefault(require("path"));
-const read_pkg_up_1 = require("read-pkg-up");
+const read_package_up_1 = require("read-package-up");
 const replace_in_file_1 = require("replace-in-file");
 async function replaceProgramVersion() {
-    const pkg = await (0, read_pkg_up_1.readPackageUp)();
+    const pkg = await (0, read_package_up_1.readPackageUp)();
     if (!pkg) {
         throw new Error("Could not find package.json");
     }
