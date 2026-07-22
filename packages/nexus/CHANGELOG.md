@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.3](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@4.1.2...@uplift-ltd/nexus@4.1.3) (2026-07-22)
+
+
+### Bug Fixes
+
+* **sammy:** replace deprecated read-pkg-up with read-package-up ([#469](https://github.com/uplift-ltd/nexus/issues/469)) ([6e7db77](https://github.com/uplift-ltd/nexus/commit/6e7db77e11c8892e071766802bb0e3d023e2151a))
+
+
+
+
+
 ## [4.1.2](https://github.com/uplift-ltd/nexus/compare/@uplift-ltd/nexus@4.1.1...@uplift-ltd/nexus@4.1.2) (2026-05-12)
 
 **Note:** Version bump only for package @uplift-ltd/nexus

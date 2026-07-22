@@ -6,7 +6,7 @@ const execa_1 = require("execa");
 const renameCjsExtensions_js_1 = require("./renameCjsExtensions.cjs");
 const replaceProgramVersion_js_1 = require("./replaceProgramVersion.cjs");
 const program = new commander_1.Command();
-program.version("4.1.2");
+program.version("4.1.3");
 program
     .command("build-library")
     .option("--tsconfig <path>", "Path to tsconfig.json", "tsconfig.json")
