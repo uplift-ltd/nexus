@@ -6,6 +6,10 @@
   "description": "Uplift's front end core library.",
   "license": "MIT",
   "homepage": "https://nexus.uplift.ltd/",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=11.5.0"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
     "access": "restricted"
