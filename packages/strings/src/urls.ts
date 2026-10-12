@@ -5,6 +5,22 @@ import { safeJoin } from "./safeJoin.js";
 
 const safeJoinWithQuestionMark = safeJoin("?");
 
+// Walking the URL one segment at a time keeps consecutive tokens like
+// "/:orgId/:userId/" from swallowing each other when there's a trailing slash
+// prettier-ignore
+type UrlSegmentToken<Segment extends string> = Segment extends `:${infer Token}`
+  // express style urls
+  ? Token
+  // or next.js style urls
+  : Segment extends `[${infer Token}]`
+  ? Token
+  : never;
+
+// prettier-ignore
+type CollectUrlTokens<T extends string, Found extends string> = T extends `${infer Segment}/${infer Rest}`
+  ? CollectUrlTokens<Rest, Found | UrlSegmentToken<Segment>>
+  : Found | UrlSegmentToken<T>;
+
 /**
  * This type parses out the path tokens :token from a url
  * It handles tokens with/without trailing slashes
@@ -14,26 +30,7 @@ const safeJoinWithQuestionMark = safeJoin("?");
  * // "orgId" | "userId"
  *
  */
-
-// Root is ignored on purpose
-// prettier-ignore
-/* eslint-disable @typescript-eslint/no-unused-vars */
-export type UrlTokens<T extends string> = T extends
-  // express style urls
-  | `${infer Root}/:${infer Token}/${infer Rest}`
-  // or next.js style urls
-  | `${infer Root}/[${infer Token}]/${infer Rest}`
-  ? Token | UrlTokens<Rest>
-  : T extends `:${infer Token}/${infer Rest}` | `[${infer Token}]/${infer Rest}`
-  ? Token | UrlTokens<Rest>
-  : T extends `${infer Root}/:${infer Token}` | `${infer Root}/[${infer Token}]`
-  ? Token
-  : T extends `:${infer Token}/` | `[${infer Token}]/`
-  ? Token
-  : T extends `:${infer Token}` | `[${infer Token}]`
-  ? Token
-  : never;
-/* eslint-enable @typescript-eslint/no-unused-vars */
+export type UrlTokens<T extends string> = CollectUrlTokens<T, never>;
 
 /**
  * Takes a URL and returns a Record with all tokens as required keys
